@@ -1,0 +1,139 @@
+name: 📈 Track Signal Results
+
+on:
+  # التشغيل اليدوي
+  workflow_dispatch:
+  
+  # التشغيل عند push لنتائج أو بيانات
+  push:
+    paths:
+      - 'data/signals_log.csv'
+      - 'data/daily.json'
+      - 'data/golden_signal.json'
+    branches:
+      - main
+  
+  # الجدولة اليومية (بعد إغلاق السوق)
+  schedule:
+    - cron: '0 12 * * 0-4'  # 3:00 PM Riyadh time (أحد-خميس)
+
+jobs:
+  track-results:
+    name: 📊 Track & Log Results
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Get full history for comparison
+      
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pandas numpy requests
+      
+      - name: 📁 Create data directory
+        run: |
+          mkdir -p data
+          mkdir -p data/results
+      
+      - name: 📊 Run Results Tracker
+        id: track
+        run: |
+          echo "📈 Tracking signal performance..."
+          python scripts/track_results.py
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+          PYTHONUTF8: 1
+      
+      - name: 📄 Check if log updated
+        id: check_log
+        run: |
+          if [ -f "data/signals_log.csv" ]; then
+            echo "log_exists=true" >> $GITHUB_OUTPUT
+            lines=$(wc -l < data/signals_log.csv)
+            echo "log_lines=$lines" >> $GITHUB_OUTPUT
+            echo "✅ Signals log found with $lines entries"
+          else
+            echo "log_exists=false" >> $GITHUB_OUTPUT
+            echo "⚠️ No signals log found"
+          fi
+      
+      - name: 📊 Generate Performance Report
+        if: steps.check_log.outputs.log_exists == 'true'
+        run: |
+          echo "📊 Generating performance statistics..."
+          python -c "
+import pandas as pd
+import json
+
+# قراءة السجل
+df = pd.read_csv('data/signals_log.csv')
+
+# حساب الإحصائيات
+total_signals = len(df)
+if total_signals > 0:
+    avg_score = df['score'].mean()
+    avg_rr = df.get('rr', pd.Series([0]*total_signals)).mean()
+    
+    stats = {
+        'total_signals': int(total_signals),
+        'avg_score': round(avg_score, 2),
+        'avg_rr': round(avg_rr, 2),
+        'last_updated': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')
+    }
+    
+    with open('data/performance_stats.json', 'w', encoding='utf-8') as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+    
+    print(f'📊 Total signals: {total_signals}')
+    print(f'📊 Average score: {avg_score:.2f}')
+    print(f'📊 Average R:R: {avg_rr:.2f}')
+else:
+    print('⚠️ No signals to analyze')
+"
+      
+      - name: 📤 Commit and push results
+        if: steps.check_log.outputs.log_exists == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/signals_log.csv data/performance_stats.json data/results/
+          git commit -m "📈 Update results tracking - $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 📸 Upload Results Artifact
+        if: steps.check_log.outputs.log_exists == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: signals-log
+          path: |
+            data/signals_log.csv
+            data/performance_stats.json
+          retention-days: 30
+      
+      - name: ✅ Job Summary
+        if: always()
+        run: |
+          echo "## 📈 Track Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_log.outputs.log_exists }}" == "true" ]; then
+            echo "✅ Signals log updated" >> $GITHUB_STEP_SUMMARY
+            echo "**Total entries:** ${{ steps.check_log.outputs.log_lines }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No signals log found" >> $GITHUB_STEP_SUMMARY
+          fi
