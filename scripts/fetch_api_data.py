@@ -3,7 +3,7 @@
 """
 Fetch & Analyze Market Data - TASI AI
 جلب بيانات السوق السعودي وتحليلها تلقائياً
-الإصدار: 2.0 - مع حماية من الأخطاء وبيانات احتياطية مضمونة
+الإصدار: 3.0 — مع حماية الرصيد + دعم العطلات + إنقاذ طارئ
 """
 
 import os
@@ -11,36 +11,74 @@ import sys
 import json
 import re
 import time
+import hashlib
 import requests
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # ═══════════════════════════════════════════════════════════════
-# إعدادات البيئة والثوابت
+# ⚙️ إعدادات البيئة والثوابت
 # ═══════════════════════════════════════════════════════════════
 
 API_KEY           = os.environ.get("API_KEY")
 API_URL           = os.environ.get("API_URL", "https://app.sahmk.sa/api/v1")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
+# إعدادات الرصيد والحماية
+API_DAILY_LIMIT     = int(os.environ.get("API_DAILY_LIMIT", "5000"))
+API_CACHE_TTL       = int(os.environ.get("API_CACHE_TTL", "1200"))  # 20 دقيقة
+MAX_LIVE_UPDATES    = int(os.environ.get("MAX_LIVE_UPDATES", "3"))
+MAX_HISTORICAL_ANALYSIS = int(os.environ.get("MAX_HISTORICAL_ANALYSIS", "3"))
+
 # مسارات الملفات
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "data"
 OUTPUT_DIR = BASE_DIR / "output"
+CACHE_DIR = BASE_DIR / ".cache"
 
-# التأكد من وجود المجلدات
-for dir_path in [DATA_DIR, OUTPUT_DIR]:
+for dir_path in [DATA_DIR, OUTPUT_DIR, CACHE_DIR]:
     dir_path.mkdir(parents=True, exist_ok=True)
 
 SNAPSHOT_FILE = DATA_DIR / "market_snapshot.json"
 INTEL_FILE    = DATA_DIR / "market_intel.json"
 OUTPUT_FILE   = DATA_DIR / "daily.json"
 FALLBACK_FILE = DATA_DIR / "fallback_stock.json"
+QUOTA_FILE    = CACHE_DIR / "api_quota.json"
 
 HEADERS = {"X-API-Key": API_KEY} if API_KEY else {}
 
 # ═══════════════════════════════════════════════════════════════
-# تصنيف القطاعات - رموز الأسهم السعودية
+# 🕌 العطلات الرسمية للسوق السعودي (تُحدَّث سنوياً)
+# ═══════════════════════════════════════════════════════════════
+
+# مصادر التحديث: المحكمة العليا السعودية + موقع تداول
+# التواريخ بالميلادي وتحتاج للتحديث بعد كل إعلان رسمي
+
+SAUDI_HOLIDAYS = {
+    # === عيد الأضحى 1447هـ / 2026م (تقريبي) ===
+    "2026-05-25": "وقفة عرفة",
+    "2026-05-26": "عيد الأضحى - اليوم الأول",
+    "2026-05-27": "عيد الأضحى - اليوم الثاني",
+    "2026-05-28": "عيد الأضحى - اليوم الثالث",
+    "2026-05-29": "عيد الأضحى - اليوم الرابع",
+    
+    # === اليوم الوطني السعودي 1448هـ / 2026م ===
+    "2026-09-23": "اليوم الوطني السعودي (96)",
+    
+    # === عيد الفطر 1448هـ / 2027م (تقريبي) ===
+    "2027-04-17": "عيد الفطر - اليوم الأول",
+    "2027-04-18": "عيد الفطر - اليوم الثاني",
+    "2027-04-19": "عيد الفطر - اليوم الثالث",
+    
+    # === إجازات طارئة (تُضاف يدوياً عند الإعلان) ===
+    # "2026-06-15": "إجازة طارئة - قرار مجلس الوزراء",
+}
+
+# أيام نهاية الأسبوع (الجمعة=4، السبت=5 في Python)
+WEEKEND_DAYS = {4, 5}
+
+# ═══════════════════════════════════════════════════════════════
+# 📊 تصنيف القطاعات - رموز الأسهم السعودية
 # ═══════════════════════════════════════════════════════════════
 
 SECTORS = {
@@ -79,7 +117,243 @@ SECTORS = {
 
 
 # ═══════════════════════════════════════════════════════════════
-# دوال مساعدة
+# 🛡️ نظام حماية رصيد الـ API
+# ═══════════════════════════════════════════════════════════════
+
+_api_requests_used = 0  # عداد محلي للتشغيل الحالي
+
+
+def load_quota_state():
+    """تحميل حالة الرصيد من الملف"""
+    try:
+        if QUOTA_FILE.exists():
+            with open(QUOTA_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            today = datetime.now().date().isoformat()
+            if data.get("date") == today:
+                return data.get("used", 0)
+    except Exception:
+        pass
+    return 0
+
+
+def save_quota_state(used):
+    """حفظ حالة الرصيد في الملف"""
+    try:
+        data = {
+            "date": datetime.now().date().isoformat(),
+            "used": used,
+            "limit": API_DAILY_LIMIT,
+            "remaining": max(0, API_DAILY_LIMIT - used),
+            "updated_at": datetime.now().isoformat()
+        }
+        with open(QUOTA_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"  ⚠️ Failed to save quota: {e}")
+
+
+def check_quota(needed=1):
+    """التحقق من وجود رصيد كافي قبل الطلب"""
+    global _api_requests_used
+    used = load_quota_state() + _api_requests_used
+    remaining = API_DAILY_LIMIT - used
+    
+    if remaining < needed:
+        print(f"  🚫 API quota limit: {remaining} remaining, need {needed}")
+        return False
+    return True
+
+
+def increment_quota(count=1):
+    """زيادة عداد الاستخدام"""
+    global _api_requests_used
+    _api_requests_used += count
+    used = load_quota_state() + _api_requests_used
+    remaining = max(0, API_DAILY_LIMIT - used)
+    pct = used / API_DAILY_LIMIT * 100
+    print(f"  📊 API: {used}/{API_DAILY_LIMIT} ({pct:.1f}%) | Remaining: {remaining}")
+
+
+def _cache_key(endpoint, params):
+    """إنشاء مفتاح فريد للكاش"""
+    key_str = f"{endpoint}:{json.dumps(params or {}, sort_keys=True)}"
+    return hashlib.md5(key_str.encode()).hexdigest()
+
+
+def get_cached(endpoint, params=None, ttl=API_CACHE_TTL):
+    """جلب البيانات من الكاش إن وجدت وصالحه"""
+    try:
+        key = _cache_key(endpoint, params)
+        cache_file = CACHE_DIR / f"{key}.json"
+        
+        if cache_file.exists():
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                cached = json.load(f)
+            age = time.time() - cached.get("timestamp", 0)
+            if age < ttl:
+                print(f"  🗃️ Cache HIT: {endpoint}")
+                return cached.get("data")
+            else:
+                print(f"  🗑️ Cache EXPIRED: {endpoint} (age: {age:.0f}s)")
+    except Exception:
+        pass
+    return None
+
+
+def save_cached(endpoint, params, data):
+    """حفظ البيانات في الكاش"""
+    try:
+        key = _cache_key(endpoint, params)
+        cache_file = CACHE_DIR / f"{key}.json"
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        
+        with open(cache_file, 'w', encoding='utf-8') as f:
+            json.dump({
+                "timestamp": time.time(),
+                "endpoint": endpoint,
+                "params": params,
+                "data": data
+            }, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"  ⚠️ Failed to save cache: {e}")
+
+
+# ═══════════════════════════════════════════════════════════════
+# 🔌 دوال الاتصال بالـ API (مع كاش + حماية رصيد)
+# ═══════════════════════════════════════════════════════════════
+
+def get(endpoint, params=None, timeout=15, use_cache=True):
+    """
+    إرسال طلب GET للـ API مع:
+    - كاش لتقليل الطلبات
+    - حماية من تجاوز الحد اليومي
+    - معالجة أخطاء شاملة
+    """
+    # 1. محاولة الجلب من الكاش أولاً
+    if use_cache:
+        cached = get_cached(endpoint, params)
+        if cached is not None:
+            return cached
+    
+    # 2. التحقق من الرصيد قبل الطلب الفعلي
+    if not check_quota(1):
+        print(f"  ⚠️ Skipping API call: {endpoint} (quota limit)")
+        return None
+    
+    # 3. إرسال الطلب
+    try:
+        url = f"{API_URL}{endpoint}"
+        print(f"  🌐 Request: {endpoint}")
+        r = requests.get(url, headers=HEADERS, params=params or {}, timeout=timeout)
+        r.raise_for_status()
+        data = r.json()
+        
+        # 4. زيادة عداد الاستخدام
+        increment_quota(1)
+        
+        # 5. حفظ في الكاش للاستخدام المستقبلي
+        if use_cache:
+            save_cached(endpoint, params, data)
+        
+        return data
+        
+    except requests.exceptions.Timeout:
+        print(f"  ⏱️ Timeout: {endpoint}")
+    except requests.exceptions.ConnectionError:
+        print(f"  🔌 Connection error: {endpoint}")
+    except requests.exceptions.HTTPError as e:
+        print(f"  🚫 HTTP {e.response.status_code}: {endpoint}")
+        if e.response.status_code == 429:
+            print("  🛑 Rate limit hit — saving quota state")
+            save_quota_state(API_DAILY_LIMIT)
+    except json.JSONDecodeError as e:
+        print(f"  📄 JSON error: {endpoint} — {e}")
+    except Exception as e:
+        print(f"  ❌ Unexpected error {endpoint}: {type(e).__name__}: {e}")
+    
+    return None
+
+
+# ═══════════════════════════════════════════════════════════════
+# 📅 التحقق من حالة السوق (مع دعم العطلات)
+# ═══════════════════════════════════════════════════════════════
+
+def is_market_open(check_holidays=True):
+    """
+    التحقق من حالة السوق السعودي
+    
+    ✓ أيام التداول: الأحد-الخميس
+    ✓ الساعات: 10:00 - 15:00 بتوقيت الرياض
+    ✓ العطلات: قائمة SAUDI_HOLIDAYS
+    """
+    KSA = timezone(timedelta(hours=3))
+    now = datetime.now(KSA)
+    weekday = now.weekday()  # Monday=0, Sunday=6
+    today_str = now.date().isoformat()
+    t = now.hour * 60 + now.minute
+    
+    print(f"  🕐 Market check: {now.strftime('%Y-%m-%d %H:%M')} KSA | weekday={weekday}")
+    
+    # 1️⃣ عطلة نهاية الأسبوع
+    if weekday in WEEKEND_DAYS:
+        day_name = "الجمعة" if weekday == 4 else "السبت"
+        print(f"  🚫 Market closed: Weekend ({day_name})")
+        return False
+    
+    # 2️⃣ العطلات الرسمية
+    if check_holidays and today_str in SAUDI_HOLIDAYS:
+        reason = SAUDI_HOLIDAYS[today_str]
+        print(f"  🕌 Market closed: Holiday — {reason}")
+        return False
+    
+    # 3️⃣ ساعات التداول
+    market_open = 10 * 60   # 600
+    market_close = 15 * 60  # 900
+    
+    if market_open <= t <= market_close:
+        print(f"  ✅ Market OPEN (hours: {t} in [{market_open}, {market_close}])")
+        return True
+    else:
+        print(f"  🚫 Market closed: Outside hours ({t} not in [{market_open}, {market_close}])")
+        return False
+
+
+def get_next_market_day(days_ahead=30):
+    """
+    الحصول على تاريخ أول يوم تداول قادم
+    
+    Returns:
+        str: تاريخ بصيغة 'YYYY-MM-DD' أو None
+    """
+    KSA = timezone(timedelta(hours=3))
+    current = datetime.now(KSA).date()
+    
+    for i in range(days_ahead):
+        check_date = current + timedelta(days=i)
+        check_str = check_date.isoformat()
+        weekday = check_date.weekday()
+        
+        if weekday not in WEEKEND_DAYS and check_str not in SAUDI_HOLIDAYS:
+            return check_str
+    
+    return None
+
+
+def days_until_next_trading_day():
+    """حساب عدد الأيام حتى يوم التداول القادم"""
+    next_day_str = get_next_market_day(30)
+    if not next_day_str:
+        return None
+    
+    KSA = timezone(timedelta(hours=3))
+    current = datetime.now(KSA).date()
+    next_day = datetime.fromisoformat(next_day_str).date()
+    return (next_day - current).days
+
+
+# ═══════════════════════════════════════════════════════════════
+# 🔧 دوال مساعدة
 # ═══════════════════════════════════════════════════════════════
 
 def safe_float(value, default=0.0):
@@ -115,50 +389,12 @@ def score_label(score):
     return "ضعيف"
 
 
-def is_market_open():
-    """التحقق من حالة السوق السعودي (توقيت الرياض)"""
-    KSA = timezone(timedelta(hours=3))
-    now = datetime.now(KSA)
-    weekday = now.weekday()
-    t = now.hour * 60 + now.minute
-    
-    print(f"  Market check: {now.strftime('%H:%M')} KSA | weekday={weekday} | t={t}")
-    
-    market_days = [6, 0, 1, 2, 3]
-    market_open_time = 10 * 60
-    market_close_time = 15 * 60
-    
-    is_open = weekday in market_days and market_open_time <= t <= market_close_time
-    print(f"  Market open: {is_open}")
-    return is_open
-
-
-def get(endpoint, params=None, timeout=15):
-    """إرسال طلب GET للـ API مع معالجة الأخطاء"""
-    try:
-        url = f"{API_URL}{endpoint}"
-        r = requests.get(url, headers=HEADERS, params=params or {}, timeout=timeout)
-        r.raise_for_status()
-        return r.json()
-    except requests.exceptions.Timeout:
-        print(f"  Timeout error {endpoint}")
-    except requests.exceptions.ConnectionError:
-        print(f"  Connection error {endpoint}")
-    except requests.exceptions.HTTPError as e:
-        print(f"  HTTP error {endpoint}: {e}")
-    except json.JSONDecodeError as e:
-        print(f"  JSON decode error {endpoint}: {e}")
-    except Exception as e:
-        print(f"  Unexpected error {endpoint}: {type(e).__name__}: {e}")
-    return None
-
-
 # ═══════════════════════════════════════════════════════════════
-# تحميل البيانات من الملفات المحلية (Fallback)
+# 📦 تحميل البيانات الاحتياطية (Fallback)
 # ═══════════════════════════════════════════════════════════════
 
 def load_fallback_stock():
-    """تحميل سهم احتياطي مضمون من ملف محلي"""
+    """تحميل سهم احتياطي مضمون"""
     try:
         if FALLBACK_FILE.exists():
             with open(FALLBACK_FILE, 'r', encoding='utf-8') as f:
@@ -168,7 +404,7 @@ def load_fallback_stock():
     except Exception as e:
         print(f"  ⚠️ Error loading fallback: {e}")
     
-    # بيانات طوارئ مضمونة (صافولا كمثال)
+    # بيانات طوارئ مضمونة
     emergency_stock = {
         "name": "مجموعة صافولا",
         "symbol": "2050",
@@ -194,10 +430,10 @@ def load_fallback_stock():
 
 
 def load_all_stocks_from_intel():
-    """تحميل الأسهم من ملف market_intel.json"""
+    """تحميل الأسهم من market_intel.json"""
     try:
         if not INTEL_FILE.exists():
-            print("  market_intel.json غير موجود — سيتم استخدام البدائل")
+            print("  ⚠️ market_intel.json not found")
             return [], []
         
         with open(INTEL_FILE, "r", encoding="utf-8") as f:
@@ -207,7 +443,7 @@ def load_all_stocks_from_intel():
         top_sectors = intel.get("top_sectors", [])
 
         if not all_stocks:
-            print("  market_intel.json فارغ")
+            print("  ⚠️ market_intel.json is empty")
             return [], []
 
         stocks = []
@@ -235,23 +471,23 @@ def load_all_stocks_from_intel():
                 "sector": s.get("sector") or get_sector(sym),
             })
 
-        print(f"  ✅ قراءة {len(stocks)} سهم من market_intel.json")
+        print(f"  ✅ Loaded {len(stocks)} stocks from market_intel.json")
         return stocks, top_sectors
 
     except FileNotFoundError:
-        print("  ⚠️ market_intel.json غير موجود")
+        print("  ⚠️ market_intel.json not found")
         return [], []
     except json.JSONDecodeError as e:
-        print(f"  ⚠️ JSON error in market_intel.json: {e}")
+        print(f"  ⚠️ JSON error: {e}")
         return [], []
     except Exception as e:
-        print(f"  ⚠️ Error loading market_intel.json: {type(e).__name__}: {e}")
+        print(f"  ⚠️ Error: {type(e).__name__}: {e}")
         return [], []
 
 
 def fallback_from_api(max_retries=3):
-    """جلب البيانات من الـ API كملاذ أخير"""
-    print("\n  🔄 Fallback: جلب من API مباشرة...")
+    """جلب البيانات من الـ API كملاذ أخير (مع حماية الرصيد)"""
+    print("\n  🔄 Fallback: Fetching from API...")
     seen = {}
 
     endpoints = [
@@ -262,8 +498,12 @@ def fallback_from_api(max_retries=3):
 
     for endpoint, key in endpoints:
         for attempt in range(max_retries):
+            if not check_quota(1):
+                print("  ⚠️ Quota limit — skipping API fallback")
+                break
+                
             try:
-                data = get(endpoint, {"limit": 50, "index": "TASI"}, timeout=10)
+                data = get(endpoint, {"limit": 50, "index": "TASI"}, timeout=10, use_cache=True)
                 if data:
                     items = data if isinstance(data, list) else data.get(key, data.get("data", []))
                     for s in items:
@@ -272,7 +512,7 @@ def fallback_from_api(max_retries=3):
                             seen[sym] = s
                     break
             except Exception as e:
-                print(f"  ⚠️ Attempt {attempt+1} failed for {endpoint}: {e}")
+                print(f"  ⚠️ Attempt {attempt+1} failed: {e}")
                 if attempt < max_retries - 1:
                     time.sleep(1)
 
@@ -299,26 +539,30 @@ def fallback_from_api(max_retries=3):
             "sector": get_sector(sym),
         })
 
-    print(f"  ✅ API fallback: {len(stocks)} سهم")
+    print(f"  ✅ API fallback: {len(stocks)} stocks")
     return stocks, []
 
 
 # ═══════════════════════════════════════════════════════════════
-# تحديث البيانات الحية والتحليل العميق
+# 📈 التحليل الفني المتقدم (مع تقليل استهلاك الـ API)
 # ═══════════════════════════════════════════════════════════════
 
-def enrich_top10_with_live_data(ranked):
-    """تحديث أفضل 10 أسهم ببيانات حية من الـ API"""
-    print(f"\n  🔄 تحديث أفضل {min(10, len(ranked))} ببيانات حية...")
+def enrich_top10_with_live_data(ranked, max_updates=MAX_LIVE_UPDATES):
+    """تحديث أفضل الأسهم ببيانات حية — مع حد أقصى لتوفير الرصيد"""
+    print(f"\n  🔄 Updating top {min(max_updates, len(ranked))} with live data...")
     updated = 0
 
-    for r in ranked[:10]:
+    for r in ranked[:max_updates]:
         stock = r["stock"]
         sym = stock.get("symbol", "")
         if not sym:
             continue
+        
+        if not check_quota(1):
+            print("  ⚠️ Quota limit — stopping live updates")
+            break
             
-        data = get(f"/quote/{sym}/", timeout=8)
+        data = get(f"/quote/{sym}/", timeout=8, use_cache=True)
         if not data:
             continue
 
@@ -341,7 +585,7 @@ def enrich_top10_with_live_data(ranked):
         stock["rsi"] = safe_float(s.get("rsi"), stock.get("rsi", 50))
         updated += 1
 
-    print(f"  ✅ تم تحديث {updated} سهم")
+    print(f"  ✅ Updated {updated}/{max_updates} stocks with live data")
     return ranked
 
 
@@ -447,6 +691,10 @@ def _calc_week52_score(closes, highs, price):
 def fetch_historical_for_daily(symbol, period=60):
     """جلب البيانات التاريخية للسهم"""
     try:
+        if not check_quota(1):
+            print(f"  ⚠️ Skipping historical fetch for {symbol} - quota limit")
+            return None
+            
         r = requests.get(
             f"{API_URL}/historical/{symbol}/",
             headers=HEADERS,
@@ -460,6 +708,9 @@ def fetch_historical_for_daily(symbol, period=60):
         if len(history) < 15:
             return None
         history = sorted(history, key=lambda x: x.get("date", ""))
+        
+        increment_quota(1)
+        
         return {
             "closes": [safe_float(d.get("close")) for d in history],
             "highs": [safe_float(d.get("high")) for d in history],
@@ -489,17 +740,21 @@ def acceleration_score(closes, volumes):
     return min(score, 50)
 
 
-def enrich_top10_with_historical(ranked):
-    """إضافة التحليل العميق (OBV + MACD + 52W) لأفضل الأسهم"""
-    print(f"\n  🔍 تحليل عميق (OBV + MACD + 52W) لأفضل {min(10, len(ranked))} أسهم...")
+def enrich_top10_with_historical(ranked, max_analyzed=MAX_HISTORICAL_ANALYSIS):
+    """تحليل عميق لأفضل الأسهم — مع حد أقصى لتوفير الرصيد"""
+    print(f"\n  🔍 Deep analysis (OBV+MACD+52W) for top {min(max_analyzed, len(ranked))} stocks...")
     enriched = 0
 
-    for r in ranked[:10]:
+    for r in ranked[:max_analyzed]:
         stock = r["stock"]
         sym = str(stock.get("symbol", ""))
         price = safe_float(stock.get("price"))
         if price <= 0 or not sym:
             continue
+
+        if not check_quota(1):
+            print("  ⚠️ Quota limit — skipping historical analysis")
+            break
 
         hist = fetch_historical_for_daily(sym, period=60)
         if not hist:
@@ -541,7 +796,7 @@ def enrich_top10_with_historical(ranked):
         enriched += 1
 
     ranked.sort(key=lambda x: x["score"], reverse=True)
-    print(f"  ✅ تم تحليل {enriched} سهم بعمق")
+    print(f"  ✅ Analyzed {enriched}/{max_analyzed} stocks deeply")
     return ranked
 
 
@@ -560,7 +815,7 @@ def get_ml_score(symbol):
 
 
 # ═══════════════════════════════════════════════════════════════
-# حساب الدرجة وبناء الإشارة
+# 🎯 حساب الدرجة وبناء الإشارة
 # ═══════════════════════════════════════════════════════════════
 
 def calc_targets(price, high, low, resistance, support, change_pct):
@@ -801,7 +1056,7 @@ def build_daily_json(stock, score, reasons, rr, volume_ratio, news_analysis=None
 
 
 # ═══════════════════════════════════════════════════════════════
-# مراجعة Claude AI (اختياري)
+# 🤖 مراجعة Claude AI (اختياري)
 # ═══════════════════════════════════════════════════════════════
 
 def claude_review(candidates, top_sectors):
@@ -898,28 +1153,42 @@ def claude_review(candidates, top_sectors):
 
 
 # ═══════════════════════════════════════════════════════════════
-# الدالة الرئيسية
+# 🚀 الدالة الرئيسية
 # ═══════════════════════════════════════════════════════════════
 
 def main():
     """نقطة الدخول الرئيسية للسكريبت"""
     print("=" * 70)
-    print("📊 TASI Market Intelligence — Fetch & Analyze")
+    print("📊 TASI Market Intelligence — Fetch & Analyze v3.0")
     print("=" * 70)
-
-    market_open = is_market_open()
+    
+    # 📅 عرض معلومات العطلات
+    print(f"\n📅 Holiday Check:")
+    today = datetime.now(timezone(timedelta(hours=3))).date().isoformat()
+    
+    if today in SAUDI_HOLIDAYS:
+        print(f"   🕌 Today is a holiday: {SAUDI_HOLIDAYS[today]}")
+    
+    next_trading = days_until_next_trading_day()
+    if next_trading is not None and next_trading > 0:
+        print(f"   🗓️ Next trading day: in {next_trading} day(s)")
+    
+    # ✅ التحقق من حالة السوق (مع تفعيل فحص العطلات)
+    market_open = is_market_open(check_holidays=True)
+    
     if not market_open:
-        print("⚠️ السوق مغلق الآن — سيتم استخدام البيانات الاحتياطية")
-
+        print("\n⚠️ Market closed — using fallback data only")
+    
+    # 📥 تحميل تحليل السوق
     top_sectors = []
     try:
         from market_intelligence import run as run_intel
         intel = run_intel() or {}
         top_sectors = intel.get("top_sectors", [])
         count = len(intel.get("top_stocks", []))
-        print(f"\n✅ Market Intelligence: {count} سهم | Sectors: {', '.join(top_sectors)}")
+        print(f"\n✅ Market Intelligence: {count} stocks | Sectors: {', '.join(top_sectors)}")
     except ImportError:
-        print("\n⚠️ market_intelligence.py غير موجود — سيتم المتابعة")
+        print("\n⚠️ market_intelligence.py not found — continuing")
     except Exception as e:
         print(f"\n⚠️ Market Intelligence error: {type(e).__name__}: {e}")
         try:
@@ -930,8 +1199,9 @@ def main():
         except Exception:
             pass
 
+    # 📥 تحميل بيانات الأسهم
     print("\n" + "-" * 70)
-    print("📥 تحميل بيانات الأسهم...")
+    print("📥 Loading stock data...")
     print("-" * 70)
 
     stocks, intel_sectors = load_all_stocks_from_intel()
@@ -939,17 +1209,18 @@ def main():
         top_sectors = intel_sectors
 
     if len(stocks) < 5:
-        print("  ⚠️ عدد الأسهم قليل، محاولة الـ API fallback...")
+        print("  ⚠️ Few stocks loaded, trying API fallback...")
         stocks, _ = fallback_from_api()
 
-    # ✅ الحماية من "no stocks found"
+    # ✅ حماية من "no stocks found"
     if not stocks:
-        print("\n  ⚠️ لم يتم العثور على أسهم — استخدام البيانات الاحتياطية المضمونة")
+        print("\n  ⚠️ No stocks found — using emergency fallback")
         fallback = load_fallback_stock()
         stocks = [fallback]
 
+    # 📈 تقييم الأسهم
     print("\n" + "-" * 70)
-    print("📈 تقييم وترتيب الأسهم...")
+    print("📈 Scoring and ranking stocks...")
     print("-" * 70)
 
     ranked = []
@@ -977,25 +1248,20 @@ def main():
                 "volume_ratio": vol_ratio,
             })
 
-    # ✅ حماية إضافية: إذا لا يزال فارغاً، نستخدم fallback
+    # ✅ حماية إضافية
     if not ranked:
-        print("  ⚠️ لا توجد أسهم بعد التقييم — استخدام الطوارئ")
+        print("  ⚠️ No ranked stocks — using emergency fallback")
         fallback = load_fallback_stock()
         score, reasons, rr, vol_ratio = calculate_score(fallback, top_sectors, 0)
-        ranked = [{
-            "score": score,
-            "stock": fallback,
-            "reasons": reasons,
-            "rr": rr,
-            "volume_ratio": vol_ratio,
-        }]
+        ranked = [{"score": score, "stock": fallback, "reasons": reasons, "rr": rr, "volume_ratio": vol_ratio}]
 
     ranked.sort(key=lambda x: x["score"], reverse=True)
-    ranked = enrich_top10_with_live_data(ranked)
-    ranked = enrich_top10_with_historical(ranked)
+    ranked = enrich_top10_with_live_data(ranked, max_updates=MAX_LIVE_UPDATES)
+    ranked = enrich_top10_with_historical(ranked, max_analyzed=MAX_HISTORICAL_ANALYSIS)
 
+    # 🏆 عرض أفضل 5
     print(f"\n{'='*70}")
-    print("🏆 Top 5 TASI — بعد التحليل العميق:")
+    print("🏆 Top 5 TASI — After deep analysis:")
     for i, r in enumerate(ranked[:5], 1):
         s = r["stock"]
         w52 = s.get("week52_pct", 0)
@@ -1007,8 +1273,9 @@ def main():
               f"Score:{r['score']:>4} 52W:{w52:>5.1f}% "
               f"OBV:{obv:>3} MACD:{macd:>3} Accel:{acl:>3}")
 
+    # 📰 تحليل الأخبار
     print(f"\n{'='*70}")
-    print("📰 تحليل الأخبار...")
+    print("📰 News analysis...")
     print("-" * 70)
 
     try:
@@ -1034,22 +1301,23 @@ def main():
             "volume_ratio": r["volume_ratio"],
             "news": news,
         })
-        print(f"  {name[:20]:<20} {r['score']} -> {new_score} (اخبار: {delta:+d})")
+        print(f"  {name[:20]:<20} {r['score']} -> {new_score} (news: {delta:+d})")
 
     final_candidates.sort(key=lambda x: x["score"], reverse=True)
 
+    # 🤖 مراجعة Claude
     print(f"\n{'='*70}")
-    print("🤖 Claude يراجع ويقرر...")
+    print("🤖 Claude review...")
     print("-" * 70)
 
     best, claude_result = claude_review(final_candidates, top_sectors)
 
     if best is None:
-        reason = claude_result.get("reason", "لا توجد فرصة جيدة") if claude_result else "لا توجد فرصة"
-        print(f"\n  ⚠️ Claude رفض النشر: {reason}")
+        reason = claude_result.get("reason", "No good opportunity") if claude_result else "No opportunity"
+        print(f"\n  ⚠️ Claude rejected: {reason}")
         best = final_candidates[0] if final_candidates else None
         if best is None:
-            print("  🔄 استخدام البيانات الاحتياطية كخيار أخير")
+            print("  🔄 Using emergency fallback as last resort")
             fallback = load_fallback_stock()
             score, reasons, rr, vol_ratio = calculate_score(fallback, top_sectors, 0)
             best = {"score": score, "stock": fallback, "reasons": reasons, "rr": rr, "volume_ratio": vol_ratio}
@@ -1059,6 +1327,7 @@ def main():
     claude_warning = claude_result.get("warning", "") if claude_result else ""
     claude_conf = claude_result.get("confidence", "متوسطة") if claude_result else "متوسطة"
 
+    # 📝 بناء ملف الإشارة
     daily_data = build_daily_json(
         best["stock"], best["score"],
         best["reasons"], best["rr"],
@@ -1073,14 +1342,16 @@ def main():
         daily_data["claude_warning"] = claude_warning
     daily_data["claude_confidence"] = claude_conf
 
+    # 💾 حفظ الملف
     try:
         with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
             json.dump(daily_data, f, ensure_ascii=False, indent=2)
-        print(f"\n✅ تم حفظ الإشارة في: {OUTPUT_FILE}")
+        print(f"\n✅ Signal saved to: {OUTPUT_FILE}")
     except Exception as e:
-        print(f"\n❌ خطأ في حفظ الملف: {e}")
+        print(f"\n❌ Failed to save file: {e}")
         sys.exit(1)
 
+    # 📊 عرض النتيجة
     print(f"\n{'='*70}")
     print(f"🎯 Selected   : {daily_data['stock_name']} ({daily_data['symbol']})")
     print(f"   Score     : {daily_data['score']} | Momentum: {daily_data['momentum']}")
@@ -1096,12 +1367,24 @@ def main():
     if daily_data.get("source") == "market_snapshot":
         print("\n  ⚠️ WARNING: using local snapshot data")
 
-    print("\n✅ العملية اكتملت بنجاح!")
+    # 📊 تقرير الرصيد
+    print(f"\n📊 API Quota Report")
+    print(f"{'='*70}")
+    final_used = load_quota_state() + _api_requests_used
+    remaining = max(0, API_DAILY_LIMIT - final_used)
+    print(f"   Used today:     {final_used}/{API_DAILY_LIMIT}")
+    print(f"   Remaining:      {remaining}")
+    print(f"   Usage %:        {final_used/API_DAILY_LIMIT*100:.1f}%")
+    if remaining < API_DAILY_LIMIT * 0.2:
+        print(f"   ⚠️ WARNING: Low quota remaining!")
+    print(f"{'='*70}")
+
+    print("\n✅ Process completed successfully!")
     return 0
 
 
 # ═══════════════════════════════════════════════════════════════
-# نقطة دخول البرنامج — لا تعدل هذا الجزء
+# 🚪 نقطة دخول البرنامج
 # ═══════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
@@ -1115,7 +1398,7 @@ if __name__ == "__main__":
         
     except Exception as e:
         # ═══════════════════════════════════════════════════
-        # 🔥 محاولة الإنقاذ الأخيرة — لا تحذف هذا الكود!
+        # 🔥 EMERGENCY RESCUE — Never delete this block!
         # ═══════════════════════════════════════════════════
         print(f"\n\n❌ Fatal error: {type(e).__name__}: {e}")
         import traceback
