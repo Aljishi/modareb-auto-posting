@@ -89,7 +89,6 @@ jobs:
         run: |
           echo "🚀 Starting Telegram Post..."
           python scripts/post_to_telegram.py
-          fi
 
       - name: Post to Instagram
         env:
