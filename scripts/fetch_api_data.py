@@ -1022,12 +1022,13 @@ def build_daily_json(stock, score, reasons, rr, volume_ratio, news_analysis=None
     from_api = bool(API_KEY) and len(reasons) > 0
 
     return {
-        "brand": "مضارب",
+        "brand": "راصد",
         "mode": "morning",
         "stock_name": stock.get("name", ""),
         "symbol": str(stock.get("symbol", "")),
         "price": f"{price:.2f}",
         "entry": f"{entry:.2f}",
+        "entry_point": f"{entry:.2f}",
         "target1": f"{target1:.2f}",
         "target2": f"{target2:.2f}",
         "stop_loss": f"{stop_loss:.2f}",
@@ -1040,6 +1041,7 @@ def build_daily_json(stock, score, reasons, rr, volume_ratio, news_analysis=None
         "rs_vs_tasi": stock.get("rs_vs_tasi", 0),
         "sector": sector,
         "signal_reason": signal_reason,
+        "technical_reading": signal_reason,
         "news_sentiment": news_sentiment,
         "news_summary": news_summary,
         "obv_score": obv_pts,
@@ -1416,4 +1418,3 @@ if __name__ == "__main__":
         except Exception as e2:
             print(f"❌ Emergency fallback failed: {e2}")
             sys.exit(1)
-
