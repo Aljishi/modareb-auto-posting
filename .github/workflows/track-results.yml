@@ -115,7 +115,7 @@ else:
       
       - name: 📸 Upload Results Artifact
         if: steps.check_log.outputs.log_exists == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: signals-log
           path: |
