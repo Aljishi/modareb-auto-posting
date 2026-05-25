@@ -166,7 +166,7 @@ class RasedNormalGenerator:
         if not self.data: return
         self.cy = 320
         self.cy = self._draw_row("السعر الحالي", f"{self.data.get('current_price',0)} ريال", COLORS["gold"], "📊", self.cy)
-        self.cy = self._draw_row("نقطة الدخول", f"{self.data.get('entry_point',0)} ريال", COLORS["accent"], "🎯", self.cy)
+        self.cy = self._draw_row("نقطة الدخول", f"{self.data.get('entry_point', self.data.get('entry', 0))} ريال", COLORS["accent"], "🎯", self.cy)
         t1 = self.data.get('target1', 0); t1p = self.data.get('target1_percent', 0)
         self.cy = self._draw_row("الهدف الأول", f"{t1} ريال (+{t1p}%)", COLORS["green"], "🟢", self.cy)
         t2 = self.data.get('target2', 0); t2p = self.data.get('target2_percent', 0)
