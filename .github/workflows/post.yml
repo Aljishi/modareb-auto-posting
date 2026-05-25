@@ -1,111 +1,92 @@
 name: Rased Auto Posting
 
 on:
-  workflow_dispatch:
-    inputs:
-      force:
-        description: "Run even if Saudi market is closed?"
-        required: false
-        default: "false"
-        type: choice
-        options:
-          - "false"
-          - "true"
-
-  # Saudi Exchange continuous trading: Sunday-Thursday 10:00-15:00 KSA.
-  # GitHub cron uses UTC. KSA = UTC+3, so 07:00-11:55 UTC = 10:00-14:55 KSA.
   schedule:
+    # Run every 5 minutes during Saudi market hours
+    # Saudi time: 10:00-14:55 (Sunday-Thursday)
+    # UTC time: 07:00-11:55 (Sunday-Thursday)
     - cron: "*/5 7-11 * * 0-4"
-
-permissions:
-  contents: write
-
-env:
-  TZ: Asia/Riyadh
-  PYTHONIOENCODING: utf-8
-  MARKET_FORCE: ${{ github.event.inputs.force || 'false' }}
+  
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   post:
     runs-on: ubuntu-latest
-
+    timezone: "Asia/Riyadh"  # Use Saudi timezone
+    
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install requirements
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pytz requests python-telegram-bot pillow
 
-      - name: Check Saudi market hours
+      - name: ⏰ Check Saudi market hours
         id: market
-        continue-on-error: true
+        continue-on-error: false
         run: |
           python scripts/is_market_open.py
 
-      - name: Stop if market is closed
-        if: steps.market.outcome == 'failure'
+      - name: 🛑 Stop if market is closed
+        if: failure()
         run: |
-          echo "Saudi market is closed. Skipping posting."
+          echo "❌ Saudi market is closed. Skipping posting."
+          echo "The workflow only runs Sunday-Thursday, 10:00-15:00 KSA"
+          echo "Also checks for Saudi public holidays"
           exit 0
 
-      - name: Fetch/update signal data
+      - name: 📊 Fetch Market Data
         run: |
-          if [ -f scripts/fetch_api_data.py ]; then
-            python scripts/fetch_api_data.py
-          else
-            echo "scripts/fetch_api_data.py not found, using existing data/daily.json"
-          fi
-
-      - name: Validate signal before posting
+          echo "🚀 Starting Data Fetch..."
+          python scripts/fetch_api_data.py
+          
+      - name: 🤖 Generate Signal
         run: |
-          if [ -f scripts/should_post.py ]; then
-            python scripts/should_post.py
-          else
-            echo "scripts/should_post.py not found, skipping validation"
-          fi
-
-      - name: Generate normal post image
+          echo "🚀 Starting Signal Generation..."
+          python scripts/generate_signal.py
+          
+      - name: ✅ Check if should post
         run: |
-          python scripts/generate_post.py data/daily.json output.png
-
-      - name: Generate golden post image when applicable
+          echo "🚀 Checking posting conditions..."
+          python scripts/should_post.py
+          
+      - name: 🎨 Generate Post Image
         run: |
-          if [ -f scripts/generate_golden_post.py ]; then
-            python scripts/generate_golden_post.py data/daily.json golden_output.png
-          fi
-
+          echo "🚀 Generating Post Image..."
+          python scripts/generate_post.py
+          
       - name: 📢 Post to Telegram
-        # ✅ هذه الخطوة ضرورية لربط الأسرار بالمتغيرات البيئية
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           echo "🚀 Starting Telegram Post..."
           python scripts/post_to_telegram.py
-
-      - name: Post to Instagram
+          
+      - name: 📘 Post to Facebook
         env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          echo "🚀 Starting Facebook Post..."
+          python scripts/post_to_facebook.py
+          
+      - name: 📸 Post to Instagram
+        env:
+          IG_APP_ID: ${{ secrets.IG_APP_ID }}
+          IG_APP_SECRET: ${{ secrets.IG_APP_SECRET }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
-          if [ -f scripts/post_to_instagram.py ]; then
-            python scripts/post_to_instagram.py
-          else
-            echo "scripts/post_to_instagram.py not found"
-          fi
-
-      - name: Commit generated files
-        if: always()
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add output.png golden_output.png data/*.json || true
-          git diff --cached --quiet || git commit -m "Update Rased generated posts"
-          git push || true
+          echo "🚀 Starting Instagram Post..."
+          python scripts/post_to_instagram.py
