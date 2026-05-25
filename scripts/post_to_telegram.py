@@ -1,140 +1,127 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Rased Auto Posting - Telegram Publisher
-Posts trading signal image + caption to Telegram channel
-"""
-
 import os
 import sys
-import json
 import requests
+import json
 from pathlib import Path
 
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
-CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID")
-
-DATA_FILE  = "data/daily.json"
-IMAGE_FILE = "output.png"
-
-TRACK_URL  = "https://aljishi.github.io/modareb-auto-posting"
-
-
-def load_data() -> dict:
-    """تحميل بيانات الإشارة من daily.json"""
-    try:
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"❌ خطأ في قراءة {DATA_FILE}: {e}")
-        return {}
-
-
-def build_caption(data: dict) -> str:
-    """بناء نص الإشارة المرسلة إلى تيليغرام"""
-    # FIX: check both key names for compatibility
-    symbol = data.get("stock_symbol", data.get("symbol", ""))
-    name   = data.get("stock_name", "")
-    entry  = data.get("entry", data.get("entry_point", ""))
-    t1     = data.get("target1", "")
-    t2     = data.get("target2", "")
-    sl     = data.get("stop_loss", "")
-    score  = data.get("score", 0)
-    rr     = data.get("rr", 0)
-
-    is_golden = data.get("type") == "اشارة ذهبية"
-    badge = "⭐ ذهبية" if is_golden else "📊 يومية"
-
-    caption = (
-        f"🔔 راصد — إشارة {badge}\n"
-        f"━━━━━━━━━━━━━━\n"
-        f"📌 {name} ({symbol})\n"
-        f"💰 الدخول: {entry} ريال\n"
-        f"🎯 الهدف 1: {t1} ريال (+5%)\n"
-        f"🎯 الهدف 2: {t2} ريال (+10%)\n"
-        f"🛑 وقف الخسارة: {sl} ريال (-4%)\n"
-        f"━━━━━━━━━━━━━━\n"
-        f"📊 قوة الإشارة: {score}/100\n"
-        f"⚖️ مكافأة/مخاطرة: {rr}:1\n"
-        f"━━━━━━━━━━━━━━\n"
-        f"📈 لوحة المتابعة: {TRACK_URL}\n"
-        f"⚠️ محتوى تعليمي — ليس توصية مالية"
-    )
-    return caption
-
-
-def send_photo(caption: str) -> bool:
-    """إرسال صورة الإشارة مع النص إلى قناة تيليغرام"""
-    if not BOT_TOKEN:
-        print("❌ TELEGRAM_BOT_TOKEN غير موجود في المتغيرات البيئية")
-        return False
-    if not CHAT_ID:
-        print("❌ TELEGRAM_CHAT_ID غير موجود في المتغيرات البيئية")
-        return False
-
-    image_path = Path(IMAGE_FILE)
-    if not image_path.exists():
-        print(f"❌ الصورة غير موجودة: {IMAGE_FILE}")
-        return False
-
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-
-    try:
-        with open(image_path, "rb") as photo:
-            response = requests.post(
-                url,
-                data={
-                    "chat_id": CHAT_ID,
-                    "caption": caption,
-                    "parse_mode": "HTML",
-                },
-                files={"photo": photo},
-                timeout=30,
-            )
-
-        result = response.json()
-        print(f"Telegram response: {result}")
-
-        if result.get("ok"):
-            print("✅ تم الإرسال إلى تيليغرام بنجاح")
-            return True
-        else:
-            print(f"❌ فشل الإرسال: {result.get('description', 'unknown error')}")
-            return False
-
-    except requests.exceptions.Timeout:
-        print("❌ انتهت مهلة الاتصال بتيليغرام (30 ثانية)")
-        return False
-    except Exception as e:
-        print(f"❌ خطأ غير متوقع: {e}")
-        return False
-
-
-def main():
+def send_signal_to_telegram():
+    """
+    يرسل إشارة التداول (الصورة والنص) إلى قناة تيليجرام.
+    """
     print("=" * 60)
-    print("📤 راصد - النشر على تيليغرام")
+    print("🤖 راصد - النشر على تيليجرام")
     print("=" * 60)
 
-    data = load_data()
-    if not data:
-        print("❌ لا توجد بيانات — تم الإنهاء")
+    # 1. الحصول على المتغيرات البيئية
+    # هذه المتغيرات تأتي من GitHub Actions secrets
+    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+
+    # 🔍 تشخيص: طباعة حالة المتغيرات للتأكد
+    print("🔍 فحص المتغيرات...")
+    if not bot_token:
+        print("❌ خطأ: TELEGRAM_BOT_TOKEN غير موجود!")
+        print("💡 تأكد من إضافته في Settings -> Secrets -> Actions")
+        sys.exit(1)
+    
+    if not chat_id:
+        print("❌ خطأ: TELEGRAM_CHAT_ID غير موجود!")
+        sys.exit(1)
+        
+    print("✅ تم العثور على المتغيرات بنجاح.")
+
+    # 2. تحديد مسار الملفات
+    base_dir = Path(__file__).parent.parent
+    
+    # البحث عن ملف البيانات (JSON)
+    json_path = base_dir / "data" / "daily.json"
+    if not json_path.exists():
+        json_path = base_dir / "data" / "golden_signal.json"
+    
+    if not json_path.exists():
+        print("❌ خطأ: لم يتم العثور على ملف البيانات (daily.json أو golden_signal.json)")
         sys.exit(1)
 
-    symbol = data.get("stock_symbol", data.get("symbol", ""))
-    name   = data.get("stock_name", "")
-    score  = data.get("score", 0)
-    stype  = data.get("type", "يومية")
+    # قراءة البيانات
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"❌ خطأ في قراءة JSON: {e}")
+        sys.exit(1)
 
-    print(f"📌 الإشارة  : {name} ({symbol})")
-    print(f"   النوع    : {stype}")
-    print(f"   Score    : {score}/100")
+    # 3. تحديد مسار الصورة (العادية أم الذهبية)
+    # نفترض أن الصورة تم توليدها مسبقاً باسم output.png أو output_golden.png
+    image_path = base_dir / "output.png"
+    if not image_path.exists():
+        image_path = base_dir / "output_golden.png"
+        
+    if not image_path.exists():
+        print("❌ خطأ: لم يتم العثور على الصورة (output.png أو output_golden.png)")
+        sys.exit(1)
 
-    caption = build_caption(data)
-    success = send_photo(caption)
+    print(f"🖼️ سيتم نشر الصورة: {image_path.name}")
 
-    sys.exit(0 if success else 1)
+    # 4. بناء نص الرسالة (Caption)
+    stock_name = data.get("stock_name", "غير معروف")
+    symbol = data.get("symbol") or data.get("stock_symbol", "")
+    sector = data.get("sector", "")
+    current = data.get("current_price", 0)
+    entry = data.get("entry_point", 0)
+    t1 = data.get("target1", 0)
+    t2 = data.get("target2", 0)
+    sl = data.get("stop_loss", 0)
+    score = data.get("score", 0)
+    
+    # تنسيق النص باستخدام HTML
+    caption = f"""
+📊 <b>{stock_name} ({symbol})</b>
+🏢 القطاع: {sector}
+💰 السعر: {current} ريال
 
+📈 نقطة الدخول: {entry}
+🎯 الهدف 1: {t1}
+🎯 الهدف 2: {t2}
+ وقف الخسارة: {sl}
+
+🏆 النتيجة (Score): {score}/100
+    """
+
+    # 5. الإرسال عبر تيليجرام API
+    url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+    
+    print(f"🚀 جاري الإرسال إلى Chat ID: {chat_id}...")
+
+    try:
+        with open(image_path, 'rb') as photo:
+            # إرسال طلب POST مع الصورة والنص
+            payload = {
+                'chat_id': chat_id,
+                'caption': caption,
+                'parse_mode': 'HTML'
+            }
+            files = {'photo': photo}
+            
+            response = requests.post(url, data=payload, files=files)
+            
+            if response.status_code == 200:
+                print("✅ تم النشر على تيليجرام بنجاح!")
+                return True
+            else:
+                print(f"❌ فشل النشر. الحالة: {response.status_code}")
+                print(f"الرد من تيليجرام: {response.text}")
+                return False
+                
+    except Exception as e:
+        print(f"❌ حدث خطأ أثناء الإرسال: {e}")
+        return False
 
 if __name__ == "__main__":
-    main()
+    success = send_signal_to_telegram()
+    if success:
+        sys.exit(0)
+    else:
+        sys.exit(1)
