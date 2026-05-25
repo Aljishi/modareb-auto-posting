@@ -81,15 +81,14 @@ jobs:
             python scripts/generate_golden_post.py data/daily.json golden_output.png
           fi
 
-      - name: Post to Telegram
+      - name: 📢 Post to Telegram
+        # ✅ هذه الخطوة ضرورية لربط الأسرار بالمتغيرات البيئية
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          if [ -f scripts/post_to_telegram.py ]; then
-            python scripts/post_to_telegram.py
-          else
-            echo "scripts/post_to_telegram.py not found"
+          echo "🚀 Starting Telegram Post..."
+          python scripts/post_to_telegram.py
           fi
 
       - name: Post to Instagram
