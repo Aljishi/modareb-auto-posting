@@ -7,7 +7,7 @@ on:
   schedule:
     - cron: "10 6 * * 0-4"     # 9:10 ص KSA — إشارة ذهبية (1)
     - cron: "55 6 * * 0-4"     # 9:55 ص KSA — إشارة ذهبية (2)
-    - cron: "*/5 7-11 * * 0-4" # كل 5 دقائق 10ص–3م — إشارة يومية
+    - cron: "*/5 7-12 * * 0-4" # كل 5 دقائق 10ص–3م KSA — إشارة يومية
     - cron: "0 12 * * 0-4"     # 3:00م KSA — track-results
     - cron: "30 12 * * 4"      # 3:30م خميس — تقرير أسبوعي
 
@@ -116,7 +116,7 @@ jobs:
       (github.event_name == 'workflow_dispatch') ||
       (github.event_name == 'push') ||
       (github.event_name == 'schedule' &&
-       github.event.schedule == '*/5 7-11 * * 0-4')
+       github.event.schedule == '*/5 7-12 * * 0-4')
 
     steps:
       - name: Checkout Repository
