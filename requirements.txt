@@ -1,6 +1,4 @@
-# requirements.txt - النسخة المبسطة
-Pillow>=10.0.0
+pytz>=2024.1
 requests>=2.31.0
-python-dotenv>=1.0.0
-arabic-reshaper>=3.0.0
-python-bidi>=0.4.2
+python-telegram-bot>=20.7
+pillow>=10.0.0
