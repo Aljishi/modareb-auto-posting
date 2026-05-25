@@ -1,308 +1,151 @@
-name: Rased AI — راصد
+import json
+import sys
+from datetime import datetime
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "10 6 * * 0-4"     # 9:10 ص KSA — إشارة ذهبية (1)
-    - cron: "55 6 * * 0-4"     # 9:55 ص KSA — إشارة ذهبية (2)
-    - cron: "*/5 7-12 * * 0-4" # كل 5 دقائق 10ص–3م KSA — إشارة يومية
-    - cron: "0 12 * * 0-4"     # 3:00م KSA — track-results
-    - cron: "30 12 * * 4"      # 3:30م خميس — تقرير أسبوعي
+DATA_FILE   = "data/daily.json"
+GOLDEN_FILE = "data/golden_signal.json"
 
+# ─── معايير الإشارة اليومية (هدف ثانٍ 10% خلال 10 أيام) ────
+MIN_SCORE        = 78
+MIN_RSI          = 42
+MAX_RSI          = 68
+MIN_VOLUME_RATIO = 1.5   # مرن بسبب مشكلة API
+MIN_RR           = 2.0   # R:R محسوب على T2 (10%)
 
-jobs:
-
-# ══════════════════════════════════════════════════════════════
-# JOB 1: الإشارة الذهبية (9:10 و9:55 — قبل افتتاح السوق)
-# مسار مستقل — historical_analyzer فقط — بدون fetch_api_data
-# ══════════════════════════════════════════════════════════════
-  golden-signal:
-    runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'schedule' &&
-      (github.event.schedule == '10 6 * * 0-4' ||
-       github.event.schedule == '55 6 * * 0-4')
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-        continue-on-error: true
-
-      - name: Golden Signal Analysis
-        env:
-          API_KEY:           ${{ secrets.API_KEY }}
-          API_URL:           ${{ secrets.API_URL }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/historical_analyzer.py
-
-      - name: Check Golden Signal Quality
-        id: golden_check
-        run: python scripts/should_post.py
-        continue-on-error: true
-
-      - name: Generate Golden Image
-        if: steps.golden_check.outcome == 'success'
-        run: python scripts/generate_golden_post.py
-        continue-on-error: true
-
-      - name: Log Golden Signal
-        if: steps.golden_check.outcome == 'success'
-        run: python scripts/log_signal.py
-        continue-on-error: true
-
-      - name: Upload output.png
-        if: steps.golden_check.outcome == 'success'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/upload_output.py
-        continue-on-error: true
-
-      - name: Post Golden to Telegram
-        if: steps.golden_check.outcome == 'success'
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_to_telegram.py
-        continue-on-error: true
-
-      - name: Post Golden to Facebook
-        if: steps.golden_check.outcome == 'success'
-        env:
-          FB_PAGE_ID:    ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          IMAGE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/output.png
-        run: python scripts/post_to_facebook.py
-        continue-on-error: true
-
-      - name: Post Golden to Instagram
-        if: steps.golden_check.outcome == 'success'
-        env:
-          FB_PAGE_ID:    ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          IMAGE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/output.png
-        run: python scripts/post_to_instagram.py
-        continue-on-error: true
-
-      - name: Commit Golden Signal
-        if: steps.golden_check.outcome == 'success'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/signals_log.csv data/golden_signal.json data/daily.json || true
-          git diff --cached --quiet || git commit -m "⭐ إشارة ذهبية"
-          git push || true
-        continue-on-error: true
+# ─── معايير الإشارة الذهبية (قبل السوق) ────────────────────
+GOLDEN_MIN_SCORE = 50
+GOLDEN_RSI_MIN   = 35
+GOLDEN_RSI_MAX   = 75
+GOLDEN_MIN_RR    = 1.5
 
 
-# ══════════════════════════════════════════════════════════════
-# JOB 2: الإشارة اليومية (كل 5 دقائق 10ص–3م)
-# مسار كامل: market_intelligence → fetch → quality → نشر
-# ══════════════════════════════════════════════════════════════
-  auto-post:
-    runs-on: ubuntu-latest
-    if: >
-      (github.event_name == 'workflow_dispatch') ||
-      (github.event_name == 'push') ||
-      (github.event_name == 'schedule' &&
-       github.event.schedule == '*/5 7-12 * * 0-4')
+def check_golden(data):
+    """معايير الإشارة الذهبية قبل السوق"""
+    score  = data.get("score", 0)
+    rsi    = data.get("rsi", 50)
+    rr     = data.get("rr", 0)
+    # FIX: check both key names for compatibility
+    symbol = data.get("stock_symbol", data.get("symbol", ""))
+    name   = data.get("stock_name", "")
+    stype  = data.get("signal_type", "")
+    t2_pct = data.get("target2_pct", 0)
+    accel  = data.get("acceleration", 0)
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    fails = []
+    if score < GOLDEN_MIN_SCORE:
+        fails.append(f"Score {score} < {GOLDEN_MIN_SCORE}")
+    if not (GOLDEN_RSI_MIN <= rsi <= GOLDEN_RSI_MAX):
+        fails.append(f"RSI {rsi:.0f} خارج النطاق ({GOLDEN_RSI_MIN}-{GOLDEN_RSI_MAX})")
+    if rr < GOLDEN_MIN_RR:
+        fails.append(f"R:R {rr:.1f} < {GOLDEN_MIN_RR}")
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    print(f"\n{'='*55}")
+    print(f"فحص الإشارة الذهبية: {name} ({symbol})")
+    print(f"النوع: {stype}")
+    print(f"{'='*55}")
+    print(f"  Score     : {score:>5}  {'OK' if score >= GOLDEN_MIN_SCORE else 'X'} (min {GOLDEN_MIN_SCORE})")
+    print(f"  RSI       : {rsi:>5.0f}  {'OK' if GOLDEN_RSI_MIN <= rsi <= GOLDEN_RSI_MAX else 'X'} ({GOLDEN_RSI_MIN}-{GOLDEN_RSI_MAX})")
+    print(f"  R:R       : {rr:>5.1f}  {'OK' if rr >= GOLDEN_MIN_RR else 'X'} (min {GOLDEN_MIN_RR})")
+    print(f"  هدف ثانٍ : {t2_pct:>4.0f}%  {'OK' if t2_pct >= 10 else '─'}")
+    print(f"  تسارع     : {accel:>5}  {'قوي' if accel >= 30 else 'متوسط' if accel >= 15 else 'عادي'}")
+    print(f"  Volume    : تُتجاهل للإشارة الذهبية (بيانات تاريخية)")
 
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-        continue-on-error: true
+    if fails:
+        print(f"\nالإشارة الذهبية لا تستوفي المعايير:")
+        for f in fails:
+            print(f"   - {f}")
+        print(f"\nتم تخطي النشر\n")
+        return False
 
-      - name: Fetch & Analyze Market Data
-        env:
-          API_KEY:           ${{ secrets.API_KEY }}
-          API_URL:           ${{ secrets.API_URL }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/fetch_api_data.py
-
-      - name: Check Signal Quality
-        id: quality_check
-        run: python scripts/should_post.py
-        continue-on-error: true
-
-      - name: Generate Post Image
-        if: steps.quality_check.outcome == 'success'
-        run: python scripts/generate_post.py
-        continue-on-error: true
-
-      - name: Log Signal
-        if: steps.quality_check.outcome == 'success'
-        run: python scripts/log_signal.py
-        continue-on-error: true
-
-      - name: Upload output.png
-        if: steps.quality_check.outcome == 'success'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/upload_output.py
-        continue-on-error: true
-
-      - name: Post to Telegram
-        if: steps.quality_check.outcome == 'success'
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_to_telegram.py
-        continue-on-error: true
-
-      - name: Post to Facebook
-        if: steps.quality_check.outcome == 'success'
-        env:
-          FB_PAGE_ID:    ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          IMAGE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/output.png
-        run: python scripts/post_to_facebook.py
-        continue-on-error: true
-
-      - name: Post to Instagram
-        if: steps.quality_check.outcome == 'success'
-        env:
-          FB_PAGE_ID:    ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          IMAGE_URL: https://raw.githubusercontent.com/${{ github.repository }}/main/output.png
-        run: python scripts/post_to_instagram.py
-        continue-on-error: true
-
-      - name: Commit Signal Log
-        if: steps.quality_check.outcome == 'success'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/signals_log.csv data/daily.json data/market_intel.json || true
-          git diff --cached --quiet || git commit -m "📊 إشارة يومية"
-          git push || true
-        continue-on-error: true
+    print(f"\nالإشارة الذهبية تستوفي المعايير — سيتم النشر!\n")
+    return True
 
 
-# ══════════════════════════════════════════════════════════════
-# JOB 3: تقرير أسبوعي (خميس 3:30م)
-# ══════════════════════════════════════════════════════════════
-  weekly-report:
-    runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'schedule' &&
-      github.event.schedule == '30 12 * * 4'
+def check_daily(data):
+    """معايير الإشارة اليومية — هدف ثانٍ 10% خلال 10 أيام"""
+    score        = data.get("score", 0)
+    rsi          = data.get("rsi", 50)
+    volume_ratio = data.get("volume_ratio", 0)
+    rr           = data.get("rr", 0)
+    # FIX: check both key names for compatibility
+    symbol       = data.get("stock_symbol", data.get("symbol", ""))
+    name         = data.get("stock_name", "")
+    t2_pct       = data.get("target2_pct", 0)
+    accel        = data.get("acceleration", 0)
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    fails = []
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    if score < MIN_SCORE:
+        fails.append(f"Score {score} < {MIN_SCORE}")
+    if not (MIN_RSI <= rsi <= MAX_RSI):
+        fails.append(f"RSI {rsi:.0f} خارج النطاق ({MIN_RSI}-{MAX_RSI})")
+    if rr < MIN_RR:
+        if score >= 85 and rr >= 1.5:
+            print(f"  ** R:R {rr:.1f} مقبول لـ Score {score}")
+        else:
+            fails.append(f"R:R {rr:.1f} < {MIN_RR}")
+    if volume_ratio < MIN_VOLUME_RATIO:
+        if score >= 85 and volume_ratio == 0.0:
+            print(f"  ** Volume = 0 (مشكلة API) — مقبول لـ Score {score}")
+        else:
+            fails.append(f"Volume {volume_ratio:.1f}x < {MIN_VOLUME_RATIO}x")
+    if t2_pct > 0 and t2_pct < 10:
+        fails.append(f"هدف ثانٍ {t2_pct:.1f}% < 10%")
 
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-        continue-on-error: true
+    print(f"\n{'='*55}")
+    print(f"فحص جودة الاشارة: {name} ({symbol})")
+    print(f"{'='*55}")
+    print(f"  Score     : {score:>5}  {'OK' if score >= MIN_SCORE else 'X'} (min {MIN_SCORE})")
+    print(f"  RSI       : {rsi:>5.0f}  {'OK' if MIN_RSI <= rsi <= MAX_RSI else 'X'} ({MIN_RSI}-{MAX_RSI})")
+    print(f"  R:R       : {rr:>5.1f}  {'OK' if rr >= MIN_RR else 'X'} (min {MIN_RR} — T2 10%)")
+    vol_ok = volume_ratio >= MIN_VOLUME_RATIO or (score >= 85 and volume_ratio == 0.0)
+    print(f"  Volume    : {volume_ratio:>4.1f}x  {'OK' if vol_ok else 'X'} (min {MIN_VOLUME_RATIO}x)")
+    print(f"  هدف ثانٍ : {t2_pct:>4.0f}%  {'OK' if t2_pct >= 10 else '─'} (min 10%)")
+    print(f"  تسارع     : {accel:>5}  {'قوي' if accel >= 30 else 'متوسط' if accel >= 15 else 'عادي'}")
 
-      - name: Update Fundamentals
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-        run: python scripts/fundamentals_fetcher.py
-        continue-on-error: true
+    if fails:
+        print(f"\nالاشارة لا تستوفي المعايير:")
+        for f in fails:
+            print(f"   - {f}")
+        print(f"\nتم تخطي النشر اليوم\n")
+        return False
 
-      - name: Train ML Model
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-        run: python scripts/ml_trainer.py
-        continue-on-error: true
-
-      - name: Run Backtesting
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-        run: python scripts/backtester.py
-        continue-on-error: true
-
-      - name: Generate Weekly Report
-        run: |
-          python scripts/weekly_report.py
-          python scripts/generate_report_image.py
-        continue-on-error: true
-
-      - name: Send Report to Telegram
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_dashboard_to_telegram.py
-        continue-on-error: true
-
-      - name: Commit Weekly Data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/backtest_results.json data/ml_model.json data/training_data.json data/fundamentals.json || true
-          git diff --cached --quiet || git commit -m "📈 تقرير أسبوعي + ML + أساسيات"
-          git push || true
-        continue-on-error: true
+    print(f"\nالاشارة تستوفي جميع المعايير — سيتم النشر!\n")
+    return True
 
 
-# ══════════════════════════════════════════════════════════════
-# JOB 4: متابعة نتائج الإشارات (3م يومياً)
-# ══════════════════════════════════════════════════════════════
-  track-results:
-    runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'schedule' &&
-      github.event.schedule == '0 12 * * 0-4'
+if __name__ == "__main__":
+    try:
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"خطا في قراءة {DATA_FILE}: {e}")
+        sys.exit(1)
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    generated_at = data.get("generated_at", "")
+    today = datetime.now().strftime("%Y-%m-%d")
+    if not generated_at.startswith(today):
+        print(f"البيانات قديمة ({generated_at or 'غير محدد'}) — تم الانتهاء")
+        sys.exit(1)
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    # ─── FIX: حارس النشر المزدوج ────────────────────────────
+    # منع النشر أكثر من مرة في نفس اليوم للإشارة نفسها.
+    # بعد النشر الناجح تكتب السكريبت الأخرى "posted_today": true
+    # في daily.json — إذا وُجدت نتوقف هنا مباشرةً.
+    if data.get("posted_today") is True:
+        symbol = data.get("stock_symbol", data.get("symbol", ""))
+        print(f"تم النشر مسبقاً اليوم ({symbol}) — تم تخطي النشر")
+        sys.exit(1)
+    # ────────────────────────────────────────────────────────
 
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-        continue-on-error: true
+    signal_type = data.get("type", "")
+    is_golden   = signal_type == "اشارة ذهبية"
 
-      - name: Track Signal Results
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-        run: python scripts/track_results.py
-        continue-on-error: true
+    if is_golden:
+        print("  نوع الإشارة: ذهبية — تطبيق معايير ما قبل السوق")
+        passed = check_golden(data)
+    else:
+        print("  نوع الإشارة: يومية — هدف ثانٍ 10% خلال 10 أيام")
+        passed = check_daily(data)
 
-      - name: Commit Results
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/signals_log.csv || true
-          git diff --cached --quiet || git commit -m "📈 تحديث النتائج"
-          git push || true
-        continue-on-error: true
+    sys.exit(0 if passed else 1)
