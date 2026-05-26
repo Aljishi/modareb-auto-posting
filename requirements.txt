@@ -2,5 +2,7 @@ pytz>=2024.1
 requests>=2.31.0
 python-telegram-bot>=20.7
 pillow>=10.0.0
-arabic-reshaper
-python-bidi
+arabic-reshaper>=3.0.0
+python-bidi>=0.4.2
+pandas>=2.0.0
+numpy>=1.24.0
