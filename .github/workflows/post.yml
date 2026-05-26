@@ -3,18 +3,30 @@ name: Rased Auto Posting
 on:
   workflow_dispatch:
     inputs:
-      force:
-        description: "Run even if Saudi market is closed?"
+      job:
+        description: "Which job to run?"
         required: false
-        default: "false"
+        default: "all"
         type: choice
         options:
-          - "false"
-          - "true"
+          - "all"
+          - "auto-post"
+          - "track-results"
+          - "weekly-report"
+          - "golden-signal"
   
   schedule:
-    # Saudi market: Sun-Thu 10:00-15:00 KSA = UTC 07:00-11:55
+    # Auto Post: Sun-Thu 10:00-14:55 KSA = UTC 07:00-11:55
     - cron: "*/5 7-11 * * 0-4"
+    
+    # Track Results: Every hour
+    - cron: "0 * * * *"
+    
+    # Weekly Report: Thursday 5:00 PM KSA = 2:00 PM UTC
+    - cron: "0 14 * * 4"
+    
+    # Golden Signal: Daily 4:00 PM KSA = 1:00 PM UTC (After market close)
+    - cron: "0 13 * * 0-4"
 
 permissions:
   contents: write
@@ -24,8 +36,14 @@ env:
   PYTHONIOENCODING: utf-8
 
 jobs:
-  post:
+  # ============================================
+  # Job 1: Auto Post - Daily Signals (During Market)
+  # ============================================
+  auto-post:
     runs-on: ubuntu-latest
+    if: github.event.schedule == '*/5 7-11 * * 0-4' || 
+        (github.event_name == 'workflow_dispatch' && 
+         (github.event.inputs.job == 'all' || github.event.inputs.job == 'auto-post'))
     
     steps:
       - name: Checkout repository
@@ -57,27 +75,29 @@ jobs:
           echo "✅ Saudi market is closed. Workflow stopped gracefully."
           exit 0
 
-      - name: Fetch/update signal data
+      - name: Fetch market data
         if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
         run: |
-          python scripts/fetch_api_data.py || echo "Using existing data"
+          echo "📊 Fetching real-time market data..."
+          python scripts/fetch_api_data.py
 
-      - name: Validate signal before posting
+      - name: Analyze and generate signal
         if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
         run: |
-          python scripts/should_post.py || echo "No valid signal today"
+          echo "🔍 Analyzing stocks..."
+          python scripts/generate_signal.py
 
-      - name: Generate normal post image
+      - name: Validate signal conditions
         if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
         run: |
+          echo "✅ Validating signal..."
+          python scripts/should_post.py
+
+      - name: Generate post image
+        if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
+        run: |
+          echo "🎨 Generating post image..."
           python scripts/generate_post.py data/daily.json output.png
-
-      - name: Generate golden post image when applicable
-        if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
-        run: |
-          if [ -f scripts/generate_golden_post.py ]; then
-            python scripts/generate_golden_post.py data/daily.json golden_output.png
-          fi
 
       - name: Post to Telegram
         if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
@@ -85,21 +105,156 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
+          echo "📢 Posting to Telegram..."
           python scripts/post_to_telegram.py
+
+      - name: Post to Facebook
+        if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
+        env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: |
+          python scripts/post_to_facebook.py || echo "Facebook post skipped"
 
       - name: Post to Instagram
         if: steps.market.outputs.market_open == 'true' || github.event.inputs.force == 'true'
         env:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
           python scripts/post_to_instagram.py || echo "Instagram post skipped"
 
-      - name: Commit generated files
-        if: always()
+  # ============================================
+  # Job 2: Track Results - Hourly
+  # ============================================
+  track-results:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 * * * *' || 
+        (github.event_name == 'workflow_dispatch' && 
+         (github.event.inputs.job == 'all' || github.event.inputs.job == 'track-results'))
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Track signal performance
+        run: |
+          echo "📊 Tracking signal performance..."
+          python scripts/track_results.py || echo "Tracking skipped"
+
+      - name: Update Track Record
+        run: |
+          echo "📈 Updating track record..."
+          python scripts/update_track_record.py || echo "Track record update skipped"
+
+      - name: Commit updates
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add output.png golden_output.png data/*.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "Update Rased generated posts"
+          git add docs/index.html data/track_record.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update track record"
           git push || true
+
+  # ============================================
+  # Job 3: Weekly Report - Thursday 5 PM KSA
+  # ============================================
+  weekly-report:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 14 * * 4' || 
+        (github.event_name == 'workflow_dispatch' && 
+         (github.event.inputs.job == 'all' || github.event.inputs.job == 'weekly-report'))
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate weekly report
+        run: |
+          echo "📊 Generating weekly report..."
+          python scripts/weekly_report.py || echo "Weekly report skipped"
+
+      - name: Post to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          echo "📢 Posting weekly report..."
+          python scripts/post_weekly_report.py || echo "Weekly report post skipped"
+
+  # ============================================
+  # Job 4: Golden Signal - Daily 4 PM KSA (After Market)
+  # ============================================
+  golden-signal:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 13 * * 0-4' || 
+        (github.event_name == 'workflow_dispatch' && 
+         (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pandas ta yfinance
+
+      - name: 🔍 Deep Market Analysis
+        run: |
+          echo "📊 Analyzing historical data + news sentiment..."
+          python scripts/golden_signal_analysis.py
+
+      - name: Check for golden signal
+        id: golden
+        run: |
+          if python scripts/check_golden_signal.py; then
+            echo "has_golden=true" >> $GITHUB_OUTPUT
+            echo "🌟 GOLDEN SIGNAL DETECTED!"
+          else
+            echo "has_golden=false" >> $GITHUB_OUTPUT
+            echo "No golden signal today"
+          fi
+
+      - name: Generate golden signal post
+        if: steps.golden.outputs.has_golden == 'true'
+        run: |
+          echo "🎨 Generating golden signal post..."
+          python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
+
+      - name: Post to Telegram
+        if: steps.golden.outputs.has_golden == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          echo "📢 Posting golden signal to Telegram..."
+          python scripts/post_golden_signal.py
