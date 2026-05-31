@@ -21,14 +21,10 @@ on:
         type: boolean
 
   schedule:
-    # Job 1: Auto Post - كل 5 دقائق أثناء السوق (10:00-14:55 KSA = 07:00-11:55 UTC)
-    - cron: "*/5 7-11 * * 0-4"
-    # Job 2: Track Results - كل ساعة
-    - cron: "0 * * * *"
-    # Job 3: Weekly Report - الخميس 5 مساءً KSA = 2 PM UTC
-    - cron: "0 14 * * 4"
-    # Job 4: Golden Signal - يومياً 4 مساءً KSA = 1 PM UTC
-    - cron: "0 13 * * 0-4"
+    - cron: "*/5 7-11 * * 0-4"   # Auto Post
+    - cron: "0 * * * *"           # Track Results
+    - cron: "0 14 * * 4"          # Weekly Report
+    - cron: "0 13 * * 0-4"        # Golden Signal
 
 permissions:
   contents: write
@@ -50,11 +46,9 @@ jobs:
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'auto-post'))
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       
@@ -69,52 +63,45 @@ jobs:
           echo "🕐 Checking Saudi market status..."
           if python scripts/is_market_open.py; then
             echo "open=true" >> $GITHUB_OUTPUT
-            echo "✅ Market is OPEN"
           else
             echo "open=false" >> $GITHUB_OUTPUT
-            echo "❌ Market is CLOSED"
           fi
       
       - name: Skip if market closed
         if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
         run: |
-          echo "⚠️ Saudi market is closed - skipping auto-post"
-          echo "The workflow runs Sunday-Thursday, 10:00-15:00 KSA"
+          echo "⚠️ Market closed - skipping auto-post"
           exit 0
       
       - name: Ensure data directory exists
         run: mkdir -p data
       
+      # 🔥 هذا هو التعديل المهم: استخدام market_intelligence.py أولاً
       - name: Fetch market intelligence
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: |
           echo "🧠 Fetching advanced market intelligence..."
           python scripts/market_intelligence.py || \
           python scripts/fetch_api_data.py || \
-          (echo "⚠️ Using cached data from previous run" && ls -la data/)
+          (echo "⚠️ Using cached data" && ls -la data/)
       
       - name: Generate signal
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: |
-          echo "🎯 Generating trading signals..."
-          python scripts/generate_signal.py
+        run: python scripts/generate_signal.py
       
       - name: Validate signal
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: |
-          echo "✅ Validating signals..."
-          python scripts/should_post.py
+        run: python scripts/should_post.py
       
       - name: Generate post image
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: |
-          echo "🎨 Generating post image..."
           if [ -f data/validated_signals.json ]; then
             python scripts/generate_post.py data/validated_signals.json output.png
           elif [ -f data/signals.json ]; then
             python scripts/generate_post.py data/signals.json output.png
           else
-            echo "⚠️ No signals found, skipping image generation"
+            echo "⚠️ No signals found"
           fi
       
       - name: Post to Telegram
@@ -122,40 +109,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          echo "📢 Posting to Telegram..."
-          python scripts/post_to_telegram.py
-      
-      - name: Post to Facebook (Optional)
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        env:
-          FB_APP_ID: ${{ secrets.FB_APP_ID }}
-          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-        run: |
-          echo "📘 Posting to Facebook..."
-          python scripts/post_to_facebook.py || echo "⚠️ Facebook post skipped"
-        continue-on-error: true
-      
-      - name: Post to Instagram (Optional)
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        env:
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-        run: |
-          echo "📸 Posting to Instagram..."
-          python scripts/post_to_instagram.py || echo "⚠️ Instagram post skipped"
-        continue-on-error: true
-      
-      - name: Upload artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: data-files
-          path: data/
-          retention-days: 7
+        run: python scripts/post_to_telegram.py
 
   # ─────────────────────────────────────────────────────
   # Job 2: Track Results (Hourly)
@@ -166,50 +120,20 @@ jobs:
       github.event.schedule == '0 * * * *' ||
       (github.event_name == 'workflow_dispatch' &&
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'track-results'))
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: data-files
-          path: data/
-        continue-on-error: true
-      
-      - name: Track signal performance
-        run: |
-          echo "📊 Tracking signal performance..."
-          python scripts/track_results.py || echo "⚠️ Tracking skipped - no signals"
-        continue-on-error: true
-      
-      - name: Update track record
-        run: |
-          echo "📈 Updating track record..."
-          python scripts/update_track_record.py || echo "⚠️ Track record update skipped"
-        continue-on-error: true
-      
-      - name: Commit and push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html data/track_record.json data/results.json 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m " Update track record - $(date '+%Y-%m-%d %H:%M')"
-            git push || echo "⚠️ Push failed"
-          else
-            echo "✅ No changes to commit"
-          fi
-        continue-on-error: true
+      - run: pip install -r requirements.txt
+      - run: python scripts/track_results.py || echo "Tracking skipped"
+      - run: python scripts/update_track_record.py || echo "Update skipped"
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs/index.html data/*.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update track record"
+          git push || true
 
   # ─────────────────────────────────────────────────────
   # Job 3: Weekly Report (Thursday 5 PM KSA)
@@ -220,43 +144,21 @@ jobs:
       github.event.schedule == '0 14 * * 4' ||
       (github.event_name == 'workflow_dispatch' &&
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'weekly-report'))
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: data-files
-          path: data/
-        continue-on-error: true
-      
-      - name: Generate weekly report
-        run: |
-          echo "📰 Generating weekly report..."
-          python scripts/weekly_report.py || echo "⚠️ Weekly report generation skipped"
-        continue-on-error: true
-      
-      - name: Post weekly report to Telegram
+      - run: pip install -r requirements.txt
+      - run: python scripts/weekly_report.py || echo "Report skipped"
+      - name: Post report
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          echo "📢 Posting weekly report..."
-          python scripts/post_weekly_report.py || echo "⚠️ Weekly report post skipped"
-        continue-on-error: true
+        run: python scripts/post_weekly_report.py || echo "Post skipped"
 
   # ─────────────────────────────────────────────────────
-  # Job 4: Golden Signal (Daily 4 PM KSA - After Market)
+  # Job 4: Golden Signal (Daily 4 PM KSA)
   # ─────────────────────────────────────────────────────
   golden-signal:
     runs-on: ubuntu-latest
@@ -265,66 +167,33 @@ jobs:
       github.event.schedule == '0 13 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pandas ta
-      
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: data-files
-          path: data/
-        continue-on-error: true
-      
-      - name: Ensure data directory exists
-        run: mkdir -p data
-      
-      - name: Create empty daily.json if not exists
-        run: |
+      - run: pip install -r requirements.txt pandas ta
+      - run: mkdir -p data
+      - run: |
           if [ ! -f data/daily.json ]; then
-            echo '{"stocks": [], "timestamp": "'"$(date -Iseconds)"'"}' > data/daily.json
-            echo "⚠️ Created empty daily.json"
+            echo '{"stocks": []}' > data/daily.json
           fi
-      
-      - name: Run golden signal analysis
-        run: |
-          echo "🌟 Running golden signal analysis..."
-          python scripts/golden_signal_analysis.py || echo "ℹ️ No golden signals or analysis failed"
-      
+      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ No golden signals"
       - name: Check golden signal
         id: golden
         run: |
           if [ -f data/golden_signals.json ] && [ "$(jq length data/golden_signals.json 2>/dev/null || echo 0)" -gt 0 ]; then
             echo "found=true" >> $GITHUB_OUTPUT
-            echo "🌟 Golden signal found!"
           else
             echo "found=false" >> $GITHUB_OUTPUT
-            echo "ℹ️ No golden signals today"
           fi
-      
       - name: Generate golden post
         if: steps.golden.outputs.found == 'true'
-        run: |
-          echo "🎨 Generating golden signal post..."
-          python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
-      
-      - name: Post golden signal to Telegram
+        run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
+      - name: Post to Telegram
         if: steps.golden.outputs.found == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          echo "📢 Posting golden signal to Telegram..."
-          python scripts/post_golden_signal.py
+        run: python scripts/post_golden_signal.py
 
