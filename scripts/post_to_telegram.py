@@ -37,18 +37,22 @@ def send_to_telegram():
         print("❌ Error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set")
         sys.exit(1)
     
-    # 2. Load signal data
+    # 2. Load validated signal data
     data_dir = Path(__file__).parent.parent / "data"
-    signal_file = data_dir / "signals.json"
+    signal_file = data_dir / "validated_signals.json"
     
     if not signal_file.exists():
-        print("❌ Error: data/signals.json not found")
-        sys.exit(1)
+        # Try signals.json as fallback
+        signal_file = data_dir / "signals.json"
+        if not signal_file.exists():
+            print("❌ Error: No signal data found")
+            sys.exit(1)
     
     with open(signal_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    signals = data.get('signals', [])
+    # Get signals from validated_signals or signals
+    signals = data.get('validated_signals', data.get('signals', []))
     
     if not signals:
         print("⚠️ No signals to post")
@@ -71,15 +75,21 @@ def send_to_telegram():
     score = signal.get('score', 0)
     rsi = signal.get('rsi', 0)
     volume_ratio = signal.get('volume_ratio', 1.0)
+    confidence = escape_markdown_v2(signal.get('confidence', 'عالية'))
+    emoji = signal.get('emoji', '🟡')
     
     # Calculate percentages
-    target1_change = ((target1 - current_price) / current_price) * 100
-    target2_change = ((target2 - current_price) / current_price) * 100
-    stop_loss_change = ((stop_loss - current_price) / current_price) * 100
+    if current_price > 0:
+        target1_change = ((target1 - current_price) / current_price) * 100
+        target2_change = ((target2 - current_price) / current_price) * 100
+        stop_loss_change = ((stop_loss - current_price) / current_price) * 100
+    else:
+        target1_change = target2_change = stop_loss_change = 0
     
     message = (
         f"📊 *{name} \\({symbol}\\)*\n"
         f"🏢 القطاع: {sector}\n\n"
+        f"🎯 مستوى الثقة: {confidence} {emoji}\n\n"
         f"💰 السعر الحالي: `{current_price:.2f}` ريال\n"
         f"🎯 نقطة الدخول: `{entry_point:.2f}` ريال\n\n"
         f"📈 الأهداف:\n"
@@ -107,7 +117,7 @@ def send_to_telegram():
         
         if response.status_code == 200:
             print("✅ تم النشر بنجاح على تيليجرام!")
-            print(f"📊 Signal: {symbol} - Score: {score}")
+            print(f"📊 Signal: {symbol} - Score: {score} - {confidence}")
             return True
         else:
             print(f"❌ Failed to post: {response.status_code}")
