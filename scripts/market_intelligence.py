@@ -1,316 +1,402 @@
-import os
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Advanced Market Intelligence - Multi-Source Data Aggregation
+Sources:
+- Sahmk.sa API
+- Argaam.com
+- TradingView
+- Mubasher.info
+- Google Finance
+"""
+
 import json
+import os
+import sys
 import requests
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
+from pathlib import Path
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+import re
 
-API_KEY  = os.environ.get("API_KEY")
-API_URL  = os.environ.get("API_URL", "https://app.sahmk.sa/api/v1")
-HEADERS  = {"X-API-Key": API_KEY} if API_KEY else {}
-OUTPUT   = "data/market_intel.json"
+class MarketIntelligence:
+    def __init__(self):
+        self.api_key = os.environ.get('API_KEY', '')
+        self.api_url = os.environ.get('API_URL', 'https://www.sahmk.sa/api/v1')
+        self.data_dir = Path(__file__).parent.parent / "data"
+        self.data_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Session for requests
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
+        
+        # Top Saudi stocks to monitor
+        self.monitored_stocks = [
+            '2222', '1120', '2010', '2050', '1180', '2380', '2030', '1211',
+            '2350', '4030', '1150', '2020', '2090', '1050', '4001', '2280'
+        ]
+    
+    def fetch_from_sahmk(self, endpoint, params=None):
+        """Fetch from Sahmk API"""
+        try:
+            url = f"{self.api_url}/{endpoint}"
+            headers = {'Authorization': f'Bearer {self.api_key}'} if self.api_key else {}
+            
+            response = self.session.get(url, headers=headers, params=params, timeout=10)
+            
+            if response.status_code == 200:
+                return response.json()
+            else:
+                print(f"⚠️ Sahmk API error: {response.status_code}")
+                return None
+        except Exception as e:
+            print(f"⚠️ Sahmk API exception: {e}")
+            return None
+    
+    def fetch_from_argaam(self, symbol=None):
+        """
+        Fetch data from Argaam.com
+        Returns: Market news, stock data, analyst recommendations
+        """
+        print("📰 Fetching from Argaam...")
+        
+        data = {
+            'news': [],
+            'stock_data': {},
+            'analyst_ratings': {}
+        }
+        
+        try:
+            # Fetch market news
+            news_url = "https://www.argaam.com/ar/news/newslist/1"
+            response = self.session.get(news_url, timeout=10)
+            
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                news_items = soup.find_all('div', class_='news-item')[:10]
+                
+                for item in news_items:
+                    title_elem = item.find('a')
+                    if title_elem:
+                        data['news'].append({
+                            'title': title_elem.get_text(strip=True),
+                            'url': title_elem.get('href'),
+                            'timestamp': datetime.now().isoformat()
+                        })
+            
+            # Fetch specific stock data if symbol provided
+            if symbol:
+                stock_url = f"https://www.argaam.com/ar/article/articledetail/id/{symbol}"
+                # This is a placeholder - actual implementation depends on Argaam structure
+                
+        except Exception as e:
+            print(f"⚠️ Argaam error: {e}")
+        
+        return data
+    
+    def fetch_from_tradingview(self, symbol):
+        """
+        Fetch technical indicators from TradingView
+        Uses public widget data
+        """
+        print(f"📊 Fetching TradingView data for {symbol}...")
+        
+        indicators = {
+            'RSI': 50,
+            'MACD': 0,
+            'SMA_20': 0,
+            'SMA_50': 0,
+            'recommendation': 'NEUTRAL'
+        }
+        
+        try:
+            # TradingView doesn't have public API, but we can use their widget
+            # For production, consider using their paid API
+            url = f"https://scanner.tradingview.com/global/scan"
+            params = {
+                'symbols': f'TADAWUL:{symbol}',
+                'columns': 'RSI|MACD.macd|Recommend.Other',
+            }
+            
+            response = self.session.get(url, params=params, timeout=10)
+            if response.status_code == 200:
+                tv_data = response.json()
+                # Parse the response
+                if tv_data and 'data' in tv_data:
+                    for item in tv_data['data']:
+                        indicators['RSI'] = item.get('RSI', 50)
+                        indicators['MACD'] = item.get('MACD.macd', 0)
+                        indicators['recommendation'] = item.get('Recommend.Other', 'NEUTRAL')
+                        
+        except Exception as e:
+            print(f"⚠️ TradingView error: {e}")
+        
+        return indicators
+    
+    def fetch_from_mubasher(self, symbol):
+        """
+        Fetch data from Mubasher.info
+        """
+        print(f"📈 Fetching from Mubasher for {symbol}...")
+        
+        data = {
+            'price': 0,
+            'change': 0,
+            'change_percent': 0,
+            'volume': 0,
+            'market_cap': 0
+        }
+        
+        try:
+            url = f"https://www.mubasher.info/markets/TADAWUL/stocks/{symbol}"
+            response = self.session.get(url, timeout=10)
+            
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                
+                # Extract price data (selectors may need adjustment)
+                price_elem = soup.find('span', class_='price')
+                if price_elem:
+                    try:
+                        data['price'] = float(price_elem.get_text().replace(',', ''))
+                    except:
+                        pass
+                        
+        except Exception as e:
+            print(f"⚠️ Mubasher error: {e}")
+        
+        return data
+    
+    def analyze_news_sentiment(self, news_list):
+        """
+        Analyze sentiment of news articles
+        Returns: sentiment score (-1 to +1)
+        """
+        if not news_list:
+            return 0
+        
+        positive_keywords = [
+            'نمو', 'أرباح', 'عقد', 'مشروع', 'توسع', 'إيجابي', 'ربح',
+            'زيادة', 'ارتفاع', 'نجاح', 'إنجاز', 'تفوق', 'مكسب', 'صفقة'
+        ]
+        
+        negative_keywords = [
+            'خسارة', 'انخفاض', 'سلبي', 'تراجع', 'خسائر', 'هبوط',
+            'تدهور', 'مشكلة', 'أزمة', 'انكماش', 'ديون'
+        ]
+        
+        score = 0
+        total = len(news_list)
+        
+        for news in news_list:
+            text = news.get('title', '').lower()
+            
+            for keyword in positive_keywords:
+                if keyword in text:
+                    score += 1
+                    break
+            
+            for keyword in negative_keywords:
+                if keyword in text:
+                    score -= 1
+                    break
+        
+        # Normalize to -1 to +1
+        return score / total if total > 0 else 0
+    
+    def aggregate_stock_data(self, symbol):
+        """
+        Aggregate data from all sources for a single stock
+        """
+        print(f"\n🔍 Analyzing {symbol}...")
+        
+        aggregated = {
+            'symbol': symbol,
+            'timestamp': datetime.now().isoformat(),
+            'sources': {}
+        }
+        
+        # 1. Fetch from Sahmk API
+        sahmk_data = self.fetch_from_sahmk(f'stocks/{symbol}/')
+        if sahmk_data:
+            aggregated['sources']['sahmk'] = sahmk_data
+            aggregated.update(sahmk_data)
+        
+        # 2. Fetch from TradingView
+        tv_data = self.fetch_from_tradingview(symbol)
+        if tv_data:
+            aggregated['sources']['tradingview'] = tv_data
+            # Merge indicators
+            for key, value in tv_data.items():
+                if key not in ['sources', 'symbol', 'timestamp']:
+                    aggregated[key] = value
+        
+        # 3. Fetch from Mubasher
+        mubasher_data = self.fetch_from_mubasher(symbol)
+        if mubasher_data and mubasher_data['price'] > 0:
+            aggregated['sources']['mubasher'] = mubasher_data
+            # Use Mubasher price if available
+            if not aggregated.get('current_price'):
+                aggregated['current_price'] = mubasher_data['price']
+        
+        # 4. Fetch news sentiment
+        argaam_data = self.fetch_from_argaam(symbol)
+        if argaam_data['news']:
+            sentiment = self.analyze_news_sentiment(argaam_data['news'])
+            aggregated['news_sentiment'] = sentiment
+            aggregated['news_count'] = len(argaam_data['news'])
+        
+        return aggregated
+    
+    def fetch_market_overview(self):
+        """
+        Fetch overall market data
+        """
+        print("📊 Fetching market overview...")
+        
+        overview = {
+            'tasi_index': 0,
+            'tasi_change': 0,
+            'market_volume': 0,
+            'advancing': 0,
+            'declining': 0,
+            'unchanged': 0
+        }
+        
+        try:
+            # Fetch from Sahmk
+            data = self.fetch_from_sahmk('market/overview/')
+            if data:
+                overview.update(data)
+            
+            # Alternative: Fetch from Argaam
+            if not overview['tasi_index']:
+                response = self.session.get('https://www.argaam.com/ar/market', timeout=10)
+                if response.status_code == 200:
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    # Extract TASI index (selectors may need adjustment)
+                    tasi_elem = soup.find('div', class_='tasi-value')
+                    if tasi_elem:
+                        try:
+                            overview['tasi_index'] = float(tasi_elem.get_text().replace(',', ''))
+                        except:
+                            pass
+                            
+        except Exception as e:
+            print(f"⚠️ Market overview error: {e}")
+        
+        return overview
+    
+    def save_intelligence(self, data):
+        """Save intelligence data"""
+        output_file = self.data_dir / "market_intel.json"
+        
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        
+        print(f"✅ Saved intelligence to {output_file}")
+    
+    def run_full_analysis(self):
+        """
+        Run complete market analysis
+        """
+        print("=" * 60)
+        print("🧠 راصد - التحليل المتقدم للسوق")
+        print("=" * 60)
+        
+        intelligence = {
+            'timestamp': datetime.now().isoformat(),
+            'market_overview': {},
+            'stocks': [],
+            'news': [],
+            'summary': {}
+        }
+        
+        # 1. Market Overview
+        intelligence['market_overview'] = self.fetch_market_overview()
+        
+        # 2. Analyze monitored stocks
+        for symbol in self.monitored_stocks:
+            stock_data = self.aggregate_stock_data(symbol)
+            intelligence['stocks'].append(stock_data)
+            
+            # Rate limiting - be respectful to servers
+            time.sleep(1)
+        
+        # 3. Fetch market news
+        argaam_data = self.fetch_from_argaam()
+        intelligence['news'] = argaam_data.get('news', [])
+        
+        # 4. Generate summary
+        intelligence['summary'] = {
+            'total_stocks_analyzed': len(intelligence['stocks']),
+            'positive_sentiment': sum(1 for s in intelligence['stocks'] if s.get('news_sentiment', 0) > 0),
+            'negative_sentiment': sum(1 for s in intelligence['stocks'] if s.get('news_sentiment', 0) < 0),
+            'avg_rsi': sum(s.get('RSI', 50) for s in intelligence['stocks']) / len(intelligence['stocks']) if intelligence['stocks'] else 50
+        }
+        
+        # 5. Save
+        self.save_intelligence(intelligence)
+        
+        # 6. Convert to daily.json format for compatibility
+        self.convert_to_daily_format(intelligence)
+        
+        print(f"\n✅ Analysis complete: {intelligence['summary']}")
+        return intelligence
+    
+    def convert_to_daily_format(self, intelligence):
+        """Convert intelligence data to daily.json format"""
+        daily_data = {
+            'stocks': [],
+            'timestamp': intelligence['timestamp'],
+            'market_overview': intelligence['market_overview']
+        }
+        
+        for stock in intelligence['stocks']:
+            if stock.get('current_price'):
+                daily_stock = {
+                    'symbol': stock.get('symbol', ''),
+                    'name': stock.get('name', ''),
+                    'sector': stock.get('sector', ''),
+                    'current_price': stock.get('current_price', 0),
+                    'change_percent': stock.get('change_percent', 0),
+                    'rsi': stock.get('RSI', 50),
+                    'volume_ratio': stock.get('volume_ratio', 1.0),
+                    'rs_rank': stock.get('rs_rank', 50),
+                    'news_sentiment': stock.get('news_sentiment', 0),
+                    'macd': stock.get('MACD', 0),
+                    'recommendation': stock.get('recommendation', 'NEUTRAL')
+                }
+                daily_data['stocks'].append(daily_stock)
+        
+        # Save as daily.json
+        daily_file = self.data_dir / "daily.json"
+        with open(daily_file, 'w', encoding='utf-8') as f:
+            json.dump(daily_data, f, ensure_ascii=False, indent=2)
+        
+        print(f"✅ Converted to daily.json: {len(daily_data['stocks'])} stocks")
 
-# ✅ كاش 20 دقيقة — يمنع إعادة المسح في كل تشغيل
-CACHE_MINUTES = 20
-
-SECTORS = {
-    "البنوك":         ["1010","1020","1030","1050","1060","1080","1120","1150"],
-    "البتروكيماويات": ["2010","2020","2060","2090","2100","2150","2160","2170","2222","2223","2230"],
-    "الاتصالات":      ["7010","7020","7030","7040","7203","7204"],
-    "الطاقة":         ["5110","2040","2050"],
-    "التجزئة":        ["4190","4200","4210","4220","4230","4240","4250","4261"],
-    "العقار":         ["4020","4031","4040","4050","4100","4150","4300","4320","4321","4322","4323","4324"],
-    "الصحة":          ["4002","4005","4007","4009","4013","4017","4019","4061"],
-    "الصناعة":        ["1211","1212","2030","2080","2082","2083","2110","2120","2130","2140","2180",
-                       "2190","2200","2210","2220","2240","2250","2290","2310","2320","2330","2340",
-                       "2350","2360","2370","2380","2381","2382"],
-    "التامين":        ["8010","8020","8030","8040","8050","8060","8070","8100","8120","8150","8160",
-                       "8170","8180","8190","8200","8210","8230","8240","8250","8260","8270","8280",
-                       "8300","8310","8311","8320","8330","8340"],
-    "الاستثمار":      ["1111","4280","4290","4310","4349","4330","4331","4332","4333","4334","4335",
-                       "4336","4337","4338","4339","4340","4341","4342","4344","4345","4346","4347","4348"],
-    "التقنية":        ["9516","9526","9527","9528","9529","9536","9543","9544","9545","9546","9547",
-                       "9548","9549","9553","9554","9555","9556","9557","9558","9559","9560","9561",
-                       "9562","9563","9564","9565","9566","9567","9568"],
-    "الغذاء":         ["2060","2070","6001","6002","6010","6013","6014","6015","6020","6040","6050","6060","6070"],
-    "التعليم":        ["4001","4003","4004","4006","4008","4010","4011","4012","4014","4015","4016","4018","4021"],
-    "الترفيه":        ["4160","4161","4162","4163","4164","4170","4180"],
-    "النقل":          ["1301","1302","1303","1304","1320","1321","5010","5020"],
-}
-
-
-def safe_float(v, default=0.0):
+def main():
+    intel = MarketIntelligence()
+    
     try:
-        return float(v)
-    except Exception:
-        return default
-
-
-def get_sector(symbol):
-    for sector_name, symbols in SECTORS.items():
-        if str(symbol) in symbols:
-            return sector_name
-    return "اخرى"
-
-
-def get(endpoint, params=None):
-    try:
-        r = requests.get(
-            f"{API_URL}{endpoint}",
-            headers=HEADERS,
-            params=params or {},
-            timeout=15
-        )
-        if r.status_code == 200:
-            return r.json()
+        intelligence = intel.run_full_analysis()
+        
+        if intelligence['stocks']:
+            print(f"\n✅ Successfully analyzed {len(intelligence['stocks'])} stocks")
+            sys.exit(0)
+        else:
+            print("\n⚠️ No data collected")
+            sys.exit(1)
+            
     except Exception as e:
-        print(f"  error {endpoint}: {e}")
-    return None
-
-
-def is_cache_fresh():
-    """✅ تحقق من أن market_intel.json أحدث من CACHE_MINUTES دقيقة"""
-    try:
-        with open(OUTPUT, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        gen_at = data.get("generated_at", "")
-        if not gen_at:
-            return False, data
-        gen_time = datetime.strptime(gen_at, "%Y-%m-%d %H:%M")
-        age = (datetime.now() - gen_time).total_seconds() / 60
-        if age < CACHE_MINUTES:
-            print(f"  market_intel.json حديث ({age:.0f} دقيقة) — تخطي إعادة المسح ✅")
-            return True, data
-    except Exception:
-        pass
-    return False, {}
-
-
-def get_tasi_performance():
-    data = get("/market/summary/", {"index": "TASI"})
-    if not data:
-        return 0.0, 0.0
-    change_pct = safe_float(data.get("index_change_percent", 0))
-    tasi_20d   = 0.0
-    hist = get("/market/historical/TASI/", {"period": 20})
-    if hist:
-        history = hist if isinstance(hist, list) else hist.get("history", [])
-        history = sorted(history, key=lambda x: x.get("date", ""))
-        if len(history) >= 2:
-            first = safe_float(history[0].get("close", 0))
-            last  = safe_float(history[-1].get("close", 0))
-            if first > 0:
-                tasi_20d = (last - first) / first * 100
-    print(f"  TASI اليوم: {change_pct:+.2f}% | 20 يوم: {tasi_20d:+.2f}%")
-    return change_pct, tasi_20d
-
-
-def fetch_all_stocks():
-    """
-    ✅ إصلاح: يجلب فقط من gainers وvolume — بدون جلب 200 سهم فردي
-    طلبان فقط بدل 200+
-    """
-    seen = {}
-
-    for endpoint, key in [
-        ("/market/gainers/", "gainers"),
-        ("/market/volume/",  "stocks"),
-        ("/market/movers/",  "movers"),
-    ]:
-        data = get(endpoint, {"limit": 100, "index": "TASI"})
-        if data:
-            items = data if isinstance(data, list) else data.get(key, data.get("data", []))
-            for s in items:
-                sym = str(s.get("symbol", ""))
-                if sym and sym not in seen:
-                    seen[sym] = s
-
-    print(f"  gainers+volume+movers: {len(seen)} سهم (3 طلبات فقط) ✅")
-    return list(seen.values())
-
-
-def analyze_sector_rotation(all_stocks):
-    sector_scores = {}
-    sector_counts = {}
-
-    for stock in all_stocks:
-        sym    = str(stock.get("symbol", ""))
-        chg    = safe_float(stock.get("change_percent") or stock.get("change_pct", 0))
-        volume = safe_float(stock.get("volume", 0))
-        sector = get_sector(sym)
-
-        if sector not in sector_scores:
-            sector_scores[sector] = 0.0
-            sector_counts[sector] = 0
-        sector_scores[sector] += chg * (1 + min(volume / 1_000_000, 3))
-        sector_counts[sector] += 1
-
-    ranked = sorted(
-        [(name, score / max(sector_counts.get(name, 1), 1))
-         for name, score in sector_scores.items()],
-        key=lambda x: x[1],
-        reverse=True
-    )
-
-    print("\n  Sector Rotation:")
-    for name, score in ranked[:5]:
-        sign = "+" if score > 0 else ""
-        print(f"    {name:<16} {sign}{score:.1f}%")
-
-    return {
-        "top_sectors":    [r[0] for r in ranked[:3]],
-        "bottom_sectors": [r[0] for r in ranked[-2:]] if len(ranked) > 2 else [],
-        "sector_scores":  {name: round(score, 2) for name, score in ranked},
-    }
-
-
-def calc_rs_score(stock, tasi_20d):
-    change_pct = safe_float(stock.get("change_percent") or stock.get("change_pct", 0))
-    rs_vs_tasi = change_pct - tasi_20d
-    return round(change_pct, 2), round(rs_vs_tasi, 2)
-
-
-def get_rs_rank(all_rs_scores, stock_rs):
-    if not all_rs_scores:
-        return 50
-    below = sum(1 for s in all_rs_scores if s < stock_rs)
-    rank  = int((below / len(all_rs_scores)) * 99) + 1
-    return min(rank, 99)
-
-
-def calc_canslim_score(stock, rs_rank, rs_vs_tasi, top_sectors):
-    sym       = str(stock.get("symbol", ""))
-    sector    = get_sector(sym)
-    chg       = safe_float(stock.get("change_percent") or stock.get("change_pct", 0))
-    volume    = safe_float(stock.get("volume", 0))
-    avg_vol   = safe_float(stock.get("avg_volume", 1))
-    vol_ratio = volume / avg_vol if avg_vol > 0 else 0
-
-    score   = 0
-    reasons = []
-
-    if chg >= 2 and vol_ratio >= 2:
-        score += 20; reasons.append(f"C: زخم {chg:.1f}% + حجم {vol_ratio:.1f}x")
-    elif chg >= 1:
-        score += 10; reasons.append(f"C: تغير {chg:.1f}%")
-
-    if rs_rank >= 80:
-        score += 20; reasons.append(f"L: RS Rank {rs_rank} قائد")
-    elif rs_rank >= 60:
-        score += 10; reasons.append(f"L: RS Rank {rs_rank}")
-    elif rs_rank < 40:
-        score -= 15
-
-    if sector in top_sectors:
-        score += 15; reasons.append(f"I: قطاع {sector} متصدر")
-
-    if rs_vs_tasi >= 3:
-        score += 10; reasons.append(f"M: +{rs_vs_tasi:.1f}% فوق TASI")
-    elif rs_vs_tasi >= 0:
-        score += 5
-    else:
-        score -= 10
-
-    if vol_ratio >= 2:
-        score += 15; reasons.append(f"S: حجم {vol_ratio:.1f}x")
-    elif vol_ratio >= 1.5:
-        score += 8
-
-    return score, reasons
-
-
-def run():
-    print("\n" + "="*60)
-    print("Market Intelligence — تاسي")
-    print("="*60)
-
-    if not API_KEY:
-        print("API_KEY missing")
-        return {}
-
-    # ✅ تحقق من الكاش أولاً
-    fresh, cached_data = is_cache_fresh()
-    if fresh:
-        return cached_data
-
-    tasi_today, tasi_20d = get_tasi_performance()
-    all_stocks = fetch_all_stocks()
-
-    if not all_stocks:
-        print("لا توجد بيانات")
-        return {}
-
-    rotation    = analyze_sector_rotation(all_stocks)
-    top_sectors = rotation["top_sectors"]
-
-    all_rs          = []
-    stock_data_list = []
-
-    for stock in all_stocks:
-        sym   = str(stock.get("symbol", ""))
-        price = safe_float(stock.get("price") or stock.get("close"))
-        if price <= 0:
-            continue
-        rs_comp, rs_vs = calc_rs_score(stock, tasi_20d)
-        all_rs.append(rs_comp)
-        stock_data_list.append({
-            "stock":   stock,
-            "rs_comp": rs_comp,
-            "rs_vs":   rs_vs,
-            "symbol":  sym,
-        })
-
-    results = []
-    for item in stock_data_list:
-        rs_rank = get_rs_rank(all_rs, item["rs_comp"])
-        cs_score, cs_reasons = calc_canslim_score(
-            item["stock"], rs_rank, item["rs_vs"], top_sectors
-        )
-        sym    = item["symbol"]
-        stock  = item["stock"]
-        sector = get_sector(sym)
-
-        results.append({
-            "symbol":     sym,
-            "name":       stock.get("name") or stock.get("name_ar") or sym,
-            "price":      safe_float(stock.get("price") or stock.get("close")),
-            "change_pct": safe_float(stock.get("change_percent") or stock.get("change_pct", 0)),
-            "volume":     safe_float(stock.get("volume", 0)),
-            "avg_volume": safe_float(stock.get("avg_volume", 0)),
-            "rs_rank":    rs_rank,
-            "rs_comp":    item["rs_comp"],
-            "rs_vs_tasi": item["rs_vs"],
-            "canslim":    cs_score,
-            "reasons":    cs_reasons,
-            "sector":     sector,
-        })
-
-    results.sort(key=lambda x: x["canslim"], reverse=True)
-
-    print(f"\n  {'السهم':<20} {'RS':>5} {'Rank':>5} {'CANSLIM':>8} {'القطاع'}")
-    print(f"  {'='*58}")
-    for r in results[:10]:
-        print(f"  {r['name'][:20]:<20} {r['rs_comp']:>+5.1f} "
-              f"{r['rs_rank']:>5} {r['canslim']:>8} {r['sector']}")
-
-    output = {
-        "generated_at":  datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "tasi_today":    tasi_today,
-        "tasi_20d":      tasi_20d,
-        "total_stocks":  len(results),
-        "top_sectors":   top_sectors,
-        "sector_scores": rotation["sector_scores"],
-        "top_stocks":    results,
-    }
-
-    with open(OUTPUT, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print(f"\n  تم تحليل {len(results)} سهم | طلبات API: 3 فقط ✅")
-    if results:
-        print(f"  افضل سهم: {results[0]['name']} ({results[0]['symbol']})")
-        print(f"  RS Rank: {results[0]['rs_rank']} | CAN SLIM: {results[0]['canslim']}")
-
-    return output
-
+        print(f"❌ Analysis failed: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    run()
+    main()
+
