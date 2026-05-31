@@ -88,11 +88,16 @@ jobs:
       
       - name: Validate signal
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: python scripts/should_post.py || echo "No valid signal"
+        run: python scripts/should_post.py
       
       - name: Generate image
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: python scripts/generate_post.py data/daily.json output.png
+        run: |
+          if [ -f data/validated_signals.json ]; then
+            python scripts/generate_post.py data/validated_signals.json output.png
+          else
+            echo "⚠️ No validated signals, skipping image generation"
+          fi
       
       - name: Post to Telegram
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
