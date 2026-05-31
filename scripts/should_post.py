@@ -1,151 +1,136 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Validate signal before posting
+"""
+
 import json
 import sys
 from datetime import datetime
+from pathlib import Path
 
-DATA_FILE   = "data/daily.json"
-GOLDEN_FILE = "data/golden_signal.json"
+def load_signals():
+    """Load generated signals"""
+    data_dir = Path(__file__).parent.parent / "data"
+    signals_file = data_dir / "signals.json"
+    
+    if not signals_file.exists():
+        print("❌ No signals file found")
+        return []
+    
+    with open(signals_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    return data.get('signals', [])
 
-# ─── معايير الإشارة اليومية (هدف ثانٍ 10% خلال 10 أيام) ────
-MIN_SCORE        = 78
-MIN_RSI          = 42
-MAX_RSI          = 68
-MIN_VOLUME_RATIO = 1.5   # مرن بسبب مشكلة API
-MIN_RR           = 2.0   # R:R محسوب على T2 (10%)
+def validate_signal(signal):
+    """
+    Validate signal conditions:
+    - Score threshold (>= 70)
+    - RSI range (42-68)
+    - Volume ratio (>= 1.5)
+    - Risk:Reward ratio (>= 2.0)
+    """
+    score = signal.get('score', 0)
+    rsi = signal.get('rsi', 50)
+    volume_ratio = signal.get('volume_ratio', 1.0)
+    
+    # Calculate Risk:Reward
+    entry = signal.get('entry_point', 0)
+    target1 = signal.get('target1', 0)
+    stop_loss = signal.get('stop_loss', 0)
+    
+    if entry > 0 and stop_loss > 0 and target1 > 0:
+        risk = entry - stop_loss
+        reward = target1 - entry
+        rr_ratio = reward / risk if risk > 0 else 0
+    else:
+        rr_ratio = 0
+    
+    # Validation logic
+    reasons = []
+    
+    # RSI must be in golden zone
+    if not (42 <= rsi <= 68):
+        reasons.append(f"RSI {rsi:.1f} out of range [42-68]")
+    
+    # Volume must be above average
+    if volume_ratio < 1.5:
+        reasons.append(f"Volume {volume_ratio:.1f}x < 1.5x minimum")
+    
+    # Risk:Reward must be >= 2.0
+    if rr_ratio < 2.0:
+        reasons.append(f"R:R {rr_ratio:.1f} < 2.0 minimum")
+    
+    # Score threshold (minimum 70)
+    if score < 70:
+        reasons.append(f"Score {score} < 70 minimum")
+    
+    # If all conditions met
+    if not reasons:
+        confidence = signal.get('confidence', 'عالية')
+        emoji = signal.get('emoji', '🟡')
+        return True, {
+            'should_post': True,
+            'confidence': confidence,
+            'emoji': emoji,
+            'score': score,
+            'rr_ratio': rr_ratio
+        }
+    
+    return False, {
+        'should_post': False,
+        'reasons': reasons,
+        'score': score
+    }
 
-# ─── معايير الإشارة الذهبية (قبل السوق) ────────────────────
-GOLDEN_MIN_SCORE = 50
-GOLDEN_RSI_MIN   = 35
-GOLDEN_RSI_MAX   = 75
-GOLDEN_MIN_RR    = 1.5
-
-
-def check_golden(data):
-    """معايير الإشارة الذهبية قبل السوق"""
-    score  = data.get("score", 0)
-    rsi    = data.get("rsi", 50)
-    rr     = data.get("rr", 0)
-    # FIX: check both key names for compatibility
-    symbol = data.get("stock_symbol", data.get("symbol", ""))
-    name   = data.get("stock_name", "")
-    stype  = data.get("signal_type", "")
-    t2_pct = data.get("target2_pct", 0)
-    accel  = data.get("acceleration", 0)
-
-    fails = []
-    if score < GOLDEN_MIN_SCORE:
-        fails.append(f"Score {score} < {GOLDEN_MIN_SCORE}")
-    if not (GOLDEN_RSI_MIN <= rsi <= GOLDEN_RSI_MAX):
-        fails.append(f"RSI {rsi:.0f} خارج النطاق ({GOLDEN_RSI_MIN}-{GOLDEN_RSI_MAX})")
-    if rr < GOLDEN_MIN_RR:
-        fails.append(f"R:R {rr:.1f} < {GOLDEN_MIN_RR}")
-
-    print(f"\n{'='*55}")
-    print(f"فحص الإشارة الذهبية: {name} ({symbol})")
-    print(f"النوع: {stype}")
-    print(f"{'='*55}")
-    print(f"  Score     : {score:>5}  {'OK' if score >= GOLDEN_MIN_SCORE else 'X'} (min {GOLDEN_MIN_SCORE})")
-    print(f"  RSI       : {rsi:>5.0f}  {'OK' if GOLDEN_RSI_MIN <= rsi <= GOLDEN_RSI_MAX else 'X'} ({GOLDEN_RSI_MIN}-{GOLDEN_RSI_MAX})")
-    print(f"  R:R       : {rr:>5.1f}  {'OK' if rr >= GOLDEN_MIN_RR else 'X'} (min {GOLDEN_MIN_RR})")
-    print(f"  هدف ثانٍ : {t2_pct:>4.0f}%  {'OK' if t2_pct >= 10 else '─'}")
-    print(f"  تسارع     : {accel:>5}  {'قوي' if accel >= 30 else 'متوسط' if accel >= 15 else 'عادي'}")
-    print(f"  Volume    : تُتجاهل للإشارة الذهبية (بيانات تاريخية)")
-
-    if fails:
-        print(f"\nالإشارة الذهبية لا تستوفي المعايير:")
-        for f in fails:
-            print(f"   - {f}")
-        print(f"\nتم تخطي النشر\n")
-        return False
-
-    print(f"\nالإشارة الذهبية تستوفي المعايير — سيتم النشر!\n")
-    return True
-
-
-def check_daily(data):
-    """معايير الإشارة اليومية — هدف ثانٍ 10% خلال 10 أيام"""
-    score        = data.get("score", 0)
-    rsi          = data.get("rsi", 50)
-    volume_ratio = data.get("volume_ratio", 0)
-    rr           = data.get("rr", 0)
-    # FIX: check both key names for compatibility
-    symbol       = data.get("stock_symbol", data.get("symbol", ""))
-    name         = data.get("stock_name", "")
-    t2_pct       = data.get("target2_pct", 0)
-    accel        = data.get("acceleration", 0)
-
-    fails = []
-
-    if score < MIN_SCORE:
-        fails.append(f"Score {score} < {MIN_SCORE}")
-    if not (MIN_RSI <= rsi <= MAX_RSI):
-        fails.append(f"RSI {rsi:.0f} خارج النطاق ({MIN_RSI}-{MAX_RSI})")
-    if rr < MIN_RR:
-        if score >= 85 and rr >= 1.5:
-            print(f"  ** R:R {rr:.1f} مقبول لـ Score {score}")
+def main():
+    print("=" * 60)
+    print("✅ Validating Signals...")
+    print("=" * 60)
+    
+    signals = load_signals()
+    
+    if not signals:
+        print("⚠️ No signals to validate")
+        # Create empty output for workflow continuity
+        output = {
+            'validated_signals': [],
+            'total_checked': 0,
+            'total_valid': 0,
+            'timestamp': datetime.now().isoformat()
+        }
+        with open('data/validated_signals.json', 'w', encoding='utf-8') as f:
+            json.dump(output, f, ensure_ascii=False, indent=2)
+        sys.exit(0)
+    
+    validated = []
+    
+    for signal in signals:
+        is_valid, result = validate_signal(signal)
+        
+        if is_valid:
+            validated.append({**signal, **result})
+            print(f"✅ {signal.get('symbol')}: {result['confidence']} {result['emoji']} (Score: {result['score']})")
         else:
-            fails.append(f"R:R {rr:.1f} < {MIN_RR}")
-    if volume_ratio < MIN_VOLUME_RATIO:
-        if score >= 85 and volume_ratio == 0.0:
-            print(f"  ** Volume = 0 (مشكلة API) — مقبول لـ Score {score}")
-        else:
-            fails.append(f"Volume {volume_ratio:.1f}x < {MIN_VOLUME_RATIO}x")
-    if t2_pct > 0 and t2_pct < 10:
-        fails.append(f"هدف ثانٍ {t2_pct:.1f}% < 10%")
-
-    print(f"\n{'='*55}")
-    print(f"فحص جودة الاشارة: {name} ({symbol})")
-    print(f"{'='*55}")
-    print(f"  Score     : {score:>5}  {'OK' if score >= MIN_SCORE else 'X'} (min {MIN_SCORE})")
-    print(f"  RSI       : {rsi:>5.0f}  {'OK' if MIN_RSI <= rsi <= MAX_RSI else 'X'} ({MIN_RSI}-{MAX_RSI})")
-    print(f"  R:R       : {rr:>5.1f}  {'OK' if rr >= MIN_RR else 'X'} (min {MIN_RR} — T2 10%)")
-    vol_ok = volume_ratio >= MIN_VOLUME_RATIO or (score >= 85 and volume_ratio == 0.0)
-    print(f"  Volume    : {volume_ratio:>4.1f}x  {'OK' if vol_ok else 'X'} (min {MIN_VOLUME_RATIO}x)")
-    print(f"  هدف ثانٍ : {t2_pct:>4.0f}%  {'OK' if t2_pct >= 10 else '─'} (min 10%)")
-    print(f"  تسارع     : {accel:>5}  {'قوي' if accel >= 30 else 'متوسط' if accel >= 15 else 'عادي'}")
-
-    if fails:
-        print(f"\nالاشارة لا تستوفي المعايير:")
-        for f in fails:
-            print(f"   - {f}")
-        print(f"\nتم تخطي النشر اليوم\n")
-        return False
-
-    print(f"\nالاشارة تستوفي جميع المعايير — سيتم النشر!\n")
-    return True
-
+            print(f"❌ {signal.get('symbol')}: Rejected - {', '.join(result['reasons'])}")
+    
+    # Save validated signals
+    output = {
+        'validated_signals': validated,
+        'total_checked': len(signals),
+        'total_valid': len(validated),
+        'timestamp': datetime.now().isoformat()
+    }
+    
+    with open('data/validated_signals.json', 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    
+    print(f"\n📊 Results: {len(validated)}/{len(signals)} signals approved")
+    
+    # Exit with success even if no signals (normal behavior)
+    sys.exit(0)
 
 if __name__ == "__main__":
-    try:
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception as e:
-        print(f"خطا في قراءة {DATA_FILE}: {e}")
-        sys.exit(1)
+    main()
 
-    generated_at = data.get("generated_at", "")
-    today = datetime.now().strftime("%Y-%m-%d")
-    if not generated_at.startswith(today):
-        print(f"البيانات قديمة ({generated_at or 'غير محدد'}) — تم الانتهاء")
-        sys.exit(1)
-
-    # ─── FIX: حارس النشر المزدوج ────────────────────────────
-    # منع النشر أكثر من مرة في نفس اليوم للإشارة نفسها.
-    # بعد النشر الناجح تكتب السكريبت الأخرى "posted_today": true
-    # في daily.json — إذا وُجدت نتوقف هنا مباشرةً.
-    if data.get("posted_today") is True:
-        symbol = data.get("stock_symbol", data.get("symbol", ""))
-        print(f"تم النشر مسبقاً اليوم ({symbol}) — تم تخطي النشر")
-        sys.exit(1)
-    # ────────────────────────────────────────────────────────
-
-    signal_type = data.get("type", "")
-    is_golden   = signal_type == "اشارة ذهبية"
-
-    if is_golden:
-        print("  نوع الإشارة: ذهبية — تطبيق معايير ما قبل السوق")
-        passed = check_golden(data)
-    else:
-        print("  نوع الإشارة: يومية — هدف ثانٍ 10% خلال 10 أيام")
-        passed = check_daily(data)
-
-    sys.exit(0 if passed else 1)
