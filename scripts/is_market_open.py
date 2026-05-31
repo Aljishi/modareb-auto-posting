@@ -57,4 +57,3 @@ def is_market_open():
 
 if __name__ == "__main__":
     sys.exit(0 if is_market_open() else 1)
-
