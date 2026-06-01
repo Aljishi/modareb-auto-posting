@@ -1,4 +1,4 @@
-name: Rased Auto Posting
+name: Rased Auto Posting — راصد
 
 on:
   workflow_dispatch:
@@ -8,12 +8,7 @@ on:
         required: false
         default: "all"
         type: choice
-        options:
-          - "all"
-          - "auto-post"
-          - "track-results"
-          - "weekly-report"
-          - "golden-signal"
+        options: ["all", "auto-post", "track-results", "weekly-report", "golden-signal"]
       force:
         description: "Force run even if market closed?"
         required: false
@@ -21,15 +16,13 @@ on:
         type: boolean
 
   schedule:
-    - cron: "*/5 7-11 * * 0-4"   # Auto Post (كل 5 دقائق)
-    - cron: "0 * * * *"           # Track Results (كل ساعة)
-    - cron: "0 14 * * 4"          # Weekly Report (الخميس 2 ظهراً UTC = 5 مساءً KSA)
-    - cron: "0 13 * * 0-4"        # Golden Signal (يومياً 1 ظهراً UTC = 4 مساءً KSA)
+    - cron: "*/5 7-12 * * 0-4"   # إشارة يومية — كل 5 دقائق 10ص–3م KSA
+    - cron: "0 10-12 * * 0-4"    # متابعة الأهداف — كل ساعة أثناء السوق
+    - cron: "0 14 * * 4"          # تقرير أسبوعي — الخميس 5م KSA
+    - cron: "30 6 * * 0-4"        # إشارة ذهبية — 9:30ص KSA قبل الافتتاح
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 env:
   TZ: Asia/Riyadh
@@ -37,116 +30,140 @@ env:
   PYTHONUNBUFFERED: "1"
 
 jobs:
-  # ─────────────────────────────────────────────────────
-  # Job 1: Auto Post
-  # ─────────────────────────────────────────────────────
+  # ═══════════════════════════════════════════════════════
+  # Job 1: الإشارة اليومية — كل 5 دقائق أثناء التداول
+  # ═══════════════════════════════════════════════════════
   auto-post:
     runs-on: ubuntu-latest
-    if: |
-      github.event.schedule == '*/5 7-11 * * 0-4' ||
+    if: >
+      github.event.schedule == '*/5 7-12 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
-      (github.event.inputs.job == 'all' || github.event.inputs.job == 'auto-post'))
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      
-      - name: Check market status
-        id: market
-        run: |
-          echo "🕐 Checking Saudi market status..."
-          if python scripts/is_market_open.py; then
-            echo "open=true" >> $GITHUB_OUTPUT
-          else
-            echo "open=false" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Skip if market closed
-        if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
-        run: |
-          echo "⚠️ Market closed - skipping auto-post"
-          exit 0
-      
-      - name: Ensure data directory exists
-        run: mkdir -p data
-      
-      - name: Fetch market intelligence
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: |
-          echo "🧠 Fetching market data..."
-          python scripts/market_intelligence.py || \
-          python scripts/fetch_api_data.py || \
-          echo "⚠️ Using cached data"
-      
-      - name: Generate signal
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: python scripts/generate_signal.py
-      
-      - name: Validate signal
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: python scripts/should_post.py
-      
-      - name: Generate post image
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        run: |
-          if [ -f data/validated_signals.json ]; then
-            python scripts/generate_post.py data/validated_signals.json output.png
-          elif [ -f data/signals.json ]; then
-            python scripts/generate_post.py data/signals.json output.png
-          else
-            echo "⚠️ No signals found"
-          fi
-      
-      - name: Post to Telegram
-        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_to_telegram.py
+       (github.event.inputs.job == 'all' || github.event.inputs.job == 'auto-post'))
 
-  # ─────────────────────────────────────────────────────
-  # Job 2: Track Results
-  # ─────────────────────────────────────────────────────
-  track-results:
-    runs-on: ubuntu-latest
-    if: |
-      github.event.schedule == '0 * * * *' ||
-      (github.event_name == 'workflow_dispatch' &&
-      (github.event.inputs.job == 'all' || github.event.inputs.job == 'track-results'))
-    
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: python scripts/track_results.py || echo "Tracking skipped"
-      - run: python scripts/update_track_record.py || echo "Update skipped"
-      - run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add docs/index.html data/*.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "📊 Update track record"
-          git push || true
 
-  # ─────────────────────────────────────────────────────
-  # Job 3: Weekly Report
-  # ─────────────────────────────────────────────────────
+      - name: فحص حالة السوق
+        id: market
+        run: |
+          python scripts/is_market_open.py \
+            && echo "open=true"  >> $GITHUB_OUTPUT \
+            || echo "open=false" >> $GITHUB_OUTPUT
+
+      - name: تخطي إذا كان السوق مغلقاً
+        if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
+        run: echo "⚠️ السوق مغلق — تخطي" && exit 0
+
+      - run: mkdir -p data
+
+      - name: جلب بيانات السوق
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: |
+          python scripts/market_intelligence.py || \
+          python scripts/fetch_api_data.py      || \
+          echo "⚠️ استخدام بيانات مخزنة"
+
+      - name: توليد الإشارات وحساب الدرجات
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        run: python scripts/generate_signal.py
+
+      - name: التحقق من جودة الإشارة
+        id: validate
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        run: python scripts/should_post.py
+        continue-on-error: true
+
+      - name: إنشاء صورة الإشارة
+        if: >
+          steps.validate.outcome == 'success' &&
+          (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
+        run: |
+          if   [ -f data/validated_signals.json ]; then
+            python scripts/generate_post.py data/validated_signals.json output.png
+          elif [ -f data/signals.json ]; then
+            python scripts/generate_post.py data/signals.json output.png
+          else
+            echo "⚠️ لا توجد إشارات" && exit 1
+          fi
+
+      - name: النشر على تيليغرام + حفظ الإشارة المفتوحة
+        if: >
+          steps.validate.outcome == 'success' &&
+          (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_to_telegram.py
+
+      - name: حفظ البيانات
+        if: steps.validate.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ || true
+          git diff --cached --quiet || git commit -m "📊 إشارة يومية — $(date +'%H:%M')"
+          git push || true
+        continue-on-error: true
+
+  # ═══════════════════════════════════════════════════════
+  # Job 2: متابعة الأهداف — كل ساعة (3 مرات في الجلسة)
+  # يرسل إشعاراً عند تحقق الهدف الأول أو الثاني أو الوقف
+  # ═══════════════════════════════════════════════════════
+  track-results:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.schedule == '0 10-12 * * 0-4' ||
+      (github.event_name == 'workflow_dispatch' &&
+       (github.event.inputs.job == 'all' || github.event.inputs.job == 'track-results'))
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+
+      - name: فحص الأهداف وإرسال الإشعارات
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: python scripts/track_results.py
+
+      - name: تحديث صفحة Track Record
+        run: python scripts/update_track_record.py || echo "تخطي"
+
+      - name: حفظ النتائج
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/open_signals.json data/track_record.json docs/ 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "📈 تحديث النتائج — $(date +'%H:%M')"
+          git push || true
+        continue-on-error: true
+
+  # ═══════════════════════════════════════════════════════
+  # Job 3: التقرير الأسبوعي — الخميس 5م KSA
+  # ═══════════════════════════════════════════════════════
   weekly-report:
     runs-on: ubuntu-latest
-    if: |
+    if: >
       github.event.schedule == '0 14 * * 4' ||
       (github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.job == 'weekly-report')
-    
+       github.event.inputs.job == 'weekly-report')
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -154,23 +171,22 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
       - run: python scripts/weekly_report.py
-      - name: Post report
-        env:
+      - env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_weekly_report.py || echo "Post skipped"
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_weekly_report.py || echo "تخطي"
 
-  # ─────────────────────────────────────────────────────
-  # Job 4: Golden Signal
-  # ─────────────────────────────────────────────────────
+  # ═══════════════════════════════════════════════════════
+  # Job 4: الإشارة الذهبية — 9:30ص KSA قبل الافتتاح
+  # ═══════════════════════════════════════════════════════
   golden-signal:
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: |
-      github.event.schedule == '0 13 * * 0-4' ||
+    if: >
+      github.event.schedule == '30 6 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
-      (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
-    
+       (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -179,25 +195,30 @@ jobs:
       - run: pip install -r requirements.txt pandas ta
       - run: mkdir -p data
       - run: |
-          if [ ! -f data/daily.json ]; then
-            echo '{"stocks": [], "timestamp": "'"$(date -Iseconds)"'"}' > data/daily.json
-          fi
-      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ No golden signals"
-      - name: Check golden signal
+          [ -f data/daily.json ] || \
+          echo '{"stocks":[],"timestamp":"'"$(date -Iseconds)"'"}' > data/daily.json
+
+      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا توجد إشارات ذهبية"
+
+      - name: فحص وجود إشارة ذهبية
         id: golden
         run: |
-          if [ -f data/golden_signals.json ] && [ "$(jq length data/golden_signals.json 2>/dev/null || echo 0)" -gt 0 ]; then
-            echo "found=true" >> $GITHUB_OUTPUT
-          else
-            echo "found=false" >> $GITHUB_OUTPUT
-          fi
-      - name: Generate golden post
+          COUNT=$(python -c "
+          import json, sys
+          try:
+              d = json.load(open('data/golden_signals.json'))
+              print(len(d) if isinstance(d, list) else 0)
+          except: print(0)
+          ")
+          echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
+
+      - name: إنشاء صورة الإشارة الذهبية
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
-      - name: Post to Telegram
+
+      - name: نشر الإشارة الذهبية
         if: steps.golden.outputs.found == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_golden_signal.py
-
