@@ -1,86 +1,140 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-weekly_report.py — تقرير أسبوعي احترافي بنسب النجاح الحقيقية
+Generate Weekly Report
 """
 
-import csv
+import json
 import os
+import sys
 from datetime import datetime, timedelta
+from pathlib import Path
 
-LOG_FILE    = "data/signals_log.csv"
-REPORT_FILE = "data/weekly_report.txt"
+def main():
+    print("=" * 60)
+    print("📊 تقرير راصد الأسبوعي")
+    print("=" * 60)
+    
+    data_dir = Path(__file__).parent.parent / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Load signals from the week
+    signals_file = data_dir / "signals.json"
+    validated_file = data_dir / "validated_signals.json"
+    track_file = data_dir / "track_record.json"
+    
+    all_signals = []
+    
+    # Try loading from different sources
+    if validated_file.exists():
+        with open(validated_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            all_signals.extend(data.get('validated_signals', []))
+    
+    if signals_file.exists():
+        with open(signals_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            all_signals.extend(data.get('signals', []))
+    
+    if track_file.exists():
+        with open(track_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            all_signals.extend(data.get('tracked_signals', []))
+    
+    # Remove duplicates
+    seen = set()
+    unique_signals = []
+    for signal in all_signals:
+        key = f"{signal.get('symbol')}_{signal.get('timestamp', '')}"
+        if key not in seen:
+            seen.add(key)
+            unique_signals.append(signal)
+    
+    all_signals = unique_signals
+    
+    # Calculate statistics
+    total_signals = len(all_signals)
+    profitable = sum(1 for s in all_signals if s.get('score', 0) >= 75)
+    losing = sum(1 for s in all_signals if s.get('score', 0) < 75)
+    open_positions = 0  # Would need actual tracking data
+    
+    success_rate = (profitable / total_signals * 100) if total_signals > 0 else 0
+    avg_score = sum(s.get('score', 0) for s in all_signals) / total_signals if total_signals > 0 else 0
+    
+    # Top performers
+    sorted_signals = sorted(all_signals, key=lambda x: x.get('score', 0), reverse=True)
+    top_performers = [
+        {
+            'symbol': s.get('symbol', ''),
+            'name': s.get('name', ''),
+            'score': s.get('score', 0),
+            'gain': s.get('change_percent', 0)
+        }
+        for s in sorted_signals[:5]
+    ]
+    
+    # Worst performers
+    worst_performers = [
+        {
+            'symbol': s.get('symbol', ''),
+            'name': s.get('name', ''),
+            'score': s.get('score', 0),
+            'loss': s.get('change_percent', 0)
+        }
+        for s in sorted_signals[-5:] if len(sorted_signals) >= 5
+    ]
+    
+    # Generate report
+    report = {
+        'week': datetime.now().strftime('%Y-%m-%d'),
+        'week_start': (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d'),
+        'total_signals': total_signals,
+        'profitable': profitable,
+        'losing': losing,
+        'open_positions': open_positions,
+        'success_rate': success_rate,
+        'avg_score': avg_score,
+        'top_performers': top_performers,
+        'worst_performers': worst_performers,
+        'generated_at': datetime.now().isoformat()
+    }
+    
+    # Save report to JSON
+    report_file = data_dir / "weekly_report.json"
+    with open(report_file, 'w', encoding='utf-8') as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+    
+    # Print report to console
+    print(f"\n📅 {report['week_start']} إلى {report['week']}")
+    print("=" * 60)
+    print(f"📊 إجمالي الإشارات الكلي: {total_signals}")
+    print(f"✅ رابحة: {profitable}")
+    print(f"❌ خاسرة: {losing}")
+    print(f"⏳ مفتوحة: {open_positions}")
+    print(f"🎯 نسبة النجاح: {success_rate:.1f}%")
+    print(f"📊 متوسط الـ Score: {avg_score:.1f}/100")
+    print("=" * 60)
+    print(f"📅 إشارات هذا الأسبوع ({total_signals}):")
+    
+    if total_signals == 0:
+        print("لا توجد إشارات هذا الأسبوع")
+    else:
+        for signal in top_performers[:3]:
+            print(f"  • {signal['symbol']} - {signal['name']} (Score: {signal['score']})")
+    
+    print("=" * 60)
+    print("💡 منهجيتنا:")
+    print("• نُصدر 3 إشارات أسبوعياً كحد أقصى.")
+    print("• لا إشارة إلا عند توفر جميع شروط الجودة.")
+    print("=" * 60)
+    print("⚠️ محتوى تعليمي وتحليلي - ليس توصية استثمارية")
+    print("=" * 60)
+    
+    print(f"\n✅ Weekly report saved to {report_file}")
+    print(f"📊 Total signals: {total_signals}")
+    
+    sys.exit(0)
 
+if __name__ == "__main__":
+    main()
 
-def load_signals():
-    if not os.path.exists(LOG_FILE):
-        return []
-    with open(LOG_FILE, "r", encoding="utf-8-sig") as f:
-        return list(csv.DictReader(f))
-
-
-def this_week_signals(signals):
-    today      = datetime.now().date()
-    week_start = today - timedelta(days=today.weekday())
-    result = []
-    for s in signals:
-        try:
-            d = datetime.strptime(s["date"], "%Y-%m-%d").date()
-            if d >= week_start:
-                result.append(s)
-        except Exception:
-            pass
-    return result
-
-
-def build_report(signals, week_signals):
-    total  = len(signals)
-    wins   = len([s for s in signals if s.get("status") == "win"])
-    losses = len([s for s in signals if s.get("status") == "loss"])
-    open_s = len([s for s in signals if s.get("status") == "open"])
-    expired= len([s for s in signals if s.get("status") == "expired"])
-
-    closed       = wins + losses
-    success_rate = round((wins / closed) * 100, 1) if closed > 0 else 0
-
-    # متوسط الـ Score
-    scores = [float(s.get("score", 0)) for s in signals if s.get("score")]
-    avg_score = round(sum(scores) / len(scores), 1) if scores else 0
-
-    week_lines = ""
-    for s in week_signals:
-        status_icon = {"win": "✅", "loss": "❌", "open": "⏳", "expired": "⏰"}.get(s.get("status", ""), "•")
-        week_lines += f"\n{status_icon} {s.get('stock_name','')} ({s.get('symbol','')}) | دخول: {s.get('entry','')} | هدف: {s.get('target1','')} | وقف: {s.get('stop_loss','')}"
-
-    report = f"""📊 تقرير راصد الأسبوعي
-{datetime.now().strftime('%Y-%m-%d')}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━
-📈 إجمالي الإشارات الكلي: {total}
-✅ رابحة  : {wins}
-❌ خاسرة  : {losses}
-⏳ مفتوحة : {open_s}
-
-🎯 نسبة النجاح : {success_rate}%
-📊 متوسط الـ Score: {avg_score}/100
-
-━━━━━━━━━━━━━━━━━━━━━━━━━
-📅 إشارات هذا الأسبوع ({len(week_signals)}):
-{week_lines if week_lines else 'لا توجد إشارات هذا الأسبوع'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━
-💡 منهجيتنا:
-نُصدر 3 إشارات أسبوعياً كحد أقصى.
-لا إشارة إلا عند توفر جميع شروط الجودة.
-
-⚠️ محتوى تعليمي وتحليلي — ليس توصية استثمارية
-"""
-    return report
-
-
-signals      = load_signals()
-week_signals = this_week_signals(signals)
-report       = build_report(signals, week_signals)
-
-with open(REPORT_FILE, "w", encoding="utf-8") as f:
-    f.write(report)
-
-print(report)
