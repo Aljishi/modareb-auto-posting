@@ -1,115 +1,81 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 track_results.py
-----------------
-يتحقق من إشارات مفتوحة ويحدث حالتها (win/loss).
-يُشغَّل يومياً بعد إغلاق السوق.
+يجمع إحصائيات الإشارات المغلقة ويُحدّث ملف السجل التاريخي.
+يستدعي check_targets.py للتحقق من الأهداف اللحظية.
 """
 
-import os
-import csv
-import json
-import requests
-from datetime import datetime, timedelta
+import json, sys, subprocess
+from datetime import datetime
+from pathlib import Path
 
-LOG_FILE  = "data/signals_log.csv"
-API_KEY   = os.environ.get("API_KEY")
-BASE_URL  = os.environ.get("API_URL", "https://app.sahmk.sa/api/v1")
-HEADERS   = {"X-API-Key": API_KEY} if API_KEY else {}
-MAX_DAYS  = 10   # ✅ محدَّث: 10 أيام بدل 5 (يتوافق مع هدف +10%)
+DATA_DIR = Path(__file__).parent.parent / "data"
 
 
-def get_price(symbol):
-    try:
-        r = requests.get(f"{BASE_URL}/quote/{symbol}/", headers=HEADERS, timeout=10)
-        if r.status_code == 200:
-            return float(r.json().get("price", 0))
-    except Exception:
-        pass
-    return None
+def run_target_check():
+    """استدعاء check_targets.py أولاً لتحديث حالات الإشارات."""
+    script = Path(__file__).parent / "check_targets.py"
+    if script.exists():
+        result = subprocess.run([sys.executable, str(script)], capture_output=False)
+        return result.returncode == 0
+    return False
 
 
-def update_signals():
-    if not os.path.exists(LOG_FILE):
-        print("لا يوجد سجل إشارات بعد.")
-        return
+def build_stats():
+    """احسب الإحصائيات من open_signals.json."""
+    open_file = DATA_DIR / "open_signals.json"
+    if not open_file.exists():
+        return {"total": 0, "target2": 0, "target1_only": 0,
+                "stop_hit": 0, "open": 0, "expired": 0, "win_rate": 0}
 
-    rows = []
-    updated = 0
+    entries = json.load(open(open_file, encoding="utf-8"))
+    stats   = {"total": len(entries), "target2": 0, "target1_only": 0,
+               "stop_hit": 0, "open": 0, "expired": 0}
 
-    with open(LOG_FILE, "r", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        fieldnames = reader.fieldnames
-        for row in reader:
-            rows.append(row)
+    for e in entries:
+        status = e.get("status", "open")
+        if   status == "closed":      stats["target2"]      += 1
+        elif status == "target1_hit": stats["target1_only"] += 1
+        elif status == "stop_hit":    stats["stop_hit"]     += 1
+        elif status == "expired":     stats["expired"]      += 1
+        else:                         stats["open"]         += 1
 
-    today = datetime.now().date()
+    closed = stats["target2"] + stats["target1_only"] + stats["stop_hit"]
+    stats["win_rate"] = round(
+        (stats["target2"] + stats["target1_only"]) / closed * 100, 1
+    ) if closed > 0 else 0
 
-    for row in rows:
-        if row.get("status") != "open":
-            continue
+    return stats
 
-        try:
-            signal_date = datetime.strptime(row["date"], "%Y-%m-%d").date()
-        except Exception:
-            continue
 
-        days_open = (today - signal_date).days
+def main():
+    print("="*60)
+    print("📊 راصد — تحديث نتائج الإشارات")
+    print("="*60)
 
-        # إغلاق الإشارات التي تجاوزت المدة القصوى
-        if days_open > MAX_DAYS:
-            row["status"] = "expired"
-            updated += 1
-            print(f"  ⏰ {row['stock_name']} ({row['symbol']}) — انتهت المدة ({days_open} أيام > {MAX_DAYS})")
-            continue
+    # أولاً: فحص الأهداف ومتابعة الأسعار
+    print("\n🔍 فحص الأهداف...")
+    run_target_check()
 
-        # تحقق من السعر الحالي
-        price = get_price(row["symbol"])
-        if price is None:
-            continue
+    # ثانياً: بناء إحصائيات السجل
+    stats = build_stats()
+    output = {**stats, "updated_at": datetime.now().isoformat()}
 
-        target2   = float(row.get("target2",   0) or 0)
-        target1   = float(row.get("target1",   0) or 0)
-        stop_loss = float(row.get("stop_loss", 0) or 0)
+    out_file = DATA_DIR / "track_record.json"
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
 
-        # WIN: وصل للهدف الثاني (+10%)
-        if target2 > 0 and price >= target2:
-            row["status"]      = "win"
-            row["result"]      = "win_t2"
-            row["close_price"] = f"{price:.2f}"
-            row["close_date"]  = str(today)
-            updated += 1
-            print(f"  🏆 WIN T2 {row['stock_name']} ({row['symbol']}) — {price:.2f} >= {target2:.2f} (+10%)")
-
-        # WIN جزئي: وصل للهدف الأول (+5%)
-        elif target1 > 0 and price >= target1 and row.get("result") != "win_t2":
-            row["result"]      = "win_t1"
-            row["close_price"] = f"{price:.2f}"
-            print(f"  ✅ WIN T1 {row['stock_name']} ({row['symbol']}) — {price:.2f} >= {target1:.2f} (+5%)")
-            # لا نغلق الإشارة — ننتظر T2
-
-        # LOSS: وصل لوقف الخسارة
-        elif stop_loss > 0 and price <= stop_loss:
-            row["status"]      = "loss"
-            row["result"]      = "loss"
-            row["close_price"] = f"{price:.2f}"
-            row["close_date"]  = str(today)
-            updated += 1
-            print(f"  ❌ LOSS {row['stock_name']} ({row['symbol']}) — {price:.2f} <= {stop_loss:.2f}")
-
-    # تحديث الأعمدة
-    new_fields = list(fieldnames or [])
-    for col in ["close_price", "close_date", "result"]:
-        if col not in new_fields:
-            new_fields.append(col)
-
-    with open(LOG_FILE, "w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=new_fields, extrasaction="ignore")
-        writer.writeheader()
-        writer.writerows(rows)
-
-    print(f"\n✅ تم تحديث {updated} إشارة في السجل")
+    print(f"\n📈 الإجمالي    : {stats['total']}")
+    print(f"   مفتوحة      : {stats['open']}")
+    print(f"   هدف ثانٍ ✅ : {stats['target2']}")
+    print(f"   هدف أول فقط : {stats['target1_only']}")
+    print(f"   وقف خسارة ❌ : {stats['stop_hit']}")
+    print(f"   منتهية       : {stats['expired']}")
+    print(f"   نسبة النجاح  : {stats['win_rate']}%")
+    print(f"\n💾 محفوظ في {out_file}")
+    return 0
 
 
 if __name__ == "__main__":
-    print("🔄 جارٍ تحديث نتائج الإشارات...\n")
-    update_signals()
+    sys.exit(main())
