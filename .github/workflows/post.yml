@@ -47,20 +47,20 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
 
-      - name: فحص حالة السوق
+      - name: Check market status
         id: market
         run: |
           python scripts/is_market_open.py \
             && echo "open=true"  >> $GITHUB_OUTPUT \
             || echo "open=false" >> $GITHUB_OUTPUT
 
-      - name: تخطي إذا كان السوق مغلقاً
+      - name: Skip if market closed
         if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
         run: echo "⚠️ السوق مغلق — تخطي" && exit 0
 
       - run: mkdir -p data
 
-      - name: جلب بيانات السوق
+      - name: Fetch market data
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         env:
           API_KEY: ${{ secrets.API_KEY }}
@@ -70,17 +70,17 @@ jobs:
           python scripts/fetch_api_data.py      || \
           echo "⚠️ استخدام بيانات مخزنة"
 
-      - name: توليد الإشارات وحساب الدرجات
+      - name: Generate signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/generate_signal.py
 
-      - name: التحقق من جودة الإشارة
+      - name: Validate signal quality
         id: validate
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/should_post.py
         continue-on-error: true
 
-      - name: إنشاء صورة الإشارة
+      - name: Generate post image
         if: >
           steps.validate.outcome == 'success' &&
           (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
@@ -93,7 +93,7 @@ jobs:
             echo "⚠️ لا توجد إشارات" && exit 1
           fi
 
-      - name: النشر على تيليغرام + حفظ الإشارة المفتوحة
+      - name: Post to Telegram
         if: >
           steps.validate.outcome == 'success' &&
           (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
@@ -102,7 +102,7 @@ jobs:
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_to_telegram.py
 
-      - name: حفظ البيانات
+      - name: Commit data
         if: steps.validate.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -132,7 +132,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
 
-      - name: فحص الأهداف وإرسال الإشعارات
+      - name: Check targets & send alerts
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -140,10 +140,10 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_results.py
 
-      - name: تحديث صفحة Track Record
+      - name: Update track record page
         run: python scripts/update_track_record.py || echo "تخطي"
 
-      - name: حفظ النتائج
+      - name: Commit results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -200,7 +200,7 @@ jobs:
 
       - run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا توجد إشارات ذهبية"
 
-      - name: فحص وجود إشارة ذهبية
+      - name: Check golden signal
         id: golden
         run: |
           COUNT=$(python -c "
@@ -213,11 +213,11 @@ jobs:
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
 
 
-      - name: إنشاء صورة الإشارة الذهبية
+      - name: Generate golden post image
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
 
-      - name: نشر الإشارة الذهبية
+      - name: Post golden signal
         if: steps.golden.outputs.found == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
