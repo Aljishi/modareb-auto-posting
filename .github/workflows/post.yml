@@ -21,17 +21,15 @@ on:
         type: boolean
 
   schedule:
-    # Auto Post - كل 5 دقائق أثناء السوق (10:00-14:55 KSA = 07:00-11:55 UTC)
-    - cron: "*/5 7-11 * * 0-4"
-    # Track Results - كل ساعة
-    - cron: "0 * * * *"
-    # Weekly Report - الخميس 5 مساءً KSA = 2 PM UTC
-    - cron: "0 14 * * 4"
-    # Golden Signal - يومياً 4 مساءً KSA = 1 PM UTC
-    - cron: "0 13 * * 0-4"
+    - cron: "*/5 7-11 * * 0-4"   # Auto Post (كل 5 دقائق)
+    - cron: "0 * * * *"           # Track Results (كل ساعة)
+    - cron: "0 14 * * 4"          # Weekly Report (الخميس 2 ظهراً UTC = 5 مساءً KSA)
+    - cron: "0 13 * * 0-4"        # Golden Signal (يومياً 1 ظهراً UTC = 4 مساءً KSA)
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 env:
   TZ: Asia/Riyadh
@@ -40,7 +38,7 @@ env:
 
 jobs:
   # ─────────────────────────────────────────────────────
-  # Job 1: Auto Post (Daily Signals During Market)
+  # Job 1: Auto Post
   # ─────────────────────────────────────────────────────
   auto-post:
     runs-on: ubuntu-latest
@@ -83,10 +81,10 @@ jobs:
       - name: Fetch market intelligence
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: |
-          echo "🧠 Fetching advanced market intelligence..."
+          echo "🧠 Fetching market data..."
           python scripts/market_intelligence.py || \
           python scripts/fetch_api_data.py || \
-          (echo "⚠️ Using cached data" && ls -la data/)
+          echo "⚠️ Using cached data"
       
       - name: Generate signal
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
@@ -115,7 +113,7 @@ jobs:
         run: python scripts/post_to_telegram.py
 
   # ─────────────────────────────────────────────────────
-  # Job 2: Track Results (Hourly)
+  # Job 2: Track Results
   # ─────────────────────────────────────────────────────
   track-results:
     runs-on: ubuntu-latest
@@ -136,15 +134,14 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add docs/index.html data/*.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "Update track record"
+          git diff --cached --quiet || git commit -m "📊 Update track record"
           git push || true
 
   # ─────────────────────────────────────────────────────
-  # Job 3: Weekly Report (Thursday 5 PM KSA ONLY)
+  # Job 3: Weekly Report
   # ─────────────────────────────────────────────────────
   weekly-report:
     runs-on: ubuntu-latest
-    # ✅ هذا الشرط يمنع التشغيل إلا في الوقت المحدد أو عند الطلب الصريح
     if: |
       github.event.schedule == '0 14 * * 4' ||
       (github.event_name == 'workflow_dispatch' &&
@@ -156,7 +153,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: python scripts/weekly_report.py || echo "Report skipped"
+      - run: python scripts/weekly_report.py
       - name: Post report
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -164,7 +161,7 @@ jobs:
         run: python scripts/post_weekly_report.py || echo "Post skipped"
 
   # ─────────────────────────────────────────────────────
-  # Job 4: Golden Signal (Daily 4 PM KSA - After Market)
+  # Job 4: Golden Signal
   # ─────────────────────────────────────────────────────
   golden-signal:
     runs-on: ubuntu-latest
@@ -183,7 +180,7 @@ jobs:
       - run: mkdir -p data
       - run: |
           if [ ! -f data/daily.json ]; then
-            echo '{"stocks": []}' > data/daily.json
+            echo '{"stocks": [], "timestamp": "'"$(date -Iseconds)"'"}' > data/daily.json
           fi
       - run: python scripts/golden_signal_analysis.py || echo "ℹ️ No golden signals"
       - name: Check golden signal
