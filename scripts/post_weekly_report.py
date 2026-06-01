@@ -12,11 +12,15 @@ from pathlib import Path
 from datetime import datetime
 
 def escape_markdown_v2(text):
-    """Escape special characters for Telegram MarkdownV2"""
+    """
+    Escape ALL special characters for Telegram MarkdownV2
+    """
     if text is None:
         return ""
+    
     text = str(text)
-    escape_chars = r'\_*[]()~`>#+-=|{}.!'
+    # ALL special characters that need escaping in MarkdownV2
+    escape_chars = r'\_*[]()~`>#+\-=|{}.!@'
     for char in escape_chars:
         text = text.replace(char, f'\\{char}')
     return text
@@ -45,10 +49,12 @@ def post_weekly_report():
     with open(report_file, 'r', encoding='utf-8') as f:
         report = json.load(f)
     
-    # 3. Format message
-    week = report.get('week', 'Unknown')
+    # 3. Format message (SIMPLIFIED - no complex formatting)
+    week_start = report.get('week_start', 'Unknown')
+    week_end = report.get('week', 'Unknown')
     total_signals = report.get('total_signals', 0)
-    successful = report.get('successful', 0)
+    profitable = report.get('profitable', 0)
+    losing = report.get('losing', 0)
     success_rate = report.get('success_rate', 0)
     avg_score = report.get('avg_score', 0)
     
@@ -56,40 +62,43 @@ def post_weekly_report():
     top_performers = report.get('top_performers', [])
     worst_performers = report.get('worst_performers', [])
     
-    # Build message
+    # Build SIMPLE message (avoid special chars)
     message = (
-        f"📊 *التقرير الأسبوعي \\- راصد*\n"
-        f"📅 الأسبوع: {escape_markdown_v2(week)}\n\n"
+        f"📊 *التقرير الأسبوعي - راصد*\n"
+        f"📅 الفترة: {escape_markdown_v2(week_start)} إلى {escape_markdown_v2(week_end)}\n\n"
         f"📊 *الإحصائيات:*\n"
         f"• إجمالي الإشارات: *{total_signals}*\n"
-        f"• الإشارات الناجحة: *{successful}*\n"
+        f"• الإشارات الرابحة: *{profitable}*\n"
+        f"• الإشارات الخاسرة: *{losing}*\n"
         f"• نسبة النجاح: *{success_rate:.1f}%*\n"
-        f"• متوسط الـ Score: *{avg_score:.1f}/100*\n\n"
+        f"• متوسط Score: *{avg_score:.1f} من 100*\n\n"
     )
     
     if top_performers:
         message += f"🏆 *أفضل الأسهم:*\n"
         for i, stock in enumerate(top_performers[:3], 1):
             symbol = escape_markdown_v2(stock.get('symbol', ''))
+            name = escape_markdown_v2(stock.get('name', ''))
             gain = stock.get('gain', 0)
-            message += f"{i}\\. {symbol} \\(+{gain:.1f}%\\)\n"
+            message += f"{i}\\- {symbol} \\- {name} \\(+{gain:.1f}%\\)\n"
         message += "\n"
     
     if worst_performers:
         message += f"📉 *الأسوأ أداءً:*\n"
         for i, stock in enumerate(worst_performers[:3], 1):
             symbol = escape_markdown_v2(stock.get('symbol', ''))
+            name = escape_markdown_v2(stock.get('name', ''))
             loss = stock.get('loss', 0)
-            message += f"{i}\\. {symbol} \\({loss:.1f}%\\)\n"
+            message += f"{i}\\- {symbol} \\- {name} \\({loss:.1f}%\\)\n"
         message += "\n"
     
     message += (
         f"💡 *التوصيات للأسبوع القادم:*\n"
-        f"• راقب الأسهم ذات الـ RSI بين 55\\-70\n"
+        f"• راقب الأسهم ذات RSI بين 55-70\n"
         f"• ابحث عن حجم تداول أعلى من المتوسط\n"
-        f"• التزم بوقف الخسارة\n\n"
+        f"• التزم بوقف الخسارة دائمًا\n\n"
         f"═══════════════════════════\n"
-        f"⚠️ _محتوى تعليمي وتحليلي \\— ليس توصية استثمارية_"
+        f"⚠️ *محتوى تعليمي وتحليلي - ليس توصية استثمارية*"
     )
     
     # 4. Send to Telegram
@@ -116,6 +125,8 @@ def post_weekly_report():
             
     except Exception as e:
         print(f"❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def main():
