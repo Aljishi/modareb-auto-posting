@@ -16,7 +16,7 @@ import random
 class MarketIntelligence:
     def __init__(self):
         self.api_key = os.environ.get('API_KEY', '')
-        self.api_url = os.environ.get('API_URL', 'https://api.sahmk.sa/v1')
+        self.api_url = os.environ.get('API_URL', 'https://www.sahmk.sa/api/v1')
         self.data_dir = Path(__file__).parent.parent / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
         
@@ -27,30 +27,62 @@ class MarketIntelligence:
         })
     
     def fetch_from_sahmk_api(self):
-        """Fetch from Sahmk API"""
+        """Fetch from Sahmk API — www.sahmk.sa/api/v1"""
         if not self.api_key:
             return None
-        
+
         print("📡 Fetching from Sahmk API...")
-        try:
-            headers = {'Authorization': f'Bearer {self.api_key}'}
-            response = self.session.get(
-                f"{self.api_url}/market/stocks",
-                headers=headers,
-                timeout=10
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                stocks = data.get('stocks', data.get('data', []))
-                print(f"✅ Sahmk API: {len(stocks)} stocks")
-                return self._parse_stocks(stocks)
-            else:
-                print(f"❌ Sahmk API: HTTP {response.status_code}")
-                return None
-        except Exception as e:
-            print(f"❌ Sahmk API error: {e}")
-            return None
+
+        # Header: X-API-Key (كما في historical_analyzer / backtester)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+            'Accept':     'application/json',
+            'Authorization': f'Bearer {self.api_key}',
+            'X-API-Key':     self.api_key,
+        }
+        params = {'apikey': self.api_key}
+
+        # الـ endpoints الصحيحة من fetch_api_data.py
+        endpoints = [
+            ('market/gainers/', 20),
+            ('market/volume/',  20),
+            ('market/active/',  20),
+        ]
+
+        all_stocks = []
+        seen = set()
+
+        for endpoint, limit in endpoints:
+            url = f"{self.api_url}/{endpoint}"
+            print(f"   🔗 {url}")
+            try:
+                resp = self.session.get(
+                    url,
+                    headers=headers,
+                    params={**params, 'limit': limit},
+                    timeout=10
+                )
+                print(f"   📡 Status: {resp.status_code}")
+                if resp.status_code == 200:
+                    data = resp.json()
+                    items = data if isinstance(data, list) else data.get('data', data.get('stocks', []))
+                    for item in items:
+                        sym = item.get('symbol', item.get('ticker', ''))
+                        if sym and sym not in seen:
+                            all_stocks.append(item)
+                            seen.add(sym)
+                    print(f"   ✅ {endpoint}: {len(items)} أسهم")
+                else:
+                    print(f"   ❌ {endpoint}: HTTP {resp.status_code}")
+            except Exception as e:
+                print(f"   ❌ {endpoint}: {e}")
+
+        if all_stocks:
+            print(f"✅ Sahmk API: {len(all_stocks)} سهم إجمالاً")
+            return self._parse_stocks(all_stocks)
+
+        print("❌ Sahmk API: لا توجد بيانات من أي endpoint")
+        return None
     
     def fetch_from_argaam(self):
         """Fetch from Argaam.com"""
@@ -81,7 +113,7 @@ class MarketIntelligence:
                                     'sector': 'متعدد',
                                     'current_price': price,
                                     'change_percent': change,
-                                    'rsi': min(75, max(30, 50 + change * 3)),  # تقدير تقريبي — يُستبدل ببيانات حقيقية من API
+                                    'rsi': 50 + change,
                                     'volume_ratio': 1.0 + abs(change) / 10,
                                     'rs_rank': 50 + change * 2,
                                     'timestamp': datetime.now().isoformat()
