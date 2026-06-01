@@ -1,111 +1,146 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Post signal to Telegram using HTML parse mode
-"""
+"""Post initial signal image + caption — then save to open_signals.json"""
 
-import os
-import sys
-import json
-import requests
+import os, sys, json, requests
+from datetime import datetime
 from pathlib import Path
 
-def send_to_telegram():
-    print("=" * 60)
-    print("🤖 راصد - النشر على تيليجرام")
-    print("=" * 60)
-    
-    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
-    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-    
-    if not bot_token or not chat_id:
-        print("❌ Error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set")
-        sys.exit(1)
-    
-    data_dir = Path(__file__).parent.parent / "data"
-    
-    # Try validated_signals first, then signals
-    signal_file = data_dir / "validated_signals.json"
-    if not signal_file.exists():
-        signal_file = data_dir / "signals.json"
-    
-    if not signal_file.exists():
-        print("❌ Error: No signal data found")
-        sys.exit(1)
-    
-    with open(signal_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    signals = data.get('validated_signals', data.get('signals', []))
-    
-    if not signals:
-        print("⚠️ No signals to post")
-        sys.exit(0)
-    
-    signal = signals[0]
-    
-    symbol = signal.get('symbol', '')
-    name = signal.get('name', '')
-    sector = signal.get('sector', '')
-    current_price = signal.get('current_price', 0)
-    entry_point = signal.get('entry_point', 0)
-    target1 = signal.get('target1', 0)
-    target2 = signal.get('target2', 0)
-    stop_loss = signal.get('stop_loss', 0)
-    score = signal.get('score', 0)
-    rsi = signal.get('rsi', 0)
-    volume_ratio = signal.get('volume_ratio', 1.0)
-    confidence = signal.get('confidence', 'عالية')
-    
-    # Calculate percentages safely
-    def safe_pct(val, base):
-        return ((val - base) / base * 100) if base > 0 else 0
+BOT_TOKEN  = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID    = os.environ.get("TELEGRAM_CHAT_ID")
+DATA_DIR   = Path(__file__).parent.parent / "data"
+IMAGE_FILE = Path("output.png")
 
-    t1_pct = safe_pct(target1, current_price)
-    t2_pct = safe_pct(target2, current_price)
-    sl_pct = safe_pct(stop_loss, current_price)
-    
-    message = f"""📊 <b>{name} ({symbol})</b>
-🏢 القطاع: {sector}
 
-🎯 مستوى الثقة: {confidence}
+def escape(text):
+    return str(text).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 
-💰 السعر الحالي: <code>{current_price:.2f}</code> ريال
-🎯 نقطة الدخول: <code>{entry_point:.2f}</code> ريال
 
-📈 الأهداف:
-الهدف الأول: <code>{target1:.2f}</code> ريال (+{t1_pct:.1f}%) 🟢
-الهدف الثاني: <code>{target2:.2f}</code> ريال (+{t2_pct:.1f}%) 🟢
+def load_signal():
+    for fname in ("validated_signals.json", "signals.json"):
+        f = DATA_DIR / fname
+        if f.exists():
+            raw  = json.load(open(f, encoding="utf-8"))
+            sigs = raw.get("validated_signals", raw.get("signals", []))
+            if sigs:
+                return sigs[0]
+    return None
 
-🛑 وقف الخسارة: <code>{stop_loss:.2f}</code> ريال ({sl_pct:.1f}%) 🔴
 
-📊 المؤشرات:
-RSI: <code>{rsi:.1f}</code>
-حجم التداول: <code>{volume_ratio:.1f}x</code>
-النتيجة: <b>{score}/100</b>
+def build_caption(s):
+    name  = escape(s.get("stock_name",  s.get("name",   "")))
+    sym   = escape(s.get("stock_symbol", s.get("symbol", "")))
+    sect  = escape(s.get("sector", ""))
+    conf  = escape(s.get("confidence", "عالية"))
+    emoji = s.get("emoji", "🟡")
+    price = s.get("current_price", 0)
+    entry = s.get("entry_point",   s.get("entry", 0))
+    t1    = s.get("target1",  0);  t1p = s.get("target1_percent",  5)
+    t2    = s.get("target2",  0);  t2p = s.get("target2_percent", 10)
+    sl    = s.get("stop_loss", 0); slp = s.get("stop_loss_percent", 3)
+    rsi   = s.get("rsi",  0)
+    vol   = s.get("volume_ratio", 0)
+    score = s.get("score", 0)
 
-⚠️ <i>محتوى تعليمي وتحليلي فقط — لا يعد توصية استثمارية</i>"""
+    return (
+        f"📊 <b>{name} ({sym})</b>\n"
+        f"🏢 القطاع: {sect}\n\n"
+        f"🎯 الثقة: {conf} {emoji}\n\n"
+        f"💰 السعر الحالي: <code>{price:.2f}</code> ريال\n"
+        f"🎯 نقطة الدخول: <code>{entry:.2f}</code> ريال\n\n"
+        f"📈 الأهداف:\n"
+        f"• الهدف الأول:  <code>{t1:.2f}</code> (+{t1p}%) 🟢\n"
+        f"• الهدف الثاني: <code>{t2:.2f}</code> (+{t2p}%) 🟢\n\n"
+        f"🛑 وقف الخسارة: <code>{sl:.2f}</code> (-{slp}%) 🔴\n\n"
+        f"📊 المؤشرات:\n"
+        f"RSI: <code>{rsi:.1f}</code>  |  "
+        f"الحجم: <code>{vol:.1f}x</code>  |  "
+        f"Score: <b>{score}/100</b>\n\n"
+        f"⚠️ <i>محتوى تعليمي — ليس توصية استثمارية</i>"
+    )
 
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    payload = {
-        'chat_id': chat_id,
-        'text': message,
-        'parse_mode': 'HTML'
-    }
-    
-    try:
-        response = requests.post(url, json=payload, timeout=30)
-        if response.status_code == 200:
-            print("✅ تم النشر بنجاح على تيليجرام!")
-            return True
-        else:
-            print(f"❌ Failed: {response.status_code} - {response.text}")
-            return False
-    except Exception as e:
-        print(f"❌ Error: {e}")
-        return False
 
-if __name__ == "__main__":
-    success = send_to_telegram()
+def save_open_signal(signal):
+    """
+    حفظ الإشارة في open_signals.json لمتابعة الأهداف لاحقاً.
+    target1_hit / target2_hit / stop_hit = False حتى يتحقق كل منها.
+    """
+    open_file = DATA_DIR / "open_signals.json"
+    signals   = []
+    if open_file.exists():
+        try:
+            signals = json.load(open(open_file, encoding="utf-8"))
+        except Exception:
+            signals = []
+
+    # تجنب إضافة نفس السهم مرتين في نفس اليوم
+    today = datetime.now().strftime("%Y-%m-%d")
+    sym   = signal.get("stock_symbol", signal.get("symbol", ""))
+    already = any(
+        s.get("date") == today and
+        s.get("signal", {}).get("stock_symbol", s.get("signal", {}).get("symbol", "")) == sym
+        for s in signals
+    )
+    if already:
+        return
+
+    signals.append({
+        "signal":        signal,
+        "date":          today,
+        "posted_at":     datetime.now().isoformat(),
+        "target1_hit":   False,
+        "target1_hit_at": None,
+        "target2_hit":   False,
+        "target2_hit_at": None,
+        "stop_hit":      False,
+        "stop_hit_at":   None,
+        "status":        "open",       # open | target1_hit | closed | stop_hit | expired
+    })
+
+    with open(open_file, "w", encoding="utf-8") as f:
+        json.dump(signals, f, ensure_ascii=False, indent=2)
+    print(f"💾 الإشارة محفوظة في open_signals.json للمتابعة")
+
+
+def send_photo(caption):
+    if not BOT_TOKEN: print("❌ TELEGRAM_BOT_TOKEN غير موجود"); return False
+    if not CHAT_ID:   print("❌ TELEGRAM_CHAT_ID غير موجود");   return False
+    if not IMAGE_FILE.exists():
+        print(f"❌ الصورة غير موجودة: {IMAGE_FILE}"); return False
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
+    with open(IMAGE_FILE, "rb") as photo:
+        resp = requests.post(
+            url,
+            data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"},
+            files={"photo": photo},
+            timeout=30,
+        )
+    result = resp.json()
+    if result.get("ok"):
+        print("✅ تم النشر على تيليغرام")
+        # حارس التكرار — يمنع إعادة النشر في نفس اليوم
+        (DATA_DIR / "last_post_date.txt").write_text(datetime.now().strftime("%Y-%m-%d"))
+        return True
+    print(f"❌ فشل: {result.get('description','unknown')}")
+    return False
+
+
+def main():
+    print("="*60); print("📤 راصد — الإشارة الأولى على تيليغرام"); print("="*60)
+
+    sig = load_signal()
+    if not sig:
+        print("❌ لا توجد إشارات"); sys.exit(1)
+
+    caption = build_caption(sig)
+    success = send_photo(caption)
+
+    if success:
+        save_open_signal(sig)   # ← حفظ للمتابعة
+
     sys.exit(0 if success else 1)
 
+
+if __name__ == "__main__":
+    main()
