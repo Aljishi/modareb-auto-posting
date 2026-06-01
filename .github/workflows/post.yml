@@ -212,6 +212,7 @@ jobs:
           ")
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
 
+
       - name: إنشاء صورة الإشارة الذهبية
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
