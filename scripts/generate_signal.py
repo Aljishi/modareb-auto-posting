@@ -3,144 +3,127 @@
 """Generate trading signals from market data"""
 
 import json
-import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
-def calculate_score(stock_data):
-    """
-    Calculate signal score (0-100) based on:
-    - RSI (Relative Strength Index)
-    - Volume ratio
-    - Price momentum
-    - Technical indicators
-    """
+
+def calculate_score(stock):
+    """Score 0–100 across four dimensions"""
     score = 0
-    
-    # RSI Score (0-30 points)
-    rsi = stock_data.get('rsi', 50)
-    if 42 <= rsi <= 68:  # Golden zone
-        score += 30
-    elif 35 <= rsi < 42 or 68 < rsi <= 75:
-        score += 20
-    else:
-        score += 10
-    
-    # Volume Score (0-25 points)
-    volume_ratio = stock_data.get('volume_ratio', 1.0)
-    if volume_ratio >= 2.0:
-        score += 25
-    elif volume_ratio >= 1.5:
-        score += 20
-    elif volume_ratio >= 1.2:
-        score += 15
-    else:
-        score += 5
-    
-    # Price Momentum Score (0-25 points)
-    price_change = stock_data.get('change_percent', 0)
-    if 2 <= price_change <= 8:  # Strong upward momentum
-        score += 25
-    elif 0 <= price_change < 2:
-        score += 20
-    elif -2 <= price_change < 0:
-        score += 10
-    else:
-        score += 5
-    
-    # RS Rank Score (0-20 points)
-    rs_rank = stock_data.get('rs_rank', 50)
-    if rs_rank >= 85:
-        score += 20
-    elif rs_rank >= 70:
-        score += 15
-    elif rs_rank >= 50:
-        score += 10
-    else:
-        score += 5
-    
+
+    # RSI (30 pts)
+    rsi = stock.get('rsi', 50)
+    if   42 <= rsi <= 68: score += 30
+    elif 35 <= rsi < 42 or 68 < rsi <= 75: score += 20
+    else: score += 10
+
+    # Volume (25 pts)
+    vol = stock.get('volume_ratio', 1.0)
+    if   vol >= 2.0: score += 25
+    elif vol >= 1.5: score += 20
+    elif vol >= 1.2: score += 15
+    else:            score += 5
+
+    # Momentum (25 pts)
+    chg = stock.get('change_percent', 0)
+    if   2 <= chg <= 8: score += 25
+    elif 0 <= chg <  2: score += 20
+    elif -2 <= chg < 0: score += 10
+    else:               score += 5
+
+    # RS Rank (20 pts)
+    rs = stock.get('rs_rank', 50)
+    if   rs >= 85: score += 20
+    elif rs >= 70: score += 15
+    elif rs >= 50: score += 10
+    else:          score += 5
+
     return min(score, 100)
 
-def get_confidence_level(score):
-    """Return confidence level based on score"""
-    if score >= 85:
-        return "عالية جداً", "🟢", "golden"
-    elif score >= 78:
-        return "عالية", "🟡", "high"
-    elif score >= 70:
-        return "متوسطة", "🔵", "medium"
-    else:
-        return "منخفضة", "🔴", "low"
 
 def main():
     print("=" * 60)
-    print("🎯 Generating Signals...")
+    print("🎯 راصد — توليد الإشارات")
     print("=" * 60)
-    
-    # Load data
-    data_dir = Path(__file__).parent.parent / "data"
+
+    data_dir  = Path(__file__).parent.parent / "data"
     daily_file = data_dir / "daily.json"
-    
+
     if not daily_file.exists():
-        print("⚠️ No data/daily.json found, creating empty signals")
-        signals_file = data_dir / "signals.json"
-        with open(signals_file, 'w', encoding='utf-8') as f:
-            json.dump({'signals': [], 'generated_at': datetime.now().isoformat()}, f, indent=2)
-        print("✅ Created empty signals file")
-        sys.exit(0)
-    
-    # Load and process
+        print("❌ daily.json not found"); sys.exit(1)
+
     with open(daily_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    
-    stocks = data.get('stocks', [])
+
+    stocks  = data.get('stocks', [])
     signals = []
-    
+
     for stock in stocks:
-        # Calculate score
-        score = calculate_score(stock)
-        
-        # Get confidence level
-        confidence, emoji, level = get_confidence_level(score)
-        
-        # Only generate signals for score >= 70
-        if score >= 70:
-            current_price = stock.get('current_price', 0)
-            signal = {
-                'symbol': stock.get('symbol', ''),
-                'name': stock.get('name', ''),
-                'score': score,
-                'confidence': confidence,
-                'emoji': emoji,
-                'level': level,
-                'current_price': current_price,
-                'entry_point': current_price * 1.01,  # 1% above current
-                'target1': current_price * 1.05,  # +5%
-                'target2': current_price * 1.10,  # +10%
-                'stop_loss': current_price * 0.97,  # -3%
-                'rsi': stock.get('rsi', 50),
-                'volume_ratio': stock.get('volume_ratio', 1.0),
-                'rs_rank': stock.get('rs_rank', 0),
-                'sector': stock.get('sector', ''),
-                'change_percent': stock.get('change_percent', 0),
-                'timestamp': datetime.now().isoformat()
-            }
-            signals.append(signal)
-            print(f"🎯 Signal: {stock.get('symbol')} - Score: {score} - {confidence} {emoji}")
-    
-    # Save signals
-    signals_file = data_dir / "signals.json"
-    with open(signals_file, 'w', encoding='utf-8') as f:
-        json.dump({
-            'signals': signals,
-            'generated_at': datetime.now().isoformat(),
-            'total_signals': len(signals)
-        }, f, indent=2, ensure_ascii=False)
-    
-    print(f"\n✅ Generated {len(signals)} signal(s)")
-    print(f"✅ Saved to {signals_file}")
+        score  = calculate_score(stock)
+        if score < 70:
+            continue
+
+        price = float(stock.get('current_price', 0))
+        if price <= 0:
+            continue
+
+        entry  = round(price * 1.01, 2)
+        t1     = round(price * 1.05, 2)
+        t2     = round(price * 1.10, 2)
+        sl     = round(price * 0.97, 2)
+
+        # FIX: pre-calculate percentages so image generator can display them
+        t1p    = round((t1 - entry) / entry * 100, 1) if entry else 5.0
+        t2p    = round((t2 - entry) / entry * 100, 1) if entry else 10.0
+        slp    = round((entry - sl)  / entry * 100, 1) if entry else 3.0
+        rr     = round(t2p / slp, 1) if slp else 0
+
+        if   score >= 85: confidence, emoji, level = "عالية جداً", "🟢", "golden"
+        elif score >= 78: confidence, emoji, level = "عالية",      "🟡", "high"
+        else:             confidence, emoji, level = "متوسطة",     "🔵", "medium"
+
+        signals.append({
+            # Identity
+            "stock_symbol":  stock.get('symbol', ''),
+            "stock_name":    stock.get('name',   ''),
+            "sector":        stock.get('sector', ''),
+            # Prices
+            "current_price": price,
+            "entry_point":   entry,
+            "target1":       t1,
+            "target1_percent": t1p,
+            "target2":       t2,
+            "target2_percent": t2p,
+            "stop_loss":     sl,
+            "stop_loss_percent": slp,
+            "rr":            rr,
+            # Indicators
+            "rsi":           stock.get('rsi', 50),
+            "volume_ratio":  stock.get('volume_ratio', 1.0),
+            "rs_rank":       stock.get('rs_rank', 50),
+            "score":         score,
+            # Meta
+            "confidence":    confidence,
+            "emoji":         emoji,
+            "level":         level,
+            "generated_at":  datetime.now().isoformat(),
+        })
+        print(f"  🎯 {stock.get('symbol')}: Score {score} — {confidence}")
+
+    output = {
+        "signals":      signals,
+        "generated_at": datetime.now().isoformat(),
+        "total":        len(signals),
+    }
+
+    out_file = data_dir / "signals.json"
+    with open(out_file, 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    print(f"\n✅ {len(signals)} إشارة — حُفظت في {out_file}")
+    return 0 if signals else 1
+
 
 if __name__ == "__main__":
-    main()
-
+    sys.exit(main())
