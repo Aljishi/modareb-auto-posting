@@ -1,125 +1,110 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Post Golden Signal to Telegram
-- Uses HTML parse mode (safe from MarkdownV2 escaping issues)
-- Reads from data/golden_signals.json
-- Posts only if signals exist
+post_golden_signal.py
+ينشر الإشارة الذهبية على تيليغرام مع الصورة المُولَّدة.
+FIX: كان يرسل نصاً فقط (sendMessage) — الآن يرسل صورة + نص (sendPhoto).
 """
 
-import os
-import sys
-import json
-import requests
+import os, sys, json, requests
 from pathlib import Path
 
-def escape_html(text):
-    """Simple HTML escaping for safety (minimal)"""
-    if not text:
-        return ""
+BOT_TOKEN    = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID      = os.environ.get("TELEGRAM_CHAT_ID")
+DATA_DIR     = Path(__file__).parent.parent / "data"
+GOLDEN_IMAGE = Path("golden_output.png")
+
+
+def escape(text):
+    if not text: return ""
+    return str(text).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+
+
+def pct(val, base):
+    return f"{((val - base) / base * 100):.1f}" if base > 0 else "0.0"
+
+
+def build_caption(signal):
+    analysis = signal.get("analysis", {})
+    score    = analysis.get("score", 0)
+    sym      = escape(signal.get("symbol",        signal.get("stock_symbol", "")))
+    name     = escape(signal.get("name",          signal.get("stock_name",   "")))
+    sector   = escape(signal.get("sector",        ""))
+    price    = signal.get("current_price",  0)
+    entry    = signal.get("entry_point",    signal.get("entry", 0))
+    t1       = signal.get("target1",  0)
+    t2       = signal.get("target2",  0)
+    sl       = signal.get("stop_loss", 0)
+    inds     = analysis.get("indicators", {})
+    rsi      = inds.get("RSI",          signal.get("rsi", 50))
+    vol      = inds.get("volume_ratio", signal.get("volume_ratio", 1.0))
+
+    # استخدم النسب الحقيقية إذا وُجدت، وإلا احسبها من الأسعار
+    t1p = signal.get("target1_percent",  pct(t1, entry) if entry else pct(t1, price))
+    t2p = signal.get("target2_percent",  pct(t2, entry) if entry else pct(t2, price))
+    slp = signal.get("stop_loss_percent", pct(sl, entry) if entry else pct(sl, price))
+
     return (
-        text.replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-        .replace("'", "&#39;")
+        f"🌟 <b>إشارة ذهبية — راصد</b> 🌟\n\n"
+        f"📊 <b>{name} ({sym})</b>\n"
+        f"🏢 القطاع: {sector}\n\n"
+        f"🏆 النتيجة: <b>{score}/100</b>\n\n"
+        f"💰 السعر الحالي: <code>{price:.2f}</code> ريال\n"
+        f"🎯 نقطة الدخول: <code>{entry:.2f}</code> ريال\n\n"
+        f"📈 الأهداف:\n"
+        f"• الهدف الأول:  <code>{t1:.2f}</code> (+{t1p}%) 🟢\n"
+        f"• الهدف الثاني: <code>{t2:.2f}</code> (+{t2p}%) 🟢\n\n"
+        f"🛑 وقف الخسارة: <code>{sl:.2f}</code> (-{slp}%) 🔴\n\n"
+        f"📊 المؤشرات:\n"
+        f"RSI: <code>{rsi:.1f}</code>  |  الحجم: <code>{vol:.1f}x</code>\n\n"
+        f"⚠️ <i>محتوى تعليمي — ليس توصية استثمارية</i>"
     )
 
+
 def main():
-    print("=" * 60)
-    print("🌟 راصد - نشر الإشارة الذهبية")
-    print("=" * 60)
+    print("="*60); print("🌟 راصد — نشر الإشارة الذهبية"); print("="*60)
 
-    # 1. Load secrets
-    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
-    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    if not BOT_TOKEN or not CHAT_ID:
+        print("❌ TELEGRAM_BOT_TOKEN أو TELEGRAM_CHAT_ID غير موجود"); sys.exit(1)
 
-    if not bot_token or not chat_id:
-        print("❌ خطأ: مفاتيح تيليجرام غير مضبوطة في Secrets")
-        sys.exit(1)
-
-    # 2. Load golden signals
-    data_dir = Path(__file__).parent.parent / "data"
-    golden_file = data_dir / "golden_signals.json"
-
+    golden_file = DATA_DIR / "golden_signals.json"
     if not golden_file.exists():
-        print("ℹ️ لا توجد ملف إشارات ذهبية — تخطي النشر")
-        sys.exit(0)
+        print("ℹ️ لا توجد إشارات ذهبية"); sys.exit(0)
 
-    try:
-        with open(golden_file, "r", encoding="utf-8") as f:
-            signals = json.load(f)
-    except Exception as e:
-        print(f"❌ خطأ في قراءة golden_signals.json: {e}")
+    signals = json.load(open(golden_file, encoding="utf-8"))
+    if not signals:
+        print("ℹ️ القائمة فارغة"); sys.exit(0)
+
+    signal  = signals[0]
+    caption = build_caption(signal)
+
+    # إرسال الصورة إذا وُجدت، وإلا النص فقط
+    if GOLDEN_IMAGE.exists():
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
+        with open(GOLDEN_IMAGE, "rb") as photo:
+            resp = requests.post(
+                url,
+                data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"},
+                files={"photo": photo},
+                timeout=30,
+            )
+    else:
+        print("⚠️ golden_output.png غير موجودة — إرسال نص فقط")
+        url  = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        resp = requests.post(
+            url,
+            json={"chat_id": CHAT_ID, "text": caption, "parse_mode": "HTML"},
+            timeout=30,
+        )
+
+    result = resp.json()
+    if result.get("ok"):
+        print("✅ تم نشر الإشارة الذهبية!")
+        sys.exit(0)
+    else:
+        print(f"❌ فشل: {result.get('description','unknown')}")
         sys.exit(1)
 
-    if not signals:
-        print("ℹ️ لا توجد إشارات ذهبية اليوم — تخطي النشر")
-        sys.exit(0)
-
-    # 3. Use first signal
-    signal = signals[0]
-    analysis = signal.get("analysis", {})
-    score = analysis.get("score", 0)
-    symbol = signal.get("symbol", "N/A")
-    name = signal.get("name", "سهم غير معروف")
-    sector = signal.get("sector", "غير محدد")
-    current_price = signal.get("current_price", 0)
-    entry_point = signal.get("entry_point", 0)
-    target1 = signal.get("target1", 0)
-    target2 = signal.get("target2", 0)
-    stop_loss = signal.get("stop_loss", 0)
-    rsi = analysis.get("indicators", {}).get("RSI", 50)
-    volume_ratio = analysis.get("indicators", {}).get("volume_ratio", 1.0)
-
-    # 4. Format message (HTML-safe)
-    def pct(val, base):
-        return f"{((val - base) / base * 100):.1f}" if base > 0 else "0.0"
-
-    msg = f"""🌟 <b>إشارة ذهبية — راصد</b> 🌟
-
-📊 <b>{escape_html(name)} ({escape_html(symbol)})</b>
-🏢 القطاع: {escape_html(sector)}
-
-🎯 مستوى الثقة: <b>عالية جداً</b> ✅
-🏆 النتيجة: <b>{score}/100</b>
-
-💰 السعر الحالي: <code>{current_price:.2f}</code> ريال  
-➡️ نقطة الدخول: <code>{entry_point:.2f}</code> ريال  
-
-📈 الأهداف:
-• الهدف 1: <code>{target1:.2f}</code> ريال (+{pct(target1, current_price)}%) 🟢  
-• الهدف 2: <code>{target2:.2f}</code> ريال (+{pct(target2, current_price)}%) 🟢  
-
-🛑 وقف الخسارة: <code>{stop_loss:.2f}</code> ريال ({pct(stop_loss, current_price)}%) 🔴  
-
-📊 مؤشرات فنية:
-• RSI: <code>{rsi:.1f}</code>  
-• حجم التداول: <code>{volume_ratio:.1f}x</code>  
-
-⚠️ <i>محتوى تعليمي وتحليلي فقط — لا يُعتبر توصية استثمارية</i>"""
-
-    # 5. Send to Telegram
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
-        "text": msg,
-        "parse_mode": "HTML",
-        "disable_web_page_preview": True
-    }
-
-    try:
-        resp = requests.post(url, json=payload, timeout=15)
-        if resp.status_code == 200:
-            print("✅ تم نشر الإشارة الذهبية بنجاح!")
-            return 0
-        else:
-            print(f"❌ خطأ في النشر: {resp.status_code} | {resp.text}")
-            return 1
-    except Exception as e:
-        print(f"❌ استثناء عند النشر: {e}")
-        return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
-
+    main()
