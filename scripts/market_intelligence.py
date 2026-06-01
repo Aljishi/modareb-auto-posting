@@ -81,7 +81,7 @@ class MarketIntelligence:
                                     'sector': 'متعدد',
                                     'current_price': price,
                                     'change_percent': change,
-                                    'rsi': 50 + change,
+                                    'rsi': min(75, max(30, 50 + change * 3)),  # تقدير تقريبي — يُستبدل ببيانات حقيقية من API
                                     'volume_ratio': 1.0 + abs(change) / 10,
                                     'rs_rank': 50 + change * 2,
                                     'timestamp': datetime.now().isoformat()
@@ -185,4 +185,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
