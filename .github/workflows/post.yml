@@ -21,10 +21,14 @@ on:
         type: boolean
 
   schedule:
-    - cron: "*/5 7-11 * * 0-4"   # Auto Post
-    - cron: "0 * * * *"           # Track Results
-    - cron: "0 14 * * 4"          # Weekly Report
-    - cron: "0 13 * * 0-4"        # Golden Signal
+    # Auto Post - كل 5 دقائق أثناء السوق (10:00-14:55 KSA = 07:00-11:55 UTC)
+    - cron: "*/5 7-11 * * 0-4"
+    # Track Results - كل ساعة
+    - cron: "0 * * * *"
+    # Weekly Report - الخميس 5 مساءً KSA = 2 PM UTC
+    - cron: "0 14 * * 4"
+    # Golden Signal - يومياً 4 مساءً KSA = 1 PM UTC
+    - cron: "0 13 * * 0-4"
 
 permissions:
   contents: write
@@ -76,7 +80,6 @@ jobs:
       - name: Ensure data directory exists
         run: mkdir -p data
       
-      # 🔥 هذا هو التعديل المهم: استخدام market_intelligence.py أولاً
       - name: Fetch market intelligence
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: |
@@ -120,6 +123,7 @@ jobs:
       github.event.schedule == '0 * * * *' ||
       (github.event_name == 'workflow_dispatch' &&
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'track-results'))
+    
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -136,14 +140,16 @@ jobs:
           git push || true
 
   # ─────────────────────────────────────────────────────
-  # Job 3: Weekly Report (Thursday 5 PM KSA)
+  # Job 3: Weekly Report (Thursday 5 PM KSA ONLY)
   # ─────────────────────────────────────────────────────
   weekly-report:
     runs-on: ubuntu-latest
+    # ✅ هذا الشرط يمنع التشغيل إلا في الوقت المحدد أو عند الطلب الصريح
     if: |
       github.event.schedule == '0 14 * * 4' ||
       (github.event_name == 'workflow_dispatch' &&
-      (github.event.inputs.job == 'all' || github.event.inputs.job == 'weekly-report'))
+      github.event.inputs.job == 'weekly-report')
+    
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -158,7 +164,7 @@ jobs:
         run: python scripts/post_weekly_report.py || echo "Post skipped"
 
   # ─────────────────────────────────────────────────────
-  # Job 4: Golden Signal (Daily 4 PM KSA)
+  # Job 4: Golden Signal (Daily 4 PM KSA - After Market)
   # ─────────────────────────────────────────────────────
   golden-signal:
     runs-on: ubuntu-latest
@@ -167,6 +173,7 @@ jobs:
       github.event.schedule == '0 13 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
       (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
+    
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
