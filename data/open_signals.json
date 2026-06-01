@@ -1,0 +1,36 @@
+[
+  {
+    "signal": {
+      "stock_symbol": "2222",
+      "stock_name": "أرامكو السعودية",
+      "sector": "الطاقة",
+      "current_price": 30.72,
+      "entry_point": 31.03,
+      "target1": 32.26,
+      "target1_percent": 4.0,
+      "target2": 33.79,
+      "target2_percent": 8.9,
+      "stop_loss": 29.8,
+      "stop_loss_percent": 4.0,
+      "rr": 2.2,
+      "rsi": 58.3,
+      "volume_ratio": 1.8,
+      "rs_rank": 72,
+      "score": 85,
+      "confidence": "عالية جداً",
+      "emoji": "🟢",
+      "level": "golden",
+      "generated_at": "2026-06-01T13:00:45.647821",
+      "rr_ratio": 2.2
+    },
+    "date": "2026-06-01",
+    "posted_at": "2026-06-01T13:00:46.815619",
+    "target1_hit": false,
+    "target1_hit_at": null,
+    "target2_hit": false,
+    "target2_hit_at": null,
+    "stop_hit": false,
+    "stop_hit_at": null,
+    "status": "open"
+  }
+]
