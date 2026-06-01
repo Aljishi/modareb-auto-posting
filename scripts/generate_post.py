@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Rased — Daily Signal Image Generator
-Reads validated_signals.json or signals.json (new pipeline)
-Falls back to flat daily.json format (old pipeline)
-Design matches the reference image.
+تصميم يطابق الصورة المرجعية: إطار ذهبي + أيقونات دائرية + اسم سهم ضخم
 """
 
 import sys, io, json
@@ -26,216 +24,310 @@ try:
     _AR = True
 except ImportError:
     _AR = False
-    print("⚠️ arabic-reshaper/python-bidi غير مثبتة")
 
 def ar(text):
-    if not text or not _AR:
-        return str(text)
-    try:
-        return get_display(arabic_reshaper.reshape(str(text)))
-    except Exception:
-        return str(text)
+    if not text or not _AR: return str(text)
+    try: return get_display(arabic_reshaper.reshape(str(text)))
+    except: return str(text)
 
+# ── الألوان ─────────────────────────────────────────────────
 C = {
-    "bg": "#080D1A", "card": "#0F1525",
-    "gold": "#D4AF37", "gold_light": "#F0D060",
-    "green": "#2ECC71", "red": "#E74C3C",
-    "white": "#FFFFFF", "gray": "#7B8BA4",
-    "border": "#1A2540", "btn_bg": "#111827", "circle_bg": "#12192E",
+    "bg":         "#0B0F1C",
+    "card":       "#111827",
+    "gold":       "#D4AF37",
+    "gold_light": "#F0D060",
+    "green":      "#2ECC71",
+    "red":        "#E74C3C",
+    "white":      "#FFFFFF",
+    "gray":       "#8899AA",
+    "border":     "#1E2D45",
+    "btn_bg":     "#0D1628",
+    "circle_bg":  "#161F30",
 }
-W, H = 1080, 1350
-PAD = 55; ROW_H = 82; ROW_GAP = 7; BAR_W = 9
+
+W, H    = 1080, 1200
+PAD     = 48
+ROW_H   = 74
+ROW_GAP = 8
+BORD    = 7    # إطار ذهبي
+IR      = 21   # نصف قطر الأيقونة
+
 BRAND = {"name": "راصد", "subtitle": "تحليل فني وتعليمي لسوق الاسهم السعودية", "channel": "t.me/RasedSA"}
 
 
 def load_signal(path):
-    """Load signal from any pipeline format."""
-    with open(path, 'r', encoding='utf-8') as f:
-        raw = json.load(f)
-    # New pipeline: {validated_signals: [...]}
+    raw = json.load(open(path, encoding='utf-8'))
     if "validated_signals" in raw:
-        sigs = raw["validated_signals"]
-        return sigs[0] if sigs else None
-    # New pipeline: {signals: [...]}
+        s = raw["validated_signals"]; return s[0] if s else None
     if "signals" in raw:
-        sigs = raw["signals"]
-        return sigs[0] if sigs else None
-    # Old flat format
+        s = raw["signals"]; return s[0] if s else None
     return raw
 
-
 def get(d, *keys, default=""):
-    """Try multiple key names, return first match."""
     for k in keys:
         v = d.get(k)
-        if v not in (None, ""):
-            return v
+        if v not in (None, ""): return v
     return default
 
 
-class DailySignalGenerator:
+class DailyGenerator:
     def __init__(self):
-        self.data = None; self.img = None; self.draw = None; self.fonts = {}
-        self._load_fonts()
+        self.data = None; self.img = None; self.draw = None; self.f = {}
+        self._fonts()
 
-    def _load_fonts(self):
+    def _fonts(self):
         base = Path(__file__).parent.parent / "assets" / "fonts"
-        for name in ["Cairo", "Tajawal"]:
+        for n in ["Cairo", "Tajawal"]:
             try:
-                b = base / f"{name}-Bold.ttf"
-                r = base / f"{name}-Regular.ttf"
+                b = base / f"{n}-Bold.ttf"; r = base / f"{n}-Regular.ttf"
                 if b.exists() and r.exists():
-                    self.fonts = {
-                        "brand": ImageFont.truetype(b, 80), "subtitle": ImageFont.truetype(r, 26),
-                        "stock": ImageFont.truetype(b, 50), "label":    ImageFont.truetype(r, 28),
-                        "value": ImageFont.truetype(b, 36), "badge":    ImageFont.truetype(b, 22),
-                        "topbar": ImageFont.truetype(r, 22), "reading": ImageFont.truetype(r, 20),
-                        "footer": ImageFont.truetype(r, 18), "btn":     ImageFont.truetype(b, 22),
+                    self.f = {
+                        "brand":   ImageFont.truetype(b, 92),
+                        "sub":     ImageFont.truetype(r, 27),
+                        "stock":   ImageFont.truetype(b, 66),
+                        "label":   ImageFont.truetype(r, 28),
+                        "value":   ImageFont.truetype(b, 36),
+                        "badge":   ImageFont.truetype(b, 22),
+                        "topbar":  ImageFont.truetype(r, 22),
+                        "metrics": ImageFont.truetype(r, 26),
+                        "read":    ImageFont.truetype(r, 20),
+                        "foot":    ImageFont.truetype(r, 18),
+                        "btn":     ImageFont.truetype(b, 23),
                     }
-                    print(f"✅ خط: {name}"); return
-            except Exception:
-                continue
-        default = ImageFont.load_default()
-        self.fonts = {k: default for k in ["brand","subtitle","stock","label","value","badge","topbar","reading","footer","btn"]}
+                    print(f"✅ خط: {n}"); return
+            except: continue
+        d = ImageFont.load_default()
+        self.f = {k: d for k in ["brand","sub","stock","label","value","badge","topbar","metrics","read","foot","btn"]}
 
-    def _tw(self, t, f):
-        bb = self.draw.textbbox((0,0),t,font=f); return bb[2]-bb[0]
-    def _th(self, t, f):
-        bb = self.draw.textbbox((0,0),t,font=f); return bb[3]-bb[1]
+    def _tw(self, t, f): bb = self.draw.textbbox((0,0),t,font=f); return bb[2]-bb[0]
+    def _th(self, t, f): bb = self.draw.textbbox((0,0),t,font=f); return bb[3]-bb[1]
     def _cx(self, t, f): return (W - self._tw(t,f)) // 2
 
-    def _make_bg(self):
-        self.img = Image.new("RGB",(W,H),C["bg"]); self.draw = ImageDraw.Draw(self.img)
+    # ── الخلفية والإطار ──────────────────────────────────────
+    def _bg(self):
+        self.img  = Image.new("RGB", (W,H), C["bg"])
+        self.draw = ImageDraw.Draw(self.img)
+        # إطار ذهبي مفرد
+        self.draw.rectangle([(BORD,BORD),(W-BORD-1,H-BORD-1)],
+                            fill=None, outline=C["gold"], width=2)
 
+    # ── الشريط العلوي ────────────────────────────────────────
     def _topbar(self):
         now = datetime.now()
-        ts  = now.strftime("%I:%M م"); ds = now.strftime("%Y/%m/%d"); lb = ar("وقت الاشارة")
-        y = 34
-        self.draw.text((PAD,y), ts, font=self.fonts["topbar"], fill=C["gray"])
-        self.draw.text((self._cx(lb,self.fonts["topbar"]),y), lb, font=self.fonts["topbar"], fill=C["gray"])
-        self.draw.text((W-PAD-self._tw(ds,self.fonts["topbar"]),y), ds, font=self.fonts["topbar"], fill=C["gray"])
+        ts  = now.strftime("%I:%M %p").replace("AM","ص").replace("PM","م")
+        ds  = now.strftime("%Y/%m/%d")
+        lb  = ar("وقت الاشارة")
+        y   = 28
+        self.draw.text((PAD+10, y), ts,  font=self.f["topbar"], fill="#88CC88")
+        self.draw.text((self._cx(lb, self.f["topbar"]), y), lb, font=self.f["topbar"], fill=C["gray"])
+        dw = self._tw(ds, self.f["topbar"])
+        self.draw.text((W-PAD-10-dw, y), ds, font=self.f["topbar"], fill=C["gold"])
+        # خط فاصل رفيع تحت الشريط العلوي
+        self.draw.line([(PAD, y+28),(W-PAD, y+28)], fill=C["border"], width=1)
 
+    # ── الشعار الدائري ───────────────────────────────────────
     def _logo(self, cy=155):
-        cx, r = W//2, 58
+        cx = W//2; r = 58
         self.draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=C["circle_bg"], outline=C["gold"], width=4)
-        bw, bg = 11, 5; tbw = 3*bw+2*bg; bx0 = cx-tbw//2
-        for i, bh in enumerate([30,20,12]):
+        bw,bg = 11,5; tbw = 3*bw+2*bg; bx0 = cx-tbw//2
+        for i,bh in enumerate([30,20,12]):
             bx = bx0+i*(bw+bg)
             self.draw.rectangle([(bx,cy+14-bh),(bx+bw,cy+14)], fill=C["gold"])
-        ax, ay = cx+r-16, cy-r+14
-        self.draw.line([(ax-12,ay+12),(ax,ay)], fill=C["gold"], width=3)
-        self.draw.line([(ax-7,ay),(ax,ay)],     fill=C["gold"], width=3)
-        self.draw.line([(ax,ay),(ax,ay+7)],     fill=C["gold"], width=3)
+        ax,ay = cx+r-16, cy-r+14
+        self.draw.line([(ax-12,ay+12),(ax,ay)],  fill=C["gold"], width=3)
+        self.draw.line([(ax-7,ay),(ax,ay)],       fill=C["gold"], width=3)
+        self.draw.line([(ax,ay),(ax,ay+7)],       fill=C["gold"], width=3)
 
+    # ── الاسم التجاري ────────────────────────────────────────
     def _brand(self, y0=228):
         brand = ar(BRAND["name"])
-        self.draw.text((self._cx(brand,self.fonts["brand"]),y0), brand, font=self.fonts["brand"], fill=C["gold_light"])
+        self.draw.text((self._cx(brand,self.f["brand"]), y0), brand, font=self.f["brand"], fill=C["gold_light"])
         sub = ar(BRAND["subtitle"])
-        self.draw.text((self._cx(sub,self.fonts["subtitle"]),y0+88), sub, font=self.fonts["subtitle"], fill=C["white"])
+        self.draw.text((self._cx(sub,self.f["sub"]), y0+96), sub, font=self.f["sub"], fill=C["white"])
 
+    # ── خط فاصل بنقطة ────────────────────────────────────────
     def _divider(self, y):
         mid = W//2
-        self.draw.line([(PAD,y),(mid-14,y)], fill=C["border"], width=1)
+        self.draw.line([(PAD,y),(mid-12,y)],  fill=C["border"], width=1)
         self.draw.ellipse([(mid-7,y-7),(mid+7,y+7)], fill=C["gold"])
-        self.draw.line([(mid+14,y),(W-PAD,y)], fill=C["border"], width=1)
+        self.draw.line([(mid+12,y),(W-PAD,y)], fill=C["border"], width=1)
 
-    def _stock(self, y0=400):
-        d = self.data
-        name  = get(d, "stock_name", "name")
-        sym   = get(d, "stock_symbol", "symbol")
+    # ── اسم السهم (ضخم) ─────────────────────────────────────
+    def _stock(self, y0):
+        d    = self.data
+        name = get(d,"stock_name","name")
+        sym  = get(d,"stock_symbol","symbol")
         title = ar(f"{name} - {sym}")
-        self.draw.text((self._cx(title,self.fonts["stock"]),y0), title, font=self.fonts["stock"], fill=C["white"])
-        tw = self._tw(title,self.fonts["stock"]); cx = W//2
-        self.draw.line([(cx-tw//2,y0+60),(cx+tw//2,y0+60)], fill=C["gold"], width=2)
+        # تصغير الخط إذا كان الاسم طويلاً
+        font  = self.f["stock"]
+        while self._tw(title, font) > W - PAD*2 - 20:
+            sz = font.size - 4
+            if sz < 36: break
+            try: font = ImageFont.truetype(font.path, sz)
+            except: break
+        tx = self._cx(title, font)
+        self.draw.text((tx, y0), title, font=font, fill=C["white"])
+        tw = self._tw(title, font)
+        cx = W//2
+        # خط تحت الاسم
+        self.draw.line([(cx-tw//2, y0+font.size+6),(cx+tw//2, y0+font.size+6)],
+                       fill=C["gold"], width=2)
+        return y0 + font.size + 16
 
-    def _row(self, label, value, bar_color, y, badge=None):
-        self.draw.rounded_rectangle([(PAD,y),(W-PAD,y+ROW_H)], radius=10, fill=C["card"])
-        self.draw.rounded_rectangle([(PAD,y),(PAD+BAR_W,y+ROW_H)], radius=5, fill=bar_color)
-        val_x = PAD+BAR_W+16
+    # ── أيقونة دائرية (يمين الصف) ───────────────────────────
+    def _icon(self, cx, cy, kind):
+        r = IR
+        if kind == "price":
+            self.draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=C["circle_bg"], outline=C["gold"], width=2)
+            bw,bg = 5,4; tb = 3*bw+2*bg; bx0 = cx-tb//2
+            for i,bh in enumerate([10,14,18]):
+                bx = bx0+i*(bw+bg)
+                self.draw.rectangle([(bx,cy+8-bh),(bx+bw,cy+8)], fill=C["gold"])
+        elif kind == "entry":
+            self.draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=C["circle_bg"], outline=C["gold"], width=2)
+            self.draw.ellipse([(cx-12,cy-12),(cx+12,cy+12)], fill=None, outline=C["gold"], width=1)
+            self.draw.ellipse([(cx-5,cy-5),(cx+5,cy+5)], fill=C["gold"])
+        elif kind == "target":
+            self.draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=C["green"])
+            self.draw.line([(cx-9,cy+1),(cx-3,cy+8)],   fill="#FFFFFF", width=3)
+            self.draw.line([(cx-3,cy+8),(cx+10,cy-7)],  fill="#FFFFFF", width=3)
+        elif kind == "stop":
+            self.draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=C["red"])
+            self.draw.line([(cx-8,cy-8),(cx+8,cy+8)], fill="#FFFFFF", width=3)
+            self.draw.line([(cx-8,cy+8),(cx+8,cy-8)], fill="#FFFFFF", width=3)
+
+    # ── صف بيانات ───────────────────────────────────────────
+    def _row(self, label, value, bar_color, y, badge=None, icon_kind="price"):
+        rx1, rx2 = PAD, W-PAD
+        # خلفية الصف
+        self.draw.rounded_rectangle([(rx1,y),(rx2,y+ROW_H)], radius=10, fill=C["card"])
+        # شريط جانبي أيسر
+        self.draw.rounded_rectangle([(rx1,y),(rx1+5,y+ROW_H)], radius=3, fill=bar_color)
+
+        # أيقونة دائرية في أقصى اليمين
+        icon_cx = rx2 - IR - 10
+        icon_cy = y + ROW_H//2
+        self._icon(icon_cx, icon_cy, icon_kind)
+
+        # التسمية (يسار الأيقونة)
+        lbl  = ar(label)
+        lw   = self._tw(lbl, self.f["label"])
+        lh   = self._th(lbl, self.f["label"])
+        lx   = icon_cx - IR - 12 - lw
+        ly   = y + (ROW_H - lh)//2
+        lbl_color = bar_color if bar_color != C["gold"] else C["gray"]
+        if icon_kind == "stop":
+            lbl_color = C["red"]
+        elif icon_kind in ("target",):
+            lbl_color = C["gold"]
+        elif icon_kind == "entry":
+            lbl_color = C["gold"]
+        else:
+            lbl_color = C["gray"]
+        self.draw.text((lx, ly), lbl, font=self.f["label"], fill=lbl_color)
+
+        # شارة النسبة (أقصى اليسار)
+        val_x = PAD + 8
         if badge:
             bc = C["green"] if badge.startswith("+") else C["red"]
-            bw = self._tw(badge,self.fonts["badge"])+22
-            bx = PAD+BAR_W+10; by = y+(ROW_H-28)//2
-            self.draw.rounded_rectangle([(bx,by),(bx+bw,by+28)], radius=8, fill=bc)
-            self.draw.text((bx+11,by+5), badge, font=self.fonts["badge"], fill=C["white"])
-            val_x = bx+bw+14
-        vy = y+(ROW_H-self._th(value,self.fonts["value"]))//2
-        self.draw.text((val_x,vy), value, font=self.fonts["value"], fill=bar_color)
-        lbl = ar(label); lw = self._tw(lbl,self.fonts["label"])
-        self.draw.text((W-PAD-BAR_W-16-lw, y+(ROW_H-self._th(lbl,self.fonts["label"]))//2),
-                       lbl, font=self.fonts["label"], fill=C["gray"])
+            bw = self._tw(badge, self.f["badge"]) + 18
+            bx = PAD + 8; by = y + (ROW_H-26)//2
+            self.draw.rounded_rectangle([(bx,by),(bx+bw,by+26)], radius=7, fill=bc)
+            self.draw.text((bx+9, by+4), badge, font=self.f["badge"], fill="#FFFFFF")
+            val_x = bx + bw + 14
 
-    def _rows(self, y0=490):
+        # القيمة
+        vh = self._th(value, self.f["value"])
+        vy = y + (ROW_H - vh)//2
+        self.draw.text((val_x, vy), value, font=self.f["value"], fill=bar_color)
+
+    # ── صفوف البيانات الخمسة ─────────────────────────────────
+    def _rows(self, y0):
         d = self.data
-        price = str(get(d,"current_price","price", default="0"))
-        entry = str(get(d,"entry_point","entry",  default="0"))
-        t1    = str(get(d,"target1",              default=""))
-        t1p   = get(d,"target1_percent",           default="")
-        t2    = str(get(d,"target2",              default=""))
-        t2p   = get(d,"target2_percent",           default="")
-        sl    = str(get(d,"stop_loss",            default=""))
-        slp   = get(d,"stop_loss_percent",         default="")
+        price = str(get(d,"current_price","price",default="0"))
+        entry = str(get(d,"entry_point","entry",default="0"))
+        t1    = str(get(d,"target1",default=""))
+        t1p   = get(d,"target1_percent",default="")
+        t2    = str(get(d,"target2",default=""))
+        t2p   = get(d,"target2_percent",default="")
+        sl    = str(get(d,"stop_loss",default=""))
+        slp   = get(d,"stop_loss_percent",default="")
 
-        def rial(v): return f"{v} ريال"
+        def r(v): return f"{v} ريال"
         y = y0
-        self._row("السعر الحالي:", rial(price), C["gold"],  y)
-        y += ROW_H+ROW_GAP
-        self._row("نقطة الدخول:", rial(entry), C["gold"],  y)
-        y += ROW_H+ROW_GAP
-        self._row("الهدف الاول:",  rial(t1),   C["green"], y, badge=(f"+{t1p}%" if t1p else None))
-        y += ROW_H+ROW_GAP
-        self._row("الهدف الثاني:", rial(t2),   C["green"], y, badge=(f"+{t2p}%" if t2p else None))
-        y += ROW_H+ROW_GAP
-        self._row("وقف الخسارة:", rial(sl),   C["red"],   y, badge=(f"-{slp}%" if slp else None))
-        y += ROW_H+ROW_GAP
+        self._row("السعر الحالي:", r(price), C["gold"],  y, icon_kind="price")
+        y += ROW_H + ROW_GAP
+        self._row("نقطة الدخول:", r(entry), C["gold"],  y, icon_kind="entry")
+        y += ROW_H + ROW_GAP
+        self._row("الهدف الاول:",  r(t1),   C["green"], y, badge=(f"+{t1p}%" if t1p else None), icon_kind="target")
+        y += ROW_H + ROW_GAP
+        self._row("الهدف الثاني:", r(t2),   C["green"], y, badge=(f"+{t2p}%" if t2p else None), icon_kind="target")
+        y += ROW_H + ROW_GAP
+        self._row("وقف الخسارة:", r(sl),   C["red"],   y, badge=(f"-{slp}%" if slp else None), icon_kind="stop")
+        y += ROW_H + ROW_GAP
         return y
 
+    # ── نص القراءة الفنية ────────────────────────────────────
     def _reading(self, y, text):
         if not text: return y
-        words = str(text).split(); max_w = W-PAD*2-30
+        words = str(text).split()
+        max_w = W - PAD*2 - 30
         lines, line = [], ""
         for w in words:
             test = f"{line} {w}".strip()
-            if self._tw(ar(test),self.fonts["reading"]) < max_w: line = test
+            if self._tw(ar(test), self.f["read"]) < max_w: line = test
             else:
                 if line: lines.append(line)
                 line = w
         if line: lines.append(line)
-        lh = 26; box_h = len(lines)*lh+22
-        self.draw.rounded_rectangle([(PAD,y),(W-PAD,y+box_h)], radius=8, fill=C["card"])
-        ty = y+12
+        lh = 26; box_h = len(lines)*lh + 22
+        self.draw.rounded_rectangle([(PAD,y),(W-PAD,y+box_h)], radius=8,
+                                    fill=C["card"], outline=C["gold"], width=1)
+        ty = y + 12
         for ln in lines:
             drawn = ar(ln)
-            self.draw.text(((W-self._tw(drawn,self.fonts["reading"]))//2,ty), drawn, font=self.fonts["reading"], fill=C["gray"])
+            self.draw.text(((W-self._tw(drawn,self.f["read"]))//2, ty),
+                           drawn, font=self.f["read"], fill=C["gray"])
             ty += lh
-        return y+box_h+10
+        return y + box_h + 12
 
+    # ── التذييل ──────────────────────────────────────────────
     def _footer(self, y):
         disc = ar("محتوى تعليمي وتحليلي فقط - لا يعد توصية استثمارية")
-        self.draw.text(((W-self._tw(disc,self.fonts["footer"]))//2,y), disc, font=self.fonts["footer"], fill=C["gray"])
-        btn_y = y+38; btn = BRAND["channel"]
-        bw = self._tw(btn,self.fonts["btn"])+64; bx = (W-bw)//2
-        self.draw.rounded_rectangle([(bx,btn_y),(bx+bw,btn_y+46)], radius=23, fill=C["btn_bg"], outline=C["gold"], width=2)
-        self.draw.text(((W-self._tw(btn,self.fonts["btn"]))//2,btn_y+11), btn, font=self.fonts["btn"], fill=C["gold"])
+        self.draw.text(((W-self._tw(disc,self.f["foot"]))//2, y),
+                       disc, font=self.f["foot"], fill=C["gray"])
+        _y  = y + 36
+        btn = BRAND["channel"]
+        bw  = self._tw(btn, self.f["btn"]) + 60
+        bx  = (W-bw)//2
+        self.draw.rounded_rectangle([(bx,_y),(bx+bw,_y+44)],
+                                    radius=22, fill=C["btn_bg"], outline=C["gold"], width=2)
+        self.draw.text(((W-self._tw(btn,self.f["btn"]))//2, _y+10),
+                       btn, font=self.f["btn"], fill=C["gold"])
 
+    # ── التوليد الرئيسي ──────────────────────────────────────
     def generate(self, inp, out):
         print("="*55); print("📊 راصد — مولّد الإشارة اليومية"); print("="*55)
-        try:
-            self.data = load_signal(inp)
-        except Exception as e:
-            print(f"❌ {e}"); return False
-        if not self.data:
-            print("⚠️ لا توجد إشارات"); return False
+        try: self.data = load_signal(inp)
+        except Exception as e: print(f"❌ {e}"); return False
+        if not self.data: print("⚠️ لا توجد إشارات"); return False
 
-        self._make_bg(); self._topbar(); self._logo(cy=155)
-        self._brand(y0=228); self._divider(y=368)
-        self._stock(y0=392); self._divider(y=468)
-        y = self._rows(y0=490)
-        reading = (self.data.get("technical_reading") or self.data.get("signal_reason") or "")
-        y = self._reading(y+12, reading)
-        self._footer(y+10)
+        self._bg()
+        self._topbar()
+        self._logo(cy=158)
+        self._brand(y0=232)
+        self._divider(y=372)
+        y_after = self._stock(y0=394)
+        self._divider(y=y_after + 8)
+        y = self._rows(y0=y_after + 32)
+        reading = (self.data.get("technical_reading") or
+                   self.data.get("signal_reason") or "")
+        y = self._reading(y + 10, reading)
+        self._divider(y + 8)
+        self._footer(y + 22)
+
         p = Path(out); p.parent.mkdir(parents=True, exist_ok=True)
-        self.img.save(p,"PNG",quality=95)
+        self.img.save(p, "PNG", quality=95)
         print(f"✅ تم الحفظ: {p.absolute()}")
         return True
 
@@ -244,7 +336,6 @@ def main():
     base = Path(__file__).parent.parent
     inp  = sys.argv[1] if len(sys.argv) > 1 else str(base/"data/daily.json")
     out  = sys.argv[2] if len(sys.argv) > 2 else str(base/"output.png")
-    ok   = DailySignalGenerator().generate(inp, out)
-    sys.exit(0 if ok else 1)
+    sys.exit(0 if DailyGenerator().generate(inp, out) else 1)
 
 if __name__ == "__main__": main()
