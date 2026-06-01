@@ -1,316 +1,55 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>راصد - Track Record</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: rgba(255, 165, 2, 0.1);
-            border-radius: 15px;
-            border: 2px solid #FFA502;
-        }
-        
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: #FFA502;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            color: #FFA502;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #a4b0be;
-            font-size: 1.1em;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .stat-card {
-            background: rgba(26, 31, 58, 0.8);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(255, 165, 2, 0.3);
-        }
-        
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FFA502;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            color: #a4b0be;
-            font-size: 1em;
-        }
-        
-        .table-container {
-            background: rgba(26, 31, 58, 0.8);
-            border-radius: 12px;
-            padding: 20px;
-            overflow-x: auto;
-            border: 1px solid rgba(255, 165, 2, 0.3);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 15px;
-            text-align: right;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        th {
-            background: rgba(255, 165, 2, 0.2);
-            color: #FFA502;
-            font-weight: bold;
-        }
-        
-        tr:hover {
-            background: rgba(255, 165, 2, 0.05);
-        }
-        
-        .win {
-            color: #00d09c;
-        }
-        
-        .loss {
-            color: #ff4757;
-        }
-        
-        .pending {
-            color: #ffa502;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #a4b0be;
-            border-top: 1px solid rgba(255, 165, 2, 0.3);
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #a4b0be;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .stat-value {
-                font-size: 2em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>راصد — Track Record</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Cairo',Arial,sans-serif;background:#080D1A;color:#E2E8F0;padding:20px}
+    .container{max-width:900px;margin:0 auto}
+    h1{color:#D4AF37;text-align:center;font-size:2rem;margin:20px 0 4px}
+    .updated{text-align:center;color:#7B8BA4;font-size:.85rem;margin-bottom:30px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:32px}
+    .card{background:#0F1525;border-radius:12px;padding:20px;text-align:center}
+    .card-value{font-size:2rem;font-weight:bold;color:#D4AF37}
+    .card-label{color:#7B8BA4;font-size:.85rem;margin-top:6px}
+    .card.green .card-value{color:#10B981}
+    .card.red   .card-value{color:#EF4444}
+    table{width:100%;border-collapse:collapse;background:#0F1525;border-radius:12px;overflow:hidden}
+    th{background:#1A2540;color:#D4AF37;padding:12px;text-align:right;font-size:.9rem}
+    td{padding:12px;border-bottom:1px solid #1A2540;font-size:.9rem}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#131d33}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">📊</div>
-            <!-- ✅ التعديل: تغيير "مضارب" إلى "راصد" -->
-            <h1>راصد</h1>
-            <p class="subtitle">لوحة متابعة الإشارات - Track Record</p>
-        </header>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" id="totalSignals">-</div>
-                <div class="stat-label">إجمالي الإشارات</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="winRate">-</div>
-                <div class="stat-label">نسبة النجاح</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="winT1">-</div>
-                <div class="stat-label">الهدف الأول</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="winT2">-</div>
-                <div class="stat-label">الهدف الثاني</div>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <h2 style="margin-bottom: 20px; color: #FFA502;">سجل الإشارات</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>التاريخ</th>
-                        <th>السهم</th>
-                        <th>نقطة الدخول</th>
-                        <th>الهدف 1</th>
-                        <th>الهدف 2</th>
-                        <th>وقف الخسارة</th>
-                        <th>النتيجة</th>
-                    </tr>
-                </thead>
-                <tbody id="signalsTable">
-                    <tr>
-                        <td colspan="7" class="loading">جاري تحميل البيانات...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <footer>
-            <p>⚠️ محتوى تعليمي وتحليلي فقط - لا يُعد توصية استثمارية</p>
-            <p style="margin-top: 10px;">
-                <a href="https://github.com/Aljishi/modareb-auto-posting" 
-                   style="color: #FFA502; text-decoration: none;">
-                    راصد على GitHub
-                </a>
-            </p>
-        </footer>
+  <div class="container">
+    <h1>👁️ راصد — سجل الإشارات</h1>
+    <p class="updated">آخر تحديث: 2026-06-01 13:30</p>
+
+    <div class="cards">
+      <div class="card"><div class="card-value">1</div><div class="card-label">إجمالي الإشارات</div></div>
+      <div class="card green"><div class="card-value">0</div><div class="card-label">هدف ثانٍ ✅</div></div>
+      <div class="card green"><div class="card-value">0</div><div class="card-label">هدف أول 🎯</div></div>
+      <div class="card red"><div class="card-value">0</div><div class="card-label">وقف خسارة 🛑</div></div>
+      <div class="card"><div class="card-value">1</div><div class="card-label">مفتوحة ⏳</div></div>
+      <div class="card green"><div class="card-value">0%</div><div class="card-label">نسبة النجاح</div></div>
     </div>
-    
-    <script>
-        // تحميل البيانات من GitHub Raw
-        const CSV_URL = 'https://raw.githubusercontent.com/Aljishi/modareb-auto-posting/main/data/signals_log.csv';
-        
-        async function loadData() {
-            try {
-                const response = await fetch(CSV_URL);
-                const text = await response.text();
-                parseCSV(text);
-            } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('signalsTable').innerHTML = 
-                    '<tr><td colspan="7" class="loading">فشل في تحميل البيانات</td></tr>';
-            }
-        }
-        
-        function parseCSV(csvText) {
-            const lines = csvText.split('\n').filter(line => line.trim());
-            const signals = [];
-            
-            // تخطي السطر الأول (العناوين)
-            for (let i = 1; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
-                
-                const cols = line.split(',');
-                if (cols.length >= 7) {
-                    signals.push({
-                        date: cols[0],
-                        symbol: cols[1],
-                        entry: cols[2],
-                        target1: cols[3],
-                        target2: cols[4],
-                        stopLoss: cols[5],
-                        result: cols[6]
-                    });
-                }
-            }
-            
-            displaySignals(signals);
-            calculateStats(signals);
-        }
-        
-        function displaySignals(signals) {
-            const tbody = document.getElementById('signalsTable');
-            
-            if (signals.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="loading">لا توجد إشارات</td></tr>';
-                return;
-            }
-            
-            tbody.innerHTML = signals.map(signal => {
-                let resultClass = 'pending';
-                let resultText = 'قيد المتابعة';
-                
-                if (signal.result === 'win_t1' || signal.result === 'win_t2') {
-                    resultClass = 'win';
-                    resultText = signal.result === 'win_t1' ? 'تحقق الهدف 1 ✓' : 'تحقق الهدف 2 ✓✓';
-                } else if (signal.result === 'loss') {
-                    resultClass = 'loss';
-                    resultText = 'وقف الخسارة ✗';
-                } else if (signal.result === 'expired') {
-                    resultClass = 'loss';
-                    resultText = 'انتهى الوقت ⏰';
-                }
-                
-                return `
-                    <tr>
-                        <td>${signal.date}</td>
-                        <td>${signal.symbol}</td>
-                        <td>${signal.entry}</td>
-                        <td class="win">${signal.target1}</td>
-                        <td class="win">${signal.target2}</td>
-                        <td class="loss">${signal.stopLoss}</td>
-                        <td class="${resultClass}">${resultText}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-        
-        function calculateStats(signals) {
-            const total = signals.length;
-            const wins = signals.filter(s => s.result === 'win_t1' || s.result === 'win_t2').length;
-            const winsT1 = signals.filter(s => s.result === 'win_t1').length;
-            const winsT2 = signals.filter(s => s.result === 'win_t2').length;
-            const losses = signals.filter(s => s.result === 'loss').length;
-            
-            const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : 0;
-            
-            document.getElementById('totalSignals').textContent = total;
-            document.getElementById('winRate').textContent = winRate + '%';
-            document.getElementById('winT1').textContent = winsT1;
-            document.getElementById('winT2').textContent = winsT2;
-        }
-        
-        // تحميل البيانات عند فتح الصفحة
-        loadData();
-        
-        // تحديث كل 5 دقائق
-        setInterval(loadData, 5 * 60 * 1000);
-    </script>
+
+    <h2 style="color:#D4AF37;margin-bottom:12px">📋 آخر الإشارات</h2>
+    <table>
+      <tr><th>التاريخ</th><th>الرمز</th><th>الاسم</th><th>Score</th><th>الأهداف</th><th>الحالة</th></tr>
+      
+        <tr>
+          <td>2026-06-01</td>
+          <td><b>2222</b></td>
+          <td>أرامكو السعودية</td>
+          <td>85/100</td>
+          <td>+4.0% / +8.9%</td>
+          <td style="color:#3B82F6;font-weight:bold">⏳ مفتوحة</td>
+        </tr>
+    </table>
+  </div>
 </body>
 </html>
-
