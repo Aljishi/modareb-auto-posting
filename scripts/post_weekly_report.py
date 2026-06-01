@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Post weekly report to Telegram
+Post weekly report to Telegram - Using HTML (Simpler)
 """
 
 import os
@@ -9,21 +9,6 @@ import sys
 import json
 import requests
 from pathlib import Path
-from datetime import datetime
-
-def escape_markdown_v2(text):
-    """
-    Escape ALL special characters for Telegram MarkdownV2
-    """
-    if text is None:
-        return ""
-    
-    text = str(text)
-    # ALL special characters that need escaping in MarkdownV2
-    escape_chars = r'\_*[]()~`>#+\-=|{}.!@'
-    for char in escape_chars:
-        text = text.replace(char, f'\\{char}')
-    return text
 
 def post_weekly_report():
     print("=" * 60)
@@ -49,7 +34,7 @@ def post_weekly_report():
     with open(report_file, 'r', encoding='utf-8') as f:
         report = json.load(f)
     
-    # 3. Format message (SIMPLIFIED - no complex formatting)
+    # 3. Format message using HTML (NO special escaping needed!)
     week_start = report.get('week_start', 'Unknown')
     week_end = report.get('week', 'Unknown')
     total_signals = report.get('total_signals', 0)
@@ -58,56 +43,55 @@ def post_weekly_report():
     success_rate = report.get('success_rate', 0)
     avg_score = report.get('avg_score', 0)
     
-    # Top performers
     top_performers = report.get('top_performers', [])
     worst_performers = report.get('worst_performers', [])
     
-    # Build SIMPLE message (avoid special chars)
-    message = (
-        f"📊 *التقرير الأسبوعي - راصد*\n"
-        f"📅 الفترة: {escape_markdown_v2(week_start)} إلى {escape_markdown_v2(week_end)}\n\n"
-        f"📊 *الإحصائيات:*\n"
-        f"• إجمالي الإشارات: *{total_signals}*\n"
-        f"• الإشارات الرابحة: *{profitable}*\n"
-        f"• الإشارات الخاسرة: *{losing}*\n"
-        f"• نسبة النجاح: *{success_rate:.1f}%*\n"
-        f"• متوسط Score: *{avg_score:.1f} من 100*\n\n"
-    )
+    # HTML message - MUCH SIMPLER!
+    message = f"""📊 <b>التقرير الأسبوعي - راصد</b>
+📅 الفترة: {week_start} إلى {week_end}
+
+📊 <b>الإحصائيات:</b>
+• إجمالي الإشارات: <b>{total_signals}</b>
+• الإشارات الرابحة: <b>{profitable}</b>
+• الإشارات الخاسرة: <b>{losing}</b>
+• نسبة النجاح: <b>{success_rate:.1f}%</b>
+• متوسط Score: <b>{avg_score:.1f} من 100</b>
+
+"""
     
     if top_performers:
-        message += f"🏆 *أفضل الأسهم:*\n"
+        message += "🏆 <b>أفضل الأسهم:</b>\n"
         for i, stock in enumerate(top_performers[:3], 1):
-            symbol = escape_markdown_v2(stock.get('symbol', ''))
-            name = escape_markdown_v2(stock.get('name', ''))
+            symbol = stock.get('symbol', '')
+            name = stock.get('name', '')
             gain = stock.get('gain', 0)
-            message += f"{i}\\- {symbol} \\- {name} \\(+{gain:.1f}%\\)\n"
+            message += f"{i}. {symbol} - {name} (+{gain:.1f}%)\n"
         message += "\n"
     
     if worst_performers:
-        message += f"📉 *الأسوأ أداءً:*\n"
+        message += "📉 <b>الأسوأ أداءً:</b>\n"
         for i, stock in enumerate(worst_performers[:3], 1):
-            symbol = escape_markdown_v2(stock.get('symbol', ''))
-            name = escape_markdown_v2(stock.get('name', ''))
+            symbol = stock.get('symbol', '')
+            name = stock.get('name', '')
             loss = stock.get('loss', 0)
-            message += f"{i}\\- {symbol} \\- {name} \\({loss:.1f}%\\)\n"
+            message += f"{i}. {symbol} - {name} ({loss:.1f}%)\n"
         message += "\n"
     
-    message += (
-        f"💡 *التوصيات للأسبوع القادم:*\n"
-        f"• راقب الأسهم ذات RSI بين 55-70\n"
-        f"• ابحث عن حجم تداول أعلى من المتوسط\n"
-        f"• التزم بوقف الخسارة دائمًا\n\n"
-        f"═══════════════════════════\n"
-        f"⚠️ *محتوى تعليمي وتحليلي - ليس توصية استثمارية*"
-    )
+    message += """💡 <b>التوصيات للأسبوع القادم:</b>
+• راقب الأسهم ذات RSI بين 55-70
+• ابحث عن حجم تداول أعلى من المتوسط
+• التزم بوقف الخسارة دائمًا
+
+═══════════════════════════
+⚠️ <b>محتوى تعليمي وتحليلي - ليس توصية استثمارية</b>"""
     
-    # 4. Send to Telegram
+    # 4. Send to Telegram using HTML parse mode
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     
     payload = {
         'chat_id': chat_id,
         'text': message,
-        'parse_mode': 'MarkdownV2'
+        'parse_mode': 'HTML'  # ✅ HTML is much easier!
     }
     
     try:
