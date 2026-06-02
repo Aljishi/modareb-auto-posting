@@ -1,10 +1,10 @@
 {
-  "total": 1,
+  "total": 2,
   "target2": 0,
   "target1_only": 0,
-  "stop_hit": 0,
+  "stop_hit": 1,
   "open": 1,
   "expired": 0,
-  "win_rate": 0,
-  "updated_at": "2026-06-02T10:25:26.242105"
+  "win_rate": 0.0,
+  "updated_at": "2026-06-02T10:35:32.907316"
 }

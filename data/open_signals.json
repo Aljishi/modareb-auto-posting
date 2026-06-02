@@ -29,9 +29,9 @@
     "target1_hit_at": null,
     "target2_hit": false,
     "target2_hit_at": null,
-    "stop_hit": false,
-    "stop_hit_at": null,
-    "status": "open"
+    "stop_hit": true,
+    "stop_hit_at": "2026-06-02T10:35:32.888662",
+    "status": "stop_hit"
   },
   {
     "signal": {
