@@ -16,10 +16,10 @@ on:
         type: boolean
 
   schedule:
-    - cron: "*/5 7-12 * * 0-4"   # إشارة يومية — كل 5 دقائق 10ص–3م KSA
-    - cron: "0 10-12 * * 0-4"    # متابعة الأهداف — كل ساعة أثناء السوق
-    - cron: "0 14 * * 4"          # تقرير أسبوعي — الخميس 5م KSA
-    - cron: "30 6 * * 0-4"        # إشارة ذهبية — 9:30ص KSA قبل الافتتاح
+    - cron: "*/5 7-12 * * 0-4"
+    - cron: "0 10-12 * * 0-4"
+    - cron: "0 14 * * 4"
+    - cron: "30 6 * * 0-4"
 
 permissions:
   contents: write
@@ -31,9 +31,6 @@ env:
 
 jobs:
 
-  # ═══════════════════════════════════════════════════════
-  # Job 1: الإشارة اليومية — كل 5 دقائق أثناء التداول
-  # ═══════════════════════════════════════════════════════
   auto-post:
     runs-on: ubuntu-latest
     if: >
@@ -46,11 +43,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install arabic-reshaper==3.0.0 python-bidi==0.4.2 --force-reinstall
-          python -c "import arabic_reshaper; from bidi.algorithm import get_display; print('✅ Arabic text OK')" || echo "⚠️ Arabic libs failed"
+          python -c "import arabic_reshaper; from bidi.algorithm import get_display; print('✅ Arabic OK')" || echo "⚠️ Arabic failed"
 
       - name: Check market status
         id: market
@@ -61,7 +59,7 @@ jobs:
 
       - name: Skip if market closed
         if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
-        run: echo "⚠️ السوق مغلق — تخطي" && exit 0
+        run: echo "⚠️ السوق مغلق" && exit 0
 
       - run: mkdir -p data
 
@@ -70,14 +68,17 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
-        run: |
-          python scripts/market_intelligence.py || \
-          python scripts/fetch_api_data.py      || \
-          echo "⚠️ استخدام بيانات مخزنة"
+        run: python scripts/market_intelligence.py || echo "⚠️ بيانات مخزنة"
 
       - name: Generate signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/generate_signal.py
+
+      - name: Claude deep analysis
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/claude_analysis.py || echo "⚠️ Claude unavailable"
 
       - name: Validate signal quality
         id: validate
@@ -90,7 +91,7 @@ jobs:
           steps.validate.outcome == 'success' &&
           (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
         run: |
-          if   [ -f data/validated_signals.json ]; then
+          if [ -f data/validated_signals.json ]; then
             python scripts/generate_post.py data/validated_signals.json output.png
           elif [ -f data/signals.json ]; then
             python scripts/generate_post.py data/signals.json output.png
@@ -115,13 +116,10 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ || true
-          git diff --cached --quiet || git commit -m "📊 إشارة يومية — $(date +'%H:%M')"
+          git diff --cached --quiet || git commit -m "📊 إشارة — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
 
-  # ═══════════════════════════════════════════════════════
-  # Job 2: متابعة الأهداف — كل ساعة (3 مرات في الجلسة)
-  # ═══════════════════════════════════════════════════════
   track-results:
     runs-on: ubuntu-latest
     if: >
@@ -136,7 +134,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
 
-      - name: Check targets & send alerts
+      - name: Check targets
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -144,7 +142,7 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_results.py
 
-      - name: Update track record page
+      - name: Update track record
         run: python scripts/update_track_record.py || echo "تخطي"
 
       - name: Commit results
@@ -153,14 +151,11 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/open_signals.json data/track_record.json docs/ 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "📈 تحديث النتائج — $(date +'%H:%M')"
+          git add data/ docs/ 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "📈 نتائج — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
 
-  # ═══════════════════════════════════════════════════════
-  # Job 3: التقرير الأسبوعي — الخميس 5م KSA
-  # ═══════════════════════════════════════════════════════
   weekly-report:
     runs-on: ubuntu-latest
     if: >
@@ -180,9 +175,6 @@ jobs:
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_weekly_report.py || echo "تخطي"
 
-  # ═══════════════════════════════════════════════════════
-  # Job 4: الإشارة الذهبية — 9:30ص KSA قبل الافتتاح
-  # ═══════════════════════════════════════════════════════
   golden-signal:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -201,22 +193,21 @@ jobs:
       - run: |
           [ -f data/daily.json ] || \
           echo '{"stocks":[],"timestamp":"'"$(date -Iseconds)"'"}' > data/daily.json
-
-      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا توجد إشارات ذهبية"
+      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا إشارات ذهبية"
 
       - name: Check golden signal
         id: golden
         run: |
           COUNT=$(python -c "
-          import json, sys
+          import json
           try:
-              d = json.load(open('data/golden_signals.json'))
-              print(len(d) if isinstance(d, list) else 0)
+            d=json.load(open('data/golden_signals.json'))
+            print(len(d) if isinstance(d,list) else 0)
           except: print(0)
           ")
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
 
-      - name: Generate golden post image
+      - name: Generate golden image
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
 
