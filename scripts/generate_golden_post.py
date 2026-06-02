@@ -17,9 +17,18 @@ try:
 except: _AR = False
 
 def ar(t):
-    if not t or not _AR: return str(t)
-    try: return get_display(arabic_reshaper.reshape(str(t)))
-    except: return str(t)
+    if not t: return str(t)
+    s = str(t)
+    if _AR:
+        try: return get_display(arabic_reshaper.reshape(s))
+        except: pass
+    # fallback بدون reshaper: عكس الكلمات للعرض الصحيح
+    try:
+        words = s.split()
+        words.reverse()
+        return " ".join(words)
+    except:
+        return s
 
 BG=  "#08090F"; CARD= "#0F1520"; GOLD= "#D4AF37"; GOLD_L="#F5D060"
 GREEN="#27AE60"; RED= "#E74C3C"; WHITE="#FFFFFF";  GRAY=  "#8899AA"
