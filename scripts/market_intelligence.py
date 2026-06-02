@@ -68,11 +68,7 @@ class MarketIntelligence:
                 if resp.status_code == 200:
                     data = resp.json()
                     items = data if isinstance(data, list) else data.get('data', data.get('stocks', []))
-                    # طباعة جميع حقول أول سهم لمعرفة بنية الـ API
-                    if items:
-                        import json as _json
-                        print(f"   🔍 كل حقول أول سهم:")
-                        print(_json.dumps(items[0], ensure_ascii=False, indent=2)[:800])
+
                     for item in items:
                         sym = item.get('symbol', item.get('ticker', ''))
                         if sym and sym not in seen:
@@ -176,32 +172,15 @@ class MarketIntelligence:
                     'symbol': item.get('symbol', ''),
                     'name': item.get('name', ''),
                     'sector': item.get('sector', ''),
-                    # السعر: جرب كل الأسماء المحتملة بالترتيب
-                    'current_price': float(
-                        item.get('last_price') or      # سعر آخر صفقة
-                        item.get('current_price') or   # السعر الحالي
-                        item.get('lastPrice') or        # camelCase
-                        item.get('last') or             # اختصار
-                        item.get('price') or            # سعر عام
-                        item.get('close') or            # إغلاق
-                        item.get('closePrice') or       # إغلاق camelCase
-                        0
-                    ),
+                    'current_price': float(item.get('price') or 0),
                     'change_percent': float(item.get('change_percent', 0)),
-                    # RSI: ابحث في عدة أسماء محتملة للحقل
-                    'rsi': float(
-                        item.get('rsi') or item.get('RSI') or
-                        item.get('rsiValue') or item.get('rsi_value') or
-                        min(75, max(30, 50 + float(str(item.get('change_percent') or
-                            item.get('changePercent') or 0).replace('%','') or 0) * 3))
-                    ),
-                    # استخدم volume_ratio من الـ API إذا وُجد، وإلا استخدم القيمة المحسوبة من المصدر
-                    'volume_ratio': float(
-                        item.get('volume_ratio') or
-                        item.get('volumeRatio') or
-                        item.get('vol_ratio') or
-                        item.get('_source_vol', 1.0)
-                    ),
+                    # RSI غير متاح من الـ API — نحسبه من change_percent
+                    'rsi': round(min(75, max(30,
+                        50 + float(item.get('change_percent') or
+                                   item.get('changePercent') or 0) * 3
+                    )), 2),
+                    # volume_ratio: نستخدم القيمة المعيّنة حسب الـ endpoint
+                    'volume_ratio': float(item.get('_source_vol', 1.0)),
                     'rs_rank': float(item.get('rs_rank', 50)),
                     'timestamp': datetime.now().isoformat()
                 })
