@@ -28,43 +28,69 @@ def load_signal():
 
 
 def build_caption(s):
-    name  = escape(s.get("stock_name",  s.get("name",   "")))
-    sym   = escape(s.get("stock_symbol", s.get("symbol", "")))
-    sect  = escape(s.get("sector", ""))
-    conf  = escape(s.get("confidence", "عالية"))
-    emoji = s.get("emoji", "🟡")
-    price = s.get("current_price", 0)
-    entry = s.get("entry_point",   s.get("entry", 0))
-    t1    = s.get("target1",  0);  t1p = s.get("target1_percent",  5)
-    t2    = s.get("target2",  0);  t2p = s.get("target2_percent", 10)
-    sl    = s.get("stop_loss", 0); slp = s.get("stop_loss_percent", 3)
-    rsi   = s.get("rsi",  0)
-    vol   = s.get("volume_ratio", 0)
-    score = s.get("score", 0)
+    name    = escape(s.get("stock_name",  s.get("name",   "")))
+    sym     = escape(s.get("stock_symbol", s.get("symbol", "")))
+    sect    = escape(s.get("sector", ""))
+    conf    = escape(s.get("confidence", "جيدة"))
+    emoji   = s.get("emoji", "🟡")
+    price   = s.get("current_price", 0)
+    entry   = s.get("entry_point",   s.get("entry", 0))
+    t1      = s.get("target1",  0);  t1p = s.get("target1_percent",  5)
+    t2      = s.get("target2",  0);  t2p = s.get("target2_percent", 10)
+    sl      = s.get("stop_loss", 0); slp = s.get("stop_loss_percent", 3)
+    rsi     = s.get("rsi",  0)
+    vol     = s.get("volume_ratio", 0)
+    score   = s.get("score", 0)
+    risk    = escape(s.get("risk_level", ""))
+    insight = escape(s.get("key_insight", ""))
+    summary = escape(s.get("company_summary", ""))
+    reason  = escape(s.get("signal_reason", ""))
+    is_claude = s.get("claude_analyzed", False)
 
-    return (
+    # ── الكابشن الأساسي ──────────────────────────────────
+    cap = (
         f"📊 <b>{name} ({sym})</b>\n"
-        f"🏢 القطاع: {sect}\n\n"
-        f"🎯 الثقة: {conf} {emoji}\n\n"
+    )
+    if sect:
+        cap += f"🏢 {sect}\n"
+    if summary:
+        cap += f"ℹ️ <i>{summary}</i>\n"
+    cap += "\n"
+
+    cap += (
+        f"🎯 الثقة: <b>{conf}</b> {emoji}\n"
+    )
+    if risk:
+        risk_emoji = {"منخفض":"🟢","متوسط":"🟡","مرتفع":"🔴"}.get(risk,"⚪")
+        cap += f"⚠️ المخاطرة: {risk} {risk_emoji}\n"
+    cap += "\n"
+
+    cap += (
         f"💰 السعر الحالي: <code>{price:.2f}</code> ريال\n"
         f"🎯 نقطة الدخول: <code>{entry:.2f}</code> ريال\n\n"
         f"📈 الأهداف:\n"
-        f"• الهدف الأول:  <code>{t1:.2f}</code> (+{t1p}%) 🟢\n"
-        f"• الهدف الثاني: <code>{t2:.2f}</code> (+{t2p}%) 🟢\n\n"
-        f"🛑 وقف الخسارة: <code>{sl:.2f}</code> (-{slp}%) 🔴\n\n"
+        f"• الهدف الأول:  <code>{t1:.2f}</code> (+{t1p:.1f}%) 🟢\n"
+        f"• الهدف الثاني: <code>{t2:.2f}</code> (+{t2p:.1f}%) 🟢\n\n"
+        f"🛑 وقف الخسارة: <code>{sl:.2f}</code> (-{slp:.1f}%) 🔴\n\n"
         f"📊 المؤشرات:\n"
         f"RSI: <code>{rsi:.1f}</code>  |  "
         f"الحجم: <code>{vol:.1f}x</code>  |  "
-        f"Score: <b>{score}/100</b>\n\n"
-        f"⚠️ <i>محتوى تعليمي — ليس توصية استثمارية</i>"
+        f"Score: <b>{score}/100</b>\n"
     )
+
+    # ── تحليل كلود (إذا كان متاحاً) ──────────────────────
+    if is_claude:
+        cap += "\n🤖 <b>تحليل الذكاء الاصطناعي:</b>\n"
+        if reason:
+            cap += f"📌 {reason}\n"
+        if insight:
+            cap += f"💡 {insight}\n"
+
+    cap += "\n⚠️ <i>محتوى تعليمي — ليس توصية استثمارية</i>"
+    return cap
 
 
 def save_open_signal(signal):
-    """
-    حفظ الإشارة في open_signals.json لمتابعة الأهداف لاحقاً.
-    target1_hit / target2_hit / stop_hit = False حتى يتحقق كل منها.
-    """
     open_file = DATA_DIR / "open_signals.json"
     signals   = []
     if open_file.exists():
@@ -73,33 +99,33 @@ def save_open_signal(signal):
         except Exception:
             signals = []
 
-    # تجنب إضافة نفس السهم مرتين في نفس اليوم
     today = datetime.now().strftime("%Y-%m-%d")
     sym   = signal.get("stock_symbol", signal.get("symbol", ""))
     already = any(
         s.get("date") == today and
-        s.get("signal", {}).get("stock_symbol", s.get("signal", {}).get("symbol", "")) == sym
+        s.get("signal", {}).get("stock_symbol",
+            s.get("signal", {}).get("symbol", "")) == sym
         for s in signals
     )
     if already:
         return
 
     signals.append({
-        "signal":        signal,
-        "date":          today,
-        "posted_at":     datetime.now().isoformat(),
-        "target1_hit":   False,
+        "signal":         signal,
+        "date":           today,
+        "posted_at":      datetime.now().isoformat(),
+        "target1_hit":    False,
         "target1_hit_at": None,
-        "target2_hit":   False,
+        "target2_hit":    False,
         "target2_hit_at": None,
-        "stop_hit":      False,
-        "stop_hit_at":   None,
-        "status":        "open",       # open | target1_hit | closed | stop_hit | expired
+        "stop_hit":       False,
+        "stop_hit_at":    None,
+        "status":         "open",
     })
 
     with open(open_file, "w", encoding="utf-8") as f:
         json.dump(signals, f, ensure_ascii=False, indent=2)
-    print(f"💾 الإشارة محفوظة في open_signals.json للمتابعة")
+    print("💾 الإشارة محفوظة في open_signals.json للمتابعة")
 
 
 def send_photo(caption):
@@ -119,15 +145,17 @@ def send_photo(caption):
     result = resp.json()
     if result.get("ok"):
         print("✅ تم النشر على تيليغرام")
-        # حارس التكرار — يمنع إعادة النشر في نفس اليوم
-        (DATA_DIR / "last_post_date.txt").write_text(datetime.now().strftime("%Y-%m-%d"))
+        (DATA_DIR / "last_post_date.txt").write_text(
+            datetime.now().strftime("%Y-%m-%d"))
         return True
     print(f"❌ فشل: {result.get('description','unknown')}")
     return False
 
 
 def main():
-    print("="*60); print("📤 راصد — الإشارة الأولى على تيليغرام"); print("="*60)
+    print("="*60)
+    print("📤 راصد — الإشارة الأولى على تيليغرام")
+    print("="*60)
 
     sig = load_signal()
     if not sig:
@@ -137,7 +165,7 @@ def main():
     success = send_photo(caption)
 
     if success:
-        save_open_signal(sig)   # ← حفظ للمتابعة
+        save_open_signal(sig)
 
     sys.exit(0 if success else 1)
 
