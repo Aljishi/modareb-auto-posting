@@ -128,7 +128,9 @@ class MarketIntelligence:
                                     'sector': 'متعدد',
                                     'current_price': price,
                                     'change_percent': change,
-                                    'rsi': 50 + change,
+                                    # RSI من الـ API إذا وُجد، وإلا تقدير من التغيير
+                                    'rsi': float(item.get('rsi') or item.get('RSI') or
+                                                 min(75, max(30, 50 + change * 3))),
                                     'volume_ratio': 1.0 + abs(change) / 10,
                                     'rs_rank': 50 + change * 2,
                                     'timestamp': datetime.now().isoformat()
@@ -171,7 +173,13 @@ class MarketIntelligence:
                     'sector': item.get('sector', ''),
                     'current_price': float(item.get('price', item.get('current_price', 0))),
                     'change_percent': float(item.get('change_percent', 0)),
-                    'rsi': float(item.get('rsi', 50)),
+                    # RSI: ابحث في عدة أسماء محتملة للحقل
+                    'rsi': float(
+                        item.get('rsi') or item.get('RSI') or
+                        item.get('rsiValue') or item.get('rsi_value') or
+                        min(75, max(30, 50 + float(str(item.get('change_percent') or
+                            item.get('changePercent') or 0).replace('%','') or 0) * 3))
+                    ),
                     # استخدم volume_ratio من الـ API إذا وُجد، وإلا استخدم القيمة المحسوبة من المصدر
                     'volume_ratio': float(
                         item.get('volume_ratio') or
