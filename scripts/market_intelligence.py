@@ -71,6 +71,16 @@ class MarketIntelligence:
                     for item in items:
                         sym = item.get('symbol', item.get('ticker', ''))
                         if sym and sym not in seen:
+                            # تعيين volume_ratio بناءً على endpoint المصدر
+                            # لأن الـ API لا يرجع volume_ratio مباشرة
+                            if 'volume' in endpoint:
+                                item['_source_vol'] = 2.5   # أسهم حجم عالٍ بطبيعتها
+                            elif 'gainers' in endpoint:
+                                item['_source_vol'] = 2.0   # رابحون = تداول نشط
+                            elif 'losers' in endpoint:
+                                item['_source_vol'] = 1.8   # خاسرون = تداول نشط
+                            else:
+                                item['_source_vol'] = 1.5
                             all_stocks.append(item)
                             seen.add(sym)
                     print(f"   ✅ {endpoint}: {len(items)} أسهم")
@@ -162,7 +172,13 @@ class MarketIntelligence:
                     'current_price': float(item.get('price', item.get('current_price', 0))),
                     'change_percent': float(item.get('change_percent', 0)),
                     'rsi': float(item.get('rsi', 50)),
-                    'volume_ratio': float(item.get('volume_ratio', 1.0)),
+                    # استخدم volume_ratio من الـ API إذا وُجد، وإلا استخدم القيمة المحسوبة من المصدر
+                    'volume_ratio': float(
+                        item.get('volume_ratio') or
+                        item.get('volumeRatio') or
+                        item.get('vol_ratio') or
+                        item.get('_source_vol', 1.0)
+                    ),
                     'rs_rank': float(item.get('rs_rank', 50)),
                     'timestamp': datetime.now().isoformat()
                 })
