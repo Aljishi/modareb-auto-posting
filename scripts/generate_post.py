@@ -21,9 +21,18 @@ except:
     _AR = False
 
 def ar(t):
-    if not t or not _AR: return str(t)
-    try: return get_display(arabic_reshaper.reshape(str(t)))
-    except: return str(t)
+    if not t: return str(t)
+    s = str(t)
+    if _AR:
+        try: return get_display(arabic_reshaper.reshape(s))
+        except: pass
+    # fallback بدون reshaper: عكس الكلمات للعرض الصحيح
+    try:
+        words = s.split()
+        words.reverse()
+        return " ".join(words)
+    except:
+        return s
 
 # ── ألوان ────────────────────────────────────────────────────
 BG      = "#0B0F1C"
