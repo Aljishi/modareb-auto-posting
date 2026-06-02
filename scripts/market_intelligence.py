@@ -43,10 +43,12 @@ class MarketIntelligence:
         params = {'apikey': self.api_key}
 
         # الـ endpoints الصحيحة من fetch_api_data.py
+        # market/active/ يرجع 404 → محذوف
+        # market/gainers/ قد يرجع 0 خارج وقت التداول → نضيف losers بديلاً
         endpoints = [
-            ('market/gainers/', 20),
-            ('market/volume/',  20),
-            ('market/active/',  20),
+            ('market/volume/',  30),   # ✅ يعمل دائماً
+            ('market/gainers/', 20),   # قد يكون فارغاً خارج وقت التداول
+            ('market/losers/',  20),   # بديل لـ active
         ]
 
         all_stocks = []
@@ -73,7 +75,10 @@ class MarketIntelligence:
                             seen.add(sym)
                     print(f"   ✅ {endpoint}: {len(items)} أسهم")
                 else:
-                    print(f"   ❌ {endpoint}: HTTP {resp.status_code}")
+                    if resp.status_code == 404:
+                        print(f"   ⚠️ {endpoint}: HTTP 404 — endpoint غير موجود، تم تخطيه")
+                    else:
+                        print(f"   ❌ {endpoint}: HTTP {resp.status_code}")
             except Exception as e:
                 print(f"   ❌ {endpoint}: {e}")
 
@@ -217,3 +222,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
