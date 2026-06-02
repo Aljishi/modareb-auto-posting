@@ -68,12 +68,11 @@ class MarketIntelligence:
                 if resp.status_code == 200:
                     data = resp.json()
                     items = data if isinstance(data, list) else data.get('data', data.get('stocks', []))
-                    # طباعة الحقول الأولى لأول سهم للتشخيص
+                    # طباعة جميع حقول أول سهم لمعرفة بنية الـ API
                     if items:
-                        first = items[0]
-                        price_fields = {k:v for k,v in first.items()
-                                       if any(x in k.lower() for x in ['price','last','close','val','current'])}
-                        print(f"   🔍 حقول السعر المتاحة: {price_fields}")
+                        import json as _json
+                        print(f"   🔍 كل حقول أول سهم:")
+                        print(_json.dumps(items[0], ensure_ascii=False, indent=2)[:800])
                     for item in items:
                         sym = item.get('symbol', item.get('ticker', ''))
                         if sym and sym not in seen:
