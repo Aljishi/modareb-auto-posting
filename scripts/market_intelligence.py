@@ -68,6 +68,12 @@ class MarketIntelligence:
                 if resp.status_code == 200:
                     data = resp.json()
                     items = data if isinstance(data, list) else data.get('data', data.get('stocks', []))
+                    # طباعة الحقول الأولى لأول سهم للتشخيص
+                    if items:
+                        first = items[0]
+                        price_fields = {k:v for k,v in first.items()
+                                       if any(x in k.lower() for x in ['price','last','close','val','current'])}
+                        print(f"   🔍 حقول السعر المتاحة: {price_fields}")
                     for item in items:
                         sym = item.get('symbol', item.get('ticker', ''))
                         if sym and sym not in seen:
@@ -171,7 +177,17 @@ class MarketIntelligence:
                     'symbol': item.get('symbol', ''),
                     'name': item.get('name', ''),
                     'sector': item.get('sector', ''),
-                    'current_price': float(item.get('price', item.get('current_price', 0))),
+                    # السعر: جرب كل الأسماء المحتملة بالترتيب
+                    'current_price': float(
+                        item.get('last_price') or      # سعر آخر صفقة
+                        item.get('current_price') or   # السعر الحالي
+                        item.get('lastPrice') or        # camelCase
+                        item.get('last') or             # اختصار
+                        item.get('price') or            # سعر عام
+                        item.get('close') or            # إغلاق
+                        item.get('closePrice') or       # إغلاق camelCase
+                        0
+                    ),
                     'change_percent': float(item.get('change_percent', 0)),
                     # RSI: ابحث في عدة أسماء محتملة للحقل
                     'rsi': float(
