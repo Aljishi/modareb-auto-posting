@@ -20,6 +20,7 @@ try:
 except:
     _AR = False
 
+
 def ar(t):
     if not t: return str(t)
     s = str(t)
