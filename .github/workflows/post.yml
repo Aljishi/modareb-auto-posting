@@ -45,7 +45,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install arabic-reshaper==3.0.0 python-bidi==0.4.2 --force-reinstall
+          python -c "import arabic_reshaper; from bidi.algorithm import get_display; print('✅ Arabic text OK')" || echo "⚠️ Arabic libs failed"
 
       - name: Check market status
         id: market
@@ -116,7 +120,6 @@ jobs:
 
   # ═══════════════════════════════════════════════════════
   # Job 2: متابعة الأهداف — كل ساعة (3 مرات في الجلسة)
-  # يرسل إشعاراً عند تحقق الهدف الأول أو الثاني أو الوقف
   # ═══════════════════════════════════════════════════════
   track-results:
     runs-on: ubuntu-latest
@@ -211,7 +214,6 @@ jobs:
           except: print(0)
           ")
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
-
 
       - name: Generate golden post image
         if: steps.golden.outputs.found == 'true'
