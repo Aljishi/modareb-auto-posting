@@ -28,6 +28,9 @@ env:
   TZ: Asia/Riyadh
   PYTHONIOENCODING: utf-8
   PYTHONUNBUFFERED: "1"
+  API_URL: https://app.sahmk.sa/api/v1
+  MAX_HOLD_DAYS: "7"
+  MIN_HISTORY_BARS: "30"
 
 jobs:
 
@@ -66,15 +69,16 @@ jobs:
 
       - run: mkdir -p data
 
-      - name: Fetch market data
+      - name: Fetch Sahmk market data
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
         run: python scripts/market_intelligence.py
 
-      - name: Generate premium signals
+      - name: Generate Sahmk historical signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
         run: python scripts/generate_signal.py
 
       - name: OpenAI signal review
@@ -82,8 +86,6 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4o-mini
-          MIN_AI_CONFIDENCE: "82"
-          MAX_HOLD_DAYS: "7"
         run: python scripts/ai_signal_reviewer.py
 
       - name: Validate signal quality
@@ -91,16 +93,11 @@ jobs:
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/should_post.py
 
-      - name: Generate premium post image
+      - name: Generate post image
         if: >
           steps.validate.outcome == 'success' &&
           (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
-        run: |
-          if [ -f data/validated_signals.json ]; then
-            python scripts/generate_post.py data/validated_signals.json output.png
-          else
-            echo "❌ لا توجد إشارات معتمدة للنشر" && exit 1
-          fi
+        run: python scripts/generate_post.py data/validated_signals.json output.png
 
       - name: Post to Telegram
         if: >
@@ -118,11 +115,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ output.png || true
-          git diff --cached --quiet || git commit -m "📊 RASED Premium Signal — $(date +'%H:%M')"
+          git add data/ || true
+          git diff --cached --quiet || git commit -m "📊 إشارة — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
-
 
   track-results:
     runs-on: ubuntu-latest
@@ -133,26 +129,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Check targets
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_results.py
-
       - name: Update track record
         run: python scripts/update_track_record.py || echo "⚠️ تخطي"
         continue-on-error: true
-
       - name: Commit results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -164,27 +154,21 @@ jobs:
           git push || true
         continue-on-error: true
 
-
   weekly-report:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '0 14 * * 4' ||
       (github.event_name == 'workflow_dispatch' &&
        github.event.inputs.job == 'weekly-report')
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
       - name: Generate weekly report
         run: python scripts/weekly_report.py
-
       - name: Post weekly report to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -192,66 +176,46 @@ jobs:
         run: python scripts/post_weekly_report.py
         continue-on-error: true
 
-
   golden-signal:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '30 6 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
        (github.event.inputs.job == 'all' || github.event.inputs.job == 'golden-signal'))
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           pip install -r requirements.txt pandas ta
           pip install arabic-reshaper==3.0.0 python-bidi==0.4.2 --force-reinstall
-
       - run: mkdir -p data
-
       - name: Fetch market data for golden analysis
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
-        run: python scripts/market_intelligence.py || echo "⚠️ استخدام البيانات المخزنة"
-        continue-on-error: true
-
+        run: python scripts/market_intelligence.py
       - name: Golden signal analysis
         id: analysis
         run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا إشارات ذهبية"
         continue-on-error: true
-
       - name: Check golden signal count
         id: golden
         run: |
-          COUNT=$(python -c "
-          import json
-          try:
-            d = json.load(open('data/golden_signals.json'))
-            print(len(d) if isinstance(d, list) else 0)
-          except Exception:
-            print(0)
-          ")
+          COUNT=$(python -c "import json; import pathlib; p=pathlib.Path('data/golden_signals.json'); print(len(json.load(open(p,encoding='utf-8'))) if p.exists() else 0)")
           echo "count=$COUNT" >> $GITHUB_OUTPUT
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
           echo "📊 إشارات ذهبية موجودة: $COUNT"
-
       - name: Generate golden image
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
-
       - name: Post golden signal to Telegram
         if: steps.golden.outputs.found == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_golden_signal.py
-
       - name: Commit golden signal data
         if: steps.golden.outputs.found == 'true'
         env:
@@ -259,7 +223,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/golden_signals.json golden_output.png || true
+          git add data/golden_signals.json || true
           git diff --cached --quiet || git commit -m "🌟 إشارة ذهبية — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
