@@ -1,146 +1,156 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+راصد — بوابة النشر النهائية Premium
+
+لا تسمح بالنشر إلا إذا:
+- بيانات API حقيقية.
+- ATR/دعم/مقاومة موجودة.
+- R:R مناسب.
+- الهدف الثاني منطقي خلال 7 أيام فنياً.
+- OpenAI وافق على الإشارة.
+"""
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Any, Dict, Tuple
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+SIGNALS_FILE = DATA_DIR / "signals.json"
+VALIDATED_FILE = DATA_DIR / "validated_signals.json"
+LAST_POST_FILE = DATA_DIR / "last_post_date.txt"
 
-MIN_SCORE = 75
-MIN_RSI = 42
-MAX_RSI = 68
-MIN_VOL = 1.5
-MIN_RR = 2.0
-MIN_AI_CONFIDENCE = 80
+MIN_SCORE = int(os.getenv("MIN_FINAL_SCORE", "84"))
+MIN_RASED_SCORE = float(os.getenv("MIN_RASED_SCORE", "85"))
+MIN_RR = float(os.getenv("MIN_RR", "2.2"))
+MIN_RSI = float(os.getenv("MIN_RSI", "48"))
+MAX_RSI = float(os.getenv("MAX_RSI", "68"))
+MIN_VOL_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.7"))
+MIN_VALUE = float(os.getenv("MIN_VALUE_SAR", "3000000"))
+MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "82"))
+MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
+ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
 
 
-def has_posted_today():
+def fnum(x: Any, default: float = 0.0) -> float:
+    try:
+        if x is None or x == "":
+            return default
+        if isinstance(x, str):
+            x = x.replace("%", "").replace(",", "").strip()
+        return float(x)
+    except Exception:
+        return default
+
+
+def posted_today() -> bool:
     today = datetime.now().strftime("%Y-%m-%d")
-    flag_file = DATA_DIR / "last_post_date.txt"
-    if flag_file.exists():
-        return flag_file.read_text().strip() == today
-    return False
+    try:
+        return LAST_POST_FILE.exists() and LAST_POST_FILE.read_text(encoding="utf-8").strip() == today
+    except Exception:
+        return False
 
 
-def validate_python_rules(signal):
-    score = float(signal.get("score", 0))
-    rsi = float(signal.get("rsi", 50))
-    vol = float(signal.get("volume_ratio", 1.0))
-    rr = float(signal.get("rr", 0))
+def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
+    if sig.get("data_source") != "api":
+        return False, "مصدر البيانات ليس API حقيقي"
+    if sig.get("engine_version") != "rased_premium_7d_ai_ready":
+        return False, "الإشارة ليست من محرك Premium الجديد"
 
-    if score < MIN_SCORE:
-        return False, f"Score {score:.0f} < {MIN_SCORE}"
+    if fnum(sig.get("score")) < MIN_SCORE:
+        return False, f"Score أقل من {MIN_SCORE}"
+    if fnum(sig.get("rased_score")) < MIN_RASED_SCORE:
+        return False, f"RASED SCORE أقل من {MIN_RASED_SCORE}"
+    if fnum(sig.get("rr")) < MIN_RR:
+        return False, f"R:R أقل من {MIN_RR}"
+    if not (MIN_RSI <= fnum(sig.get("rsi")) <= MAX_RSI):
+        return False, "RSI خارج النطاق الآمن"
+    if fnum(sig.get("volume_ratio")) < MIN_VOL_RATIO:
+        return False, "الحجم النسبي غير كافٍ"
+    if fnum(sig.get("value")) < MIN_VALUE:
+        return False, "السيولة المتداولة غير كافية"
 
-    if not (MIN_RSI <= rsi <= MAX_RSI):
-        return False, f"RSI {rsi:.1f} خارج النطاق {MIN_RSI}-{MAX_RSI}"
+    for field in ("atr14", "atr_pct", "resistance", "support", "entry_point", "target1", "target2", "stop_loss"):
+        if fnum(sig.get(field)) <= 0:
+            return False, f"الحقل الفني ناقص أو صفر: {field}"
 
-    if vol < MIN_VOL:
-        return False, f"Volume {vol:.1f}x < {MIN_VOL}x"
+    if fnum(sig.get("stop_loss")) >= fnum(sig.get("entry_point")):
+        return False, "وقف الخسارة غير منطقي"
+    if fnum(sig.get("target2")) <= fnum(sig.get("entry_point")):
+        return False, "الهدف غير منطقي"
 
-    if rr < MIN_RR:
-        return False, f"R:R {rr:.1f} < {MIN_RR}"
+    if sig.get("seven_day_filter_passed") is not True:
+        return False, "فلتر 7 أيام لم يجتز"
+    if int(sig.get("expected_days_to_target2", 99)) > MAX_HOLD_DAYS:
+        return False, "الهدف الثاني غير منطقي خلال 7 أيام"
 
-    return True, "Python rules passed"
+    if sig.get("ai_decision") != "APPROVE":
+        return False, f"OpenAI decision = {sig.get('ai_decision', 'missing')}"
+    if int(sig.get("ai_confidence", 0)) < MIN_AI_CONFIDENCE:
+        return False, f"OpenAI confidence أقل من {MIN_AI_CONFIDENCE}"
+    if sig.get("ai_risk_level") not in ALLOWED_AI_RISK:
+        return False, f"OpenAI risk غير مقبول: {sig.get('ai_risk_level')}"
+    if int(sig.get("ai_expected_holding_days", 99)) > MAX_HOLD_DAYS:
+        return False, "OpenAI يرى أن المدة المتوقعة تتجاوز 7 أيام"
 
-
-def validate_ai_rules(signal):
-    decision = signal.get("ai_decision", "REJECT")
-    confidence = int(signal.get("ai_confidence", 0))
-    risk_level = signal.get("ai_risk_level", "HIGH")
-
-    if decision != "APPROVE":
-        return False, f"AI decision = {decision}"
-
-    if confidence < MIN_AI_CONFIDENCE:
-        return False, f"AI confidence {confidence} < {MIN_AI_CONFIDENCE}"
-
-    if risk_level == "HIGH":
-        return False, "AI risk level = HIGH"
-
-    return True, "AI rules passed"
+    return True, "ok"
 
 
-def main():
+def main() -> int:
     print("=" * 60)
-    print("✅ راصد — Final Posting Gate")
+    print("✅ راصد — Premium Final Posting Gate")
     print("=" * 60)
 
-    if has_posted_today():
-        today = datetime.now().strftime("%Y-%m-%d")
-        print(f"⚠️ Already posted today: {today}")
-        sys.exit(1)
+    if posted_today():
+        print("⚠️ تم النشر مسبقاً اليوم — منع نشر مكرر")
+        return 1
 
-    signals_file = DATA_DIR / "signals.json"
-    if not signals_file.exists():
-        print("❌ signals.json not found")
-        sys.exit(1)
+    if not SIGNALS_FILE.exists():
+        print("❌ signals.json غير موجود")
+        return 1
 
-    data = json.load(open(signals_file, encoding="utf-8"))
+    data = json.loads(SIGNALS_FILE.read_text(encoding="utf-8"))
     signals = data.get("signals", [])
-
-    if not signals:
-        print("❌ No signals found")
-        sys.exit(1)
-
     validated = []
 
     for sig in signals:
         sym = sig.get("stock_symbol", sig.get("symbol", ""))
+        ok, msg = validate(sig)
+        if ok:
+            sig["final_approved"] = True
+            sig["final_approved_at"] = datetime.now().isoformat(timespec="seconds")
+            validated.append(sig)
+            print(f"✅ {sym}: {sig.get('tier')} | RASED {sig.get('rased_score')} | AI {sig.get('ai_confidence')} | TP2 {sig.get('target2_percent')}%")
+        else:
+            print(f"❌ {sym}: {msg}")
 
-        py_ok, py_reason = validate_python_rules(sig)
-        if not py_ok:
-            print(f"❌ {sym}: {py_reason}")
-            continue
+    validated.sort(key=lambda s: (fnum(s.get("rased_score")), fnum(s.get("ai_confidence")), fnum(s.get("rr"))), reverse=True)
+    # ننشر أقوى إشارة فقط لتقليل المخاطر.
+    validated = validated[:1]
 
-        ai_ok, ai_reason = validate_ai_rules(sig)
-        if not ai_ok:
-            print(f"❌ {sym}: {ai_reason}")
-            continue
-
-        sig["final_approved"] = True
-        sig["final_approved_at"] = datetime.now().isoformat()
-        sig["rr_ratio"] = sig.get("rr", 0)
-
-        validated.append(sig)
-        print(
-            f"✅ {sym}: APPROVED | "
-            f"Score {sig.get('score')} | "
-            f"R:R {sig.get('rr')} | "
-            f"AI {sig.get('ai_confidence')}"
-        )
-
-    validated.sort(
-        key=lambda x: (
-            x.get("ai_confidence", 0),
-            x.get("score", 0),
-            x.get("rr", 0)
-        ),
-        reverse=True
-    )
-
-    output = {
+    out = {
         "validated_signals": validated,
         "total_checked": len(signals),
         "total_valid": len(validated),
-        "timestamp": datetime.now().isoformat(),
-        "gate": {
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "engine_version": "rased_premium_7d_ai_ready",
+        "rules": {
             "min_score": MIN_SCORE,
-            "min_rsi": MIN_RSI,
-            "max_rsi": MAX_RSI,
-            "min_volume_ratio": MIN_VOL,
+            "min_rased_score": MIN_RASED_SCORE,
             "min_rr": MIN_RR,
-            "min_ai_confidence": MIN_AI_CONFIDENCE
-        }
+            "min_ai_confidence": MIN_AI_CONFIDENCE,
+            "max_holding_days": MAX_HOLD_DAYS,
+        },
+        "disclaimer": "لا يوجد ضمان لتحقيق الأهداف. الفلاتر مصممة لاختيار إشارات مرشحة فنياً خلال 1-7 أيام فقط.",
     }
-
-    out_file = DATA_DIR / "validated_signals.json"
-    json.dump(output, open(out_file, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    VALIDATED_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"\n✅ Final approved: {len(validated)}/{len(signals)}")
-    sys.exit(0 if validated else 1)
+    return 0 if validated else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
