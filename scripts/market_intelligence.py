@@ -1,241 +1,270 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-راصد — جلب بيانات السوق
-UPGRADE:
-- يُضيف حقل data_source: 'api' | 'scrape' | 'fallback'
-- Fallback لا يُشغّل النشر (generate_signal.py سيرفضه)
-- sector يُملأ من القاموس إذا فات الـ API
-- RSI يُحسب من change_percent عند غيابه
-- حُذف التعديل العشوائي على الأسعار
+راصد — جلب بيانات السوق الحقيقي فقط
+Production-grade guardrails:
+- لا يوجد fallback ولا mock ولا random.
+- يوقف المسار إذا لم تتوفر بيانات كافية.
+- يوحد الحقول المطلوبة لمحرك الإشارة.
+- يحفظ snapshot تاريخي محلي لاستخدام ATR/الدعم/المقاومة لاحقاً.
 """
 
 import json
 import os
 import sys
-import requests
+import time
 from datetime import datetime
 from pathlib import Path
-from bs4 import BeautifulSoup
-import re
+from typing import Any, Dict, Iterable, List, Optional, Tuple
+
+import requests
+
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+DAILY_FILE = DATA_DIR / "daily.json"
+HISTORY_FILE = DATA_DIR / "market_history.json"
+
+MIN_VALID_STOCKS = int(os.environ.get("MIN_VALID_STOCKS", "15"))
+REQUEST_TIMEOUT = int(os.environ.get("REQUEST_TIMEOUT", "15"))
 
 SECTOR_MAP = {
-    "2222": "الطاقة",           "2010": "البتروكيماويات",  "2350": "البتروكيماويات",
-    "2380": "البتروكيماويات",   "2050": "الاستهلاكية",     "4002": "إنتاج الأغذية",
-    "1120": "المصارف",          "1180": "المصارف",          "1150": "المصارف",
-    "1060": "المصارف",          "1020": "المصارف",          "1050": "المصارف",
-    "1140": "المصارف",          "1010": "المصارف",          "1211": "التأمين",
-    "4030": "الاستثمار",        "4280": "الاستثمار",        "4130": "الاستثمار",
-    "4110": "اللوجستيات",       "7010": "الاتصالات",        "7030": "الاتصالات",
-    "7202": "التقنية",          "6017": "التقنية",           "6018": "الترفيه",
-    "4190": "التجزئة",          "4240": "التجزئة",          "4250": "العقارات",
-    "5110": "الطاقة",           "2090": "الكيماويات",        "2230": "الكيماويات",
-    "3008": "الاستثمار",        "1303": "الصناعات",          "1820": "الاستثمار",
-    "1831": "الموارد البشرية",  "1834": "الموارد البشرية",  "4061": "الاستثمار",
-    "6015": "المطاعم",          "7205": "الخدمات",           "2030": "الصناعات",
-    "2020": "الصناعات",         "2060": "الصناعات",          "2280": "الكيماويات",
-    "4001": "العقارات",         "4003": "التجزئة",
+    "2222": "الطاقة", "2010": "المواد الأساسية", "2350": "المواد الأساسية", "2380": "الطاقة",
+    "1120": "المصارف", "1180": "المصارف", "1150": "المصارف", "1060": "المصارف", "1020": "المصارف", "1050": "المصارف", "1140": "المصارف", "1010": "المصارف",
+    "4030": "النقل", "4110": "النقل", "7010": "الاتصالات", "7030": "الاتصالات", "7202": "التقنية", "7203": "التقنية", "7205": "التقنية",
+    "6015": "الخدمات الاستهلاكية", "6018": "الخدمات الاستهلاكية", "4190": "تجزئة", "4001": "الرعاية الصحية", "4002": "الرعاية الصحية", "4003": "الرعاية الصحية",
+    "2200": "المواد الأساسية", "1301": "السلع الرأسمالية", "1302": "السلع الرأسمالية", "1303": "السلع الرأسمالية", "2280": "إنتاج الأغذية", "2286": "إنتاج الأغذية",
 }
 
 
+def now_iso() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def to_float(value: Any, default: float = 0.0) -> float:
+    try:
+        if value is None or value == "":
+            return default
+        if isinstance(value, str):
+            value = value.replace(",", "").replace("%", "").strip()
+        return float(value)
+    except Exception:
+        return default
+
+
+def to_int(value: Any, default: int = 0) -> int:
+    try:
+        if value is None or value == "":
+            return default
+        if isinstance(value, str):
+            value = value.replace(",", "").strip()
+        return int(float(value))
+    except Exception:
+        return default
+
+
+def pick(d: Dict[str, Any], keys: Iterable[str], default: Any = None) -> Any:
+    for k in keys:
+        if k in d and d[k] not in (None, ""):
+            return d[k]
+    return default
+
+
 class MarketIntelligence:
-    def __init__(self):
-        self.api_key  = os.environ.get("API_KEY", "")
-        self.api_url  = os.environ.get("API_URL", "https://www.sahmk.sa/api/v1")
-        self.data_dir = Path(__file__).parent.parent / "data"
-        self.data_dir.mkdir(parents=True, exist_ok=True)
-        self.session  = requests.Session()
+    def __init__(self) -> None:
+        self.api_key = os.environ.get("API_KEY", "").strip()
+        self.api_url = os.environ.get("API_URL", "https://www.sahmk.sa/api/v1").rstrip("/")
+        self.session = requests.Session()
         self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-            "Accept":     "application/json, text/html",
+            "User-Agent": "RasedBot/1.0 (+github-actions)",
+            "Accept": "application/json",
         })
-
-    def _rsi_estimate(self, change_pct) -> float:
-        return round(min(75.0, max(28.0, 50.0 + float(change_pct or 0) * 3)), 2)
-
-    def _sector(self, symbol, api_sector="") -> str:
-        if api_sector and str(api_sector).strip():
-            return str(api_sector).strip()
-        return SECTOR_MAP.get(str(symbol), "متعدد")
-
-    def fetch_from_sahmk_api(self):
-        if not self.api_key:
-            return None
-        print("📡 Fetching from Sahmk API...")
-        headers = {
-            "User-Agent":    "Mozilla/5.0",
-            "Accept":        "application/json",
-            "Authorization": f"Bearer {self.api_key}",
-            "X-API-Key":     self.api_key,
-        }
-        endpoints = [
-            ("market/volume/",  30, 2.5),
-            ("market/gainers/", 20, 2.0),
-            ("market/losers/",  20, 1.8),
-        ]
-        all_items, seen = [], set()
-        for endpoint, limit, src_vol in endpoints:
-            url = f"{self.api_url}/{endpoint}"
-            try:
-                resp = self.session.get(url, headers=headers,
-                                        params={"apikey": self.api_key, "limit": limit}, timeout=10)
-                if resp.status_code == 200:
-                    raw   = resp.json()
-                    items = raw if isinstance(raw, list) else raw.get("data", raw.get("stocks", []))
-                    for item in items:
-                        sym = item.get("symbol", item.get("ticker", ""))
-                        if sym and sym not in seen:
-                            item["_src_vol"] = src_vol
-                            all_items.append(item)
-                            seen.add(sym)
-                    print(f"   ✅ {endpoint}: {len(items)} أسهم")
-                elif resp.status_code == 404:
-                    print(f"   ⚠️ {endpoint}: 404")
-                else:
-                    print(f"   ❌ {endpoint}: HTTP {resp.status_code}")
-            except Exception as e:
-                print(f"   ❌ {endpoint}: {e}")
-
-        if all_items:
-            stocks = self._normalize(all_items, "api")
-            if stocks:
-                print(f"✅ Sahmk API: {len(stocks)} سهم")
-                return stocks
-        return None
-
-    def fetch_from_argaam(self):
-        print("📰 Fetching from Argaam...")
-        try:
-            resp = self.session.get("https://www.argaam.com/ar/market", timeout=15)
-            if resp.status_code != 200:
-                return None
-            soup, stocks = BeautifulSoup(resp.text, "html.parser"), []
-            for row in soup.find_all("tr"):
-                cells = row.find_all("td")
-                if len(cells) < 4:
-                    continue
-                try:
-                    symbol = cells[0].get_text(strip=True)
-                    name   = cells[1].get_text(strip=True)
-                    price  = float(re.sub(r"[^\d.]", "", cells[2].get_text()) or 0)
-                    change = float(re.sub(r"[^\d.-]", "", cells[3].get_text()) or 0)
-                    if symbol and price > 0:
-                        stocks.append({
-                            "symbol":         symbol,
-                            "name":           name,
-                            "sector":         self._sector(symbol),
-                            "current_price":  price,
-                            "change_percent": change,
-                            "rsi":            self._rsi_estimate(change),
-                            "volume_ratio":   round(1.0 + abs(change) / 10, 2),
-                            "rs_rank":        round(min(100, max(0, 50 + change * 2)), 1),
-                            "timestamp":      datetime.now().isoformat(),
-                            "data_source":    "scrape",
-                        })
-                except Exception:
-                    continue
-            if stocks:
-                print(f"✅ Argaam: {len(stocks)} stocks")
-                return stocks
-        except Exception as e:
-            print(f"❌ Argaam: {e}")
-        return None
-
-    def get_fallback_data(self):
-        """بيانات احتياطية — data_source=fallback → لن يتم النشر"""
-        print("⚠️  FALLBACK data — posting will be BLOCKED by generate_signal.py")
-        return [
-            {"symbol": "2222", "name": "أرامكو السعودية",    "sector": "الطاقة",        "current_price": 30.85, "change_percent": 1.2,  "rsi": 58.3, "volume_ratio": 1.80, "rs_rank": 72},
-            {"symbol": "1120", "name": "مصرف الراجحي",       "sector": "المصارف",        "current_price": 86.40, "change_percent": 0.8,  "rsi": 61.2, "volume_ratio": 1.50, "rs_rank": 68},
-            {"symbol": "2010", "name": "سابك",               "sector": "البتروكيماويات", "current_price": 94.20, "change_percent": -0.3, "rsi": 47.8, "volume_ratio": 1.10, "rs_rank": 55},
-            {"symbol": "2050", "name": "صافولا",             "sector": "الاستهلاكية",    "current_price": 27.15, "change_percent": 2.4,  "rsi": 64.5, "volume_ratio": 2.30, "rs_rank": 81},
-            {"symbol": "1180", "name": "البنك الأهلي",       "sector": "المصارف",        "current_price": 42.80, "change_percent": 1.1,  "rsi": 59.7, "volume_ratio": 1.60, "rs_rank": 70},
-            {"symbol": "2380", "name": "رابغ للتكرير",       "sector": "البتروكيماويات", "current_price": 18.45, "change_percent": 3.2,  "rsi": 68.1, "volume_ratio": 2.80, "rs_rank": 85},
-            {"symbol": "4002", "name": "المراعي",            "sector": "إنتاج الأغذية", "current_price": 55.30, "change_percent": 0.5,  "rsi": 53.2, "volume_ratio": 1.30, "rs_rank": 62},
-            {"symbol": "7010", "name": "الاتصالات السعودية", "sector": "الاتصالات",      "current_price": 38.90, "change_percent": -0.8, "rsi": 44.6, "volume_ratio": 0.90, "rs_rank": 48},
-            {"symbol": "4030", "name": "أسترا الصناعية",     "sector": "الاستثمار",      "current_price": 22.60, "change_percent": 1.8,  "rsi": 62.4, "volume_ratio": 2.10, "rs_rank": 76},
-            {"symbol": "1010", "name": "بنك الرياض",         "sector": "المصارف",        "current_price": 31.25, "change_percent": 0.3,  "rsi": 51.8, "volume_ratio": 1.20, "rs_rank": 58},
-        ]
-
-    def _normalize(self, items: list, source: str) -> list:
-        stocks = []
-        for item in items:
-            try:
-                sym    = item.get("symbol", "")
-                change = float(item.get("change_percent", item.get("changePercent", 0)) or 0)
-                price  = float(item.get("price", item.get("current_price", 0)) or 0)
-                rsi_raw = item.get("rsi") or item.get("RSI")
-                rsi     = float(rsi_raw) if rsi_raw else self._rsi_estimate(change)
-                stocks.append({
-                    "symbol":         sym,
-                    "name":           item.get("name", ""),
-                    "sector":         self._sector(sym, item.get("sector", item.get("sector_name", ""))),
-                    "current_price":  price,
-                    "change_percent": change,
-                    "rsi":            round(rsi, 2),
-                    "volume_ratio":   float(item.get("_src_vol", item.get("volume_ratio", 1.0))),
-                    "rs_rank":        float(item.get("rs_rank", 50)),
-                    "timestamp":      datetime.now().isoformat(),
-                    "data_source":    source,
-                })
-            except Exception:
-                continue
-        return stocks
-
-    def run(self):
-        print("=" * 60)
-        print("🧠 راصد — جلب بيانات السوق")
-        print("=" * 60)
-
-        stocks, source = None, "fallback"
-
         if self.api_key:
-            stocks = self.fetch_from_sahmk_api()
-            if stocks:
-                source = "api"
+            self.session.headers.update({"Authorization": f"Bearer {self.api_key}"})
 
-        if not stocks:
-            stocks = self.fetch_from_argaam()
-            if stocks:
-                source = "scrape"
+    def _request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Optional[Any]:
+        url = f"{self.api_url}/{endpoint.strip('/')}"
+        params = dict(params or {})
+        if self.api_key:
+            params.setdefault("apikey", self.api_key)
+        try:
+            r = self.session.get(url, params=params, timeout=REQUEST_TIMEOUT)
+            if r.status_code != 200:
+                print(f"⚠️ API {r.status_code}: {endpoint}")
+                return None
+            return r.json()
+        except Exception as exc:
+            print(f"⚠️ API request failed {endpoint}: {exc}")
+            return None
 
-        if not stocks:
-            stocks = self.get_fallback_data()
-            source = "fallback"
+    def _extract_items(self, payload: Any) -> List[Dict[str, Any]]:
+        if isinstance(payload, list):
+            return [x for x in payload if isinstance(x, dict)]
+        if not isinstance(payload, dict):
+            return []
+        for key in ("data", "results", "stocks", "items", "quotes", "gainers", "active"):
+            val = payload.get(key)
+            if isinstance(val, list):
+                return [x for x in val if isinstance(x, dict)]
+            if isinstance(val, dict):
+                nested = self._extract_items(val)
+                if nested:
+                    return nested
+        return []
 
-        for s in stocks:
-            if not s.get("sector", "").strip():
-                s["sector"] = self._sector(s.get("symbol", ""))
-            s["data_source"] = source
+    def normalize_stock(self, raw: Dict[str, Any], source_endpoint: str) -> Optional[Dict[str, Any]]:
+        symbol = str(pick(raw, ["symbol", "ticker", "code", "company_symbol", "stock_symbol"], "")).strip()
+        if not symbol:
+            return None
+        name = str(pick(raw, ["name", "company_name", "companyName", "arabic_name", "short_name"], symbol)).strip()
+        sector = str(pick(raw, ["sector", "sector_name", "sectorName"], SECTOR_MAP.get(symbol, ""))).strip()
 
-        output = {
-            "stocks":        stocks,
-            "timestamp":     datetime.now().isoformat(),
-            "timezone":      "Asia/Riyadh",
-            "market_status": "open",
-            "total_stocks":  len(stocks),
-            "data_source":   source,
+        price = to_float(pick(raw, ["current_price", "price", "last_price", "last", "close", "lastTradePrice"]), 0)
+        prev_close = to_float(pick(raw, ["previous_close", "prev_close", "previousClose", "prevClose", "yesterday_close"]), 0)
+        change_pct = to_float(pick(raw, ["change_percent", "change_percentage", "percent_change", "changePercent", "pct_change"]), 0)
+        change = to_float(pick(raw, ["change", "price_change", "net_change", "change_value"]), 0)
+
+        high = to_float(pick(raw, ["high", "day_high", "high_price", "highPrice"]), 0)
+        low = to_float(pick(raw, ["low", "day_low", "low_price", "lowPrice"]), 0)
+        open_price = to_float(pick(raw, ["open", "open_price", "openPrice"]), 0)
+        volume = to_int(pick(raw, ["volume", "traded_volume", "tradedVolume", "qty", "quantity"]), 0)
+        value = to_float(pick(raw, ["value", "traded_value", "tradedValue", "turnover"]), 0)
+
+        if price <= 0:
+            return None
+        if prev_close <= 0 and change_pct != 0:
+            prev_close = price / (1 + change_pct / 100.0)
+        if change_pct == 0 and prev_close > 0:
+            change_pct = ((price / prev_close) - 1) * 100
+        if change == 0 and prev_close > 0:
+            change = price - prev_close
+
+        # لا نعتبر السهم صالحاً للإشارات الاحترافية بدون OHLC وحجم.
+        has_ohlc = high > 0 and low > 0 and open_price > 0 and prev_close > 0 and high >= low
+        has_liquidity = volume > 0 or value > 0
+
+        return {
+            "symbol": symbol,
+            "name": name,
+            "sector": sector,
+            "current_price": round(price, 4),
+            "change_percent": round(change_pct, 4),
+            "change": round(change, 4),
+            "volume": volume,
+            "value": round(value, 2),
+            "high": round(high, 4),
+            "low": round(low, 4),
+            "open": round(open_price, 4),
+            "previous_close": round(prev_close, 4),
+            "rsi": to_float(pick(raw, ["rsi", "RSI"]), 0),
+            "volume_ratio": to_float(pick(raw, ["volume_ratio", "volumeRatio", "relative_volume"]), 0),
+            "rs_rank": to_float(pick(raw, ["rs_rank", "rsRank", "RS_Rank", "relative_strength_rank"]), 0),
+            "timestamp": now_iso(),
+            "data_source": "api",
+            "source_endpoint": source_endpoint,
+            "has_real_ohlc": has_ohlc,
+            "has_real_liquidity": has_liquidity,
+            "quality_flags": [],
         }
 
-        daily_file = self.data_dir / "daily.json"
-        with open(daily_file, "w", encoding="utf-8") as f:
-            json.dump(output, f, ensure_ascii=False, indent=2)
+    def fetch_candidates(self) -> List[Dict[str, Any]]:
+        endpoints: List[Tuple[str, Dict[str, Any]]] = [
+            ("market/gainers", {"limit": 50}),
+            ("market/volume", {"limit": 50}),
+            ("market/active", {"limit": 50}),
+            ("market/quotes", {"limit": 250}),
+            ("stocks", {"limit": 250}),
+        ]
+        seen = set()
+        out: List[Dict[str, Any]] = []
+        for endpoint, params in endpoints:
+            payload = self._request(endpoint, params)
+            items = self._extract_items(payload)
+            if not items:
+                print(f"⚠️ {endpoint}: لا توجد بيانات قابلة للقراءة")
+                continue
+            print(f"✅ {endpoint}: {len(items)} سجل")
+            for raw in items:
+                stock = self.normalize_stock(raw, endpoint)
+                if not stock or stock["symbol"] in seen:
+                    continue
+                seen.add(stock["symbol"])
+                out.append(stock)
+            time.sleep(0.2)
+        return out
 
-        positive = sum(1 for s in stocks if s.get("change_percent", 0) > 0)
-        negative = sum(1 for s in stocks if s.get("change_percent", 0) < 0)
-        print(f"\n✅ إجمالي: {len(stocks)} سهم | مصدر: {source}")
-        print(f"📈 موجب: {positive}   📉 سالب: {negative}")
+    def load_history(self) -> Dict[str, List[Dict[str, Any]]]:
+        if not HISTORY_FILE.exists():
+            return {}
+        try:
+            data = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+            return data if isinstance(data, dict) else {}
+        except Exception:
+            return {}
 
-        if source == "fallback":
-            print("🚫 تحذير: بيانات fallback — لن يتم النشر")
+    def save_history_snapshot(self, stocks: List[Dict[str, Any]]) -> None:
+        history = self.load_history()
+        today = datetime.now().strftime("%Y-%m-%d")
+        for s in stocks:
+            if not s.get("has_real_ohlc"):
+                continue
+            sym = s["symbol"]
+            row = {
+                "date": today,
+                "open": s["open"],
+                "high": s["high"],
+                "low": s["low"],
+                "close": s["current_price"],
+                "previous_close": s["previous_close"],
+                "volume": s["volume"],
+                "value": s["value"],
+            }
+            arr = history.setdefault(sym, [])
+            arr = [x for x in arr if x.get("date") != today]
+            arr.append(row)
+            arr.sort(key=lambda x: x.get("date", ""))
+            history[sym] = arr[-260:]
+        HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def run(self) -> int:
+        print("=" * 60)
+        print("🧠 راصد — جلب بيانات السوق الحقيقي فقط")
+        print("=" * 60)
+        if not self.api_key:
+            print("❌ API_KEY غير موجود. تم إيقاف النشر بدلاً من استخدام fallback.")
             return 1
 
-        print(f"💾 محفوظ في: {daily_file}")
+        stocks = self.fetch_candidates()
+        valid = [s for s in stocks if s.get("has_real_ohlc") and s.get("has_real_liquidity")]
+
+        if len(valid) < MIN_VALID_STOCKS:
+            print(f"❌ بيانات غير كافية: {len(valid)} سهم صالح فقط، المطلوب {MIN_VALID_STOCKS} على الأقل")
+            output = {
+                "stocks": valid,
+                "timestamp": now_iso(),
+                "timezone": "Asia/Riyadh",
+                "market_status": "open",
+                "total_stocks": len(valid),
+                "data_source": "api",
+                "quality_status": "blocked_insufficient_real_data",
+                "blocked_reason": f"valid_stocks {len(valid)} < {MIN_VALID_STOCKS}",
+            }
+            DAILY_FILE.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+            return 1
+
+        self.save_history_snapshot(valid)
+        output = {
+            "stocks": valid,
+            "timestamp": now_iso(),
+            "timezone": "Asia/Riyadh",
+            "market_status": "open",
+            "total_stocks": len(valid),
+            "data_source": "api",
+            "quality_status": "real_api_data",
+        }
+        DAILY_FILE.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"✅ تم حفظ {len(valid)} سهم ببيانات OHLC وحجم حقيقية")
         return 0
 
 
-def main():
-    sys.exit(MarketIntelligence().run())
-
 if __name__ == "__main__":
-    main()
+    sys.exit(MarketIntelligence().run())
