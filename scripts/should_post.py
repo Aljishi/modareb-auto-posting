@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-راصد — بوابة النشر النهائية Premium
-
-لا تسمح بالنشر إلا إذا:
-- بيانات API حقيقية.
-- ATR/دعم/مقاومة موجودة.
-- R:R مناسب.
-- الهدف الثاني منطقي خلال 7 أيام فنياً.
-- OpenAI وافق على الإشارة.
-"""
+"""راصد — بوابة النشر النهائية Premium."""
 
 import json
 import os
@@ -33,6 +24,7 @@ MIN_VALUE = float(os.getenv("MIN_VALUE_SAR", "3000000"))
 MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "82"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
+ENGINE_VERSION = "rased_sahmk_paid_historical_7d_v1"
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -55,10 +47,10 @@ def posted_today() -> bool:
 
 
 def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
-    if sig.get("data_source") != "api":
-        return False, "مصدر البيانات ليس API حقيقي"
-    if sig.get("engine_version") != "rased_premium_7d_ai_ready":
-        return False, "الإشارة ليست من محرك Premium الجديد"
+    if sig.get("data_source") != "sahmk_api_historical":
+        return False, "مصدر البيانات ليس Sahmk Historical API"
+    if sig.get("engine_version") != ENGINE_VERSION:
+        return False, "الإشارة ليست من محرك Sahmk Historical الجديد"
 
     if fnum(sig.get("score")) < MIN_SCORE:
         return False, f"Score أقل من {MIN_SCORE}"
@@ -77,6 +69,8 @@ def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
         if fnum(sig.get(field)) <= 0:
             return False, f"الحقل الفني ناقص أو صفر: {field}"
 
+    if int(sig.get("historical_bars", 0)) < 30:
+        return False, "البيانات التاريخية أقل من 30 شمعة"
     if fnum(sig.get("stop_loss")) >= fnum(sig.get("entry_point")):
         return False, "وقف الخسارة غير منطقي"
     if fnum(sig.get("target2")) <= fnum(sig.get("entry_point")):
@@ -128,7 +122,6 @@ def main() -> int:
             print(f"❌ {sym}: {msg}")
 
     validated.sort(key=lambda s: (fnum(s.get("rased_score")), fnum(s.get("ai_confidence")), fnum(s.get("rr"))), reverse=True)
-    # ننشر أقوى إشارة فقط لتقليل المخاطر.
     validated = validated[:1]
 
     out = {
@@ -136,7 +129,7 @@ def main() -> int:
         "total_checked": len(signals),
         "total_valid": len(validated),
         "timestamp": datetime.now().isoformat(timespec="seconds"),
-        "engine_version": "rased_premium_7d_ai_ready",
+        "engine_version": ENGINE_VERSION,
         "rules": {
             "min_score": MIN_SCORE,
             "min_rased_score": MIN_RASED_SCORE,
