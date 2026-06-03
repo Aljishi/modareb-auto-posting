@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-راصد — OpenAI Final Signal Reviewer
+"""راصد — OpenAI Final Signal Reviewer.
 
-الوظيفة:
-- مراجعة نهائية قبل تيليغرام.
-- إخراج JSON صارم.
-- إضافة/تعزيز RASED SCORE™, tier, confidence, risk.
-- رفض الإشارة إذا لم تكن مناسبة لمضاربة 1-7 أيام.
+يراجع الإشارة قبل النشر ويرفض أي إشارة غير مناسبة لمضاربة 1-7 أيام.
 """
 
 import json
@@ -37,20 +32,15 @@ REVIEW_SCHEMA = {
         "risk_score": {"type": "integer", "minimum": 0, "maximum": 100},
         "rased_score_adjustment": {"type": "integer", "minimum": -10, "maximum": 10},
         "expected_holding_days": {"type": "integer", "minimum": 1, "maximum": 30},
-        "main_reasons": {
-            "type": "array",
-            "items": {"type": "string"},
-            "minItems": 1,
-            "maxItems": 5
-        },
+        "main_reasons": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 5},
         "rejection_reason": {"type": "string"},
         "arabic_summary": {"type": "string"},
-        "telegram_note": {"type": "string"}
+        "telegram_note": {"type": "string"},
     },
     "required": [
         "decision", "confidence", "risk_level", "risk_score", "rased_score_adjustment",
         "expected_holding_days", "main_reasons", "rejection_reason", "arabic_summary", "telegram_note"
-    ]
+    ],
 }
 
 
@@ -99,17 +89,16 @@ Important:
 - Be conservative.
 - Do not invent data.
 - Do not override missing or bad data.
-- Reject if the signal looks overextended, weak, illiquid, too close to resistance, or unlikely to reach the target within 1-7 trading days.
+- Reject if the signal looks overextended, weak, illiquid, too close to resistance, or unlikely to reach TP2 within 1-7 trading days.
 - Reject if risk_level should be HIGH.
 
 Signal:
 Symbol: {signal.get('stock_symbol')}
 Name: {signal.get('stock_name')}
-Sector: {signal.get('sector')}
 Current Price: {signal.get('current_price')}
 Entry: {signal.get('entry_point')}
-Target 1: {signal.get('target1')} ({signal.get('target1_percent')}%)
-Target 2: {signal.get('target2')} ({signal.get('target2_percent')}%)
+Target 1: {signal.get('target1')} (+{signal.get('target1_percent')}%)
+Target 2: {signal.get('target2')} (+{signal.get('target2_percent')}%)
 Stop Loss: {signal.get('stop_loss')} (-{signal.get('stop_loss_percent')}%)
 R:R: {signal.get('rr')}
 Score: {signal.get('score')}
@@ -124,19 +113,20 @@ Trend: {signal.get('trend')}
 Expected days TP1: {signal.get('expected_days_to_target1')}
 Expected days TP2: {signal.get('expected_days_to_target2')}
 Seven-day filter passed: {signal.get('seven_day_filter_passed')}
+Historical bars: {signal.get('historical_bars')}
 Technical reading: {signal.get('technical_reading')}
 
 Approval rules:
 - APPROVE only if confidence >= 82.
 - APPROVE only if risk is LOW or MEDIUM.
 - APPROVE only if expected_holding_days <= 7.
-- REJECT if target 2 looks unrealistic within 7 days.
+- REJECT if TP2 looks unrealistic within 7 days.
 - REJECT if RSI is overheated or volume does not confirm.
 - REJECT if the setup is not clear.
 
 Arabic fields:
-- arabic_summary: short professional Arabic summary for paid Telegram channel style.
-- telegram_note: short premium wording, no long technical indicators.
+- arabic_summary: short professional Arabic summary for a paid Telegram channel.
+- telegram_note: short premium wording, no long technical indicator list.
 """
 
 
@@ -150,11 +140,7 @@ def review_one(client: OpenAI, signal: Dict[str, Any]) -> Dict[str, Any]:
         ],
         response_format={
             "type": "json_schema",
-            "json_schema": {
-                "name": "rased_signal_review",
-                "strict": True,
-                "schema": REVIEW_SCHEMA,
-            },
+            "json_schema": {"name": "rased_signal_review", "strict": True, "schema": REVIEW_SCHEMA},
         },
     )
     return json.loads(response.choices[0].message.content)
