@@ -73,7 +73,7 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/market_intelligence.py
 
-      - name: Generate signals
+      - name: Generate premium signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/generate_signal.py
 
@@ -82,6 +82,8 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4o-mini
+          MIN_AI_CONFIDENCE: "82"
+          MAX_HOLD_DAYS: "7"
         run: python scripts/ai_signal_reviewer.py
 
       - name: Validate signal quality
@@ -89,17 +91,15 @@ jobs:
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/should_post.py
 
-      - name: Generate post image
+      - name: Generate premium post image
         if: >
           steps.validate.outcome == 'success' &&
           (steps.market.outputs.open == 'true' || github.event.inputs.force == 'true')
         run: |
           if [ -f data/validated_signals.json ]; then
             python scripts/generate_post.py data/validated_signals.json output.png
-          elif [ -f data/signals.json ]; then
-            python scripts/generate_post.py data/signals.json output.png
           else
-            echo "❌ لا توجد إشارات للنشر" && exit 1
+            echo "❌ لا توجد إشارات معتمدة للنشر" && exit 1
           fi
 
       - name: Post to Telegram
@@ -118,8 +118,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ || true
-          git diff --cached --quiet || git commit -m "📊 إشارة — $(date +'%H:%M')"
+          git add data/ output.png || true
+          git diff --cached --quiet || git commit -m "📊 RASED Premium Signal — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
 
@@ -234,7 +234,8 @@ jobs:
           try:
             d = json.load(open('data/golden_signals.json'))
             print(len(d) if isinstance(d, list) else 0)
-          except: print(0)
+          except Exception:
+            print(0)
           ")
           echo "count=$COUNT" >> $GITHUB_OUTPUT
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
@@ -258,7 +259,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/golden_signals.json || true
+          git add data/golden_signals.json golden_output.png || true
           git diff --cached --quiet || git commit -m "🌟 إشارة ذهبية — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
