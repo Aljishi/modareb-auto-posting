@@ -1,103 +1,102 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-should_post.py
-التحقق من جودة الإشارات قبل النشر — يشمل حارس النشر المزدوج
-FIX: منع تعارض الكتابة مع post_to_telegram.py — last_post_date يُكتب هنا فقط للتحقق
-     الكتابة الفعلية تبقى في post_to_telegram.py بعد النشر الناجح
+راصد — بوابة النشر النهائية
+لا تسمح بالنشر إلا إذا كانت الإشارة مبنية على بيانات API حقيقية، ATR حقيقي، مقاومة/دعم، وسيولة كافية.
 """
 
 import json
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Any, Dict, Tuple
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+SIGNALS_FILE = DATA_DIR / "signals.json"
+VALIDATED_FILE = DATA_DIR / "validated_signals.json"
+LAST_POST_FILE = DATA_DIR / "last_post_date.txt"
 
-MIN_SCORE = 70
-MIN_RSI   = 42
-MAX_RSI   = 68
-MIN_VOL   = 1.5
-MIN_RR    = 2.0
-
-
-def has_posted_today():
-    """التحقق إذا تم النشر اليوم مسبقاً"""
-    today     = datetime.now().strftime('%Y-%m-%d')
-    flag_file = DATA_DIR / "last_post_date.txt"
-    if flag_file.exists():
-        return flag_file.read_text().strip() == today
-    return False
+MIN_SCORE = 82
+MIN_RR = 2.2
+MIN_VOL_RATIO = 1.6
+MIN_VALUE = 2_000_000
+MAX_RSI = 72
+MIN_RSI = 45
 
 
-def validate(signal):
-    """التحقق من جودة الإشارة"""
-    score = signal.get('score', 0)
-    rsi   = signal.get('rsi', 50)
-    vol   = signal.get('volume_ratio', 1.0)
-    rr    = signal.get('rr', 0)
-
-    if score < MIN_SCORE:
-        return False, f"Score {score} < {MIN_SCORE}"
-    if not (MIN_RSI <= rsi <= MAX_RSI):
-        return False, f"RSI {rsi:.0f} خارج النطاق ({MIN_RSI}–{MAX_RSI})"
-    if vol < MIN_VOL:
-        return False, f"Volume {vol:.1f}x < {MIN_VOL}x"
-    if rr < MIN_RR:
-        return False, f"R:R {rr:.1f} < {MIN_RR}"
-
-    return True, {"rr_ratio": rr}
+def fnum(v: Any, default: float = 0.0) -> float:
+    try:
+        return float(v)
+    except Exception:
+        return default
 
 
-def main():
+def posted_today() -> bool:
+    today = datetime.now().strftime("%Y-%m-%d")
+    return LAST_POST_FILE.exists() and LAST_POST_FILE.read_text(encoding="utf-8").strip() == today
+
+
+def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
+    if sig.get("data_source") != "api":
+        return False, "مصدر البيانات ليس API حقيقي"
+    if sig.get("engine_version") != "rased_pro_10_guarded":
+        return False, "الإشارة ليست من المحرك الاحترافي الجديد"
+    if fnum(sig.get("score")) < MIN_SCORE:
+        return False, f"Score أقل من {MIN_SCORE}"
+    if fnum(sig.get("rr")) < MIN_RR:
+        return False, f"R:R أقل من {MIN_RR}"
+    if not (MIN_RSI <= fnum(sig.get("rsi")) <= MAX_RSI):
+        return False, "RSI خارج النطاق الآمن"
+    if fnum(sig.get("volume_ratio")) < MIN_VOL_RATIO:
+        return False, "الحجم النسبي غير كافٍ"
+    if fnum(sig.get("value")) < MIN_VALUE:
+        return False, "السيولة المتداولة غير كافية"
+    for field in ("atr14", "resistance", "support", "entry_point", "target1", "target2", "stop_loss"):
+        if fnum(sig.get(field)) <= 0:
+            return False, f"الحقل الفني ناقص أو صفر: {field}"
+    if fnum(sig.get("stop_loss")) >= fnum(sig.get("entry_point")):
+        return False, "وقف الخسارة غير منطقي"
+    if fnum(sig.get("target2")) <= fnum(sig.get("entry_point")):
+        return False, "الهدف غير منطقي"
+    return True, "ok"
+
+
+def main() -> int:
     print("=" * 60)
-    print("✅ راصد — التحقق من الإشارات")
+    print("✅ راصد — بوابة النشر النهائية")
     print("=" * 60)
 
-    # ─ حارس النشر المزدوج ───────────────────────────────────
-    if has_posted_today():
-        today = datetime.now().strftime('%Y-%m-%d')
-        print(f"⚠️ تم النشر مسبقاً اليوم ({today}) — تم تخطي النشر")
-        sys.exit(1)
+    if posted_today():
+        print("⚠️ تم النشر مسبقاً اليوم — منع نشر مكرر")
+        return 1
 
-    # ─ قراءة الإشارات ──────────────────────────────────────
-    signals_file = DATA_DIR / "signals.json"
-    if not signals_file.exists():
-        print("❌ signals.json not found")
-        sys.exit(1)
+    if not SIGNALS_FILE.exists():
+        print("❌ signals.json غير موجود")
+        return 1
+    data = json.loads(SIGNALS_FILE.read_text(encoding="utf-8"))
+    signals = data.get("signals", [])
 
-    with open(signals_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-    signals   = data.get('signals', [])
     validated = []
-
     for sig in signals:
-        ok, result = validate(sig)
-        sym = sig.get('stock_symbol', sig.get('symbol', ''))
+        ok, msg = validate(sig)
+        sym = sig.get("stock_symbol", sig.get("symbol", ""))
         if ok:
-            validated.append({**sig, **result})
-            print(f"  ✅ {sym}: Score {sig.get('score')} | R:R {result['rr_ratio']}")
+            validated.append(sig)
+            print(f"  ✅ {sym}: Score {sig.get('score')} | R:R {sig.get('rr')}")
         else:
-            print(f"  ❌ {sym}: {result}")
+            print(f"  ❌ {sym}: {msg}")
 
-    output = {
+    out = {
         "validated_signals": validated,
-        "total_checked":     len(signals),
-        "total_valid":       len(validated),
-        "timestamp":         datetime.now().isoformat(),
+        "total_checked": len(signals),
+        "total_valid": len(validated),
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "engine_version": "rased_pro_10_guarded",
     }
-
-    out_file = DATA_DIR / "validated_signals.json"
-    with open(out_file, 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print(f"\n✅ {len(validated)}/{len(signals)} إشارة مقبولة")
-
-    # exit(0) = يوجد إشارات صالحة → تابع النشر
-    # exit(1) = لا إشارات صالحة → أوقف
-    sys.exit(0 if validated else 1)
+    VALIDATED_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"\n✅ {len(validated)}/{len(signals)} إشارة صالحة للنشر")
+    return 0 if validated else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
