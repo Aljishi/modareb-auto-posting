@@ -1,174 +1,185 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Post initial signal image + caption — then save to open_signals.json"""
+"""راصد — نشر إشارة Premium على تيليغرام + حفظها للمتابعة."""
 
-import os, sys, json, requests
+import json
+import os
+import sys
 from datetime import datetime
 from pathlib import Path
+from typing import Any, Dict, Optional
 
-BOT_TOKEN  = os.environ.get("TELEGRAM_BOT_TOKEN")
-CHAT_ID    = os.environ.get("TELEGRAM_CHAT_ID")
-DATA_DIR   = Path(__file__).parent.parent / "data"
+import requests
+
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 IMAGE_FILE = Path("output.png")
 
 
-def escape(text):
-    return str(text).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+def escape(text: Any) -> str:
+    return str(text).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def load_signal():
+def fnum(x: Any, default: float = 0.0) -> float:
+    try:
+        if x is None or x == "":
+            return default
+        if isinstance(x, str):
+            x = x.replace("%", "").replace(",", "").strip()
+        return float(x)
+    except Exception:
+        return default
+
+
+def load_signal() -> Optional[Dict[str, Any]]:
     for fname in ("validated_signals.json", "signals.json"):
         f = DATA_DIR / fname
         if f.exists():
-            raw  = json.load(open(f, encoding="utf-8"))
+            raw = json.loads(f.read_text(encoding="utf-8"))
             sigs = raw.get("validated_signals", raw.get("signals", []))
             if sigs:
                 return sigs[0]
     return None
 
 
-def build_caption(s):
-    name    = escape(s.get("stock_name",  s.get("name",   "")))
-    sym     = escape(s.get("stock_symbol", s.get("symbol", "")))
-    sect    = escape(s.get("sector", ""))
-    conf    = escape(s.get("confidence", "جيدة"))
-    emoji   = s.get("emoji", "🟡")
-    price   = s.get("current_price", 0)
-    entry   = s.get("entry_point",   s.get("entry", 0))
-    t1      = s.get("target1",  0);  t1p = s.get("target1_percent",  5)
-    t2      = s.get("target2",  0);  t2p = s.get("target2_percent", 10)
-    sl      = s.get("stop_loss", 0); slp = s.get("stop_loss_percent", 3)
-    rsi     = s.get("rsi",  0)
-    vol     = s.get("volume_ratio", 0)
-    score   = s.get("score", 0)
-    risk    = escape(s.get("risk_level", ""))
-    insight = escape(s.get("key_insight", ""))
-    summary = escape(s.get("company_summary", ""))
-    reason  = escape(s.get("signal_reason", ""))
-    is_claude = s.get("claude_analyzed", False)
+def fmt_price(v: Any) -> str:
+    return f"{fnum(v):.2f}"
 
-    # ── الكابشن الأساسي ──────────────────────────────────
+
+def build_caption(s: Dict[str, Any]) -> str:
+    name = escape(s.get("stock_name", s.get("name", "")))
+    sym = escape(s.get("stock_symbol", s.get("symbol", "")))
+    tier = escape(s.get("tier", "Premium"))
+    tier_emoji = s.get("tier_emoji", "⭐")
+    rased_score = fnum(s.get("rased_score"), fnum(s.get("score"), 0))
+    confidence = int(s.get("ai_confidence", 0) or str(s.get("confidence", "0")).replace("%", "") or 0)
+    risk = escape(s.get("risk_level", "متوسط"))
+    risk_emoji = s.get("risk_emoji", "🟡")
+    note = escape(s.get("ai_telegram_note") or s.get("key_insight") or "اجتازت الإشارة فلاتر راصد الخاصة بالزخم والسيولة وإدارة المخاطر.")
+    summary = escape(s.get("ai_arabic_summary") or s.get("signal_reason") or "إشارة مرشحة لمضاربة قصيرة المدى مع الالتزام الصارم بوقف الخسارة.")
+
+    now = datetime.now().strftime("%Y-%m-%d | %I:%M %p KSA").replace("AM", "ص").replace("PM", "م")
+
     cap = (
-        f"📊 <b>{name} ({sym})</b>\n"
+        f"{tier_emoji} <b>RASED {tier.upper()} SIGNAL</b>\n\n"
+        f"📈 <b>{sym} | {name}</b>\n\n"
+        f"💰 <b>نقطة الدخول</b>\n"
+        f"<code>{fmt_price(s.get('entry_point', s.get('entry')))}</code> ريال\n\n"
+        f"🎯 <b>الهدف الأول</b>\n"
+        f"<code>{fmt_price(s.get('target1'))}</code> ريال  <b>(+{fnum(s.get('target1_percent')):.2f}%)</b>\n\n"
+        f"🎯 <b>الهدف الثاني</b>\n"
+        f"<code>{fmt_price(s.get('target2'))}</code> ريال  <b>(+{fnum(s.get('target2_percent')):.2f}%)</b>\n\n"
+        f"🛑 <b>وقف الخسارة</b>\n"
+        f"<code>{fmt_price(s.get('stop_loss'))}</code> ريال  <b>(-{fnum(s.get('stop_loss_percent')):.2f}%)</b>\n\n"
+        f"━━━━━━━━━━━━━━\n\n"
+        f"⭐ <b>RASED SCORE™</b>\n"
+        f"<b>{rased_score:.1f} / 100</b>\n\n"
+        f"🤖 <b>الثقة</b>\n"
+        f"<b>{confidence}%</b>\n\n"
+        f"{risk_emoji} <b>مستوى المخاطرة</b>\n"
+        f"<b>{risk}</b>\n\n"
+        f"⏳ <b>مدة الصفقة المتوقعة</b>\n"
+        f"1–7 أيام\n\n"
+        f"━━━━━━━━━━━━━━\n\n"
+        f"🏆 <b>الحالة</b>\n"
+        f"إشارة معتمدة بعد اجتياز فلاتر راصد ومراجعة الذكاء الاصطناعي.\n\n"
+        f"📌 <b>ملخص سريع</b>\n"
+        f"{summary}\n\n"
+        f"💡 {note}\n\n"
+        f"⏰ {escape(now)}\n\n"
+        f"⚠️ <i>محتوى تعليمي آلي وليس توصية استثمارية أو ضماناً لتحقيق الأهداف. الالتزام بوقف الخسارة وإدارة رأس المال مسؤولية المتداول.</i>\n\n"
+        f"#راصد #تاسي #السوق_السعودي"
     )
-    if sect:
-        cap += f"🏢 {sect}\n"
-    if summary:
-        cap += f"ℹ️ <i>{summary}</i>\n"
-    cap += "\n"
-
-    cap += (
-        f"🎯 الثقة: <b>{conf}</b> {emoji}\n"
-    )
-    if risk:
-        risk_emoji = {"منخفض":"🟢","متوسط":"🟡","مرتفع":"🔴"}.get(risk,"⚪")
-        cap += f"⚠️ المخاطرة: {risk} {risk_emoji}\n"
-    cap += "\n"
-
-    cap += (
-        f"💰 السعر الحالي: <code>{price:.2f}</code> ريال\n"
-        f"🎯 نقطة الدخول: <code>{entry:.2f}</code> ريال\n\n"
-        f"📈 الأهداف:\n"
-        f"• الهدف الأول:  <code>{t1:.2f}</code> (+{t1p:.1f}%) 🟢\n"
-        f"• الهدف الثاني: <code>{t2:.2f}</code> (+{t2p:.1f}%) 🟢\n\n"
-        f"🛑 وقف الخسارة: <code>{sl:.2f}</code> (-{slp:.1f}%) 🔴\n\n"
-        f"📊 المؤشرات:\n"
-        f"RSI: <code>{rsi:.1f}</code>  |  "
-        f"الحجم: <code>{vol:.1f}x</code>  |  "
-        f"Score: <b>{score}/100</b>\n"
-    )
-
-    # ── تحليل كلود (إذا كان متاحاً) ──────────────────────
-    if is_claude:
-        cap += "\n🤖 <b>تحليل الذكاء الاصطناعي:</b>\n"
-        if reason:
-            cap += f"📌 {reason}\n"
-        if insight:
-            cap += f"💡 {insight}\n"
-
-    cap += "\n⚠️ <i>محتوى تعليمي — ليس توصية استثمارية</i>"
     return cap
 
 
-def save_open_signal(signal):
+def save_open_signal(signal: Dict[str, Any]) -> None:
     open_file = DATA_DIR / "open_signals.json"
-    signals   = []
+    signals = []
     if open_file.exists():
         try:
-            signals = json.load(open(open_file, encoding="utf-8"))
+            signals = json.loads(open_file.read_text(encoding="utf-8"))
         except Exception:
             signals = []
 
     today = datetime.now().strftime("%Y-%m-%d")
-    sym   = signal.get("stock_symbol", signal.get("symbol", ""))
+    sym = signal.get("stock_symbol", signal.get("symbol", ""))
     already = any(
-        s.get("date") == today and
-        s.get("signal", {}).get("stock_symbol",
-            s.get("signal", {}).get("symbol", "")) == sym
-        for s in signals
+        item.get("date") == today and item.get("signal", {}).get("stock_symbol", item.get("signal", {}).get("symbol", "")) == sym
+        for item in signals
     )
     if already:
         return
 
     signals.append({
-        "signal":         signal,
-        "date":           today,
-        "posted_at":      datetime.now().isoformat(),
-        "target1_hit":    False,
+        "signal": signal,
+        "date": today,
+        "posted_at": datetime.now().isoformat(timespec="seconds"),
+        "target1_hit": False,
         "target1_hit_at": None,
-        "target2_hit":    False,
+        "target2_hit": False,
         "target2_hit_at": None,
-        "stop_hit":       False,
-        "stop_hit_at":    None,
-        "status":         "open",
+        "stop_hit": False,
+        "stop_hit_at": None,
+        "max_holding_days": int(signal.get("max_holding_days", 7)),
+        "expires_at_days": 7,
+        "status": "open",
     })
-
-    with open(open_file, "w", encoding="utf-8") as f:
-        json.dump(signals, f, ensure_ascii=False, indent=2)
+    open_file.write_text(json.dumps(signals, ensure_ascii=False, indent=2), encoding="utf-8")
     print("💾 الإشارة محفوظة في open_signals.json للمتابعة")
 
 
-def send_photo(caption):
-    if not BOT_TOKEN: print("❌ TELEGRAM_BOT_TOKEN غير موجود"); return False
-    if not CHAT_ID:   print("❌ TELEGRAM_CHAT_ID غير موجود");   return False
+def send_photo(caption: str) -> bool:
+    if not BOT_TOKEN:
+        print("❌ TELEGRAM_BOT_TOKEN غير موجود")
+        return False
+    if not CHAT_ID:
+        print("❌ TELEGRAM_CHAT_ID غير موجود")
+        return False
     if not IMAGE_FILE.exists():
-        print(f"❌ الصورة غير موجودة: {IMAGE_FILE}"); return False
+        print(f"❌ الصورة غير موجودة: {IMAGE_FILE}")
+        return False
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-    with open(IMAGE_FILE, "rb") as photo:
+    with IMAGE_FILE.open("rb") as photo:
         resp = requests.post(
             url,
             data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"},
             files={"photo": photo},
             timeout=30,
         )
-    result = resp.json()
+    try:
+        result = resp.json()
+    except Exception:
+        print(f"❌ Telegram non-json response: {resp.text[:200]}")
+        return False
+
     if result.get("ok"):
         print("✅ تم النشر على تيليغرام")
-        (DATA_DIR / "last_post_date.txt").write_text(
-            datetime.now().strftime("%Y-%m-%d"))
+        (DATA_DIR / "last_post_date.txt").write_text(datetime.now().strftime("%Y-%m-%d"), encoding="utf-8")
         return True
-    print(f"❌ فشل: {result.get('description','unknown')}")
+
+    print(f"❌ فشل النشر: {result.get('description', 'unknown')}")
     return False
 
 
-def main():
-    print("="*60)
-    print("📤 راصد — الإشارة الأولى على تيليغرام")
-    print("="*60)
+def main() -> int:
+    print("=" * 60)
+    print("📤 راصد — Premium Telegram Post")
+    print("=" * 60)
 
-    sig = load_signal()
-    if not sig:
-        print("❌ لا توجد إشارات"); sys.exit(1)
+    signal = load_signal()
+    if not signal:
+        print("❌ لا توجد إشارات")
+        return 1
 
-    caption = build_caption(sig)
-    success = send_photo(caption)
-
-    if success:
-        save_open_signal(sig)
-
-    sys.exit(0 if success else 1)
+    caption = build_caption(signal)
+    ok = send_photo(caption)
+    if ok:
+        save_open_signal(signal)
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
