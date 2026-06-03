@@ -16,10 +16,10 @@ on:
         type: boolean
 
   schedule:
-    - cron: "*/5 7-12 * * 0-4"
-    - cron: "0 10-12 * * 0-4"
-    - cron: "0 14 * * 4"
-    - cron: "30 6 * * 0-4"
+    - cron: "*/5 7-12 * * 0-4"   # إشارة يومية كل 5 دقائق أثناء السوق
+    - cron: "0 10-12 * * 0-4"    # متابعة النتائج
+    - cron: "0 14 * * 4"         # تقرير أسبوعي كل خميس
+    - cron: "30 6 * * 0-4"       # الإشارة الذهبية قبل فتح السوق
 
 permissions:
   contents: write
@@ -29,6 +29,9 @@ env:
   PYTHONIOENCODING: utf-8
   PYTHONUNBUFFERED: "1"
 
+# ══════════════════════════════════════════════════════════════
+# Job 1: الإشارة اليومية
+# ══════════════════════════════════════════════════════════════
 jobs:
 
   auto-post:
@@ -40,6 +43,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -48,8 +52,9 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install arabic-reshaper==3.0.0 python-bidi==0.4.2 --force-reinstall
-          python -c "import arabic_reshaper; from bidi.algorithm import get_display; print('✅ Arabic OK')" || echo "⚠️ Arabic failed"
+          python -c "import arabic_reshaper; from bidi.algorithm import get_display; print('✅ Arabic OK')"
 
+      # ── فحص حالة السوق (لا يوقف المسار، نقرأ النتيجة) ──────────────────
       - name: Check market status
         id: market
         run: |
@@ -59,33 +64,42 @@ jobs:
 
       - name: Skip if market closed
         if: steps.market.outputs.open == 'false' && github.event.inputs.force != 'true'
-        run: echo "⚠️ السوق مغلق" && exit 0
+        run: |
+          echo "⚠️ السوق مغلق — تم التخطي"
+          exit 0
 
       - run: mkdir -p data
 
+      # ── جلب البيانات (خطأ هنا = لا نشر) ────────────────────────────────
       - name: Fetch market data
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
-        run: python scripts/market_intelligence.py || echo "⚠️ بيانات مخزنة"
+        run: python scripts/market_intelligence.py
+        # لا continue-on-error — إذا فشل جلب البيانات نوقف كل شيء
 
+      # ── توليد الإشارات ───────────────────────────────────────────────────
       - name: Generate signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/generate_signal.py
 
+      # ── تحليل Claude (اختياري — فشله لا يوقف النشر) ────────────────────
       - name: Claude deep analysis
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/claude_analysis.py || echo "⚠️ Claude unavailable"
+        run: python scripts/claude_analysis.py || echo "⚠️ Claude unavailable — skipping"
+        continue-on-error: true   # ✅ مقبول هنا فقط لأنه اختياري
 
+      # ── التحقق من جودة الإشارة (فشله = لا نشر اليوم) ──────────────────
       - name: Validate signal quality
         id: validate
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/should_post.py
-        continue-on-error: true
+        # لا continue-on-error — exit(1) يعني لا إشارات صالحة، نوقف
 
+      # ── توليد صورة المنشور ───────────────────────────────────────────────
       - name: Generate post image
         if: >
           steps.validate.outcome == 'success' &&
@@ -96,9 +110,10 @@ jobs:
           elif [ -f data/signals.json ]; then
             python scripts/generate_post.py data/signals.json output.png
           else
-            echo "⚠️ لا توجد إشارات" && exit 1
+            echo "❌ لا توجد إشارات للنشر" && exit 1
           fi
 
+      # ── النشر على تيليغرام (فشله = خطأ حقيقي) ──────────────────────────
       - name: Post to Telegram
         if: >
           steps.validate.outcome == 'success' &&
@@ -107,7 +122,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_to_telegram.py
+        # لا continue-on-error — إذا فشل النشر يجب أن يظهر الخطأ
 
+      # ── حفظ البيانات في الـ repo ─────────────────────────────────────────
       - name: Commit data
         if: steps.validate.outcome == 'success'
         env:
@@ -118,7 +135,11 @@ jobs:
           git add data/ || true
           git diff --cached --quiet || git commit -m "📊 إشارة — $(date +'%H:%M')"
           git push || true
-        continue-on-error: true
+        continue-on-error: true   # ✅ مقبول هنا — فشل الـ commit لا يؤثر على النشر
+
+# ══════════════════════════════════════════════════════════════
+# Job 2: متابعة النتائج
+# ══════════════════════════════════════════════════════════════
 
   track-results:
     runs-on: ubuntu-latest
@@ -138,12 +159,13 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-          API_KEY: ${{ secrets.API_KEY }}
-          API_URL: ${{ secrets.API_URL }}
+          API_KEY:  ${{ secrets.API_KEY }}
+          API_URL:  ${{ secrets.API_URL }}
         run: python scripts/track_results.py
 
       - name: Update track record
-        run: python scripts/update_track_record.py || echo "تخطي"
+        run: python scripts/update_track_record.py || echo "⚠️ تخطي"
+        continue-on-error: true   # ✅ مقبول — عملية ثانوية
 
       - name: Commit results
         env:
@@ -155,6 +177,10 @@ jobs:
           git diff --cached --quiet || git commit -m "📈 نتائج — $(date +'%H:%M')"
           git push || true
         continue-on-error: true
+
+# ══════════════════════════════════════════════════════════════
+# Job 3: التقرير الأسبوعي
+# ══════════════════════════════════════════════════════════════
 
   weekly-report:
     runs-on: ubuntu-latest
@@ -169,15 +195,23 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: python scripts/weekly_report.py
-      - env:
+
+      - name: Generate weekly report
+        run: python scripts/weekly_report.py
+
+      - name: Post weekly report to Telegram
+        env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_weekly_report.py || echo "تخطي"
+        run: python scripts/post_weekly_report.py
+        continue-on-error: true   # ✅ التقرير ثانوي — فشله لا يكسر شيئاً
+
+# ══════════════════════════════════════════════════════════════
+# Job 4: الإشارة الذهبية
+# ══════════════════════════════════════════════════════════════
 
   golden-signal:
     runs-on: ubuntu-latest
-    continue-on-error: true
     if: >
       github.event.schedule == '30 6 * * 0-4' ||
       (github.event_name == 'workflow_dispatch' &&
@@ -185,35 +219,71 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install -r requirements.txt pandas ta
-      - run: mkdir -p data
-      - run: |
-          [ -f data/daily.json ] || \
-          echo '{"stocks":[],"timestamp":"'"$(date -Iseconds)"'"}' > data/daily.json
-      - run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا إشارات ذهبية"
 
-      - name: Check golden signal
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt pandas ta
+          pip install arabic-reshaper==3.0.0 python-bidi==0.4.2 --force-reinstall
+
+      - run: mkdir -p data
+
+      # ── جلب أحدث بيانات السوق أولاً ─────────────────────────────────────
+      - name: Fetch market data for golden analysis
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: python scripts/market_intelligence.py || echo "⚠️ استخدام البيانات المخزنة"
+        continue-on-error: true   # ✅ مقبول — نستخدم البيانات المخزنة عند الفشل
+
+      # ── تحليل الإشارة الذهبية ────────────────────────────────────────────
+      - name: Golden signal analysis
+        id: analysis
+        run: python scripts/golden_signal_analysis.py || echo "ℹ️ لا إشارات ذهبية"
+        continue-on-error: true
+
+      # ── فحص وجود إشارات ──────────────────────────────────────────────────
+      - name: Check golden signal count
         id: golden
         run: |
           COUNT=$(python -c "
           import json
           try:
-            d=json.load(open('data/golden_signals.json'))
-            print(len(d) if isinstance(d,list) else 0)
+            d = json.load(open('data/golden_signals.json'))
+            print(len(d) if isinstance(d, list) else 0)
           except: print(0)
           ")
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
           echo "found=$([ $COUNT -gt 0 ] && echo true || echo false)" >> $GITHUB_OUTPUT
+          echo "📊 إشارات ذهبية موجودة: $COUNT"
 
+      # ── توليد صورة الإشارة الذهبية ───────────────────────────────────────
       - name: Generate golden image
         if: steps.golden.outputs.found == 'true'
         run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
+        # لا continue-on-error — الصورة ضرورية للنشر
 
-      - name: Post golden signal
+      # ── نشر الإشارة الذهبية ──────────────────────────────────────────────
+      - name: Post golden signal to Telegram
         if: steps.golden.outputs.found == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_golden_signal.py
+        # لا continue-on-error — فشل النشر يجب أن يظهر
+
+      # ── حفظ البيانات ─────────────────────────────────────────────────────
+      - name: Commit golden signal data
+        if: steps.golden.outputs.found == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/golden_signals.json || true
+          git diff --cached --quiet || git commit -m "🌟 إشارة ذهبية — $(date +'%H:%M')"
+          git push || true
+        continue-on-error: true
