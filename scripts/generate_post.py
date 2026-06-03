@@ -55,6 +55,17 @@ def fnum(x: Any, default: float = 0.0) -> float:
         return default
 
 
+def safe_int_percent(*values: Any, default: int = 0) -> int:
+    for v in values:
+        try:
+            n = fnum(v, None)
+            if n is not None:
+                return int(round(n))
+        except Exception:
+            pass
+    return default
+
+
 def load_signal(path: str) -> Optional[Dict[str, Any]]:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     if "validated_signals" in raw:
@@ -148,7 +159,7 @@ def build_image(signal: Dict[str, Any], out_path: str):
     y = 750
     rounded(draw, (70, y, W - 70, y + 175), CARD2, BORDER, 1, 24)
     score = fnum(signal.get("rased_score"), fnum(signal.get("score"), 0))
-    confidence = int(signal.get("ai_confidence", 0) or str(signal.get("confidence", "0")).replace("%", "") or 0)
+    confidence = safe_int_percent(signal.get("ai_confidence"), signal.get("confidence"), default=int(round(score)))
     risk = signal.get("risk_level", "متوسط")
     risk_emoji = signal.get("risk_emoji", "🟡")
 
