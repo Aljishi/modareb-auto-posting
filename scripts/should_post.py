@@ -1,102 +1,146 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-راصد — بوابة النشر النهائية
-لا تسمح بالنشر إلا إذا كانت الإشارة مبنية على بيانات API حقيقية، ATR حقيقي، مقاومة/دعم، وسيولة كافية.
-"""
 
 import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Tuple
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-SIGNALS_FILE = DATA_DIR / "signals.json"
-VALIDATED_FILE = DATA_DIR / "validated_signals.json"
-LAST_POST_FILE = DATA_DIR / "last_post_date.txt"
+DATA_DIR = Path(__file__).parent.parent / "data"
 
-MIN_SCORE = 82
-MIN_RR = 2.2
-MIN_VOL_RATIO = 1.6
-MIN_VALUE = 2_000_000
-MAX_RSI = 72
-MIN_RSI = 45
+MIN_SCORE = 75
+MIN_RSI = 42
+MAX_RSI = 68
+MIN_VOL = 1.5
+MIN_RR = 2.0
+MIN_AI_CONFIDENCE = 80
 
 
-def fnum(v: Any, default: float = 0.0) -> float:
-    try:
-        return float(v)
-    except Exception:
-        return default
-
-
-def posted_today() -> bool:
+def has_posted_today():
     today = datetime.now().strftime("%Y-%m-%d")
-    return LAST_POST_FILE.exists() and LAST_POST_FILE.read_text(encoding="utf-8").strip() == today
+    flag_file = DATA_DIR / "last_post_date.txt"
+    if flag_file.exists():
+        return flag_file.read_text().strip() == today
+    return False
 
 
-def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
-    if sig.get("data_source") != "api":
-        return False, "مصدر البيانات ليس API حقيقي"
-    if sig.get("engine_version") != "rased_pro_10_guarded":
-        return False, "الإشارة ليست من المحرك الاحترافي الجديد"
-    if fnum(sig.get("score")) < MIN_SCORE:
-        return False, f"Score أقل من {MIN_SCORE}"
-    if fnum(sig.get("rr")) < MIN_RR:
-        return False, f"R:R أقل من {MIN_RR}"
-    if not (MIN_RSI <= fnum(sig.get("rsi")) <= MAX_RSI):
-        return False, "RSI خارج النطاق الآمن"
-    if fnum(sig.get("volume_ratio")) < MIN_VOL_RATIO:
-        return False, "الحجم النسبي غير كافٍ"
-    if fnum(sig.get("value")) < MIN_VALUE:
-        return False, "السيولة المتداولة غير كافية"
-    for field in ("atr14", "resistance", "support", "entry_point", "target1", "target2", "stop_loss"):
-        if fnum(sig.get(field)) <= 0:
-            return False, f"الحقل الفني ناقص أو صفر: {field}"
-    if fnum(sig.get("stop_loss")) >= fnum(sig.get("entry_point")):
-        return False, "وقف الخسارة غير منطقي"
-    if fnum(sig.get("target2")) <= fnum(sig.get("entry_point")):
-        return False, "الهدف غير منطقي"
-    return True, "ok"
+def validate_python_rules(signal):
+    score = float(signal.get("score", 0))
+    rsi = float(signal.get("rsi", 50))
+    vol = float(signal.get("volume_ratio", 1.0))
+    rr = float(signal.get("rr", 0))
+
+    if score < MIN_SCORE:
+        return False, f"Score {score:.0f} < {MIN_SCORE}"
+
+    if not (MIN_RSI <= rsi <= MAX_RSI):
+        return False, f"RSI {rsi:.1f} خارج النطاق {MIN_RSI}-{MAX_RSI}"
+
+    if vol < MIN_VOL:
+        return False, f"Volume {vol:.1f}x < {MIN_VOL}x"
+
+    if rr < MIN_RR:
+        return False, f"R:R {rr:.1f} < {MIN_RR}"
+
+    return True, "Python rules passed"
 
 
-def main() -> int:
+def validate_ai_rules(signal):
+    decision = signal.get("ai_decision", "REJECT")
+    confidence = int(signal.get("ai_confidence", 0))
+    risk_level = signal.get("ai_risk_level", "HIGH")
+
+    if decision != "APPROVE":
+        return False, f"AI decision = {decision}"
+
+    if confidence < MIN_AI_CONFIDENCE:
+        return False, f"AI confidence {confidence} < {MIN_AI_CONFIDENCE}"
+
+    if risk_level == "HIGH":
+        return False, "AI risk level = HIGH"
+
+    return True, "AI rules passed"
+
+
+def main():
     print("=" * 60)
-    print("✅ راصد — بوابة النشر النهائية")
+    print("✅ راصد — Final Posting Gate")
     print("=" * 60)
 
-    if posted_today():
-        print("⚠️ تم النشر مسبقاً اليوم — منع نشر مكرر")
-        return 1
+    if has_posted_today():
+        today = datetime.now().strftime("%Y-%m-%d")
+        print(f"⚠️ Already posted today: {today}")
+        sys.exit(1)
 
-    if not SIGNALS_FILE.exists():
-        print("❌ signals.json غير موجود")
-        return 1
-    data = json.loads(SIGNALS_FILE.read_text(encoding="utf-8"))
+    signals_file = DATA_DIR / "signals.json"
+    if not signals_file.exists():
+        print("❌ signals.json not found")
+        sys.exit(1)
+
+    data = json.load(open(signals_file, encoding="utf-8"))
     signals = data.get("signals", [])
 
-    validated = []
-    for sig in signals:
-        ok, msg = validate(sig)
-        sym = sig.get("stock_symbol", sig.get("symbol", ""))
-        if ok:
-            validated.append(sig)
-            print(f"  ✅ {sym}: Score {sig.get('score')} | R:R {sig.get('rr')}")
-        else:
-            print(f"  ❌ {sym}: {msg}")
+    if not signals:
+        print("❌ No signals found")
+        sys.exit(1)
 
-    out = {
+    validated = []
+
+    for sig in signals:
+        sym = sig.get("stock_symbol", sig.get("symbol", ""))
+
+        py_ok, py_reason = validate_python_rules(sig)
+        if not py_ok:
+            print(f"❌ {sym}: {py_reason}")
+            continue
+
+        ai_ok, ai_reason = validate_ai_rules(sig)
+        if not ai_ok:
+            print(f"❌ {sym}: {ai_reason}")
+            continue
+
+        sig["final_approved"] = True
+        sig["final_approved_at"] = datetime.now().isoformat()
+        sig["rr_ratio"] = sig.get("rr", 0)
+
+        validated.append(sig)
+        print(
+            f"✅ {sym}: APPROVED | "
+            f"Score {sig.get('score')} | "
+            f"R:R {sig.get('rr')} | "
+            f"AI {sig.get('ai_confidence')}"
+        )
+
+    validated.sort(
+        key=lambda x: (
+            x.get("ai_confidence", 0),
+            x.get("score", 0),
+            x.get("rr", 0)
+        ),
+        reverse=True
+    )
+
+    output = {
         "validated_signals": validated,
         "total_checked": len(signals),
         "total_valid": len(validated),
-        "timestamp": datetime.now().isoformat(timespec="seconds"),
-        "engine_version": "rased_pro_10_guarded",
+        "timestamp": datetime.now().isoformat(),
+        "gate": {
+            "min_score": MIN_SCORE,
+            "min_rsi": MIN_RSI,
+            "max_rsi": MAX_RSI,
+            "min_volume_ratio": MIN_VOL,
+            "min_rr": MIN_RR,
+            "min_ai_confidence": MIN_AI_CONFIDENCE
+        }
     }
-    VALIDATED_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n✅ {len(validated)}/{len(signals)} إشارة صالحة للنشر")
-    return 0 if validated else 1
+
+    out_file = DATA_DIR / "validated_signals.json"
+    json.dump(output, open(out_file, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+
+    print(f"\n✅ Final approved: {len(validated)}/{len(signals)}")
+    sys.exit(0 if validated else 1)
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
