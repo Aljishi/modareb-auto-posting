@@ -4,15 +4,12 @@
 """
 راصد — محرك إشارة يعتمد على Sahmk Historical API مباشرة.
 
-التعديل الحالي:
-- MIN_SIGNAL_SCORE = 75
-- MAX_ENTRY_GAP_PCT = 4.0
-- MAX_NEAR_RESISTANCE_PCT = 6.0
-- الإبقاء على:
-  R:R >= 2.0
-  Volume Ratio >= 1.3
-  RSI 45-72
-  مدة متوقعة <= 7 أيام
+آخر تعديل:
+- لا يرجع خطأ إذا لم توجد إشارات.
+- يعتمد على Sahmk Historical API لحساب ATR / RSI / الدعم / المقاومة.
+- يسجل سبب رفض كل سهم في GitHub Actions.
+- يرشح فقط إشارات قصيرة المدى خلال 1–7 أيام.
+- لا يوجد ضمان لتحقيق الأهداف؛ النظام يفلتر فقط الفرص الأقرب فنياً.
 """
 
 import json
@@ -34,7 +31,7 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_historical_7d_v4_balanced"
+ENGINE_VERSION = "rased_sahmk_historical_7d_v5_no_error"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
@@ -90,7 +87,7 @@ def headers() -> Dict[str, str]:
     return {
         "X-API-Key": API_KEY,
         "Accept": "application/json",
-        "User-Agent": "Rased-Signal-Engine/4.0",
+        "User-Agent": "Rased-Signal-Engine/5.0",
     }
 
 
@@ -590,13 +587,15 @@ def save_blocked(reason: str, total_screened: int = 0) -> int:
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "total": 0,
         "total_screened": total_screened,
-        "blocked_reason": reason,
+        "status": "NO_SIGNALS",
+        "message": reason,
         "engine_version": ENGINE_VERSION,
+        "provider": "sahmk",
     }
 
     write_json(SIGNALS_FILE, out)
-    print(f"🚫 {reason}")
-    return 1
+    print(f"ℹ️ {reason}")
+    return 0
 
 
 def main() -> int:
@@ -688,11 +687,15 @@ def main() -> int:
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
     }
 
-    write_json(SIGNALS_FILE, out)
-
     if not signals:
-        print("🚫 لا توجد إشارات تحقق شروط راصد اليوم")
-        return 1
+        out["status"] = "NO_SIGNALS"
+        out["message"] = "لا توجد إشارات تحقق شروط راصد اليوم"
+        write_json(SIGNALS_FILE, out)
+        print("ℹ️ لا توجد إشارات تحقق شروط راصد اليوم — انتهاء ناجح بدون خطأ")
+        return 0
+
+    out["status"] = "HAS_SIGNALS"
+    write_json(SIGNALS_FILE, out)
 
     print(f"\n✅ Generated {len(signals)} Sahmk historical signals")
     return 0
