@@ -1,197 +1,204 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""راصد — توليد صورة Premium للإشارة اليومية."""
 
-import json
-import sys
-from datetime import datetime
+import json, sys, math
 from pathlib import Path
-from typing import Any, Dict, Optional
-
+from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
 try:
     import arabic_reshaper
     from bidi.algorithm import get_display
-    HAS_AR = True
 except Exception:
-    HAS_AR = False
+    arabic_reshaper = None
+    get_display = None
 
-W, H = 1080, 1080
-BG = "#0A0E1A"
-CARD = "#111827"
-CARD2 = "#0F172A"
-GOLD = "#D4AF37"
-GOLD2 = "#F5D060"
-WHITE = "#FFFFFF"
-GRAY = "#9CA3AF"
-GREEN = "#22C55E"
-RED = "#EF4444"
-BLUE = "#38BDF8"
-BORDER = "#26364F"
+W, H = 1080, 1350
+BG = "#050A12"
+CARD = "#0B1420"
+CARD2 = "#0F1B2A"
+GREEN = "#2ECC71"
+RED = "#EF3B2D"
+WHITE = "#F4F6F8"
+MUTED = "#AAB2BD"
+LINE = "#263544"
+GOLD = "#D8B64C"
 
-ROOT = Path(__file__).resolve().parent.parent
-ASSET_DIR = ROOT / "assets"
-
-
-def ar(text: Any) -> str:
-    s = str(text)
-    if HAS_AR:
-        try:
-            return get_display(arabic_reshaper.reshape(s))
-        except Exception:
-            return s
-    return s
+DATA_FILE = Path("data/validated_signals.json")
+OUT_FILE = "output.png"
 
 
-def fnum(x: Any, default: float = 0.0) -> float:
-    try:
-        if x is None or x == "":
-            return default
-        if isinstance(x, str):
-            x = x.replace("%", "").replace(",", "").strip()
-        return float(x)
-    except Exception:
-        return default
+def ar(text):
+    text = str(text)
+    if arabic_reshaper and get_display:
+        return get_display(arabic_reshaper.reshape(text))
+    return text
 
 
-def safe_int_percent(*values: Any, default: int = 0) -> int:
-    for v in values:
-        try:
-            n = fnum(v, None)
-            if n is not None:
-                return int(round(n))
-        except Exception:
-            pass
-    return default
-
-
-def load_signal(path: str) -> Optional[Dict[str, Any]]:
-    raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    if "validated_signals" in raw:
-        sigs = raw.get("validated_signals", [])
-        return sigs[0] if sigs else None
-    if "signals" in raw:
-        sigs = raw.get("signals", [])
-        return sigs[0] if sigs else None
-    return raw if isinstance(raw, dict) else None
-
-
-def font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
-    candidates = []
-    if bold:
-        candidates += [ASSET_DIR / "Tajawal-Bold.ttf", ASSET_DIR / "Cairo-Bold.ttf"]
-    else:
-        candidates += [ASSET_DIR / "Tajawal-Regular.ttf", ASSET_DIR / "Cairo-Regular.ttf"]
-    # fallback: original project sometimes stores fonts directly under assets
-    candidates += [ASSET_DIR / "Tajawal-Bold.ttf", ASSET_DIR / "Tajawal-Regular.ttf"]
-    for p in candidates:
-        try:
-            if p.exists():
-                return ImageFont.truetype(str(p), size)
-        except Exception:
-            pass
+def font(size, bold=False):
+    paths = [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+    ]
+    for p in paths:
+        if Path(p).exists():
+            return ImageFont.truetype(p, size)
     return ImageFont.load_default()
 
 
-def text_w(draw: ImageDraw.ImageDraw, text: str, fnt: ImageFont.FreeTypeFont) -> int:
-    box = draw.textbbox((0, 0), text, font=fnt)
-    return box[2] - box[0]
+F_TITLE = font(70, True)
+F_SUB = font(30)
+F_BIG = font(76, True)
+F_MID = font(42, True)
+F_TXT = font(34)
+F_SM = font(25)
+F_XS = font(22)
 
 
-def center(draw, y, text, fnt, fill=WHITE):
-    x = (W - text_w(draw, text, fnt)) // 2
-    draw.text((x, y), text, font=fnt, fill=fill)
+def pct(a, b):
+    try:
+        return ((float(a) - float(b)) / float(b)) * 100
+    except Exception:
+        return 0
 
 
-def rounded(draw, xy, fill, outline=None, width=1, radius=26):
-    draw.rounded_rectangle(xy, radius=radius, fill=fill, outline=outline, width=width)
+def money(v):
+    try:
+        return f"{float(v):.2f}"
+    except Exception:
+        return str(v)
 
 
-def row(draw, y, label, value, pct_text=None, icon="", value_color=WHITE):
-    x1, x2 = 70, W - 70
-    rounded(draw, (x1, y, x2, y + 90), CARD, BORDER, 1, 18)
-    draw.text((x1 + 28, y + 28), icon, font=font(28), fill=GOLD2)
-    draw.text((x1 + 78, y + 30), ar(label), font=font(25, False), fill=GRAY)
-    val = ar(value)
-    fval = font(34)
-    vx = x2 - 40 - text_w(draw, val, fval)
-    draw.text((vx, y + 23), val, font=fval, fill=value_color)
-    if pct_text:
-        fp = font(25)
-        draw.text((vx - text_w(draw, pct_text, fp) - 18, y + 31), pct_text, font=fp, fill=value_color)
+def get_signal():
+    if len(sys.argv) > 1:
+        source = Path(sys.argv[1])
+    else:
+        source = DATA_FILE
+
+    data = json.load(open(source, encoding="utf-8"))
+
+    if isinstance(data, dict) and "validated_signals" in data:
+        return data["validated_signals"][0]
+    if isinstance(data, dict) and "signals" in data:
+        return data["signals"][0]
+    if isinstance(data, list):
+        return data[0]
+    return data
 
 
-def build_image(signal: Dict[str, Any], out_path: str):
-    img = Image.new("RGB", (W, H), BG)
-    draw = ImageDraw.Draw(img)
+def rounded(draw, box, r, fill, outline=None, width=2):
+    draw.rounded_rectangle(box, radius=r, fill=fill, outline=outline, width=width)
 
-    # Outer premium border
-    draw.rectangle((16, 16, W - 16, H - 16), outline=GOLD, width=3)
-    draw.rectangle((26, 26, W - 26, H - 26), outline="#3B2F12", width=1)
 
-    # Header
-    tier = signal.get("tier", "Premium")
-    tier_emoji = signal.get("tier_emoji", "⭐")
-    center(draw, 52, f"{tier_emoji} RASED {tier.upper()} SIGNAL", font(42), GOLD2)
-    center(draw, 110, ar("إشارة تداول احترافية"), font(27, False), GRAY)
-
-    # Stock card
-    rounded(draw, (70, 165, W - 70, 270), CARD2, GOLD, 2, 22)
-    sym = signal.get("stock_symbol", signal.get("symbol", ""))
-    name = signal.get("stock_name", signal.get("name", ""))
-    center(draw, 190, ar(f"{sym} | {name}"), font(43), WHITE)
-    sector = signal.get("sector", "")
-    if sector:
-        center(draw, 238, ar(sector), font(22, False), GRAY)
-
-    # Trade rows
-    y = 315
-    row(draw, y, "نقطة الدخول", f"{fnum(signal.get('entry_point', signal.get('entry'))):.2f} ريال", icon="💰", value_color=WHITE)
-    y += 106
-    row(draw, y, "الهدف الأول", f"{fnum(signal.get('target1')):.2f} ريال", f"+{fnum(signal.get('target1_percent')):.2f}%", icon="🎯", value_color=GREEN)
-    y += 106
-    row(draw, y, "الهدف الثاني", f"{fnum(signal.get('target2')):.2f} ريال", f"+{fnum(signal.get('target2_percent')):.2f}%", icon="🎯", value_color=GREEN)
-    y += 106
-    row(draw, y, "وقف الخسارة", f"{fnum(signal.get('stop_loss')):.2f} ريال", f"-{fnum(signal.get('stop_loss_percent')):.2f}%", icon="🛑", value_color=RED)
-
-    # Score panel
-    y = 750
-    rounded(draw, (70, y, W - 70, y + 175), CARD2, BORDER, 1, 24)
-    score = fnum(signal.get("rased_score"), fnum(signal.get("score"), 0))
-    confidence = safe_int_percent(signal.get("ai_confidence"), signal.get("confidence"), default=int(round(score)))
-    risk = signal.get("risk_level", "متوسط")
-    risk_emoji = signal.get("risk_emoji", "🟡")
-
-    draw.text((105, y + 28), "RASED SCORE™", font(28), GOLD2)
-    draw.text((105, y + 70), f"{score:.1f} / 100", font(42), WHITE)
-
-    draw.text((430, y + 28), ar("الثقة"), font(26, False), GRAY)
-    draw.text((430, y + 70), f"{confidence}%", font(42), BLUE)
-
-    draw.text((690, y + 28), ar("المخاطرة"), font(26, False), GRAY)
-    draw.text((690, y + 70), ar(f"{risk_emoji} {risk}"), font(36), GREEN if risk == "منخفض" else GOLD2)
-
-    # Holding period
-    rounded(draw, (170, 945, W - 170, 1005), "#0B1220", GOLD, 1, 30)
-    center(draw, 959, ar("⏳ مدة الصفقة المتوقعة: 1–7 أيام"), font(27), WHITE)
-
-    # Footer
-    now = datetime.now().strftime("%Y-%m-%d | %I:%M %p KSA").replace("AM", "ص").replace("PM", "م")
-    center(draw, 1024, now, font(20, False), GRAY)
-
-    img.save(out_path, quality=95)
-    print(f"✅ Premium post image saved: {out_path}")
+def center_text(draw, xy, text, f, fill):
+    bbox = draw.textbbox((0, 0), text, font=f)
+    x = xy[0] - (bbox[2] - bbox[0]) / 2
+    y = xy[1] - (bbox[3] - bbox[1]) / 2
+    draw.text((x, y), text, font=f, fill=fill)
 
 
 def main():
-    input_path = sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "data" / "validated_signals.json")
-    output_path = sys.argv[2] if len(sys.argv) > 2 else "output.png"
-    signal = load_signal(input_path)
-    if not signal:
-        print("❌ لا توجد إشارة لتوليد الصورة")
-        sys.exit(1)
-    build_image(signal, output_path)
+    s = get_signal()
+
+    symbol = s.get("stock_symbol") or s.get("symbol") or "----"
+    name = s.get("stock_name") or s.get("name") or "السهم"
+    entry = float(s.get("entry_point") or s.get("entry") or s.get("current_price") or 0)
+    tp1 = float(s.get("target1") or s.get("tp1") or 0)
+    tp2 = float(s.get("target2") or s.get("tp2") or 0)
+    sl = float(s.get("stop_loss") or s.get("sl") or 0)
+
+    score = int(float(s.get("rased_score") or s.get("score") or 88))
+    confidence = int(float(s.get("ai_confidence") or s.get("confidence") or 89))
+    risk = s.get("risk_level_ar") or s.get("ai_risk_level") or "منخفضة"
+    holding = s.get("holding_period") or "1 - 7 أيام"
+    signal_id = s.get("signal_id") or f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j')}"
+
+    tp1_pct = s.get("tp1_pct") or pct(tp1, entry)
+    tp2_pct = s.get("tp2_pct") or pct(tp2, entry)
+    sl_pct = s.get("sl_pct") or pct(sl, entry)
+
+    img = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(img)
+
+    rounded(d, (28, 28, W-28, H-28), 28, BG, "#46515E", 2)
+
+    # Header
+    d.ellipse((55, 60, 145, 150), fill="#081923", outline=GREEN, width=2)
+    d.rectangle((83, 115, 96, 138), fill=GREEN)
+    d.rectangle((103, 95, 116, 138), fill=GREEN)
+    d.rectangle((123, 75, 136, 138), fill=GREEN)
+
+    d.text((170, 55), ar("الراصد"), font=F_TITLE, fill=WHITE)
+    d.text((172, 137), ar("الراصد الذكي للأسهم السعودية"), font=F_SUB, fill=MUTED)
+
+    rounded(d, (740, 58, 1015, 135), 16, "#0A5E29", GREEN, 2)
+    center_text(d, (877, 96), ar("بريميوم ⭐"), F_MID, WHITE)
+
+    # Stock card
+    rounded(d, (55, 185, 1025, 575), 18, CARD, "#334253", 2)
+    d.text((95, 230), str(symbol), font=F_BIG, fill=WHITE)
+    d.line((395, 230, 395, 315), fill=LINE, width=2)
+    d.text((450, 230), ar(name), font=F_BIG, fill=WHITE)
+
+    rounded(d, (865, 230, 980, 315), 12, "#081923", GREEN, 2)
+    center_text(d, (922, 257), ar("تاسي"), F_SM, WHITE)
+    center_text(d, (922, 292), "TASI", F_SM, GREEN)
+
+    rows = [
+        ("↗", "سعر الدخول", entry, "", GREEN),
+        ("◎", "الهدف الأول", tp1, f"+{float(tp1_pct):.1f}%", GREEN),
+        ("◎", "الهدف الثاني", tp2, f"+{float(tp2_pct):.1f}%", GREEN),
+        ("🛡", "وقف الخسارة", sl, f"{float(sl_pct):.1f}%", RED),
+    ]
+
+    y = 350
+    for icon, label, value, p, color in rows:
+        d.ellipse((85, y-20, 145, y+40), fill="#07131E", outline=color, width=3)
+        center_text(d, (115, y+10), icon, F_TXT, WHITE)
+        d.text((190, y-5), ar(label), font=F_TXT, fill=WHITE)
+        d.text((455, y-12), money(value), font=F_MID, fill=color)
+        d.text((630, y-3), ar("ريال"), font=F_SM, fill=WHITE)
+        if p:
+            rounded(d, (840, y-12, 980, y+38), 10, "#0D642E" if color == GREEN else "#78160F", color, 1)
+            center_text(d, (910, y+13), p, F_SM, WHITE)
+        y += 70
+
+    # Score panel
+    rounded(d, (55, 600, 1025, 790), 18, CARD2, "#334253", 2)
+    cols = [55, 300, 545, 790, 1025]
+    labels = ["RASED SCORE™", "الثقة", "المخاطرة", "المدة المتوقعة"]
+    values = [f"{score}/100", f"{confidence}%", risk, holding]
+    colors = [GREEN, GREEN, GREEN, WHITE]
+
+    for i in range(4):
+        if i:
+            d.line((cols[i], 625, cols[i], 765), fill=LINE, width=2)
+        center_text(d, ((cols[i]+cols[i+1])/2, 635), ar(labels[i]), F_SM, WHITE)
+        center_text(d, ((cols[i]+cols[i+1])/2, 710), ar(values[i]), F_MID, colors[i])
+
+    # Badges
+    rounded(d, (55, 815, 1025, 915), 18, CARD, "#334253", 2)
+    badges = [("↗", "زخم إيجابي"), ("💧", "سيولة جيدة"), ("🛡", "إدارة مخاطر محكمة")]
+    bx = [190, 540, 850]
+    for (ic, tx), x in zip(badges, bx):
+        center_text(d, (x-55, 865), ic, F_MID, GREEN)
+        center_text(d, (x+60, 865), ar(tx), F_SM, WHITE)
+
+    # Footer
+    rounded(d, (55, 940, 1025, 1025), 18, CARD, "#334253", 2)
+    d.text((95, 968), ar(datetime.now().strftime("%Y/%m/%d")), font=F_SM, fill=WHITE)
+    d.text((405, 968), datetime.now().strftime("%I:%M %p KSA"), font=F_SM, fill=WHITE)
+    d.text((700, 968), signal_id, font=F_SM, fill=GREEN)
+
+    rounded(d, (55, 1050, 1025, 1135), 18, CARD, "#334253", 2)
+    d.text((95, 1075), "✈  t.me/RasedSA", font=F_MID, fill=GREEN)
+    d.text((670, 1083), "Powered by AI + Sahmk Data", font=F_SM, fill=MUTED)
+
+    center_text(d, (W/2, 1195), ar("تنبيه: ليست توصية استثمارية."), F_SM, MUTED)
+
+    out = sys.argv[2] if len(sys.argv) > 2 else OUT_FILE
+    img.save(out, quality=95)
+    print(f"✅ Premium post generated: {out}")
 
 
 if __name__ == "__main__":
