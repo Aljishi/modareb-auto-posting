@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 
 """
-راصد — محرك إشارة Premium/Standard يعتمد على Sahmk Historical API مباشرة.
+راصد — محرك إشارة يعتمد على Sahmk Historical API مباشرة.
 
 التعديل الحالي:
-- خفض شرط السيولة من 2,000,000 إلى 1,000,000 ريال.
-- توسيع قرب المقاومة من 2.2% إلى 4.0%.
-- الإبقاء على فلاتر الجودة الأساسية:
-  RSI 45-72
+- MIN_SIGNAL_SCORE = 75
+- MAX_ENTRY_GAP_PCT = 4.0
+- MAX_NEAR_RESISTANCE_PCT = 6.0
+- الإبقاء على:
   R:R >= 2.0
   Volume Ratio >= 1.3
+  RSI 45-72
   مدة متوقعة <= 7 أيام
-- إظهار سبب رفض كل سهم في GitHub Actions.
 """
 
 import json
@@ -34,21 +34,21 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_historical_7d_v3_standard"
+ENGINE_VERSION = "rased_sahmk_historical_7d_v4_balanced"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
 LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
-MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "80"))
+MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "75"))
 MIN_RR = float(os.getenv("MIN_RR", "2.0"))
 MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.3"))
-
-# تم تخفيفه من 2,000,000 إلى 1,000,000
 MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "1000000"))
 
-MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "1.5"))
+MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "4.0"))
+MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "6.0"))
+
 MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
@@ -56,9 +56,6 @@ MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 
 MIN_RSI = float(os.getenv("MIN_RSI", "45"))
 MAX_RSI = float(os.getenv("MAX_RSI", "72"))
-
-# تم توسيعه من 2.2% إلى 4.0%
-MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "4.0"))
 
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 
@@ -93,7 +90,7 @@ def headers() -> Dict[str, str]:
     return {
         "X-API-Key": API_KEY,
         "Accept": "application/json",
-        "User-Agent": "Rased-Signal-Engine/3.0"
+        "User-Agent": "Rased-Signal-Engine/4.0",
     }
 
 
@@ -135,15 +132,17 @@ def fetch_historical(symbol: str, days: int = HIST_DAYS) -> List[Dict[str, Any]]
         volume = fnum(r.get("volume"))
 
         if high > 0 and low > 0 and close > 0 and high >= low and volume > 0:
-            clean.append({
-                "date": r.get("date") or r.get("timestamp"),
-                "open": fnum(r.get("open")),
-                "high": high,
-                "low": low,
-                "close": close,
-                "volume": volume,
-                "turnover": fnum(r.get("turnover")),
-            })
+            clean.append(
+                {
+                    "date": r.get("date") or r.get("timestamp"),
+                    "open": fnum(r.get("open")),
+                    "high": high,
+                    "low": low,
+                    "close": close,
+                    "volume": volume,
+                    "turnover": fnum(r.get("turnover")),
+                }
+            )
 
     clean.sort(key=lambda x: str(x.get("date")))
     return clean[-days:]
@@ -206,9 +205,9 @@ def volume_ratio(rows: List[Dict[str, Any]], current_volume: float, period: int 
 
 def resistance_support(
     rows: List[Dict[str, Any]],
-    lookback: int = LOOKBACK_RESISTANCE
+    lookback: int = LOOKBACK_RESISTANCE,
 ) -> Tuple[Optional[float], Optional[float]]:
-    prior = rows[-lookback - 1:-1]
+    prior = rows[-lookback - 1 : -1]
 
     highs = [fnum(r.get("high")) for r in prior if fnum(r.get("high")) > 0]
     lows = [fnum(r.get("low")) for r in prior if fnum(r.get("low")) > 0]
@@ -249,7 +248,7 @@ def expected_days_to_target(
     target_pct: float,
     atr_pct: float,
     volume_factor: float,
-    is_breakout: bool
+    is_breakout: bool,
 ) -> int:
     if atr_pct <= 0:
         return 99
@@ -528,80 +527,59 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     return {
         "stock_symbol": symbol,
         "symbol": symbol,
-
         "stock_name": stock.get("name") or stock.get("name_ar") or symbol,
         "name": stock.get("name") or stock.get("name_ar") or symbol,
         "sector": stock.get("sector", ""),
-
         "current_price": round(price, 2),
-
         "entry_point": entry,
         "entry": entry,
-
         "target1": target1,
         "target2": target2,
         "stop_loss": stop_loss,
-
         "target1_percent": target1_pct,
         "target2_percent": target2_pct,
         "stop_loss_percent": round(stop_loss_pct, 2),
-
         "tp1_pct": target1_pct,
         "tp2_pct": target2_pct,
         "sl_pct": round(-stop_loss_pct, 2),
-
         "rr": rr,
         "rr_ratio": rr,
-
         "score": score,
         "rased_score": rased_score,
         "tier": tier,
         "tier_emoji": tier_emoji,
-
         "risk_level": risk_text,
         "risk_level_ar": risk_text,
         "risk_emoji": risk_emoji,
-
         "confidence": f"{int(round(rased_score))}%",
-
         "rsi": round(rsi, 2),
         "volume_ratio": vol_ratio,
         "atr14": round(atr14, 4),
         "atr_pct": atr_pct,
-
         "support": round(support, 2),
         "resistance": round(resistance, 2),
-
         "trend": "صاعد",
         "trend_values": trend_vals,
         "setup_type": setup_type,
         "breakout": bool(is_breakout),
         "entry_gap_pct": entry_gap_pct,
-
         "value": round(value, 2),
-
         "expected_holding_period": "1-7 أيام",
         "holding_period": "1 - 7 أيام",
         "max_holding_days": MAX_HOLD_DAYS,
-
         "expected_days_to_target1": expected_days_tp1,
         "expected_days_to_target2": expected_days_tp2,
-
         "seven_day_filter_passed": True,
         "max_reasonable_7d_pct": max_reasonable_7d_pct,
-
         "technical_reading": " — ".join(reasons[:5]),
         "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر.",
         "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-
         "signal_id": signal_id,
-
         "data_source": "sahmk_api_historical",
         "provider": "sahmk",
         "historical_bars": len(rows),
         "engine_version": ENGINE_VERSION,
         "generated_at": datetime.now().isoformat(timespec="seconds"),
-
         "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
     }
 
@@ -704,6 +682,7 @@ def main() -> int:
             "MIN_RSI": MIN_RSI,
             "MAX_RSI": MAX_RSI,
             "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
+            "MAX_ENTRY_GAP_PCT": MAX_ENTRY_GAP_PCT,
             "MAX_NEAR_RESISTANCE_PCT": MAX_NEAR_RESISTANCE_PCT,
         },
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
