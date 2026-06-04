@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""راصد — محرك إشارة Premium يعتمد على Sahmk Historical API مباشرة.
+
+"""
+راصد — محرك إشارة Premium/Standard يعتمد على Sahmk Historical API مباشرة.
 
 التعديل الحالي:
-- تخفيف الفلاتر حتى لا يرفض كل الأسهم.
+- خفض شرط السيولة من 2,000,000 إلى 1,000,000 ريال.
+- توسيع قرب المقاومة من 2.2% إلى 4.0%.
+- الإبقاء على فلاتر الجودة الأساسية:
+  RSI 45-72
+  R:R >= 2.0
+  Volume Ratio >= 1.3
+  مدة متوقعة <= 7 أيام
 - إظهار سبب رفض كل سهم في GitHub Actions.
-- الاعتماد على Sahmk Historical API مباشرة.
-- فلتر مدة 1–7 أيام بدون ادعاء ضمان تحقيق الهدف.
 """
 
 import json
@@ -28,7 +34,7 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_paid_historical_7d_v2_balanced"
+ENGINE_VERSION = "rased_sahmk_historical_7d_v3_standard"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
@@ -38,7 +44,9 @@ MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "80"))
 MIN_RR = float(os.getenv("MIN_RR", "2.0"))
 MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.3"))
-MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "2000000"))
+
+# تم تخفيفه من 2,000,000 إلى 1,000,000
+MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "1000000"))
 
 MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "1.5"))
 MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
@@ -48,6 +56,9 @@ MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 
 MIN_RSI = float(os.getenv("MIN_RSI", "45"))
 MAX_RSI = float(os.getenv("MAX_RSI", "72"))
+
+# تم توسيعه من 2.2% إلى 4.0%
+MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "4.0"))
 
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 
@@ -82,7 +93,7 @@ def headers() -> Dict[str, str]:
     return {
         "X-API-Key": API_KEY,
         "Accept": "application/json",
-        "User-Agent": "Rased-Signal-Engine/2.0"
+        "User-Agent": "Rased-Signal-Engine/3.0"
     }
 
 
@@ -378,7 +389,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
 
     near_breakout_pct = ((resistance / price) - 1) * 100 if price > 0 else 99
     is_breakout = price >= resistance * 1.002
-    is_near_breakout = 0 <= near_breakout_pct <= 2.2
+    is_near_breakout = 0 <= near_breakout_pct <= MAX_NEAR_RESISTANCE_PCT
 
     if is_breakout:
         entry = round(max(price, resistance * 1.003), 2)
@@ -612,7 +623,7 @@ def save_blocked(reason: str, total_screened: int = 0) -> int:
 
 def main() -> int:
     print("=" * 60)
-    print("🚀 راصد — Sahmk Historical Premium Signal Engine 7D")
+    print("🚀 راصد — Sahmk Historical Signal Engine 7D")
     print("=" * 60)
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -693,6 +704,7 @@ def main() -> int:
             "MIN_RSI": MIN_RSI,
             "MAX_RSI": MAX_RSI,
             "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
+            "MAX_NEAR_RESISTANCE_PCT": MAX_NEAR_RESISTANCE_PCT,
         },
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
     }
@@ -700,10 +712,10 @@ def main() -> int:
     write_json(SIGNALS_FILE, out)
 
     if not signals:
-        print("🚫 لا توجد إشارات تحقق شروط راصد Premium اليوم")
+        print("🚫 لا توجد إشارات تحقق شروط راصد اليوم")
         return 1
 
-    print(f"\n✅ Generated {len(signals)} Sahmk historical premium signals")
+    print(f"\n✅ Generated {len(signals)} Sahmk historical signals")
     return 0
 
 
