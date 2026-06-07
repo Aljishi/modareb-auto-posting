@@ -100,11 +100,9 @@ jobs:
           try:
               with open("data/signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
-
               signals = data.get("signals", [])
               count = len(signals)
               has_signals = count > 0
-
           except Exception as e:
               print(f"No valid signals.json: {e}")
 
@@ -133,25 +131,46 @@ jobs:
         if: steps.signal_check.outputs.has_signals == 'true'
         run: python scripts/should_post.py
 
-      - name: Generate post image
-        if: steps.validate.outcome == 'success'
+      - name: Check validated signal count
+        id: valid_check
+        if: steps.signal_check.outputs.has_signals == 'true'
         run: |
-          if [ -f data/validated_signals.json ]; then
-            python scripts/generate_post.py data/validated_signals.json output.png
-          else
-            echo "❌ validated_signals.json not found"
-            exit 1
-          fi
+          python - << 'PY'
+          import json, os
+
+          count = 0
+          try:
+              with open("data/validated_signals.json", "r", encoding="utf-8") as f:
+                  data = json.load(f)
+              count = len(data.get("validated_signals", []))
+          except Exception as e:
+              print(f"No valid validated_signals.json: {e}")
+
+          print(f"Validated signals: {count}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"has_valid={'true' if count > 0 else 'false'}\n")
+              out.write(f"count={count}\n")
+          PY
+
+      - name: Stop cleanly if no valid signal
+        if: steps.valid_check.outputs.has_valid != 'true'
+        run: |
+          echo "ℹ️ لا توجد إشارات مجازة للنشر — انتهاء ناجح بدون نشر"
+          exit 0
+
+      - name: Generate post image
+        if: steps.valid_check.outputs.has_valid == 'true'
+        run: python scripts/generate_post.py data/validated_signals.json output.png
 
       - name: Post to Telegram
-        if: steps.validate.outcome == 'success'
+        if: steps.valid_check.outputs.has_valid == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_to_telegram.py
 
       - name: Log published signal
-        if: steps.validate.outcome == 'success'
+        if: steps.valid_check.outputs.has_valid == 'true'
         run: python scripts/log_published_signal.py
 
       - name: Commit auto-post updates
@@ -196,8 +215,7 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-4o-mini
-        run: |
-          python scripts/golden_signal_analysis.py || true
+        run: python scripts/golden_signal_analysis.py || true
 
       - name: Check golden signal count
         id: golden_check
@@ -206,21 +224,17 @@ jobs:
           import json, os
 
           count = 0
-
           try:
               with open("data/golden_signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
-
               if isinstance(data, list):
                   count = len(data)
               elif isinstance(data, dict):
                   count = len(data.get("golden_signals", data.get("signals", [])))
-
           except Exception as e:
               print(f"No valid golden_signals.json: {e}")
 
           print(f"Golden signals found: {count}")
-
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"found={'true' if count > 0 else 'false'}\n")
               out.write(f"count={count}\n")
@@ -326,13 +340,13 @@ jobs:
         run: python scripts/track_signal_performance.py
 
       - name: Generate weekly report
-        run: python scripts/weekly_report.py || true
+        run: python scripts/weekly_report.py
 
       - name: Post weekly report to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/post_weekly_report.py || true
+        run: python scripts/post_weekly_report.py
 
       - name: Commit weekly report updates
         if: always()
