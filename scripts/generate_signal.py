@@ -23,6 +23,11 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
+try:
+    from fundamental_score import score_symbol
+except Exception:
+    score_symbol = None
+
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DAILY_FILE = DATA_DIR / "daily.json"
 SIGNALS_FILE = DATA_DIR / "signals.json"
@@ -32,7 +37,7 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_historical_7d_v6_strict_realistic"
+ENGINE_VERSION = "rased_sahmk_historical_fundamental_v7"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
@@ -57,6 +62,8 @@ MIN_RSI = float(os.getenv("MIN_RSI", "42"))
 MAX_RSI = float(os.getenv("MAX_RSI", "76"))
 
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
+ENABLE_FUNDAMENTAL_SCORE = os.getenv("ENABLE_FUNDAMENTAL_SCORE", "true").lower() != "false"
+BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "true").lower() != "false"
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -306,10 +313,17 @@ def get_candidates(daily: Dict[str, Any]) -> List[Dict[str, Any]]:
     for s in stocks:
         sym = str(s.get("symbol", "")).strip()
         price = fnum(s.get("current_price") or s.get("price"))
+        volume = fnum(s.get("volume"))
+        value = fnum(s.get("value") or s.get("turnover")) or price * volume
+        change_pct = fnum(s.get("change_percent"))
 
-        if sym and price > 0:
+        if sym and price > 0 and volume > 0:
+            s["_candidate_value"] = value
+            s["_candidate_rank"] = (value, max(change_pct, -5), volume)
             good.append(s)
 
+    # الاستفادة القصوى من Bulk Quotes: نفحص الأكثر سيولة أولاً بدلاً من ترتيب الرموز فقط.
+    good.sort(key=lambda x: x.get("_candidate_rank", (0, 0, 0)), reverse=True)
     return good[:MAX_CANDIDATES]
 
 
@@ -464,6 +478,14 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
 
     score = 0
     reasons: List[str] = []
+    fundamental = {
+        "available": False,
+        "bonus": 0,
+        "grade": "غير متوفر",
+        "blocked": False,
+        "details": "لم يتم تفعيل التحليل الأساسي",
+        "raw": {},
+    }
 
     score += 18
     reasons += trend_reasons
@@ -516,7 +538,28 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         score += 3
         reasons.append("الهدف الثاني ضمن نطاق 7 أيام")
 
-    score = min(score, 100)
+    technical_score = score
+
+    if ENABLE_FUNDAMENTAL_SCORE and score_symbol is not None:
+        try:
+            fundamental = score_symbol(symbol, stock.get("sector", ""))
+            if BLOCK_WEAK_FUNDAMENTALS and fundamental.get("blocked"):
+                reject(symbol, f"أساسيات سلبية: {fundamental.get('details')}")
+                return None
+
+            bonus = int(fundamental.get("bonus", 0))
+            score += bonus
+
+            if bonus > 0:
+                reasons.append(f"دعم أساسي +{bonus}: {fundamental.get('details')}")
+            elif bonus < 0:
+                reasons.append(f"خصم أساسي {bonus}: {fundamental.get('details')}")
+            else:
+                reasons.append(f"أساسيات محايدة: {fundamental.get('details')}")
+        except Exception as exc:
+            print(f"⚠️ {symbol}: fundamental score skipped: {exc}")
+
+    score = max(0, min(score, 100))
 
     if score < MIN_SIGNAL_SCORE:
         reject(symbol, f"Score {score} أقل من {MIN_SIGNAL_SCORE}")
@@ -553,6 +596,11 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         "rr": rr,
         "rr_ratio": rr,
         "score": score,
+        "technical_score": technical_score,
+        "fundamental_bonus": int(fundamental.get("bonus", 0)),
+        "fundamental_grade": fundamental.get("grade", "غير متوفر"),
+        "fundamental_reading": fundamental.get("details", ""),
+        "fundamental_raw": fundamental.get("raw", {}),
         "rased_score": rased_score,
         "tier": tier,
         "tier_emoji": tier_emoji,
@@ -580,7 +628,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         "seven_day_filter_passed": True,
         "max_reasonable_7d_pct": max_reasonable_7d_pct,
         "technical_reading": " — ".join(reasons[:5]),
-        "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر.",
+        "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
         "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
         "signal_id": signal_id,
         "data_source": "sahmk_api_historical",
@@ -694,6 +742,8 @@ def main() -> int:
             "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
             "MAX_ENTRY_GAP_PCT": MAX_ENTRY_GAP_PCT,
             "MAX_NEAR_RESISTANCE_PCT": MAX_NEAR_RESISTANCE_PCT,
+            "ENABLE_FUNDAMENTAL_SCORE": ENABLE_FUNDAMENTAL_SCORE,
+            "BLOCK_WEAK_FUNDAMENTALS": BLOCK_WEAK_FUNDAMENTALS,
         },
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
     }
