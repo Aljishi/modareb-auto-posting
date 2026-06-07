@@ -1,14 +1,14 @@
 {
   "model": "gpt-4o-mini",
-  "reviewed_at": "2026-06-07T13:17:13",
+  "reviewed_at": "2026-06-07T13:55:58",
   "signals": [
     {
-      "stock_symbol": "2381",
+      "stock_symbol": "2200",
       "decision": "REJECT",
       "confidence": 0,
       "risk_level": "HIGH",
       "expected_holding_days": 30,
-      "rased_score": 80.5,
+      "rased_score": 74.0,
       "tier": "Standard",
       "reasons": [
         "AI review failed: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
