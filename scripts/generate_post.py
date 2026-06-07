@@ -69,6 +69,15 @@ def money(v):
         return str(v)
 
 
+def as_int(v, default=0):
+    try:
+        if isinstance(v, str):
+            v = v.replace("%", "").strip()
+        return int(float(v))
+    except Exception:
+        return default
+
+
 def get_signal():
     if len(sys.argv) > 1:
         source = Path(sys.argv[1])
@@ -107,11 +116,13 @@ def main():
     tp2 = float(s.get("target2") or s.get("tp2") or 0)
     sl = float(s.get("stop_loss") or s.get("sl") or 0)
 
-    score = int(float(s.get("rased_score") or s.get("score") or 88))
-    confidence = int(float(s.get("ai_confidence") or s.get("confidence") or 89))
+    score = as_int(s.get("rased_score") or s.get("score") or 88, 88)
+    confidence = as_int(s.get("ai_confidence") or s.get("confidence") or 89, 89)
     risk = s.get("risk_level_ar") or s.get("ai_risk_level") or "منخفضة"
     holding = s.get("holding_period") or "1 - 7 أيام"
     signal_id = s.get("signal_id") or f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j')}"
+    fundamental_bonus = as_int(s.get("fundamental_bonus") or 0, 0)
+    fundamental_grade = s.get("fundamental_grade") or "محايد"
 
     tp1_pct = s.get("tp1_pct") or pct(tp1, entry)
     tp2_pct = s.get("tp2_pct") or pct(tp2, entry)
@@ -178,7 +189,8 @@ def main():
 
     # Badges
     rounded(d, (55, 815, 1025, 915), 18, CARD, "#334253", 2)
-    badges = [("↗", "زخم إيجابي"), ("💧", "سيولة جيدة"), ("🛡", "إدارة مخاطر محكمة")]
+    fundamental_badge = f"أساسيات {fundamental_grade}" if fundamental_bonus != 0 else "فلتر أساسي"
+    badges = [("↗", "زخم إيجابي"), ("💧", "سيولة جيدة"), ("◆", fundamental_badge)]
     bx = [190, 540, 850]
     for (ic, tx), x in zip(badges, bx):
         center_text(d, (x-55, 865), ic, F_MID, GREEN)
@@ -192,7 +204,7 @@ def main():
 
     rounded(d, (55, 1050, 1025, 1135), 18, CARD, "#334253", 2)
     d.text((95, 1075), "✈  t.me/RasedSA", font=F_MID, fill=GREEN)
-    d.text((670, 1083), "Powered by AI + Sahmk Data", font=F_SM, fill=MUTED)
+    d.text((655, 1083), "AI + Sahmk Starter Data", font=F_SM, fill=MUTED)
 
     center_text(d, (W/2, 1195), ar("تنبيه: ليست توصية استثمارية."), F_SM, MUTED)
 
