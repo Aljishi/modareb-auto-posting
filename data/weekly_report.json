@@ -1,0 +1,20 @@
+{
+  "week": "2026-06-07",
+  "week_start": "2026-05-31",
+  "total_signals": 1,
+  "profitable": 1,
+  "losing": 0,
+  "open_positions": 0,
+  "success_rate": 100.0,
+  "avg_score": 90.0,
+  "top_performers": [
+    {
+      "symbol": "",
+      "name": "",
+      "score": 90,
+      "gain": 0
+    }
+  ],
+  "worst_performers": [],
+  "generated_at": "2026-06-07T09:10:33.979252"
+}
