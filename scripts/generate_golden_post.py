@@ -178,9 +178,9 @@ def main():
 
     # Footer
     rounded(d, (55, 1160, 1025, 1225), 14, CARD, GOLD, 1)
-    d.text((95, 1178), ar(datetime.now().strftime("%Y/%m/%d")), font=F_SM, WHITE)
-    d.text((390, 1178), datetime.now().strftime("%I:%M %p KSA"), font=F_SM, WHITE)
-    d.text((690, 1178), signal_id, font=F_SM, GOLD2)
+    d.text((95, 1178), ar(datetime.now().strftime("%Y/%m/%d")), font=F_SM, fill=WHITE)
+    d.text((390, 1178), datetime.now().strftime("%I:%M %p KSA"), font=F_SM, fill=WHITE)
+    d.text((690, 1178), signal_id, font=F_SM, fill=GOLD2)
 
     rounded(d, (55, 1240, 1025, 1305), 14, CARD, GOLD, 1)
     d.text((95, 1255), "✈  t.me/RasedSA", font=F_MID, fill=GOLD2)
