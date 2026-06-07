@@ -4,12 +4,13 @@
 """
 راصد — محرك إشارة يعتمد على Sahmk Historical API مباشرة.
 
-آخر تعديل:
+الإصدار الحالي:
+- صارم لكن غير مستحيل.
+- يعتمد على Sahmk Historical API.
+- يحسب ATR / RSI / Volume Ratio / Support / Resistance.
+- يرشح إشارات قصيرة المدى خلال 1–7 أيام.
 - لا يرجع خطأ إذا لم توجد إشارات.
-- يعتمد على Sahmk Historical API لحساب ATR / RSI / الدعم / المقاومة.
-- يسجل سبب رفض كل سهم في GitHub Actions.
-- يرشح فقط إشارات قصيرة المدى خلال 1–7 أيام.
-- لا يوجد ضمان لتحقيق الأهداف؛ النظام يفلتر فقط الفرص الأقرب فنياً.
+- لا يوجد ضمان لتحقيق الأهداف؛ هذه قراءة فنية آلية فقط.
 """
 
 import json
@@ -31,28 +32,29 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_historical_7d_v5_no_error"
+ENGINE_VERSION = "rased_sahmk_historical_7d_v6_strict_realistic"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
 LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
-MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "75"))
+# صارم لكن غير مستحيل
+MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "78"))
 MIN_RR = float(os.getenv("MIN_RR", "2.0"))
-MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.3"))
-MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "1000000"))
+MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.15"))
+MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "750000"))
 
-MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "4.0"))
-MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "6.0"))
+MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "5.0"))
+MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "7.0"))
 
 MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
 MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 
-MIN_RSI = float(os.getenv("MIN_RSI", "45"))
-MAX_RSI = float(os.getenv("MAX_RSI", "72"))
+MIN_RSI = float(os.getenv("MIN_RSI", "42"))
+MAX_RSI = float(os.getenv("MAX_RSI", "76"))
 
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 
@@ -87,7 +89,7 @@ def headers() -> Dict[str, str]:
     return {
         "X-API-Key": API_KEY,
         "Accept": "application/json",
-        "User-Agent": "Rased-Signal-Engine/5.0",
+        "User-Agent": "Rased-Signal-Engine/6.0",
     }
 
 
@@ -229,12 +231,21 @@ def trend_state(rows: List[Dict[str, Any]]) -> Tuple[bool, List[str], Dict[str, 
     acceptable = last > sma20 and sma10 >= sma20 * 0.995
 
     if strong:
-        return True, ["اتجاه صاعد مؤكد"], {"sma10": round(sma10, 3), "sma20": round(sma20, 3)}
+        return True, ["اتجاه صاعد مؤكد"], {
+            "sma10": round(sma10, 3),
+            "sma20": round(sma20, 3),
+        }
 
     if acceptable:
-        return True, ["اتجاه مقبول قريب من الصعود"], {"sma10": round(sma10, 3), "sma20": round(sma20, 3)}
+        return True, ["اتجاه مقبول قريب من الصعود"], {
+            "sma10": round(sma10, 3),
+            "sma20": round(sma20, 3),
+        }
 
-    return False, ["الترند غير مناسب"], {"sma10": round(sma10, 3), "sma20": round(sma20, 3)}
+    return False, ["الترند غير مناسب"], {
+        "sma10": round(sma10, 3),
+        "sma20": round(sma20, 3),
+    }
 
 
 def pct(diff: float, entry: float) -> float:
@@ -256,8 +267,8 @@ def expected_days_to_target(
         boost = 1.35
     elif volume_factor >= 2:
         boost = 1.20
-    elif volume_factor >= 1.3:
-        boost = 1.10
+    elif volume_factor >= 1.15:
+        boost = 1.08
 
     if is_breakout:
         boost *= 1.15
@@ -281,7 +292,7 @@ def risk_label(rr: float, atr_pct: float, rsi: float) -> Tuple[str, str]:
     if rr >= 3 and 1.0 <= atr_pct <= 4.5 and rsi <= 64:
         return "منخفض", "🟢"
 
-    if rr >= 2.0 and 0.5 <= atr_pct <= 6.5 and rsi <= 72:
+    if rr >= 2.0 and 0.5 <= atr_pct <= 6.5 and rsi <= 76:
         return "متوسط", "🟡"
 
     return "مرتفع", "🔴"
@@ -460,7 +471,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     if 52 <= rsi <= 64:
         score += 18
         reasons.append(f"زخم صحي RSI {rsi:.1f}")
-    elif 45 <= rsi <= 72:
+    elif 42 <= rsi <= 76:
         score += 13
         reasons.append(f"RSI مقبول {rsi:.1f}")
 
@@ -470,7 +481,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     elif vol_ratio >= 2:
         score += 15
         reasons.append(f"سيولة قوية {vol_ratio:.1f}x")
-    elif vol_ratio >= 1.3:
+    elif vol_ratio >= 1.15:
         score += 11
         reasons.append(f"سيولة مقبولة {vol_ratio:.1f}x")
 
