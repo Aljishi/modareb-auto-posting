@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 75.9 — سيولة قوية 2.3x — قريب من اختراق مقاومة مهمة — هدوء سعري قبل اختراق محتمل",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1591231-4194",
+      "signal_id": "Signal #2026-1591236-4194",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-08T12:31:26",
+      "generated_at": "2026-06-08T12:36:10",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": false,
       "ai_decision": "SKIPPED",
@@ -77,7 +77,7 @@
       "ai_telegram_note": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة."
     }
   ],
-  "generated_at": "2026-06-08T12:32:14",
+  "generated_at": "2026-06-08T12:37:02",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -101,5 +101,5 @@
   "ai_reviewed": false,
   "ai_available": false,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-08T12:32:17"
+  "ai_reviewed_at": "2026-06-08T12:37:04"
 }
