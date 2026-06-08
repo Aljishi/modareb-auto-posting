@@ -34,7 +34,7 @@
       "risk_emoji": "🟡",
       "confidence": "74%",
       "rsi": 65.26,
-      "volume_ratio": 1.23,
+      "volume_ratio": 1.33,
       "atr14": 0.245,
       "atr_pct": 3.14,
       "support": 6.72,
@@ -47,7 +47,7 @@
       "setup_type": "دخول مشروط فوق المقاومة",
       "breakout": false,
       "entry_gap_pct": 1.54,
-      "value": 82935629.4,
+      "value": 89085094.8,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -55,15 +55,15 @@
       "expected_days_to_target2": 4,
       "seven_day_filter_passed": true,
       "max_reasonable_7d_pct": 17.27,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 65.3 — سيولة مقبولة 1.2x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +0.9%",
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 65.3 — سيولة مقبولة 1.3x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +0.9%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1591355-2200",
+      "signal_id": "Signal #2026-1591401-2200",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-08T13:55:44",
+      "generated_at": "2026-06-08T14:01:07",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": false,
       "ai_decision": "SKIPPED",
@@ -77,7 +77,7 @@
       "ai_telegram_note": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة."
     }
   ],
-  "generated_at": "2026-06-08T13:56:02",
+  "generated_at": "2026-06-08T14:01:25",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -101,5 +101,5 @@
   "ai_reviewed": false,
   "ai_available": false,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-08T13:56:06"
+  "ai_reviewed_at": "2026-06-08T14:01:27"
 }
