@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 75.7 — سيولة قوية جداً 3.0x — اختراق مقاومة مؤكد — زخم يومي صحي +3.2%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1591430-8010",
+      "signal_id": "Signal #2026-1591435-8010",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-08T14:30:47",
+      "generated_at": "2026-06-08T14:35:36",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": false,
       "ai_decision": "SKIPPED",
@@ -134,12 +134,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 65.5 — سيولة مقبولة 1.6x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.0%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1591430-2200",
+      "signal_id": "Signal #2026-1591435-2200",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-08T14:30:48",
+      "generated_at": "2026-06-08T14:35:37",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": false,
       "ai_decision": "SKIPPED",
@@ -153,7 +153,7 @@
       "ai_telegram_note": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة."
     }
   ],
-  "generated_at": "2026-06-08T14:31:04",
+  "generated_at": "2026-06-08T14:35:54",
   "total": 2,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -177,5 +177,5 @@
   "ai_reviewed": false,
   "ai_available": false,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-08T14:31:08"
+  "ai_reviewed_at": "2026-06-08T14:35:58"
 }
