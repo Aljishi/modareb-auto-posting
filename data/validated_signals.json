@@ -1,8 +1,8 @@
 {
   "validated_signals": [],
-  "total_checked": 4,
+  "total_checked": 5,
   "total_valid": 0,
-  "timestamp": "2026-06-08T14:56:04",
+  "timestamp": "2026-06-08T15:00:31",
   "status": "NO_VALID_SIGNAL",
   "rules": {
     "min_score": 78,
