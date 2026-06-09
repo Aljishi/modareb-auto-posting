@@ -34,11 +34,16 @@ MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "75"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
 
-# عند غياب OpenAI لا نوقف النشر؛ نستخدم نفس فلاتر راصد الأساسية بعد توليد الإشارة.
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "72"))
-PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "72"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.7"))
-PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.85"))
+# عند غياب OpenAI نرفع العتبة لتعويض غياب مراجعة AI
+PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "76"))
+PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "74"))
+PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.8"))
+PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.9"))
+
+MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
+MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
+MIN_TP1_PCT_PLATINUM = float(os.getenv("MIN_TP1_PCT_PLATINUM", "8.0"))
+MIN_TP2_PCT_PLATINUM = float(os.getenv("MIN_TP2_PCT_PLATINUM", "10.0"))
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -105,6 +110,19 @@ def base_validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
     if int(sig.get("expected_days_to_target2", 99)) > MAX_HOLD_DAYS:
         return False, "الهدف الثاني غير منطقي خلال 7 أيام"
 
+    tp1_pct = fnum(sig.get("target1_percent", sig.get("tp1_pct")))
+    tp2_pct = fnum(sig.get("target2_percent", sig.get("tp2_pct")))
+    tier = str(sig.get("tier", ""))
+
+    if tp1_pct < MIN_TP1_PCT_NORMAL:
+        return False, f"TP1% أقل من الحد الأدنى للإشارة العادية {MIN_TP1_PCT_NORMAL}%"
+
+    if tier == "Gold" and tp1_pct < MIN_TP1_PCT_GOLDEN:
+        return False, f"Gold يحتاج TP1% لا يقل عن {MIN_TP1_PCT_GOLDEN}%"
+
+    if tier == "Platinum" and tp1_pct < MIN_TP1_PCT_PLATINUM and tp2_pct < MIN_TP2_PCT_PLATINUM:
+        return False, f"Platinum يحتاج TP1% >= {MIN_TP1_PCT_PLATINUM}% أو TP2% >= {MIN_TP2_PCT_PLATINUM}%"
+
     return True, "ok"
 
 
@@ -132,6 +150,8 @@ def ai_validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
     if fnum(sig.get("volume_ratio")) < PY_ONLY_MIN_VOL_RATIO:
         return False, f"OpenAI غير متاح و Volume أقل من {PY_ONLY_MIN_VOL_RATIO}x"
 
+    sig["ai_available"] = False
+    sig["ai_review_used"] = False
     sig["ai_decision"] = "SKIPPED_PYTHON_STRICT_APPROVED"
     sig["ai_confidence"] = 0
     sig["ai_risk_level"] = "UNKNOWN"
@@ -219,6 +239,10 @@ def main() -> int:
             "max_holding_days": MAX_HOLD_DAYS,
             "python_only_min_score": PY_ONLY_MIN_SCORE,
             "python_only_min_rased_score": PY_ONLY_MIN_RASED_SCORE,
+            "min_tp1_pct_normal": MIN_TP1_PCT_NORMAL,
+            "min_tp1_pct_golden": MIN_TP1_PCT_GOLDEN,
+            "min_tp1_pct_platinum": MIN_TP1_PCT_PLATINUM,
+            "min_tp2_pct_platinum": MIN_TP2_PCT_PLATINUM,
         },
         "disclaimer": "لا يوجد ضمان لتحقيق الأهداف. الفلاتر مصممة لاختيار إشارات مرشحة فنياً خلال 1-7 أيام فقط.",
     }
