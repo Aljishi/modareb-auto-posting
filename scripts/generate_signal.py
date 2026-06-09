@@ -45,25 +45,25 @@ LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
 # صارم لكن غير مستحيل
-MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "78"))
-MIN_RR = float(os.getenv("MIN_RR", "2.0"))
-MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.15"))
+MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "72"))
+MIN_RR = float(os.getenv("MIN_RR", "1.7"))
+MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
 MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "750000"))
 
 MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "5.0"))
-MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "7.0"))
+MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "10.0"))
 
 MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
 MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 
-MIN_RSI = float(os.getenv("MIN_RSI", "42"))
-MAX_RSI = float(os.getenv("MAX_RSI", "76"))
+MIN_RSI = float(os.getenv("MIN_RSI", "38"))
+MAX_RSI = float(os.getenv("MAX_RSI", "80"))
 
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 ENABLE_FUNDAMENTAL_SCORE = os.getenv("ENABLE_FUNDAMENTAL_SCORE", "true").lower() != "false"
-BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "true").lower() != "false"
+BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "false").lower() != "false"
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -493,7 +493,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     if 52 <= rsi <= 64:
         score += 18
         reasons.append(f"زخم صحي RSI {rsi:.1f}")
-    elif 42 <= rsi <= 76:
+    elif MIN_RSI <= rsi <= MAX_RSI:
         score += 13
         reasons.append(f"RSI مقبول {rsi:.1f}")
 
@@ -506,6 +506,9 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     elif vol_ratio >= 1.15:
         score += 11
         reasons.append(f"سيولة مقبولة {vol_ratio:.1f}x")
+    elif vol_ratio >= 0.85:
+        score += 7
+        reasons.append(f"سيولة طبيعية {vol_ratio:.1f}x")
 
     if is_breakout:
         score += 22
