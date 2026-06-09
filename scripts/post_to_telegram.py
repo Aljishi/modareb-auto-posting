@@ -35,9 +35,13 @@ def fnum(x: Any, default: float = 0.0) -> float:
 def safe_int_percent(*values: Any, default: int = 0) -> int:
     for v in values:
         n = fnum(v, None)
-        if n is not None:
+        if n is not None and n > 0:
             return int(round(n))
     return default
+
+
+def ai_was_used(signal: Dict[str, Any]) -> bool:
+    return signal.get("ai_available") is True and signal.get("ai_decision") == "APPROVE"
 
 
 def load_signal() -> Optional[Dict[str, Any]]:
@@ -83,7 +87,8 @@ def build_caption(s: Dict[str, Any]) -> str:
         f"{risk_emoji} <b>مستوى المخاطرة</b>\n<b>{risk}</b>\n\n"
         f"⏳ <b>مدة الصفقة المتوقعة</b>\n<b>{escape(expected_days)} أيام أو أقل</b>\n\n"
         f"━━━━━━━━━━━━━━\n\n"
-        f"🏆 <b>الحالة</b>\nإشارة معتمدة بعد اجتياز فلاتر راصد ومراجعة الذكاء الاصطناعي.\n\n"
+        f"🏆 <b>الحالة</b>\n"
+        f"{'إشارة معتمدة بعد اجتياز فلاتر راصد ومراجعة الذكاء الاصطناعي.' if ai_was_used(s) else 'إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل.'}\n\n"
         f"📌 <b>ملخص سريع</b>\n{summary}\n\n"
         f"💡 {note}\n\n"
         f"⏰ {escape(now)}\n\n"
