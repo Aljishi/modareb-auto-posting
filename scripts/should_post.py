@@ -35,10 +35,10 @@ MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
 
 # عند غياب OpenAI نرفع العتبة لتعويض غياب مراجعة AI
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "76"))
-PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "74"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.8"))
-PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.9"))
+PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "74"))
+PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "72"))
+PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.7"))
+PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.85"))
 
 MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
