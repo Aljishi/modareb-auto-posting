@@ -35,13 +35,9 @@ def fnum(x: Any, default: float = 0.0) -> float:
 def safe_int_percent(*values: Any, default: int = 0) -> int:
     for v in values:
         n = fnum(v, None)
-        if n is not None and n > 0:
+        if n is not None:
             return int(round(n))
     return default
-
-
-def ai_was_used(signal: Dict[str, Any]) -> bool:
-    return signal.get("ai_available") is True and signal.get("ai_decision") == "APPROVE"
 
 
 def load_signal() -> Optional[Dict[str, Any]]:
@@ -66,17 +62,27 @@ def build_caption(s: Dict[str, Any]) -> str:
     tier_emoji = s.get("tier_emoji", "⭐")
     rased_score = fnum(s.get("rased_score"), fnum(s.get("score"), 0))
     confidence = safe_int_percent(s.get("ai_confidence"), s.get("confidence"), default=int(round(rased_score)))
-    risk = escape(s.get("risk_level", "متوسط"))
+    risk = escape(s.get("risk_level", s.get("risk_level_ar", "متوسط")))
     risk_emoji = s.get("risk_emoji", "🟡")
-    note = escape(s.get("ai_telegram_note") or s.get("key_insight") or "اجتازت الإشارة فلاتر راصد الخاصة بالزخم والسيولة وإدارة المخاطر.")
-    summary = escape(s.get("ai_arabic_summary") or s.get("signal_reason") or "إشارة مرشحة لمضاربة قصيرة المدى مع الالتزام الصارم بوقف الخسارة.")
+    note = escape(s.get("ai_telegram_note") or s.get("key_insight") or "الإشارة مرشحة لمضاربة قصيرة المدى مع الالتزام الصارم بوقف الخسارة.")
+    summary = escape(s.get("ai_arabic_summary") or s.get("signal_reason") or "اجتازت الإشارة فلاتر راصد الخاصة بالزخم والسيولة وإدارة المخاطر.")
     expected_days = s.get("ai_expected_holding_days") or s.get("expected_days_to_target2") or "1–7"
+
+    rsi = fnum(s.get("rsi"), 0)
+    volume_ratio = fnum(s.get("volume_ratio"), 0)
+    rr = fnum(s.get("rr", s.get("rr_ratio")), 0)
+    atr_pct = fnum(s.get("atr_pct"), 0)
+    fundamental_grade = escape(s.get("fundamental_grade") or "غير متوفر")
+    fundamental_bonus = fnum(s.get("fundamental_bonus"), 0)
+
+    ai_used = bool(s.get("ai_confidence") or s.get("ai_arabic_summary") or s.get("ai_telegram_note"))
+    review_line = "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية ومراجعة الذكاء الاصطناعي." if ai_used else "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل."
 
     now = datetime.now().strftime("%Y-%m-%d | %I:%M %p KSA").replace("AM", "ص").replace("PM", "م")
 
     return (
         f"{tier_emoji} <b>RASED {tier.upper()} SIGNAL</b>\n\n"
-        f"📈 <b>{sym} | {name}</b>\n\n"
+        f"📈 <b>{name} ({sym})</b>\n\n"
         f"💰 <b>نقطة الدخول</b>\n<code>{fmt_price(s.get('entry_point', s.get('entry')))}</code> ريال\n\n"
         f"🎯 <b>الهدف الأول</b>\n<code>{fmt_price(s.get('target1'))}</code> ريال  <b>(+{fnum(s.get('target1_percent')):.2f}%)</b>\n\n"
         f"🎯 <b>الهدف الثاني</b>\n<code>{fmt_price(s.get('target2'))}</code> ريال  <b>(+{fnum(s.get('target2_percent')):.2f}%)</b>\n\n"
@@ -87,8 +93,11 @@ def build_caption(s: Dict[str, Any]) -> str:
         f"{risk_emoji} <b>مستوى المخاطرة</b>\n<b>{risk}</b>\n\n"
         f"⏳ <b>مدة الصفقة المتوقعة</b>\n<b>{escape(expected_days)} أيام أو أقل</b>\n\n"
         f"━━━━━━━━━━━━━━\n\n"
-        f"🏆 <b>الحالة</b>\n"
-        f"{'إشارة معتمدة بعد اجتياز فلاتر راصد ومراجعة الذكاء الاصطناعي.' if ai_was_used(s) else 'إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل.'}\n\n"
+        f"📊 <b>مؤشرات راصد</b>\n"
+        f"RSI: <b>{rsi:.1f}</b> | Volume: <b>{volume_ratio:.2f}x</b> | R:R: <b>{rr:.2f}</b>\n"
+        f"ATR: <b>{atr_pct:.2f}%</b> | Fundamental: <b>{fundamental_grade}</b> ({fundamental_bonus:+.0f})\n\n"
+        f"━━━━━━━━━━━━━━\n\n"
+        f"🏆 <b>الحالة</b>\n{review_line}\n\n"
         f"📌 <b>ملخص سريع</b>\n{summary}\n\n"
         f"💡 {note}\n\n"
         f"⏰ {escape(now)}\n\n"
