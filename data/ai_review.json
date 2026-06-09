@@ -1,34 +1,10 @@
 {
   "model": "gpt-4o-mini",
   "available": false,
-  "reviewed_at": "2026-06-09T12:46:09",
+  "reviewed_at": "2026-06-09T12:48:40",
   "approved": 0,
-  "total": 4,
+  "total": 2,
   "signals": [
-    {
-      "stock_symbol": "1120",
-      "decision": "SKIPPED",
-      "confidence": 0,
-      "risk_level": "UNKNOWN",
-      "expected_holding_days": 3,
-      "rased_score": 77.9,
-      "tier": "Standard",
-      "reasons": [
-        "AI review skipped: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insuff"
-      ]
-    },
-    {
-      "stock_symbol": "1180",
-      "decision": "SKIPPED",
-      "confidence": 0,
-      "risk_level": "UNKNOWN",
-      "expected_holding_days": 3,
-      "rased_score": 74.9,
-      "tier": "Standard",
-      "reasons": [
-        "AI review skipped: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insuff"
-      ]
-    },
     {
       "stock_symbol": "8060",
       "decision": "SKIPPED",
@@ -42,12 +18,12 @@
       ]
     },
     {
-      "stock_symbol": "2381",
+      "stock_symbol": "2082",
       "decision": "SKIPPED",
       "confidence": 0,
       "risk_level": "UNKNOWN",
       "expected_holding_days": 3,
-      "rased_score": 69.4,
+      "rased_score": 68.9,
       "tier": "Standard",
       "reasons": [
         "AI review skipped: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insuff"
