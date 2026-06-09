@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-09T14:48:34",
+  "reviewed_at": "2026-06-09T14:52:48",
   "approved": 0,
   "total": 2,
   "signals": [
@@ -29,7 +29,7 @@
       "reasons": [
         "Confidence score below threshold",
         "RSI is overheated",
-        "Setup is not clear"
+        "Setup lacks clarity"
       ]
     }
   ]

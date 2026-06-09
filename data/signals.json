@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 68.4 — سيولة مقبولة 1.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.2%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1601448-8060",
+      "signal_id": "Signal #2026-1601452-8060",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-09T14:48:19",
+      "generated_at": "2026-06-09T14:52:35",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -92,7 +92,7 @@
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام وارتفاع مؤشر القوة النسبية.",
       "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
-      "ai_reviewed_at": "2026-06-09T14:48:29"
+      "ai_reviewed_at": "2026-06-09T14:52:45"
     },
     {
       "stock_symbol": "2082",
@@ -152,12 +152,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 68.2 — سيولة مقبولة 1.3x — قريب من اختراق مقاومة مهمة — زخم مرتفع — مراقبة عدم المطاردة",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1601447-2082",
+      "signal_id": "Signal #2026-1601452-2082",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-09T14:47:49",
+      "generated_at": "2026-06-09T14:52:22",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -170,7 +170,7 @@
         "main_reasons": [
           "Confidence score below threshold",
           "RSI is overheated",
-          "Setup is not clear"
+          "Setup lacks clarity"
         ],
         "rejection_reason": "Signal does not meet approval criteria due to low confidence and overheated RSI.",
         "arabic_summary": "تم رفض الإشارة بسبب انخفاض الثقة وارتفاع مؤشر القوة النسبية.",
@@ -184,14 +184,14 @@
       "ai_reasons": [
         "Confidence score below threshold",
         "RSI is overheated",
-        "Setup is not clear"
+        "Setup lacks clarity"
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب انخفاض الثقة وارتفاع مؤشر القوة النسبية.",
       "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
-      "ai_reviewed_at": "2026-06-09T14:48:34"
+      "ai_reviewed_at": "2026-06-09T14:52:48"
     }
   ],
-  "generated_at": "2026-06-09T14:48:25",
+  "generated_at": "2026-06-09T14:52:42",
   "total": 2,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -219,5 +219,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-09T14:48:34"
+  "ai_reviewed_at": "2026-06-09T14:52:48"
 }
