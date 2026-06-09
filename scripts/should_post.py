@@ -21,24 +21,24 @@ VALIDATED_FILE = DATA_DIR / "validated_signals.json"
 LAST_POST_FILE = DATA_DIR / "last_post_date.txt"
 
 # تتوافق مع generate_signal.py v6
-ENGINE_VERSION_PREFIX = os.getenv("ENGINE_VERSION_PREFIX", "rased_sahmk_historical_7d_")
+ENGINE_VERSION_PREFIX = os.getenv("ENGINE_VERSION_PREFIX", "rased_sahmk_historical")
 
-MIN_SCORE = int(os.getenv("MIN_FINAL_SCORE", "78"))
-MIN_RASED_SCORE = float(os.getenv("MIN_RASED_SCORE", "80"))
-MIN_RR = float(os.getenv("MIN_RR", "2.0"))
-MIN_RSI = float(os.getenv("MIN_RSI", "42"))
-MAX_RSI = float(os.getenv("MAX_RSI", "76"))
-MIN_VOL_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "1.15"))
+MIN_SCORE = int(os.getenv("MIN_FINAL_SCORE", "72"))
+MIN_RASED_SCORE = float(os.getenv("MIN_RASED_SCORE", "72"))
+MIN_RR = float(os.getenv("MIN_RR", "1.7"))
+MIN_RSI = float(os.getenv("MIN_RSI", "38"))
+MAX_RSI = float(os.getenv("MAX_RSI", "80"))
+MIN_VOL_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
 MIN_VALUE = float(os.getenv("MIN_VALUE_SAR", "750000"))
-MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "82"))
+MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "75"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
 
 # عند غياب OpenAI نرفع العتبة لتعويض غياب مراجعة AI
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "86"))
-PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "82"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "2.2"))
-PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "1.3"))
+PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "76"))
+PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "74"))
+PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.8"))
+PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.9"))
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -154,7 +154,7 @@ def main() -> int:
 
     if posted_today():
         print("⚠️ تم النشر مسبقاً اليوم — منع نشر مكرر")
-        return 1
+        return 0
 
     if not SIGNALS_FILE.exists():
         print("ℹ️ signals.json غير موجود — لا يوجد نشر")
@@ -225,7 +225,7 @@ def main() -> int:
     VALIDATED_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"\n✅ Final approved: {len(validated)}/{len(signals)}")
-    return 0 if validated else 1
+    return 0
 
 
 if __name__ == "__main__":
