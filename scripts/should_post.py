@@ -1,232 +1,220 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""راصد — بوابة النشر النهائية.
 
-مهم:
-- إذا OpenAI متاح: يشترط APPROVE.
-- إذا OpenAI غير متاح بسبب quota أو غيره: لا يكسر النظام، لكن يطبق Python gate أكثر صرامة.
-- لا يرجع خطأ عند عدم وجود إشارات؛ فقط لا ينشر.
-"""
-
-import json
-import os
-import sys
-from datetime import datetime
+import json, sys, math
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-SIGNALS_FILE = DATA_DIR / "signals.json"
-VALIDATED_FILE = DATA_DIR / "validated_signals.json"
-LAST_POST_FILE = DATA_DIR / "last_post_date.txt"
+try:
+    import arabic_reshaper
+    from bidi.algorithm import get_display
+except Exception:
+    arabic_reshaper = None
+    get_display = None
 
-# تتوافق مع generate_signal.py v6
-ENGINE_VERSION_PREFIX = os.getenv("ENGINE_VERSION_PREFIX", "rased_sahmk_historical")
+W, H = 1080, 1350
+BG = "#050A12"
+CARD = "#0B1420"
+CARD2 = "#0F1B2A"
+GREEN = "#2ECC71"
+RED = "#EF3B2D"
+WHITE = "#F4F6F8"
+MUTED = "#AAB2BD"
+LINE = "#263544"
+GOLD = "#D8B64C"
 
-MIN_SCORE = int(os.getenv("MIN_FINAL_SCORE", "72"))
-MIN_RASED_SCORE = float(os.getenv("MIN_RASED_SCORE", "72"))
-MIN_RR = float(os.getenv("MIN_RR", "1.7"))
-MIN_RSI = float(os.getenv("MIN_RSI", "38"))
-MAX_RSI = float(os.getenv("MAX_RSI", "80"))
-MIN_VOL_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
-MIN_VALUE = float(os.getenv("MIN_VALUE_SAR", "750000"))
-MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "75"))
-MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
-ALLOWED_AI_RISK = {"LOW", "MEDIUM"}
-
-# عند غياب OpenAI نرفع العتبة لتعويض غياب مراجعة AI
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "76"))
-PY_ONLY_MIN_SCORE = int(os.getenv("PY_ONLY_MIN_SCORE", "74"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.8"))
-PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOLUME_RATIO", "0.9"))
+DATA_FILE = Path("data/validated_signals.json")
+OUT_FILE = "output.png"
 
 
-def fnum(x: Any, default: float = 0.0) -> float:
+def ar(text):
+    text = str(text)
+    if arabic_reshaper and get_display:
+        return get_display(arabic_reshaper.reshape(text))
+    return text
+
+
+def font(size, bold=False):
+    paths = [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+    ]
+    for p in paths:
+        if Path(p).exists():
+            return ImageFont.truetype(p, size)
+    return ImageFont.load_default()
+
+
+F_TITLE = font(70, True)
+F_SUB = font(30)
+F_BIG = font(76, True)
+F_MID = font(42, True)
+F_TXT = font(34)
+F_SM = font(25)
+F_XS = font(22)
+
+
+def pct(a, b):
     try:
-        if x is None or x == "":
-            return default
-        if isinstance(x, str):
-            x = x.replace("%", "").replace(",", "").strip()
-        return float(x)
+        return ((float(a) - float(b)) / float(b)) * 100
+    except Exception:
+        return 0
+
+
+def money(v):
+    try:
+        return f"{float(v):.2f}"
+    except Exception:
+        return str(v)
+
+
+def as_int(v, default=0):
+    try:
+        if isinstance(v, str):
+            v = v.replace("%", "").strip()
+        return int(float(v))
     except Exception:
         return default
 
 
-def posted_today() -> bool:
-    today = datetime.now().strftime("%Y-%m-%d")
-    try:
-        return LAST_POST_FILE.exists() and LAST_POST_FILE.read_text(encoding="utf-8").strip() == today
-    except Exception:
-        return False
+def get_signal():
+    if len(sys.argv) > 1:
+        source = Path(sys.argv[1])
+    else:
+        source = DATA_FILE
+
+    data = json.load(open(source, encoding="utf-8"))
+
+    if isinstance(data, dict) and "validated_signals" in data:
+        return data["validated_signals"][0]
+    if isinstance(data, dict) and "signals" in data:
+        return data["signals"][0]
+    if isinstance(data, list):
+        return data[0]
+    return data
 
 
-def base_validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
-    if sig.get("data_source") != "sahmk_api_historical":
-        return False, "مصدر البيانات ليس Sahmk Historical API"
-
-    engine = str(sig.get("engine_version", ""))
-    if not engine.startswith(ENGINE_VERSION_PREFIX):
-        return False, f"نسخة المحرك غير متوافقة: {engine}"
-
-    if fnum(sig.get("score")) < MIN_SCORE:
-        return False, f"Score أقل من {MIN_SCORE}"
-    if fnum(sig.get("rased_score")) < MIN_RASED_SCORE:
-        return False, f"RASED SCORE أقل من {MIN_RASED_SCORE}"
-    if fnum(sig.get("rr")) < MIN_RR:
-        return False, f"R:R أقل من {MIN_RR}"
-    if not (MIN_RSI <= fnum(sig.get("rsi")) <= MAX_RSI):
-        return False, "RSI خارج النطاق المقبول"
-    if fnum(sig.get("volume_ratio")) < MIN_VOL_RATIO:
-        return False, "الحجم النسبي غير كافٍ"
-    if fnum(sig.get("value")) < MIN_VALUE:
-        return False, "السيولة المتداولة غير كافية"
-
-    for field in (
-        "atr14",
-        "atr_pct",
-        "resistance",
-        "support",
-        "entry_point",
-        "target1",
-        "target2",
-        "stop_loss",
-    ):
-        if fnum(sig.get(field)) <= 0:
-            return False, f"الحقل الفني ناقص أو صفر: {field}"
-
-    if int(sig.get("historical_bars", 0)) < 25:
-        return False, "البيانات التاريخية أقل من 25 شمعة"
-    if fnum(sig.get("stop_loss")) >= fnum(sig.get("entry_point")):
-        return False, "وقف الخسارة غير منطقي"
-    if fnum(sig.get("target2")) <= fnum(sig.get("entry_point")):
-        return False, "الهدف غير منطقي"
-    if sig.get("seven_day_filter_passed") is not True:
-        return False, "فلتر 7 أيام لم يجتز"
-    if int(sig.get("expected_days_to_target2", 99)) > MAX_HOLD_DAYS:
-        return False, "الهدف الثاني غير منطقي خلال 7 أيام"
-
-    return True, "ok"
+def rounded(draw, box, r, fill, outline=None, width=2):
+    draw.rounded_rectangle(box, radius=r, fill=fill, outline=outline, width=width)
 
 
-def ai_validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
-    ai_available = sig.get("ai_available") is True
-
-    if ai_available:
-        if sig.get("ai_decision") != "APPROVE":
-            return False, f"OpenAI decision = {sig.get('ai_decision', 'missing')}"
-        if int(sig.get("ai_confidence", 0)) < MIN_AI_CONFIDENCE:
-            return False, f"OpenAI confidence أقل من {MIN_AI_CONFIDENCE}"
-        if sig.get("ai_risk_level") not in ALLOWED_AI_RISK:
-            return False, f"OpenAI risk غير مقبول: {sig.get('ai_risk_level')}"
-        if int(sig.get("ai_expected_holding_days", 99)) > MAX_HOLD_DAYS:
-            return False, "OpenAI يرى أن المدة المتوقعة تتجاوز 7 أيام"
-        return True, "ai ok"
-
-    # OpenAI غير متاح: بوابة Python أكثر صرامة
-    if fnum(sig.get("score")) < PY_ONLY_MIN_SCORE:
-        return False, f"OpenAI غير متاح و Score أقل من {PY_ONLY_MIN_SCORE}"
-    if fnum(sig.get("rased_score")) < PY_ONLY_MIN_RASED_SCORE:
-        return False, f"OpenAI غير متاح و RASED SCORE أقل من {PY_ONLY_MIN_RASED_SCORE}"
-    if fnum(sig.get("rr")) < PY_ONLY_MIN_RR:
-        return False, f"OpenAI غير متاح و R:R أقل من {PY_ONLY_MIN_RR}"
-    if fnum(sig.get("volume_ratio")) < PY_ONLY_MIN_VOL_RATIO:
-        return False, f"OpenAI غير متاح و Volume أقل من {PY_ONLY_MIN_VOL_RATIO}x"
-
-    sig["ai_decision"] = "SKIPPED_PYTHON_STRICT_APPROVED"
-    sig["ai_confidence"] = 0
-    sig["ai_risk_level"] = "UNKNOWN"
-    sig["ai_telegram_note"] = sig.get("key_insight", "")
-    sig["ai_arabic_summary"] = sig.get("signal_reason", "")
-    return True, "python strict fallback ok"
+def center_text(draw, xy, text, f, fill):
+    bbox = draw.textbbox((0, 0), text, font=f)
+    x = xy[0] - (bbox[2] - bbox[0]) / 2
+    y = xy[1] - (bbox[3] - bbox[1]) / 2
+    draw.text((x, y), text, font=f, fill=fill)
 
 
-def validate(sig: Dict[str, Any]) -> Tuple[bool, str]:
-    ok, msg = base_validate(sig)
-    if not ok:
-        return ok, msg
-    return ai_validate(sig)
+def main():
+    s = get_signal()
 
+    symbol = s.get("stock_symbol") or s.get("symbol") or "----"
+    name = s.get("stock_name") or s.get("name") or "السهم"
+    entry = float(s.get("entry_point") or s.get("entry") or s.get("current_price") or 0)
+    tp1 = float(s.get("target1") or s.get("tp1") or 0)
+    tp2 = float(s.get("target2") or s.get("tp2") or 0)
+    sl = float(s.get("stop_loss") or s.get("sl") or 0)
 
-def main() -> int:
-    print("=" * 60)
-    print("✅ راصد — Final Posting Gate")
-    print("=" * 60)
+    score = as_int(s.get("rased_score") or s.get("score") or 88, 88)
+    confidence = as_int(s.get("ai_confidence") or s.get("confidence") or s.get("rased_score") or 89, 89)
+    tier = s.get("tier") or "Standard"
+    tier_emoji = s.get("tier_emoji") or "✅"
+    risk = s.get("risk_level_ar") or s.get("ai_risk_level") or "منخفضة"
+    holding = s.get("holding_period") or "1 - 7 أيام"
+    signal_id = s.get("signal_id") or f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j')}"
+    fundamental_bonus = as_int(s.get("fundamental_bonus") or 0, 0)
+    fundamental_grade = s.get("fundamental_grade") or "محايد"
 
-    if posted_today():
-        print("⚠️ تم النشر مسبقاً اليوم — منع نشر مكرر")
-        return 0
+    tp1_pct = s.get("tp1_pct") or pct(tp1, entry)
+    tp2_pct = s.get("tp2_pct") or pct(tp2, entry)
+    sl_pct = s.get("sl_pct") or pct(sl, entry)
 
-    if not SIGNALS_FILE.exists():
-        print("ℹ️ signals.json غير موجود — لا يوجد نشر")
-        return 0
+    img = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(img)
 
-    data = json.loads(SIGNALS_FILE.read_text(encoding="utf-8"))
-    signals = data.get("signals", [])
-    if not signals:
-        print("ℹ️ لا توجد إشارات — لا يوجد نشر")
-        VALIDATED_FILE.write_text(
-            json.dumps(
-                {
-                    "validated_signals": [],
-                    "total_checked": 0,
-                    "total_valid": 0,
-                    "timestamp": datetime.now().isoformat(timespec="seconds"),
-                    "status": "NO_SIGNALS",
-                },
-                ensure_ascii=False,
-                indent=2,
-            ),
-            encoding="utf-8",
-        )
-        return 0
+    rounded(d, (28, 28, W-28, H-28), 28, BG, "#46515E", 2)
 
-    validated = []
-    for sig in signals:
-        sym = sig.get("stock_symbol", sig.get("symbol", ""))
-        ok, msg = validate(sig)
-        if ok:
-            sig["final_approved"] = True
-            sig["final_approved_at"] = datetime.now().isoformat(timespec="seconds")
-            validated.append(sig)
-            print(
-                f"✅ {sym}: {sig.get('tier')} | RASED {sig.get('rased_score')} | "
-                f"AI {sig.get('ai_decision')} | TP2 {sig.get('target2_percent')}%"
-            )
-        else:
-            print(f"❌ {sym}: {msg}")
+    # Header
+    d.ellipse((55, 60, 145, 150), fill="#081923", outline=GREEN, width=2)
+    d.rectangle((83, 115, 96, 138), fill=GREEN)
+    d.rectangle((103, 95, 116, 138), fill=GREEN)
+    d.rectangle((123, 75, 136, 138), fill=GREEN)
 
-    validated.sort(
-        key=lambda s: (
-            fnum(s.get("rased_score")),
-            fnum(s.get("ai_confidence")),
-            fnum(s.get("rr")),
-        ),
-        reverse=True,
-    )
-    validated = validated[:1]
+    d.text((170, 55), ar("الراصد"), font=F_TITLE, fill=WHITE)
+    d.text((172, 137), ar("الراصد الذكي للأسهم السعودية"), font=F_SUB, fill=MUTED)
 
-    out = {
-        "validated_signals": validated,
-        "total_checked": len(signals),
-        "total_valid": len(validated),
-        "timestamp": datetime.now().isoformat(timespec="seconds"),
-        "status": "HAS_VALID_SIGNAL" if validated else "NO_VALID_SIGNAL",
-        "rules": {
-            "min_score": MIN_SCORE,
-            "min_rased_score": MIN_RASED_SCORE,
-            "min_rr": MIN_RR,
-            "min_ai_confidence": MIN_AI_CONFIDENCE,
-            "max_holding_days": MAX_HOLD_DAYS,
-            "python_only_min_score": PY_ONLY_MIN_SCORE,
-            "python_only_min_rased_score": PY_ONLY_MIN_RASED_SCORE,
-        },
-        "disclaimer": "لا يوجد ضمان لتحقيق الأهداف. الفلاتر مصممة لاختيار إشارات مرشحة فنياً خلال 1-7 أيام فقط.",
-    }
-    VALIDATED_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    rounded(d, (740, 58, 1015, 135), 16, "#0A5E29", GREEN, 2)
+    center_text(d, (877, 96), ar(f"{tier} {tier_emoji}"), F_MID, WHITE)
 
-    print(f"\n✅ Final approved: {len(validated)}/{len(signals)}")
-    return 0
+    # Stock card
+    rounded(d, (55, 185, 1025, 575), 18, CARD, "#334253", 2)
+    d.text((95, 230), str(symbol), font=F_BIG, fill=WHITE)
+    d.line((395, 230, 395, 315), fill=LINE, width=2)
+    d.text((450, 230), ar(name), font=F_BIG, fill=WHITE)
+
+    rounded(d, (865, 230, 980, 315), 12, "#081923", GREEN, 2)
+    center_text(d, (922, 257), ar("تاسي"), F_SM, WHITE)
+    center_text(d, (922, 292), "TASI", F_SM, GREEN)
+
+    rows = [
+        ("↗", "سعر الدخول", entry, "", GREEN),
+        ("◎", "الهدف الأول", tp1, f"+{float(tp1_pct):.1f}%", GREEN),
+        ("◎", "الهدف الثاني", tp2, f"+{float(tp2_pct):.1f}%", GREEN),
+        ("🛡", "وقف الخسارة", sl, f"{float(sl_pct):.1f}%", RED),
+    ]
+
+    y = 350
+    for icon, label, value, p, color in rows:
+        d.ellipse((85, y-20, 145, y+40), fill="#07131E", outline=color, width=3)
+        center_text(d, (115, y+10), icon, F_TXT, WHITE)
+        d.text((190, y-5), ar(label), font=F_TXT, fill=WHITE)
+        d.text((455, y-12), money(value), font=F_MID, fill=color)
+        d.text((630, y-3), ar("ريال"), font=F_SM, fill=WHITE)
+        if p:
+            rounded(d, (840, y-12, 980, y+38), 10, "#0D642E" if color == GREEN else "#78160F", color, 1)
+            center_text(d, (910, y+13), p, F_SM, WHITE)
+        y += 70
+
+    # Score panel
+    rounded(d, (55, 600, 1025, 790), 18, CARD2, "#334253", 2)
+    cols = [55, 300, 545, 790, 1025]
+    labels = ["RASED SCORE™", "الثقة", "المخاطرة", "المدة المتوقعة"]
+    values = [f"{score}/100", f"{confidence}%", risk, holding]
+    colors = [GREEN, GREEN, GREEN, WHITE]
+
+    for i in range(4):
+        if i:
+            d.line((cols[i], 625, cols[i], 765), fill=LINE, width=2)
+        center_text(d, ((cols[i]+cols[i+1])/2, 635), ar(labels[i]), F_SM, WHITE)
+        center_text(d, ((cols[i]+cols[i+1])/2, 710), ar(values[i]), F_MID, colors[i])
+
+    # Badges
+    rounded(d, (55, 815, 1025, 915), 18, CARD, "#334253", 2)
+    fundamental_badge = f"أساسيات {fundamental_grade}" if fundamental_bonus != 0 else "فلتر أساسي"
+    badges = [("↗", "زخم إيجابي"), ("💧", "سيولة جيدة"), ("◆", fundamental_badge)]
+    bx = [190, 540, 850]
+    for (ic, tx), x in zip(badges, bx):
+        center_text(d, (x-55, 865), ic, F_MID, GREEN)
+        center_text(d, (x+60, 865), ar(tx), F_SM, WHITE)
+
+    # Footer
+    rounded(d, (55, 940, 1025, 1025), 18, CARD, "#334253", 2)
+    d.text((95, 968), ar(datetime.now().strftime("%Y/%m/%d")), font=F_SM, fill=WHITE)
+    d.text((405, 968), datetime.now().strftime("%I:%M %p KSA"), font=F_SM, fill=WHITE)
+    d.text((700, 968), signal_id, font=F_SM, fill=GREEN)
+
+    rounded(d, (55, 1050, 1025, 1135), 18, CARD, "#334253", 2)
+    d.text((95, 1075), "✈  t.me/RasedSA", font=F_MID, fill=GREEN)
+    ai_label = "AI + Sahmk Starter Data" if s.get("ai_available") is True else "Sahmk Starter Data"
+    d.text((655, 1083), ai_label, font=F_SM, fill=MUTED)
+
+    center_text(d, (W/2, 1195), ar("تنبيه: ليست توصية استثمارية."), F_SM, MUTED)
+
+    out = sys.argv[2] if len(sys.argv) > 2 else OUT_FILE
+    img.save(out, quality=95)
+    print(f"✅ Premium post generated: {out}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
