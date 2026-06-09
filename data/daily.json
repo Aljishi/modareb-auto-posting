@@ -2,9 +2,21 @@
   "provider": "sahmk",
   "data_source": "api",
   "engine": "rased_market_intelligence_sahmk",
-  "generated_at": "2026-06-09T10:50:59",
+  "generated_at": "2026-06-09T10:55:33",
   "api_url": "https://app.sahmk.sa/api/v1",
-  "market_summary": {},
+  "market_summary": {
+    "index": "TASI",
+    "is_delayed": true,
+    "timestamp": "2026-06-09T07:34:42+00:00",
+    "index_value": 11075.53,
+    "index_change": 102.45,
+    "index_change_percent": 0.93,
+    "total_volume": 72763726,
+    "advancing": 230,
+    "declining": 34,
+    "unchanged": 4,
+    "market_mood": "Bullish"
+  },
   "stocks": [
     {
       "symbol": "1120",
