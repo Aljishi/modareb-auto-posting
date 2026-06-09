@@ -1,17 +1,17 @@
 {
   "validated_signals": [],
-  "total_checked": 5,
+  "total_checked": 2,
   "total_valid": 0,
-  "timestamp": "2026-06-09T10:16:06",
+  "timestamp": "2026-06-09T11:35:59",
   "status": "NO_VALID_SIGNAL",
   "rules": {
-    "min_score": 78,
-    "min_rased_score": 80.0,
-    "min_rr": 2.0,
-    "min_ai_confidence": 82,
+    "min_score": 72,
+    "min_rased_score": 72.0,
+    "min_rr": 1.7,
+    "min_ai_confidence": 75,
     "max_holding_days": 7,
-    "python_only_min_score": 82,
-    "python_only_min_rased_score": 86.0
+    "python_only_min_score": 74,
+    "python_only_min_rased_score": 76.0
   },
   "disclaimer": "لا يوجد ضمان لتحقيق الأهداف. الفلاتر مصممة لاختيار إشارات مرشحة فنياً خلال 1-7 أيام فقط."
 }
