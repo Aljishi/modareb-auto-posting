@@ -61,6 +61,15 @@ MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 MIN_RSI = float(os.getenv("MIN_RSI", "38"))
 MAX_RSI = float(os.getenv("MAX_RSI", "80"))
 
+# شروط الربح الدنيا:
+# العادية/Premium لا تُقبل إلا إذا كان الهدف الأول 4% أو أكثر.
+# الذهبية Gold تحتاج TP1 6% أو أكثر.
+# Platinum تحتاج TP1 8% أو أكثر، أو TP2 10% أو أكثر.
+MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
+MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
+MIN_TP1_PCT_PLATINUM = float(os.getenv("MIN_TP1_PCT_PLATINUM", "8.0"))
+MIN_TP2_PCT_PLATINUM = float(os.getenv("MIN_TP2_PCT_PLATINUM", "10.0"))
+
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 ENABLE_FUNDAMENTAL_SCORE = os.getenv("ENABLE_FUNDAMENTAL_SCORE", "true").lower() != "false"
 BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "false").lower() != "false"
@@ -286,20 +295,23 @@ def expected_days_to_target(
 
 
 def classify_tier(score: float) -> Tuple[str, str]:
-    if score >= 95:
+    # تصنيف تجاري أوضح للمشتركين:
+    # الإشارة العادية تبدأ من Premium بدل Standard حتى لا تبدو ضعيفة عند النشر.
+    if score >= 92:
         return "Platinum", "👑"
-    if score >= 90:
-        return "Gold", "🌟"
     if score >= 85:
+        return "Gold", "🌟"
+    if score >= 75:
         return "Premium", "⭐"
     return "Standard", "✅"
 
 
 def risk_label(rr: float, atr_pct: float, rsi: float) -> Tuple[str, str]:
-    if rr >= 3 and 1.0 <= atr_pct <= 4.5 and rsi <= 64:
+    # لا نجعل R:R 1.7 يظهر كخطر مرتفع إذا كان الوقف واضحاً والمؤشرات ضمن النطاق.
+    if rr >= 2.5 and 0.5 <= atr_pct <= 6.5 and rsi <= 76:
         return "منخفض", "🟢"
 
-    if rr >= 2.0 and 0.5 <= atr_pct <= 6.5 and rsi <= 76:
+    if rr >= 1.7 and 0.5 <= atr_pct <= 8.0 and rsi <= 80:
         return "متوسط", "🟡"
 
     return "مرتفع", "🔴"
@@ -451,6 +463,11 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     target2_pct = pct(target2 - entry, entry)
     stop_loss_pct = abs(pct(stop_loss - entry, entry))
 
+    # فلتر جودة الربح: لا ننشر إشارة عادية إذا كان TP1 أقل من 4%.
+    if target1_pct < MIN_TP1_PCT_NORMAL:
+        reject(symbol, f"TP1% {target1_pct}% أقل من الحد الأدنى للإشارة العادية {MIN_TP1_PCT_NORMAL}%")
+        return None
+
     max_reasonable_7d_pct = round(atr_pct * MAX_TP2_ATR_MULTIPLE_7D, 2)
 
     expected_days_tp1 = expected_days_to_target(target1_pct, atr_pct, vol_ratio, is_breakout)
@@ -574,6 +591,17 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     rased_score = round(score * 0.50 + rr_score * 0.25 + time_score * 0.25, 1)
 
     tier, tier_emoji = classify_tier(rased_score)
+
+    # لا نسمح بتصنيف Gold إلا إذا كان الهدف الأول 6% أو أكثر.
+    # ولا نسمح بتصنيف Platinum إلا إذا كان TP1 >= 8% أو TP2 >= 10%.
+    if tier == "Platinum" and target1_pct < MIN_TP1_PCT_PLATINUM and target2_pct < MIN_TP2_PCT_PLATINUM:
+        tier = "Gold"
+        tier_emoji = "🌟"
+
+    if tier == "Gold" and target1_pct < MIN_TP1_PCT_GOLDEN:
+        tier = "Premium"
+        tier_emoji = "⭐"
+
     risk_text, risk_emoji = risk_label(rr, atr_pct, rsi)
 
     signal_id = f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j%H%M')}-{symbol}"
@@ -745,6 +773,10 @@ def main() -> int:
             "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
             "MAX_ENTRY_GAP_PCT": MAX_ENTRY_GAP_PCT,
             "MAX_NEAR_RESISTANCE_PCT": MAX_NEAR_RESISTANCE_PCT,
+            "MIN_TP1_PCT_NORMAL": MIN_TP1_PCT_NORMAL,
+            "MIN_TP1_PCT_GOLDEN": MIN_TP1_PCT_GOLDEN,
+            "MIN_TP1_PCT_PLATINUM": MIN_TP1_PCT_PLATINUM,
+            "MIN_TP2_PCT_PLATINUM": MIN_TP2_PCT_PLATINUM,
             "ENABLE_FUNDAMENTAL_SCORE": ENABLE_FUNDAMENTAL_SCORE,
             "BLOCK_WEAK_FUNDAMENTALS": BLOCK_WEAK_FUNDAMENTALS,
         },
