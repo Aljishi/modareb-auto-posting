@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""راصد — نشر إشارة Premium على تيليغرام + حفظها للمتابعة."""
+"""راصد — نشر إشارة Premium/Gold/Platinum على تيليغرام + حفظها للمتابعة.
+
+التحديثات:
+- لا يعرض ثقة OpenAI = 0% عند عدم توفر OpenAI.
+- يستخدم RASED Score كقيمة ثقة تشغيلية إذا كانت مراجعة OpenAI غير متاحة.
+- يوضح في الحالة هل تمت مراجعة الذكاء الاصطناعي أم لا.
+- يعرض مؤشرات RSI / Volume / R:R / ATR / Fundamental.
+"""
 
 import json
 import os
@@ -32,12 +39,25 @@ def fnum(x: Any, default: float = 0.0) -> float:
         return default
 
 
-def safe_int_percent(*values: Any, default: int = 0) -> int:
-    for v in values:
-        n = fnum(v, None)
-        if n is not None:
-            return int(round(n))
-    return default
+def percent_from_signal(signal: Dict[str, Any], rased_score: float) -> int:
+    """يرجع الثقة المعروضة للمشترك.
+
+    إذا OpenAI متاح ومعتمد نستخدم ai_confidence.
+    إذا OpenAI غير متاح أو skipped نستخدم RASED Score حتى لا تظهر 0%.
+    """
+    ai_available = signal.get("ai_available") is True
+    ai_decision = signal.get("ai_decision")
+    ai_conf = fnum(signal.get("ai_confidence"), 0)
+
+    if ai_available and ai_decision == "APPROVE" and ai_conf > 0:
+        return int(round(ai_conf))
+
+    confidence = signal.get("confidence")
+    conf_num = fnum(confidence, 0)
+    if conf_num > 0:
+        return int(round(conf_num))
+
+    return int(round(rased_score))
 
 
 def load_signal() -> Optional[Dict[str, Any]]:
@@ -55,28 +75,44 @@ def fmt_price(v: Any) -> str:
     return f"{fnum(v):.2f}"
 
 
+def fmt_days(v: Any) -> str:
+    try:
+        n = int(float(v))
+        return str(max(1, n))
+    except Exception:
+        return "1–7"
+
+
 def build_caption(s: Dict[str, Any]) -> str:
     name = escape(s.get("stock_name", s.get("name", "")))
     sym = escape(s.get("stock_symbol", s.get("symbol", "")))
     tier = escape(s.get("tier", "Premium"))
     tier_emoji = s.get("tier_emoji", "⭐")
     rased_score = fnum(s.get("rased_score"), fnum(s.get("score"), 0))
-    confidence = safe_int_percent(s.get("ai_confidence"), s.get("confidence"), default=int(round(rased_score)))
+    confidence = percent_from_signal(s, rased_score)
+
     risk = escape(s.get("risk_level", s.get("risk_level_ar", "متوسط")))
     risk_emoji = s.get("risk_emoji", "🟡")
-    note = escape(s.get("ai_telegram_note") or s.get("key_insight") or "الإشارة مرشحة لمضاربة قصيرة المدى مع الالتزام الصارم بوقف الخسارة.")
-    summary = escape(s.get("ai_arabic_summary") or s.get("signal_reason") or "اجتازت الإشارة فلاتر راصد الخاصة بالزخم والسيولة وإدارة المخاطر.")
-    expected_days = s.get("ai_expected_holding_days") or s.get("expected_days_to_target2") or "1–7"
 
-    rsi = fnum(s.get("rsi"), 0)
-    volume_ratio = fnum(s.get("volume_ratio"), 0)
-    rr = fnum(s.get("rr", s.get("rr_ratio")), 0)
-    atr_pct = fnum(s.get("atr_pct"), 0)
-    fundamental_grade = escape(s.get("fundamental_grade") or "غير متوفر")
-    fundamental_bonus = fnum(s.get("fundamental_bonus"), 0)
+    ai_reviewed = s.get("ai_available") is True and s.get("ai_decision") == "APPROVE"
+    if ai_reviewed:
+        review_line = "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية ومراجعة الذكاء الاصطناعي."
+        summary = escape(s.get("ai_arabic_summary") or s.get("signal_reason") or "إشارة مرشحة بعد مراجعة آلية وفنية.")
+        note = escape(s.get("ai_telegram_note") or s.get("key_insight") or "الالتزام بوقف الخسارة وإدارة رأس المال شرط أساسي.")
+    else:
+        review_line = "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل."
+        summary = escape(s.get("signal_reason") or "اجتازت الإشارة فلاتر راصد الخاصة بالزخم والسيولة وإدارة المخاطر.")
+        note = escape(s.get("key_insight") or "الإشارة مرشحة لمضاربة قصيرة المدى بشرط الالتزام بوقف الخسارة.")
 
-    ai_used = bool(s.get("ai_confidence") or s.get("ai_arabic_summary") or s.get("ai_telegram_note"))
-    review_line = "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية ومراجعة الذكاء الاصطناعي." if ai_used else "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل."
+    expected_days = fmt_days(s.get("ai_expected_holding_days") if ai_reviewed else s.get("expected_days_to_target2"))
+
+    rsi = fnum(s.get("rsi"))
+    volume_ratio = fnum(s.get("volume_ratio"))
+    rr = fnum(s.get("rr", s.get("rr_ratio")))
+    atr_pct = fnum(s.get("atr_pct"))
+    fundamental_grade = escape(s.get("fundamental_grade", "غير متوفر"))
+    fundamental_bonus = int(fnum(s.get("fundamental_bonus"), 0))
+    fundamental_text = f"{fundamental_grade} ({fundamental_bonus:+d})" if fundamental_grade else "غير متوفر"
 
     now = datetime.now().strftime("%Y-%m-%d | %I:%M %p KSA").replace("AM", "ص").replace("PM", "م")
 
@@ -84,18 +120,18 @@ def build_caption(s: Dict[str, Any]) -> str:
         f"{tier_emoji} <b>RASED {tier.upper()} SIGNAL</b>\n\n"
         f"📈 <b>{name} ({sym})</b>\n\n"
         f"💰 <b>نقطة الدخول</b>\n<code>{fmt_price(s.get('entry_point', s.get('entry')))}</code> ريال\n\n"
-        f"🎯 <b>الهدف الأول</b>\n<code>{fmt_price(s.get('target1'))}</code> ريال  <b>(+{fnum(s.get('target1_percent')):.2f}%)</b>\n\n"
-        f"🎯 <b>الهدف الثاني</b>\n<code>{fmt_price(s.get('target2'))}</code> ريال  <b>(+{fnum(s.get('target2_percent')):.2f}%)</b>\n\n"
+        f"🎯 <b>الهدف الأول</b>\n<code>{fmt_price(s.get('target1'))}</code> ريال  <b>(+{fnum(s.get('target1_percent', s.get('tp1_pct'))):.2f}%)</b>\n\n"
+        f"🎯 <b>الهدف الثاني</b>\n<code>{fmt_price(s.get('target2'))}</code> ريال  <b>(+{fnum(s.get('target2_percent', s.get('tp2_pct'))):.2f}%)</b>\n\n"
         f"🛑 <b>وقف الخسارة</b>\n<code>{fmt_price(s.get('stop_loss'))}</code> ريال  <b>(-{fnum(s.get('stop_loss_percent')):.2f}%)</b>\n\n"
         f"━━━━━━━━━━━━━━\n\n"
         f"⭐ <b>RASED SCORE™</b>\n<b>{rased_score:.1f} / 100</b>\n\n"
         f"🤖 <b>الثقة</b>\n<b>{confidence}%</b>\n\n"
         f"{risk_emoji} <b>مستوى المخاطرة</b>\n<b>{risk}</b>\n\n"
-        f"⏳ <b>مدة الصفقة المتوقعة</b>\n<b>{escape(expected_days)} أيام أو أقل</b>\n\n"
+        f"⏳ <b>مدة الصفقة المتوقعة</b>\n<b>{expected_days} أيام أو أقل</b>\n\n"
         f"━━━━━━━━━━━━━━\n\n"
         f"📊 <b>مؤشرات راصد</b>\n"
         f"RSI: <b>{rsi:.1f}</b> | Volume: <b>{volume_ratio:.2f}x</b> | R:R: <b>{rr:.2f}</b>\n"
-        f"ATR: <b>{atr_pct:.2f}%</b> | Fundamental: <b>{fundamental_grade}</b> ({fundamental_bonus:+.0f})\n\n"
+        f"ATR: <b>{atr_pct:.2f}%</b> | Fundamental: <b>{escape(fundamental_text)}</b>\n\n"
         f"━━━━━━━━━━━━━━\n\n"
         f"🏆 <b>الحالة</b>\n{review_line}\n\n"
         f"📌 <b>ملخص سريع</b>\n{summary}\n\n"
@@ -117,7 +153,11 @@ def save_open_signal(signal: Dict[str, Any]) -> None:
 
     today = datetime.now().strftime("%Y-%m-%d")
     sym = signal.get("stock_symbol", signal.get("symbol", ""))
-    already = any(item.get("date") == today and item.get("signal", {}).get("stock_symbol", item.get("signal", {}).get("symbol", "")) == sym for item in signals)
+    already = any(
+        item.get("date") == today
+        and item.get("signal", {}).get("stock_symbol", item.get("signal", {}).get("symbol", "")) == sym
+        for item in signals
+    )
     if already:
         return
 
@@ -148,7 +188,12 @@ def send_photo(caption: str) -> bool:
         return False
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
     with IMAGE_FILE.open("rb") as photo:
-        r = requests.post(url, data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"}, files={"photo": photo}, timeout=30)
+        r = requests.post(
+            url,
+            data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"},
+            files={"photo": photo},
+            timeout=30,
+        )
     if r.status_code != 200:
         print(f"❌ Telegram error {r.status_code}: {r.text}")
         return False
