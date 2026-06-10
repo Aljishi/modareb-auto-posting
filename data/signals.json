@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.2 — سيولة طبيعية 0.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.6%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611001-7203",
+      "signal_id": "Signal #2026-1611005-7203",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:01:21",
+      "generated_at": "2026-06-10T10:05:42",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -78,8 +78,8 @@
           "Volume confirmation is weak"
         ],
         "rejection_reason": "The setup is not clear due to weak volume and unrealistic target within the expected holding period.",
-        "arabic_summary": "إشارة غير واضحة بسبب ضعف السيولة والهدف غير الواقعي ضمن فترة الاحتفاظ المتوقعة.",
-        "telegram_note": "إشارة مرفوضة: ضعف السيولة والهدف غير واقعي."
+        "arabic_summary": "تم رفض الإشارة بسبب عدم وضوح الإعدادات وضعف حجم التداول.",
+        "telegram_note": "الإشارة غير واضحة، تم رفضها."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 83,
@@ -90,9 +90,9 @@
         "TP2 looks unrealistic within 7 days",
         "Volume confirmation is weak"
       ],
-      "ai_arabic_summary": "إشارة غير واضحة بسبب ضعف السيولة والهدف غير الواقعي ضمن فترة الاحتفاظ المتوقعة.",
-      "ai_telegram_note": "إشارة مرفوضة: ضعف السيولة والهدف غير واقعي.",
-      "ai_reviewed_at": "2026-06-10T10:01:46"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم وضوح الإعدادات وضعف حجم التداول.",
+      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
+      "ai_reviewed_at": "2026-06-10T10:06:01"
     },
     {
       "stock_symbol": "8060",
@@ -152,12 +152,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 68.2 — سيولة مقبولة 1.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.9%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611001-8060",
+      "signal_id": "Signal #2026-1611005-8060",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:01:34",
+      "generated_at": "2026-06-10T10:05:51",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -173,7 +173,7 @@
         ],
         "rejection_reason": "TP2 target is unrealistic within the expected holding period and RSI is overheated.",
         "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية."
+        "telegram_note": "الإشارة مرفوضة بسبب عدم واقعية الأهداف."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 82,
@@ -185,8 +185,8 @@
         "RSI is overheated"
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية.",
-      "ai_reviewed_at": "2026-06-10T10:01:50"
+      "ai_telegram_note": "الإشارة مرفوضة بسبب عدم واقعية الأهداف.",
+      "ai_reviewed_at": "2026-06-10T10:06:04"
     },
     {
       "stock_symbol": "2082",
@@ -246,12 +246,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.8 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم مرتفع — مراقبة عدم المطاردة",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611001-2082",
+      "signal_id": "Signal #2026-1611005-2082",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:01:02",
+      "generated_at": "2026-06-10T10:05:39",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -282,10 +282,10 @@
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وعدم واقعية الهدف الثاني.",
       "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
-      "ai_reviewed_at": "2026-06-10T10:01:53"
+      "ai_reviewed_at": "2026-06-10T10:06:08"
     }
   ],
-  "generated_at": "2026-06-10T10:01:41",
+  "generated_at": "2026-06-10T10:05:57",
   "total": 3,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -313,5 +313,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-10T10:01:53"
+  "ai_reviewed_at": "2026-06-10T10:06:08"
 }
