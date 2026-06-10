@@ -1,17 +1,30 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-09T14:55:55",
+  "reviewed_at": "2026-06-10T10:01:53",
   "approved": 0,
-  "total": 2,
+  "total": 3,
   "signals": [
+    {
+      "stock_symbol": "7203",
+      "decision": "REJECT",
+      "confidence": 83,
+      "risk_level": "MEDIUM",
+      "expected_holding_days": 3,
+      "rased_score": 72.0,
+      "tier": "Standard",
+      "reasons": [
+        "TP2 looks unrealistic within 7 days",
+        "Volume confirmation is weak"
+      ]
+    },
     {
       "stock_symbol": "8060",
       "decision": "REJECT",
-      "confidence": 73,
+      "confidence": 82,
       "risk_level": "MEDIUM",
       "expected_holding_days": 3,
-      "rased_score": 59.3,
+      "rased_score": 71.6,
       "tier": "Standard",
       "reasons": [
         "TP2 looks unrealistic within 7 days",
@@ -27,9 +40,9 @@
       "rased_score": 68.0,
       "tier": "Standard",
       "reasons": [
-        "Confidence score below threshold",
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated"
+        "RSI is overheated at 73.76",
+        "Volume confirmation is weak with a ratio of 1.37",
+        "TP2 looks unrealistic within 7 days"
       ]
     }
   ]
