@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.2 — سيولة طبيعية 0.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.6%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611010-7203",
+      "signal_id": "Signal #2026-1611015-7203",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:10:45",
+      "generated_at": "2026-06-10T10:15:42",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -77,9 +77,9 @@
           "TP2 looks unrealistic within 7 days",
           "Volume confirmation is weak"
         ],
-        "rejection_reason": "The setup is not clear due to weak volume and unrealistic target within the expected holding period.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم وضوح الإعدادات وضعف حجم التداول.",
-        "telegram_note": "الإشارة غير واضحة، تم رفضها."
+        "rejection_reason": "TP2 target is unrealistic within the expected holding period and volume ratio is below 1.",
+        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وضعف تأكيد السيولة.",
+        "telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 83,
@@ -90,9 +90,9 @@
         "TP2 looks unrealistic within 7 days",
         "Volume confirmation is weak"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم وضوح الإعدادات وضعف حجم التداول.",
-      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
-      "ai_reviewed_at": "2026-06-10T10:11:06"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وضعف تأكيد السيولة.",
+      "ai_telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية.",
+      "ai_reviewed_at": "2026-06-10T10:16:06"
     },
     {
       "stock_symbol": "8060",
@@ -120,13 +120,13 @@
       "fundamental_grade": "غير متوفر",
       "fundamental_reading": "لا توجد بيانات أساسية كافية — لم يتم خصم نقاط",
       "fundamental_raw": {},
-      "rased_score": 71.6,
+      "rased_score": 68.8,
       "tier": "Standard",
       "tier_emoji": "✅",
       "risk_level": "متوسط",
       "risk_level_ar": "متوسط",
       "risk_emoji": "🟡",
-      "confidence": "82%",
+      "confidence": "74%",
       "rsi": 68.21,
       "volume_ratio": 1.93,
       "atr14": 0.2686,
@@ -152,17 +152,17 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 68.2 — سيولة مقبولة 1.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.9%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611010-8060",
+      "signal_id": "Signal #2026-1611015-8060",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:10:56",
+      "generated_at": "2026-06-10T10:15:51",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
         "decision": "REJECT",
-        "confidence": 82,
+        "confidence": 74,
         "risk_level": "MEDIUM",
         "risk_score": 3,
         "rased_score_adjustment": 0,
@@ -171,12 +171,12 @@
           "TP2 looks unrealistic within 7 days",
           "RSI is overheated"
         ],
-        "rejection_reason": "TP2 target is unrealistic within the expected holding period and RSI is overheated.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية."
+        "rejection_reason": "The setup is not clear due to high RSI and unrealistic target within the expected holding period.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+        "telegram_note": "الإشارة غير واضحة، تم رفضها."
       },
       "ai_decision": "REJECT",
-      "ai_confidence": 82,
+      "ai_confidence": 74,
       "ai_risk_level": "MEDIUM",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
@@ -184,9 +184,9 @@
         "TP2 looks unrealistic within 7 days",
         "RSI is overheated"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "الإشارة غير موثوقة بسبب أهداف غير واقعية.",
-      "ai_reviewed_at": "2026-06-10T10:11:09"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
+      "ai_reviewed_at": "2026-06-10T10:16:07"
     },
     {
       "stock_symbol": "2082",
@@ -246,12 +246,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.8 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم مرتفع — مراقبة عدم المطاردة",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611010-2082",
+      "signal_id": "Signal #2026-1611015-2082",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T10:10:42",
+      "generated_at": "2026-06-10T10:15:39",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -262,12 +262,12 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "RSI is overheated",
+          "RSI is overheated at 73.76",
           "TP2 looks unrealistic within 7 days",
-          "Setup is not clear"
+          "Volume confirmation is weak with a ratio of 1.37"
         ],
-        "rejection_reason": "The signal has an overheated RSI and the second target is unrealistic within the expected holding period.",
-        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وعدم واقعية الهدف الثاني ضمن الإطار الزمني المتوقع.",
+        "rejection_reason": "Setup does not meet approval criteria due to high RSI and unrealistic target within the expected holding period.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
         "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
       },
       "ai_decision": "REJECT",
@@ -276,16 +276,16 @@
       "ai_risk_score": 4,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "RSI is overheated",
+        "RSI is overheated at 73.76",
         "TP2 looks unrealistic within 7 days",
-        "Setup is not clear"
+        "Volume confirmation is weak with a ratio of 1.37"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وعدم واقعية الهدف الثاني ضمن الإطار الزمني المتوقع.",
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
       "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
-      "ai_reviewed_at": "2026-06-10T10:11:13"
+      "ai_reviewed_at": "2026-06-10T10:16:09"
     }
   ],
-  "generated_at": "2026-06-10T10:11:02",
+  "generated_at": "2026-06-10T10:16:02",
   "total": 3,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -313,5 +313,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-10T10:11:13"
+  "ai_reviewed_at": "2026-06-10T10:16:09"
 }

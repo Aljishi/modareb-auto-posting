@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-10T10:11:13",
+  "reviewed_at": "2026-06-10T10:16:09",
   "approved": 0,
   "total": 3,
   "signals": [
@@ -21,10 +21,10 @@
     {
       "stock_symbol": "8060",
       "decision": "REJECT",
-      "confidence": 82,
+      "confidence": 74,
       "risk_level": "MEDIUM",
       "expected_holding_days": 3,
-      "rased_score": 71.6,
+      "rased_score": 68.8,
       "tier": "Standard",
       "reasons": [
         "TP2 looks unrealistic within 7 days",
@@ -40,9 +40,9 @@
       "rased_score": 68.0,
       "tier": "Standard",
       "reasons": [
-        "RSI is overheated",
+        "RSI is overheated at 73.76",
         "TP2 looks unrealistic within 7 days",
-        "Setup is not clear"
+        "Volume confirmation is weak with a ratio of 1.37"
       ]
     }
   ]
