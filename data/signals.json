@@ -58,12 +58,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 70.9 — سيولة طبيعية 0.9x — اختراق مقاومة مؤكد — زخم يومي صحي +1.5%",
       "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1611446-8060",
+      "signal_id": "Signal #2026-1611450-8060",
       "data_source": "sahmk_api_historical",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_historical_fundamental_v7",
-      "generated_at": "2026-06-10T14:46:06",
+      "generated_at": "2026-06-10T14:50:55",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -74,13 +74,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "TP2 looks unrealistic within 7 days",
-          "RSI is overheated",
-          "Volume confirmation is weak"
+          "RSI is overheated at 70.9",
+          "Volume ratio is weak at 0.9",
+          "TP2 looks unrealistic within 7 days"
         ],
-        "rejection_reason": "The setup does not meet the approval criteria due to unrealistic target and overheated RSI.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني وارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "إشارة غير موفقة بسبب عدم وضوح الأهداف."
+        "rejection_reason": "Setup does not meet approval criteria due to high RSI and weak volume confirmation.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد السيولة.",
+        "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 80,
@@ -88,16 +88,16 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated",
-        "Volume confirmation is weak"
+        "RSI is overheated at 70.9",
+        "Volume ratio is weak at 0.9",
+        "TP2 looks unrealistic within 7 days"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني وارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "إشارة غير موفقة بسبب عدم وضوح الأهداف.",
-      "ai_reviewed_at": "2026-06-10T14:46:15"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد السيولة.",
+      "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
+      "ai_reviewed_at": "2026-06-10T14:51:04"
     }
   ],
-  "generated_at": "2026-06-10T14:46:11",
+  "generated_at": "2026-06-10T14:51:00",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_historical_fundamental_v7",
@@ -125,5 +125,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-10T14:46:15"
+  "ai_reviewed_at": "2026-06-10T14:51:04"
 }
