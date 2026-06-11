@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-11T14:06:02",
+  "reviewed_at": "2026-06-11T14:11:26",
   "approved": 0,
   "total": 1,
   "signals": [
@@ -14,8 +14,8 @@
       "rased_score": 66.9,
       "tier": "Standard",
       "reasons": [
-        "RSI is overheated at 71.9",
-        "Volume ratio is weak at 0.88",
+        "RSI is overheated at 71.5",
+        "Volume ratio is weak at 0.92",
         "Setup lacks clarity due to resistance proximity"
       ]
     }
