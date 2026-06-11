@@ -1,20 +1,47 @@
 {
-  "week": "2026-06-07",
-  "week_start": "2026-05-31",
-  "total_signals": 1,
-  "profitable": 1,
-  "losing": 0,
-  "open_positions": 0,
-  "success_rate": 100.0,
-  "avg_score": 90.0,
-  "top_performers": [
-    {
-      "symbol": "",
-      "name": "",
-      "score": 90,
-      "gain": 0
-    }
-  ],
-  "worst_performers": [],
-  "generated_at": "2026-06-07T10:45:35.396395"
+  "week_start": "2026-06-04",
+  "week_end": "2026-06-11",
+  "generated_at": "2026-06-11T20:30:35",
+  "total_published": 33,
+  "total_this_week": 0,
+  "closed_signals": 33,
+  "open_signals": 0,
+  "tp1_hits": 0,
+  "tp2_hits": 0,
+  "stop_losses": 0,
+  "expired": 33,
+  "tp1_success_rate_closed": 0.0,
+  "tp2_success_rate_closed": 0.0,
+  "stop_loss_rate_closed": 0.0,
+  "this_week": {
+    "published": 0,
+    "closed": 0,
+    "open": 0,
+    "tp1_hits": 0,
+    "tp2_hits": 0,
+    "stop_losses": 0,
+    "tp1_success_rate_closed": 0.0,
+    "tp2_success_rate_closed": 0.0
+  },
+  "avg_days_to_tp1": 0.0,
+  "avg_days_to_tp2": 0.0,
+  "best_recent": [],
+  "minimum_sample_warning": false,
+  "note": "الإحصائيات مبنية على الإشارات المنشورة فعلياً فقط. الأداء السابق لا يضمن النتائج المستقبلية.",
+  "raw_summary": {
+    "updated_at": "2026-06-11T20:30:35",
+    "total_published": 33,
+    "closed_signals": 33,
+    "open_signals": 0,
+    "tp1_hits": 0,
+    "tp2_hits": 0,
+    "stop_losses": 0,
+    "expired": 33,
+    "tp1_success_rate_closed": 0.0,
+    "tp2_success_rate_closed": 0.0,
+    "stop_loss_rate_closed": 0.0,
+    "avg_days_to_tp1": 0,
+    "avg_days_to_tp2": 0,
+    "note": "الإحصائيات مبنية فقط على الإشارات المنشورة فعلياً في القناة."
+  }
 }
