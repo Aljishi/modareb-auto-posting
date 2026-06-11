@@ -2,237 +2,365 @@
 # -*- coding: utf-8 -*-
 
 """
-راصد — Fundamental Score
-========================
-يستفيد من البيانات المتاحة في باقة Sahmk Starter:
-- القوائم المالية
-- أساسيات الشركات
-- توزيعات الأرباح
+راصد — Fundamental / Growth / Dividend Score
 
-مبدأ مهم:
-لا يتم رفض السهم بسبب عدم توفر البيانات الأساسية.
-يتم الرفض فقط عند وجود علامة سلبية صريحة: خسائر، تدهور أرباح حاد، أو مديونية مفرطة مع تدفقات تشغيلية سلبية.
+الملف مصمم ليعمل مع Sahmk Starter بأمان:
+- يحاول قراءة fundamentals / financial statements / dividends من أكثر من endpoint شائع.
+- إذا لم يكن endpoint متاحاً في Sahmk، لا يكسر النظام ويعيد نتيجة محايدة.
+- يعطي نقاطاً للنمو المالي والتوزيعات والربحية والمديونية عند توفر البيانات.
 """
 
 import json
+import os
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, List, Optional
+
+import requests
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-FUNDAMENTALS_FILE = DATA_DIR / "fundamentals.json"
+CACHE_FILE = DATA_DIR / "fundamental_cache.json"
 
-DEFAULT_SECTOR_PE = 20.0
-
-SECTOR_BY_SYMBOL = {
-    # البنوك
-    "1010": "البنوك", "1020": "البنوك", "1030": "البنوك", "1050": "البنوك",
-    "1060": "البنوك", "1080": "البنوك", "1120": "البنوك", "1140": "البنوك", "1150": "البنوك", "1180": "البنوك",
-    # الطاقة والبتروكيماويات
-    "2222": "الطاقة", "2380": "الطاقة", "2381": "الطاقة", "2382": "الطاقة",
-    "2010": "البتروكيماويات", "2020": "البتروكيماويات", "2060": "البتروكيماويات", "2223": "البتروكيماويات", "2230": "البتروكيماويات",
-    # الاتصالات والتقنية
-    "7010": "الاتصالات", "7020": "الاتصالات", "7030": "الاتصالات",
-    "7202": "التقنية", "7203": "التقنية", "7204": "التقنية", "9516": "التقنية", "9526": "التقنية", "9527": "التقنية",
-    # الصحة والغذاء والتجزئة
-    "4002": "الصحة", "4004": "الصحة", "4005": "الصحة", "4013": "الصحة",
-    "6010": "الغذاء", "6020": "الغذاء", "2286": "الغذاء",
-    "4190": "التجزئة", "4001": "التجزئة", "4003": "التجزئة",
-    # العقار والنقل والصناعة
-    "4020": "العقار", "4031": "العقار", "4321": "العقار", "4349": "العقار",
-    "4030": "النقل", "4260": "النقل", "4261": "النقل", "4262": "النقل",
-    "1211": "الصناعة", "1212": "الصناعة", "1301": "الصناعة", "1302": "الصناعة", "1303": "الصناعة", "1321": "الصناعة", "1322": "الصناعة", "4142": "الصناعة",
-    # التأمين
-    "8010": "التامين", "8060": "التامين", "8311": "التامين",
-}
+API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
+API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
+TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
+CACHE_HOURS = int(os.getenv("FUNDAMENTAL_CACHE_HOURS", "24"))
 
 
-def fnum(value: Any, default: float = 0.0) -> float:
+def fnum(x: Any, default: float = 0.0) -> float:
     try:
-        if value is None or value == "":
+        if x is None or x == "":
             return default
-        if isinstance(value, str):
-            value = value.replace(",", "").replace("%", "").strip()
-        return float(value)
+        if isinstance(x, str):
+            x = x.replace(",", "").replace("%", "").strip()
+        return float(x)
     except Exception:
         return default
 
 
-def load_fundamentals() -> Dict[str, Any]:
+def headers() -> Dict[str, str]:
+    if not API_KEY:
+        return {}
+    return {"X-API-Key": API_KEY, "Accept": "application/json", "User-Agent": "Rased-Fundamental-Score/2.0"}
+
+
+def read_cache() -> Dict[str, Any]:
     try:
-        if FUNDAMENTALS_FILE.exists():
-            return json.loads(FUNDAMENTALS_FILE.read_text(encoding="utf-8"))
-    except Exception as exc:
-        print(f"⚠️ fundamental_score: cannot read fundamentals.json: {exc}")
-    return {"stocks": {}, "sector_pe": {}}
+        if CACHE_FILE.exists():
+            return json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    return {"symbols": {}}
 
 
-def detect_sector(symbol: str, stock_sector: str = "") -> str:
-    stock_sector = (stock_sector or "").strip()
-    if stock_sector:
-        return stock_sector
-    return SECTOR_BY_SYMBOL.get(str(symbol), "")
+def write_cache(cache: Dict[str, Any]) -> None:
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        CACHE_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
 
 
-def get_first_number(data: Dict[str, Any], keys, default: float = 0.0) -> float:
-    for key in keys:
-        if key in data:
-            value = fnum(data.get(key), default=None)
-            if value is not None:
-                return value
-    return default
+def fresh(item: Dict[str, Any]) -> bool:
+    ts = item.get("cached_at")
+    if not ts:
+        return False
+    try:
+        dt = datetime.fromisoformat(ts)
+        return datetime.now() - dt < timedelta(hours=CACHE_HOURS)
+    except Exception:
+        return False
+
+
+def safe_get(path: str) -> Optional[Any]:
+    if not API_KEY:
+        return None
+    try:
+        url = f"{API_URL}/{path.lstrip('/')}"
+        r = requests.get(url, headers=headers(), timeout=TIMEOUT)
+        if r.status_code >= 400:
+            return None
+        return r.json()
+    except Exception:
+        return None
+
+
+def unwrap(payload: Any) -> Any:
+    if isinstance(payload, dict):
+        for key in ("data", "results", "items", "financials", "statements", "dividends"):
+            if key in payload:
+                return payload[key]
+    return payload
+
+
+def first_payload(paths: List[str]) -> Any:
+    for p in paths:
+        data = safe_get(p)
+        data = unwrap(data)
+        if data not in (None, [], {}):
+            return data
+    return None
+
+
+def newest_rows(data: Any, limit: int = 8) -> List[Dict[str, Any]]:
+    if isinstance(data, dict):
+        data = [data]
+    if not isinstance(data, list):
+        return []
+    rows = [x for x in data if isinstance(x, dict)]
+    rows.sort(key=lambda r: str(r.get("date") or r.get("period") or r.get("fiscal_period") or r.get("year") or ""), reverse=True)
+    return rows[:limit]
+
+
+def pick(row: Dict[str, Any], keys: List[str]) -> float:
+    for k in keys:
+        if k in row:
+            v = fnum(row.get(k), None)  # type: ignore[arg-type]
+            if v is not None:
+                return fnum(row.get(k))
+    return 0.0
+
+
+def pct_growth(current: float, previous: float) -> float:
+    if previous == 0:
+        return 0.0
+    return round(((current - previous) / abs(previous)) * 100, 2)
+
+
+def score_growth(financial_rows: List[Dict[str, Any]]) -> Dict[str, Any]:
+    if len(financial_rows) < 2:
+        return {"bonus": 0, "grade": "غير متوفر", "details": "لا توجد قوائم مالية كافية", "raw": {}}
+
+    cur = financial_rows[0]
+    prev = financial_rows[1]
+    revenue_now = pick(cur, ["revenue", "total_revenue", "sales", "operating_revenue"])
+    revenue_prev = pick(prev, ["revenue", "total_revenue", "sales", "operating_revenue"])
+    profit_now = pick(cur, ["net_income", "net_profit", "profit", "netProfit"])
+    profit_prev = pick(prev, ["net_income", "net_profit", "profit", "netProfit"])
+
+    revenue_growth = pct_growth(revenue_now, revenue_prev) if revenue_now and revenue_prev else 0.0
+    profit_growth = pct_growth(profit_now, profit_prev) if profit_now and profit_prev else 0.0
+
+    bonus = 0
+    notes: List[str] = []
+    if revenue_growth >= 20:
+        bonus += 4
+        notes.append(f"نمو الإيرادات {revenue_growth}%")
+    elif revenue_growth >= 10:
+        bonus += 2
+        notes.append(f"نمو إيرادات جيد {revenue_growth}%")
+    elif revenue_growth <= -10:
+        bonus -= 3
+        notes.append(f"تراجع الإيرادات {revenue_growth}%")
+
+    if profit_growth >= 25:
+        bonus += 5
+        notes.append(f"نمو الأرباح {profit_growth}%")
+    elif profit_growth >= 10:
+        bonus += 3
+        notes.append(f"نمو أرباح جيد {profit_growth}%")
+    elif profit_growth <= -15:
+        bonus -= 5
+        notes.append(f"تراجع الأرباح {profit_growth}%")
+
+    if profit_now < 0:
+        bonus -= 6
+        notes.append("خسائر صافية")
+
+    if bonus >= 7:
+        grade = "نمو قوي"
+    elif bonus >= 3:
+        grade = "نمو جيد"
+    elif bonus < 0:
+        grade = "نمو ضعيف"
+    else:
+        grade = "محايد"
+
+    return {
+        "bonus": max(-8, min(9, bonus)),
+        "grade": grade,
+        "details": "، ".join(notes) if notes else "نمو مالي محايد",
+        "raw": {
+            "revenue_growth_pct": revenue_growth,
+            "profit_growth_pct": profit_growth,
+            "revenue_now": revenue_now,
+            "profit_now": profit_now,
+        },
+    }
+
+
+def score_quality(fundamentals: Any) -> Dict[str, Any]:
+    row = fundamentals[0] if isinstance(fundamentals, list) and fundamentals else fundamentals
+    if not isinstance(row, dict):
+        return {"bonus": 0, "grade": "غير متوفر", "details": "أساسيات غير متوفرة", "raw": {}}
+
+    roe = pick(row, ["roe", "return_on_equity", "returnOnEquity"])
+    roa = pick(row, ["roa", "return_on_assets", "returnOnAssets"])
+    debt_ratio = pick(row, ["debt_ratio", "debtToEquity", "debt_to_equity", "liabilities_to_assets"])
+    pe = pick(row, ["pe", "p_e", "price_to_earnings", "trailing_pe"])
+
+    bonus = 0
+    notes: List[str] = []
+    if roe >= 20:
+        bonus += 4
+        notes.append(f"ROE ممتاز {roe}")
+    elif roe >= 12:
+        bonus += 2
+        notes.append(f"ROE جيد {roe}")
+    elif 0 < roe < 5:
+        bonus -= 2
+        notes.append(f"ROE ضعيف {roe}")
+
+    if roa >= 8:
+        bonus += 2
+        notes.append(f"ROA جيد {roa}")
+
+    if debt_ratio >= 2.5:
+        bonus -= 4
+        notes.append("مديونية مرتفعة")
+    elif 0 < debt_ratio <= 1.0:
+        bonus += 1
+        notes.append("مديونية مقبولة")
+
+    if pe and pe > 0:
+        if pe <= 18:
+            bonus += 1
+        elif pe >= 45:
+            bonus -= 2
+
+    if bonus >= 5:
+        grade = "قوي"
+    elif bonus >= 2:
+        grade = "جيد"
+    elif bonus < 0:
+        grade = "ضعيف"
+    else:
+        grade = "محايد"
+
+    return {
+        "bonus": max(-6, min(7, bonus)),
+        "grade": grade,
+        "details": "، ".join(notes) if notes else "أساسيات محايدة",
+        "raw": {"roe": roe, "roa": roa, "debt_ratio": debt_ratio, "pe": pe},
+    }
+
+
+def score_dividends(dividends: Any) -> Dict[str, Any]:
+    rows = newest_rows(dividends, 8)
+    if not rows:
+        return {"bonus": 0, "grade": "غير متوفر", "details": "لا توجد بيانات توزيعات", "raw": {}}
+
+    today = datetime.now().date()
+    recent = False
+    dividend_yield = 0.0
+    amount = 0.0
+    for r in rows:
+        amount = max(amount, pick(r, ["amount", "dividend", "cash_dividend", "distribution_amount", "dps"]))
+        dividend_yield = max(dividend_yield, pick(r, ["yield", "dividend_yield", "yield_percent"]))
+        date_str = str(r.get("date") or r.get("announcement_date") or r.get("ex_date") or "")[:10]
+        try:
+            d = datetime.fromisoformat(date_str).date()
+            if abs((today - d).days) <= 45:
+                recent = True
+        except Exception:
+            pass
+
+    bonus = 0
+    notes: List[str] = []
+    if recent:
+        bonus += 3
+        notes.append("توزيع حديث/قريب")
+    if dividend_yield >= 4:
+        bonus += 3
+        notes.append(f"عائد توزيعات {dividend_yield}%")
+    elif dividend_yield >= 2:
+        bonus += 1
+        notes.append(f"عائد توزيعات {dividend_yield}%")
+    elif amount > 0 and not recent:
+        bonus += 1
+        notes.append("لديه سجل توزيعات")
+
+    grade = "محفز توزيعات" if bonus >= 3 else "توزيعات عادية" if bonus > 0 else "محايد"
+    return {"bonus": min(5, bonus), "grade": grade, "details": "، ".join(notes) if notes else "لا يوجد محفز توزيعات واضح", "raw": {"recent": recent, "yield": dividend_yield, "amount": amount}}
+
+
+def load_symbol_data(symbol: str) -> Dict[str, Any]:
+    cache = read_cache()
+    item = cache.get("symbols", {}).get(symbol, {})
+    if item and fresh(item):
+        return item.get("data", {})
+
+    fundamentals = first_payload([
+        f"fundamentals/{symbol}/",
+        f"fundamentals/{symbol}",
+        f"stocks/{symbol}/fundamentals",
+        f"companies/{symbol}/fundamentals",
+    ])
+    financials = first_payload([
+        f"financial-statements/{symbol}/",
+        f"financial-statements/{symbol}",
+        f"financials/{symbol}/",
+        f"financials/{symbol}",
+        f"stocks/{symbol}/financials",
+        f"companies/{symbol}/financial-statements",
+    ])
+    dividends = first_payload([
+        f"dividends/{symbol}/",
+        f"dividends/{symbol}",
+        f"stocks/{symbol}/dividends",
+        f"companies/{symbol}/dividends",
+    ])
+
+    data = {"fundamentals": fundamentals, "financials": financials, "dividends": dividends}
+    cache.setdefault("symbols", {})[symbol] = {"cached_at": datetime.now().isoformat(timespec="seconds"), "data": data}
+    write_cache(cache)
+    return data
 
 
 def score_symbol(symbol: str, sector: str = "") -> Dict[str, Any]:
-    fundamentals = load_fundamentals()
-    stocks = fundamentals.get("stocks", {}) if isinstance(fundamentals, dict) else {}
-    data = stocks.get(str(symbol), {}) if isinstance(stocks, dict) else {}
+    data = load_symbol_data(str(symbol).strip())
+    fundamentals = data.get("fundamentals")
+    financial_rows = newest_rows(data.get("financials"), 8)
+    dividends = data.get("dividends")
 
-    if not data:
-        return {
-            "available": False,
-            "bonus": 0,
-            "grade": "غير متوفر",
-            "blocked": False,
-            "details": "لا توجد بيانات أساسية كافية — لم يتم خصم نقاط",
-            "raw": {},
-        }
+    quality = score_quality(fundamentals)
+    growth = score_growth(financial_rows)
+    dividend = score_dividends(dividends)
 
-    sector = detect_sector(str(symbol), sector)
-    sector_pe = fnum((fundamentals.get("sector_pe", {}) or {}).get(sector), DEFAULT_SECTOR_PE)
-    if sector_pe <= 0:
-        sector_pe = DEFAULT_SECTOR_PE
+    quality_bonus = int(quality.get("bonus", 0))
+    growth_bonus = int(growth.get("bonus", 0))
+    dividend_bonus = int(dividend.get("bonus", 0))
+    total = quality_bonus + growth_bonus + dividend_bonus
+    total = max(-12, min(16, total))
 
-    pe = get_first_number(data, ["pe", "p_e", "pe_ratio"])
-    eps = get_first_number(data, ["eps", "earnings_per_share"])
-    revenue_growth = get_first_number(data, ["rev_growth", "revenue_growth", "sales_growth"])
-    profit_growth = get_first_number(data, ["profit_growth", "net_income_growth", "earnings_growth"], default=0.0)
-    roe = get_first_number(data, ["roe", "return_on_equity"])
-    roa = get_first_number(data, ["roa", "return_on_assets"])
-    debt_eq = get_first_number(data, ["debt_eq", "debt_to_equity", "debt_ratio"], default=0.0)
-    dividend_yield = get_first_number(data, ["div_yield", "dividend_yield"])
-    net_income = get_first_number(data, ["net_income", "net_profit"], default=0.0)
-    operating_cash_flow = get_first_number(data, ["operating_cash_flow", "cash_flow_operations", "ocf"], default=0.0)
-
-    score = 0
-    details = []
-    blocked = False
-    block_reason = ""
-
-    # إشارات رفض صريحة فقط
-    if net_income < 0 or eps < 0:
-        blocked = True
-        block_reason = "خسائر أو EPS سلبي"
-    elif profit_growth <= -40:
-        blocked = True
-        block_reason = "تراجع أرباح حاد"
-    elif operating_cash_flow < 0 and debt_eq >= 1.5:
-        blocked = True
-        block_reason = "تدفقات تشغيلية سلبية مع مديونية مرتفعة"
-
-    # P/E مقابل القطاع
-    if pe > 0:
-        pe_ratio = pe / sector_pe
-        if pe_ratio <= 0.75:
-            score += 3
-            details.append(f"P/E أقل من القطاع ({pe:.1f})")
-        elif pe_ratio <= 1.10:
-            score += 1
-            details.append(f"P/E مقبول ({pe:.1f})")
-        elif pe_ratio >= 1.60:
-            score -= 2
-            details.append(f"P/E مرتفع ({pe:.1f})")
-
-    # نمو الإيرادات والأرباح
-    if revenue_growth >= 20:
-        score += 4
-        details.append(f"نمو إيرادات قوي {revenue_growth:+.1f}%")
-    elif revenue_growth >= 10:
-        score += 3
-        details.append(f"نمو إيرادات جيد {revenue_growth:+.1f}%")
-    elif revenue_growth > 0:
-        score += 1
-        details.append(f"نمو إيرادات {revenue_growth:+.1f}%")
-    elif revenue_growth <= -15:
-        score -= 3
-        details.append(f"تراجع إيرادات {revenue_growth:.1f}%")
-
-    if profit_growth >= 25:
-        score += 4
-        details.append(f"نمو أرباح قوي {profit_growth:+.1f}%")
-    elif profit_growth >= 10:
-        score += 2
-        details.append(f"نمو أرباح {profit_growth:+.1f}%")
-    elif profit_growth <= -20:
-        score -= 3
-        details.append(f"تراجع أرباح {profit_growth:.1f}%")
-
-    # جودة الربحية
-    if roe >= 20:
-        score += 3
-        details.append(f"ROE ممتاز {roe:.1f}%")
-    elif roe >= 12:
-        score += 2
-        details.append(f"ROE جيد {roe:.1f}%")
-    elif 0 < roe < 5:
-        score -= 2
-        details.append(f"ROE ضعيف {roe:.1f}%")
-
-    if roa >= 8:
-        score += 1
-        details.append(f"ROA جيد {roa:.1f}%")
-
-    # المديونية
-    if debt_eq > 0:
-        if debt_eq <= 0.50:
-            score += 2
-            details.append("مديونية منخفضة")
-        elif debt_eq >= 1.50:
-            score -= 3
-            details.append("مديونية مرتفعة")
-
-    # التوزيعات كمحفز إضافي لا كسبب شراء مستقل
-    if dividend_yield >= 4:
-        score += 2
-        details.append(f"عائد توزيعات جيد {dividend_yield:.1f}%")
-    elif dividend_yield >= 2:
-        score += 1
-        details.append(f"عائد توزيعات مقبول {dividend_yield:.1f}%")
-
-    bonus = max(-8, min(12, int(round(score))))
-
-    if blocked:
-        bonus = min(bonus, -8)
-        details.insert(0, block_reason)
-
-    if bonus >= 9:
+    blocked = total <= -9 or (growth_bonus <= -7 and quality_bonus < 0)
+    if total >= 11:
         grade = "قوي جداً"
-    elif bonus >= 5:
+    elif total >= 6:
         grade = "قوي"
-    elif bonus >= 1:
-        grade = "مقبول"
-    elif bonus == 0:
-        grade = "محايد"
-    else:
+    elif total >= 2:
+        grade = "جيد"
+    elif total < 0:
         grade = "ضعيف"
+    else:
+        grade = "محايد"
+
+    parts = []
+    for x in (quality, growth, dividend):
+        d = str(x.get("details") or "").strip()
+        if d and d not in parts:
+            parts.append(d)
 
     return {
-        "available": True,
-        "bonus": bonus,
+        "available": any(data.values()),
+        "bonus": total,
+        "quality_bonus": quality_bonus,
+        "growth_bonus": growth_bonus,
+        "dividend_bonus": dividend_bonus,
         "grade": grade,
         "blocked": blocked,
-        "details": " + ".join(details[:5]) if details else "بيانات أساسية محايدة",
-        "raw": {
-            "sector": sector,
-            "sector_pe": sector_pe,
-            "pe": pe,
-            "eps": eps,
-            "revenue_growth": revenue_growth,
-            "profit_growth": profit_growth,
-            "roe": roe,
-            "roa": roa,
-            "debt_eq": debt_eq,
-            "dividend_yield": dividend_yield,
-        },
+        "details": " | ".join(parts) if parts else "بيانات أساسية غير كافية — نتيجة محايدة",
+        "raw": {"quality": quality, "growth": growth, "dividend": dividend},
     }
 
 
