@@ -6,7 +6,8 @@
 
 - إذا وُجدت مراجعة OpenAI ورفضت الإشارة: لا تنشر.
 - إذا OpenAI غير متاح: استخدم Python Gate فقط.
-- يفرض قواعد TP1: العادية >= 4%، الذهبية >= 6%، Platinum >= 8% أو TP2 >= 10%.
+- العادية أصبحت ألين قليلاً حتى لا تصبح القناة صامتة.
+- الذهبية تبقى صارمة من ملفات الذهبية نفسها.
 """
 
 import json
@@ -19,14 +20,16 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 SIGNALS_FILE = DATA_DIR / "signals.json"
 VALIDATED_FILE = DATA_DIR / "validated_signals.json"
 
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "74"))
-PY_ONLY_MIN_SCORE = float(os.getenv("PY_ONLY_MIN_SCORE", "72"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.7"))
-PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOL_RATIO", "0.85"))
-MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
+PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "70"))
+PY_ONLY_MIN_SCORE = float(os.getenv("PY_ONLY_MIN_SCORE", "70"))
+PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.6"))
+PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOL_RATIO", "0.80"))
+
+MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "3.0"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
 MIN_TP1_PCT_PLATINUM = float(os.getenv("MIN_TP1_PCT_PLATINUM", "8.0"))
 MIN_TP2_PCT_PLATINUM = float(os.getenv("MIN_TP2_PCT_PLATINUM", "10.0"))
+
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
 
@@ -58,28 +61,41 @@ def write_json(path: Path, data: Any) -> None:
 def ai_rejected(signal: Dict[str, Any]) -> bool:
     reviewed = bool(signal.get("ai_reviewed") or signal.get("ai_available"))
     decision = str(signal.get("ai_decision") or "").upper()
+
     if not reviewed:
         return False
+
     return decision in {"REJECT", "REJECTED", "BLOCK", "BLOCKED", "NO"}
 
 
 def ai_approved(signal: Dict[str, Any]) -> bool:
     reviewed = bool(signal.get("ai_reviewed") or signal.get("ai_available"))
     decision = str(signal.get("ai_decision") or "").upper()
+
     return reviewed and decision in {"APPROVE", "APPROVED", "PASS", "YES"}
 
 
 def validate_signal(signal: Dict[str, Any]) -> List[str]:
     reasons: List[str] = []
+
     symbol = signal.get("stock_symbol") or signal.get("symbol") or "UNKNOWN"
     tier = str(signal.get("tier") or "").title()
+
     rased = fnum(signal.get("rased_score") or signal.get("confidence"))
     score = fnum(signal.get("score"))
     rr = fnum(signal.get("rr") or signal.get("rr_ratio"))
     vol = fnum(signal.get("volume_ratio"))
+
     tp1 = fnum(signal.get("target1_percent") or signal.get("tp1_pct"))
     tp2 = fnum(signal.get("target2_percent") or signal.get("tp2_pct"))
-    days = int(fnum(signal.get("expected_days_to_target2") or signal.get("ai_expected_holding_days"), 99))
+
+    days = int(
+        fnum(
+            signal.get("expected_days_to_target2")
+            or signal.get("ai_expected_holding_days"),
+            99,
+        )
+    )
 
     if ai_rejected(signal):
         reasons.append("OpenAI rejected the signal")
@@ -91,16 +107,23 @@ def validate_signal(signal: Dict[str, Any]) -> List[str]:
         reasons.append(f"Gold TP1 {tp1}% < {MIN_TP1_PCT_GOLDEN}%")
 
     if tier == "Platinum" and tp1 < MIN_TP1_PCT_PLATINUM and tp2 < MIN_TP2_PCT_PLATINUM:
-        reasons.append(f"Platinum needs TP1 >= {MIN_TP1_PCT_PLATINUM}% or TP2 >= {MIN_TP2_PCT_PLATINUM}%")
+        reasons.append(
+            f"Platinum needs TP1 >= {MIN_TP1_PCT_PLATINUM}% "
+            f"or TP2 >= {MIN_TP2_PCT_PLATINUM}%"
+        )
 
     if rased < PY_ONLY_MIN_RASED_SCORE:
         reasons.append(f"RASED {rased} < {PY_ONLY_MIN_RASED_SCORE}")
+
     if score < PY_ONLY_MIN_SCORE:
         reasons.append(f"Score {score} < {PY_ONLY_MIN_SCORE}")
+
     if rr < PY_ONLY_MIN_RR:
         reasons.append(f"R:R {rr} < {PY_ONLY_MIN_RR}")
+
     if vol < PY_ONLY_MIN_VOL_RATIO:
         reasons.append(f"Volume {vol}x < {PY_ONLY_MIN_VOL_RATIO}x")
+
     if days > MAX_HOLD_DAYS:
         reasons.append(f"Expected days {days} > {MAX_HOLD_DAYS}")
 
@@ -109,31 +132,50 @@ def validate_signal(signal: Dict[str, Any]) -> List[str]:
     else:
         ai_note = "AI approved" if ai_approved(signal) else "Python gate"
         print(f"✅ {symbol}: approved by {ai_note}")
+
     return reasons
 
 
 def main() -> int:
     data = load_json(SIGNALS_FILE, {})
     signals = data.get("signals", []) if isinstance(data, dict) else []
+
     if not signals:
         print("ℹ️ No signals to validate")
-        write_json(VALIDATED_FILE, {"signals": [], "total": 0, "status": "NO_SIGNALS"})
+        write_json(
+            VALIDATED_FILE,
+            {
+                "signals": [],
+                "total": 0,
+                "status": "NO_SIGNALS",
+            },
+        )
         return 1
 
     approved = []
     rejected = []
-    for s in signals:
-        reasons = validate_signal(s)
+
+    for signal in signals:
+        reasons = validate_signal(signal)
+
         if reasons:
-            item = dict(s)
+            item = dict(signal)
             item["post_rejected_reasons"] = reasons
             rejected.append(item)
         else:
-            item = dict(s)
+            item = dict(signal)
             item["post_approved"] = True
             approved.append(item)
 
-    approved.sort(key=lambda x: (fnum(x.get("rased_score")), fnum(x.get("score")), fnum(x.get("rr") or x.get("rr_ratio"))), reverse=True)
+    approved.sort(
+        key=lambda x: (
+            fnum(x.get("rased_score")),
+            fnum(x.get("score")),
+            fnum(x.get("rr") or x.get("rr_ratio")),
+        ),
+        reverse=True,
+    )
+
     out = {
         "signals": approved,
         "rejected": rejected,
@@ -141,10 +183,13 @@ def main() -> int:
         "status": "HAS_VALID_SIGNALS" if approved else "NO_VALID_SIGNALS",
         "source": "should_post.py",
     }
+
     write_json(VALIDATED_FILE, out)
+
     if not approved:
         print("ℹ️ No valid signals after post gate")
         return 1
+
     print(f"✅ Validated {len(approved)} signal(s)")
     return 0
 
