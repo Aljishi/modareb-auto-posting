@@ -104,12 +104,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 67.9 — سيولة طبيعية 0.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621005-2200",
+      "signal_id": "Signal #2026-1621010-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T10:05:39",
+      "generated_at": "2026-06-11T10:10:46",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -120,13 +120,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "TP2 looks unrealistic within 7 days",
-          "RSI is overheated",
-          "Volume confirmation is weak"
+          "Confidence score below threshold",
+          "RSI is acceptable but volume ratio is weak",
+          "Setup lacks clear momentum"
         ],
-        "rejection_reason": "The setup lacks clarity and has high risk due to unrealistic targets and weak volume.",
-        "arabic_summary": "الإشارة غير واضحة وتحتوي على مخاطر عالية بسبب أهداف غير واقعية وحجم تداول ضعيف.",
-        "telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها ومخاطرها العالية."
+        "rejection_reason": "Signal does not meet approval criteria due to insufficient confidence and weak volume confirmation.",
+        "arabic_summary": "تم رفض الإشارة بسبب عدم كفاية الثقة ونقص تأكيد السيولة.",
+        "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 74,
@@ -134,13 +134,13 @@
       "ai_risk_score": 4,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated",
-        "Volume confirmation is weak"
+        "Confidence score below threshold",
+        "RSI is acceptable but volume ratio is weak",
+        "Setup lacks clear momentum"
       ],
-      "ai_arabic_summary": "الإشارة غير واضحة وتحتوي على مخاطر عالية بسبب أهداف غير واقعية وحجم تداول ضعيف.",
-      "ai_telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها ومخاطرها العالية.",
-      "ai_reviewed_at": "2026-06-11T10:06:05",
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم كفاية الثقة ونقص تأكيد السيولة.",
+      "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
+      "ai_reviewed_at": "2026-06-11T10:11:42",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"

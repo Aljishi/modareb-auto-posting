@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-11T10:06:05",
+  "reviewed_at": "2026-06-11T10:11:42",
   "approved": 0,
   "total": 1,
   "signals": [
@@ -14,9 +14,9 @@
       "rased_score": 66.9,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated",
-        "Volume confirmation is weak"
+        "Confidence score below threshold",
+        "RSI is acceptable but volume ratio is weak",
+        "Setup lacks clear momentum"
       ]
     }
   ]
