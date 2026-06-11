@@ -104,12 +104,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.2 — سيولة طبيعية 0.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621415-2200",
+      "signal_id": "Signal #2026-1621420-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T14:15:48",
+      "generated_at": "2026-06-11T14:20:55",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -125,8 +125,8 @@
           "Setup lacks clarity due to resistance proximity"
         ],
         "rejection_reason": "Setup is unclear and has an overheated RSI with weak volume confirmation.",
-        "arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد السيولة.",
-        "telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها وارتفاع RSI."
+        "arabic_summary": "إشارة غير واضحة مع مؤشر القوة النسبية مرتفع وحجم تداول ضعيف.",
+        "telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها ومؤشرات الزخم غير المثالية."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 74,
@@ -138,9 +138,9 @@
         "Volume ratio is weak at 0.94",
         "Setup lacks clarity due to resistance proximity"
       ],
-      "ai_arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد السيولة.",
-      "ai_telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها وارتفاع RSI.",
-      "ai_reviewed_at": "2026-06-11T14:16:14",
+      "ai_arabic_summary": "إشارة غير واضحة مع مؤشر القوة النسبية مرتفع وحجم تداول ضعيف.",
+      "ai_telegram_note": "الإشارة مرفوضة بسبب عدم وضوحها ومؤشرات الزخم غير المثالية.",
+      "ai_reviewed_at": "2026-06-11T14:21:28",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"
