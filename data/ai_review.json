@@ -1,22 +1,22 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-10T14:56:08",
+  "reviewed_at": "2026-06-11T10:02:27",
   "approved": 0,
   "total": 1,
   "signals": [
     {
-      "stock_symbol": "8060",
+      "stock_symbol": "2200",
       "decision": "REJECT",
-      "confidence": 73,
+      "confidence": 74,
       "risk_level": "MEDIUM",
       "expected_holding_days": 3,
-      "rased_score": 68.0,
+      "rased_score": 66.9,
       "tier": "Standard",
       "reasons": [
-        "RSI is overheated",
-        "Volume ratio is weak",
-        "Setup is not clear"
+        "Confidence score below threshold",
+        "RSI is acceptable but volume ratio is weak",
+        "Setup lacks clear momentum"
       ]
     }
   ]
