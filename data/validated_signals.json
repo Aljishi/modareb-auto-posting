@@ -104,12 +104,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.4 — سيولة طبيعية 1.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621450-2200",
+      "signal_id": "Signal #2026-1621455-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T14:50:43",
+      "generated_at": "2026-06-11T14:55:40",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -126,7 +126,7 @@
         ],
         "rejection_reason": "Signal does not meet approval criteria due to low confidence and overheated RSI.",
         "arabic_summary": "تم رفض الإشارة بسبب انخفاض الثقة وارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "الإشارة غير واضحة ولا تلبي معايير الموافقة."
+        "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 74,
@@ -139,8 +139,8 @@
         "Setup lacks clarity"
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب انخفاض الثقة وارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "الإشارة غير واضحة ولا تلبي معايير الموافقة.",
-      "ai_reviewed_at": "2026-06-11T14:51:13",
+      "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
+      "ai_reviewed_at": "2026-06-11T14:56:03",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"
