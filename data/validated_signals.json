@@ -104,12 +104,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.5 — سيولة طبيعية 1.0x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621440-2200",
+      "signal_id": "Signal #2026-1621445-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T14:40:49",
+      "generated_at": "2026-06-11T14:45:42",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -140,7 +140,7 @@
       ],
       "ai_arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد السيولة.",
       "ai_telegram_note": "الإشارة مرفوضة بسبب عدم وضوح الزخم.",
-      "ai_reviewed_at": "2026-06-11T14:41:51",
+      "ai_reviewed_at": "2026-06-11T14:46:14",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"
