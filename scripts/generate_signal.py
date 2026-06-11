@@ -2,15 +2,19 @@
 # -*- coding: utf-8 -*-
 
 """
-راصد — محرك إشارة يعتمد على Sahmk Historical API مباشرة.
+راصد — محرك الإشارات باستخدام Sahmk Starter بأقصى استفادة ممكنة.
 
-الإصدار الحالي:
-- صارم لكن غير مستحيل.
-- يعتمد على Sahmk Historical API.
-- يحسب ATR / RSI / Volume Ratio / Support / Resistance.
-- يرشح إشارات قصيرة المدى خلال 1–7 أيام.
-- لا يرجع خطأ إذا لم توجد إشارات.
-- لا يوجد ضمان لتحقيق الأهداف؛ هذه قراءة فنية آلية فقط.
+الإضافات الحالية:
+1) Sector Strength Score
+2) Revenue & Profit Growth Score عبر fundamental_score.py
+3) Dividend Catalyst Score عبر fundamental_score.py
+4) Backtest Score من التاريخ السعري نفسه
+
+القواعد المهمة:
+- الإشارة العادية لا تُقبل إذا كان TP1 أقل من 4%.
+- Gold لا يبقى Gold إلا إذا كان TP1 >= 6%.
+- Platinum لا يبقى Platinum إلا إذا كان TP1 >= 8% أو TP2 >= 10%.
+- لا يتوقف النظام إذا لم توجد إشارات.
 """
 
 import json
@@ -37,14 +41,13 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_historical_fundamental_v7"
+ENGINE_VERSION = "rased_sahmk_starter_plus_v9"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
 LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
-# صارم لكن غير مستحيل
 MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "72"))
 MIN_RR = float(os.getenv("MIN_RR", "1.7"))
 MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
@@ -52,19 +55,13 @@ MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "750000"))
 
 MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "5.0"))
 MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "10.0"))
-
 MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
 MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
-
 MIN_RSI = float(os.getenv("MIN_RSI", "38"))
 MAX_RSI = float(os.getenv("MAX_RSI", "80"))
 
-# شروط الربح الدنيا:
-# العادية/Premium لا تُقبل إلا إذا كان الهدف الأول 4% أو أكثر.
-# الذهبية Gold تحتاج TP1 6% أو أكثر.
-# Platinum تحتاج TP1 8% أو أكثر، أو TP2 10% أو أكثر.
 MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
 MIN_TP1_PCT_PLATINUM = float(os.getenv("MIN_TP1_PCT_PLATINUM", "8.0"))
@@ -73,6 +70,8 @@ MIN_TP2_PCT_PLATINUM = float(os.getenv("MIN_TP2_PCT_PLATINUM", "10.0"))
 MAX_CANDIDATES = int(os.getenv("MAX_CANDIDATES", "50"))
 ENABLE_FUNDAMENTAL_SCORE = os.getenv("ENABLE_FUNDAMENTAL_SCORE", "true").lower() != "false"
 BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "false").lower() != "false"
+ENABLE_SECTOR_STRENGTH = os.getenv("ENABLE_SECTOR_STRENGTH", "true").lower() != "false"
+ENABLE_BACKTEST_SCORE = os.getenv("ENABLE_BACKTEST_SCORE", "true").lower() != "false"
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -96,6 +95,7 @@ def load_json(path: Path, default: Any) -> Any:
 
 
 def write_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -105,7 +105,7 @@ def headers() -> Dict[str, str]:
     return {
         "X-API-Key": API_KEY,
         "Accept": "application/json",
-        "User-Agent": "Rased-Signal-Engine/6.0",
+        "User-Agent": "Rased-Signal-Engine/9.0",
     }
 
 
@@ -124,28 +124,20 @@ def reject(symbol: str, reason: str) -> None:
 def fetch_historical(symbol: str, days: int = HIST_DAYS) -> List[Dict[str, Any]]:
     to_d = date.today()
     from_d = to_d - timedelta(days=days + 30)
-
     payload = sahmk_get(
         f"historical/{symbol}/",
-        {
-            "from": from_d.isoformat(),
-            "to": to_d.isoformat(),
-            "interval": "1d",
-        },
+        {"from": from_d.isoformat(), "to": to_d.isoformat(), "interval": "1d"},
     )
-
     rows = payload.get("data", [])
     if not isinstance(rows, list):
         return []
 
-    clean = []
-
+    clean: List[Dict[str, Any]] = []
     for r in rows:
         high = fnum(r.get("high"))
         low = fnum(r.get("low"))
         close = fnum(r.get("close"))
         volume = fnum(r.get("volume"))
-
         if high > 0 and low > 0 and close > 0 and high >= low and volume > 0:
             clean.append(
                 {
@@ -158,22 +150,18 @@ def fetch_historical(symbol: str, days: int = HIST_DAYS) -> List[Dict[str, Any]]
                     "turnover": fnum(r.get("turnover")),
                 }
             )
-
     clean.sort(key=lambda x: str(x.get("date")))
     return clean[-days:]
 
 
 def true_range_rows(rows: List[Dict[str, Any]]) -> List[float]:
-    trs = []
-
+    trs: List[float] = []
     for i, r in enumerate(rows):
         high = fnum(r.get("high"))
         low = fnum(r.get("low"))
         prev_close = fnum(rows[i - 1].get("close")) if i > 0 else fnum(r.get("close"))
-
         if high > 0 and low > 0 and prev_close > 0 and high >= low:
             trs.append(max(high - low, abs(high - prev_close), abs(low - prev_close)))
-
     return trs
 
 
@@ -186,117 +174,77 @@ def atr(rows: List[Dict[str, Any]], period: int = 14) -> Optional[float]:
 
 def calc_rsi(closes: List[float], period: int = 14) -> Optional[float]:
     closes = [c for c in closes if c > 0]
-
     if len(closes) < period + 1:
         return None
-
-    gains = []
-    losses = []
-
+    gains: List[float] = []
+    losses: List[float] = []
     for i in range(-period, 0):
         diff = closes[i] - closes[i - 1]
         gains.append(max(diff, 0))
         losses.append(abs(min(diff, 0)))
-
     avg_gain = mean(gains)
     avg_loss = mean(losses)
-
     if avg_loss == 0:
         return 100.0
-
     rs = avg_gain / avg_loss
     return round(100 - (100 / (1 + rs)), 2)
 
 
 def volume_ratio(rows: List[Dict[str, Any]], current_volume: float, period: int = 20) -> float:
     vols = [fnum(r.get("volume")) for r in rows[-period:] if fnum(r.get("volume")) > 0]
-
     if len(vols) < 10 or current_volume <= 0:
         return 0.0
-
     avg = mean(vols)
     return round(current_volume / avg, 2) if avg > 0 else 0.0
 
 
-def resistance_support(
-    rows: List[Dict[str, Any]],
-    lookback: int = LOOKBACK_RESISTANCE,
-) -> Tuple[Optional[float], Optional[float]]:
+def resistance_support(rows: List[Dict[str, Any]], lookback: int = LOOKBACK_RESISTANCE) -> Tuple[Optional[float], Optional[float]]:
     prior = rows[-lookback - 1 : -1]
-
     highs = [fnum(r.get("high")) for r in prior if fnum(r.get("high")) > 0]
     lows = [fnum(r.get("low")) for r in prior if fnum(r.get("low")) > 0]
-
     if len(highs) < 10 or len(lows) < 10:
         return None, None
-
     return max(highs), min(lows)
 
 
 def trend_state(rows: List[Dict[str, Any]]) -> Tuple[bool, List[str], Dict[str, float]]:
     closes = [fnum(r.get("close")) for r in rows if fnum(r.get("close")) > 0]
-
     if len(closes) < 20:
         return False, ["تاريخ غير كافٍ للترند"], {}
-
     sma10 = mean(closes[-10:])
     sma20 = mean(closes[-20:])
     last = closes[-1]
-
     strong = last > sma10 > sma20
     acceptable = last > sma20 and sma10 >= sma20 * 0.995
-
+    vals = {"sma10": round(sma10, 3), "sma20": round(sma20, 3)}
     if strong:
-        return True, ["اتجاه صاعد مؤكد"], {
-            "sma10": round(sma10, 3),
-            "sma20": round(sma20, 3),
-        }
-
+        return True, ["اتجاه صاعد مؤكد"], vals
     if acceptable:
-        return True, ["اتجاه مقبول قريب من الصعود"], {
-            "sma10": round(sma10, 3),
-            "sma20": round(sma20, 3),
-        }
-
-    return False, ["الترند غير مناسب"], {
-        "sma10": round(sma10, 3),
-        "sma20": round(sma20, 3),
-    }
+        return True, ["اتجاه مقبول قريب من الصعود"], vals
+    return False, ["الترند غير مناسب"], vals
 
 
 def pct(diff: float, entry: float) -> float:
     return round((diff / entry) * 100, 2) if entry > 0 else 0.0
 
 
-def expected_days_to_target(
-    target_pct: float,
-    atr_pct: float,
-    volume_factor: float,
-    is_breakout: bool,
-) -> int:
+def expected_days_to_target(target_pct: float, atr_pct: float, volume_factor: float, is_breakout: bool) -> int:
     if atr_pct <= 0:
         return 99
-
     boost = 1.0
-
     if volume_factor >= 3:
         boost = 1.35
     elif volume_factor >= 2:
         boost = 1.20
     elif volume_factor >= 1.15:
         boost = 1.08
-
     if is_breakout:
         boost *= 1.15
-
     effective_daily_range = max(atr_pct * 0.75 * boost, 0.3)
-
     return max(1, int(round(target_pct / effective_daily_range + 0.49)))
 
 
 def classify_tier(score: float) -> Tuple[str, str]:
-    # تصنيف تجاري أوضح للمشتركين:
-    # الإشارة العادية تبدأ من Premium بدل Standard حتى لا تبدو ضعيفة عند النشر.
     if score >= 92:
         return "Platinum", "👑"
     if score >= 85:
@@ -307,41 +255,152 @@ def classify_tier(score: float) -> Tuple[str, str]:
 
 
 def risk_label(rr: float, atr_pct: float, rsi: float) -> Tuple[str, str]:
-    # لا نجعل R:R 1.7 يظهر كخطر مرتفع إذا كان الوقف واضحاً والمؤشرات ضمن النطاق.
     if rr >= 2.5 and 0.5 <= atr_pct <= 6.5 and rsi <= 76:
         return "منخفض", "🟢"
-
     if rr >= 1.7 and 0.5 <= atr_pct <= 8.0 and rsi <= 80:
         return "متوسط", "🟡"
-
     return "مرتفع", "🔴"
 
 
 def get_candidates(daily: Dict[str, Any]) -> List[Dict[str, Any]]:
     stocks = daily.get("stocks", []) if isinstance(daily, dict) else []
-
-    good = []
-
+    good: List[Dict[str, Any]] = []
     for s in stocks:
         sym = str(s.get("symbol", "")).strip()
         price = fnum(s.get("current_price") or s.get("price"))
         volume = fnum(s.get("volume"))
         value = fnum(s.get("value") or s.get("turnover")) or price * volume
         change_pct = fnum(s.get("change_percent"))
-
         if sym and price > 0 and volume > 0:
             s["_candidate_value"] = value
             s["_candidate_rank"] = (value, max(change_pct, -5), volume)
             good.append(s)
-
-    # الاستفادة القصوى من Bulk Quotes: نفحص الأكثر سيولة أولاً بدلاً من ترتيب الرموز فقط.
     good.sort(key=lambda x: x.get("_candidate_rank", (0, 0, 0)), reverse=True)
     return good[:MAX_CANDIDATES]
 
 
-def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-    symbol = str(stock.get("symbol", "")).strip()
+def build_sector_strength(stocks: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    groups: Dict[str, List[Dict[str, Any]]] = {}
+    for s in stocks:
+        sector = str(s.get("sector") or s.get("sector_name") or "").strip()
+        if not sector:
+            continue
+        groups.setdefault(sector, []).append(s)
 
+    out: Dict[str, Dict[str, Any]] = {}
+    for sector, items in groups.items():
+        changes = [fnum(x.get("change_percent")) for x in items]
+        values = [fnum(x.get("value") or x.get("turnover")) or fnum(x.get("price") or x.get("current_price")) * fnum(x.get("volume")) for x in items]
+        advancing = sum(1 for c in changes if c > 0)
+        avg_change = mean(changes) if changes else 0.0
+        advance_ratio = advancing / len(items) if items else 0.0
+        total_value = sum(values)
+        if avg_change >= 1.2 and advance_ratio >= 0.65:
+            bonus = 7
+            grade = "قوي جداً"
+        elif avg_change >= 0.5 and advance_ratio >= 0.55:
+            bonus = 5
+            grade = "قوي"
+        elif avg_change >= 0 and advance_ratio >= 0.45:
+            bonus = 2
+            grade = "محايد إيجابي"
+        elif avg_change <= -1.0 and advance_ratio <= 0.35:
+            bonus = -5
+            grade = "ضعيف"
+        else:
+            bonus = 0
+            grade = "محايد"
+        out[sector] = {
+            "bonus": bonus,
+            "grade": grade,
+            "avg_change_pct": round(avg_change, 2),
+            "advance_ratio": round(advance_ratio, 2),
+            "members": len(items),
+            "total_value": round(total_value, 2),
+        }
+    return out
+
+
+def calc_backtest_score(rows: List[Dict[str, Any]], atr_pct_now: float) -> Dict[str, Any]:
+    if len(rows) < 45:
+        return {"available": False, "bonus": 0, "grade": "غير كافٍ", "win_rate": 0, "trades": 0}
+
+    wins = 0
+    losses = 0
+    trades = 0
+    max_checks = min(45, len(rows) - 12)
+    start = len(rows) - max_checks - 8
+    start = max(25, start)
+
+    for i in range(start, len(rows) - 7):
+        sample = rows[: i + 1]
+        if len(sample) < 25:
+            continue
+        res, sup = resistance_support(sample, LOOKBACK_RESISTANCE)
+        if not res or not sup:
+            continue
+        close = fnum(sample[-1].get("close"))
+        if close <= 0:
+            continue
+        near = ((res / close) - 1) * 100
+        breakout = close >= res * 1.002
+        near_breakout = 0 <= near <= MAX_NEAR_RESISTANCE_PCT
+        if not (breakout or near_breakout):
+            continue
+        tr_ok, _, _ = trend_state(sample)
+        if not tr_ok:
+            continue
+
+        entry = close
+        target = entry * (1 + MIN_TP1_PCT_NORMAL / 100)
+        stop = entry * (1 - max(1.5, min(4.0, atr_pct_now)) / 100)
+        future = rows[i + 1 : i + 1 + MAX_HOLD_DAYS]
+        if len(future) < 2:
+            continue
+        trades += 1
+        outcome = None
+        for fr in future:
+            if fnum(fr.get("low")) <= stop:
+                outcome = "loss"
+                break
+            if fnum(fr.get("high")) >= target:
+                outcome = "win"
+                break
+        if outcome == "win":
+            wins += 1
+        elif outcome == "loss":
+            losses += 1
+
+    if trades < 3:
+        return {"available": False, "bonus": 0, "grade": "عينة صغيرة", "win_rate": 0, "trades": trades}
+
+    win_rate = wins / trades
+    if win_rate >= 0.70:
+        bonus = 6
+        grade = "قوي"
+    elif win_rate >= 0.55:
+        bonus = 4
+        grade = "جيد"
+    elif win_rate >= 0.45:
+        bonus = 1
+        grade = "محايد"
+    else:
+        bonus = -4
+        grade = "ضعيف"
+
+    return {
+        "available": True,
+        "bonus": bonus,
+        "grade": grade,
+        "win_rate": round(win_rate * 100, 1),
+        "wins": wins,
+        "losses": losses,
+        "trades": trades,
+    }
+
+
+def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats: Optional[Dict[str, Dict[str, Any]]] = None) -> Optional[Dict[str, Any]]:
+    symbol = str(stock.get("symbol", "")).strip()
     price = fnum(stock.get("current_price") or stock.get("price"))
     high = fnum(stock.get("high"))
     low = fnum(stock.get("low"))
@@ -349,73 +408,53 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     volume = fnum(stock.get("volume"))
     value = fnum(stock.get("value") or stock.get("turnover")) or price * volume
     change_pct = fnum(stock.get("change_percent"))
+    sector = str(stock.get("sector") or stock.get("sector_name") or "").strip()
 
     if not symbol:
         return None
-
     if price <= 0:
         reject(symbol, "السعر غير صالح")
         return None
-
     if volume <= 0:
         reject(symbol, "الحجم صفر أو غير صالح")
         return None
-
     if value < MIN_VALUE_SAR:
         reject(symbol, f"قيمة التداول {value:,.0f} أقل من {MIN_VALUE_SAR:,.0f}")
         return None
-
     if len(rows) < MIN_HISTORY_BARS:
         reject(symbol, f"Historical غير كافٍ من Sahmk ({len(rows)}/{MIN_HISTORY_BARS})")
         return None
 
     today = date.today().isoformat()
-
     if high > 0 and low > 0 and price > 0:
-        today_row = {
-            "date": today,
-            "open": stock.get("open") or prev or price,
-            "high": high,
-            "low": low,
-            "close": price,
-            "volume": volume,
-            "turnover": value,
-        }
-
+        today_row = {"date": today, "open": stock.get("open") or prev or price, "high": high, "low": low, "close": price, "volume": volume, "turnover": value}
         if not rows or str(rows[-1].get("date")) != today:
             rows = rows + [today_row]
         else:
             rows = rows[:-1] + [today_row]
 
     atr14 = atr(rows, 14)
-
     if not atr14 or atr14 <= 0:
         reject(symbol, "ATR غير صالح")
         return None
-
     atr_pct = round((atr14 / price) * 100, 2)
-
     if not (MIN_ATR_PCT <= atr_pct <= MAX_ATR_PCT):
         reject(symbol, f"ATR% {atr_pct} خارج النطاق {MIN_ATR_PCT}-{MAX_ATR_PCT}")
         return None
 
     resistance, support = resistance_support(rows)
-
     if not resistance or not support:
         reject(symbol, "الدعم/المقاومة غير كافية")
         return None
 
     closes = [fnum(r.get("close")) for r in rows]
     rsi = calc_rsi(closes, 14)
-
     if rsi is None:
         reject(symbol, "RSI غير متوفر")
         return None
 
     vol_ratio = volume_ratio(rows[:-1], volume, 20)
-
     trend_ok, trend_reasons, trend_vals = trend_state(rows)
-
     if not trend_ok:
         reject(symbol, "الترند غير مناسب")
         return None
@@ -423,7 +462,6 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     near_breakout_pct = ((resistance / price) - 1) * 100 if price > 0 else 99
     is_breakout = price >= resistance * 1.002
     is_near_breakout = 0 <= near_breakout_pct <= MAX_NEAR_RESISTANCE_PCT
-
     if is_breakout:
         entry = round(max(price, resistance * 1.003), 2)
         setup_type = "اختراق مؤكد"
@@ -435,7 +473,6 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         return None
 
     entry_gap_pct = round((entry / price - 1) * 100, 2)
-
     if entry_gap_pct > MAX_ENTRY_GAP_PCT:
         reject(symbol, f"فجوة الدخول {entry_gap_pct}% أكبر من {MAX_ENTRY_GAP_PCT}%")
         return None
@@ -443,18 +480,14 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     stop_by_atr = entry - atr14 * 1.25
     stop_by_support = support * 0.995
     stop_loss = round(max(stop_by_atr, stop_by_support), 2)
-
     risk_amount = round(entry - stop_loss, 4)
-
     if risk_amount <= 0:
         reject(symbol, "وقف الخسارة غير منطقي")
         return None
 
     target1 = round(entry + risk_amount * 1.45, 2)
     target2 = round(entry + risk_amount * MIN_RR, 2)
-
     rr = round((target2 - entry) / risk_amount, 2)
-
     if rr < MIN_RR:
         reject(symbol, f"R:R {rr} أقل من {MIN_RR}")
         return None
@@ -463,46 +496,34 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
     target2_pct = pct(target2 - entry, entry)
     stop_loss_pct = abs(pct(stop_loss - entry, entry))
 
-    # فلتر جودة الربح: لا ننشر إشارة عادية إذا كان TP1 أقل من 4%.
     if target1_pct < MIN_TP1_PCT_NORMAL:
         reject(symbol, f"TP1% {target1_pct}% أقل من الحد الأدنى للإشارة العادية {MIN_TP1_PCT_NORMAL}%")
         return None
 
     max_reasonable_7d_pct = round(atr_pct * MAX_TP2_ATR_MULTIPLE_7D, 2)
-
     expected_days_tp1 = expected_days_to_target(target1_pct, atr_pct, vol_ratio, is_breakout)
     expected_days_tp2 = expected_days_to_target(target2_pct, atr_pct, vol_ratio, is_breakout)
-
     if expected_days_tp2 > MAX_HOLD_DAYS:
         reject(symbol, f"TP2 يحتاج {expected_days_tp2} أيام > {MAX_HOLD_DAYS}")
         return None
-
     if target2_pct > max_reasonable_7d_pct:
         reject(symbol, f"TP2% {target2_pct}% أعلى من المنطقي 7 أيام {max_reasonable_7d_pct}%")
         return None
-
     if not (MIN_RSI <= rsi <= MAX_RSI):
         reject(symbol, f"RSI {rsi} خارج النطاق {MIN_RSI}-{MAX_RSI}")
         return None
-
     if vol_ratio < MIN_VOLUME_RATIO:
         reject(symbol, f"Volume {vol_ratio}x أقل من {MIN_VOLUME_RATIO}x")
         return None
-
     if not (-1.0 <= change_pct <= 8.0):
         reject(symbol, f"التغير اليومي {change_pct}% غير مناسب")
         return None
 
     score = 0
     reasons: List[str] = []
-    fundamental = {
-        "available": False,
-        "bonus": 0,
-        "grade": "غير متوفر",
-        "blocked": False,
-        "details": "لم يتم تفعيل التحليل الأساسي",
-        "raw": {},
-    }
+    fundamental = {"available": False, "bonus": 0, "grade": "غير متوفر", "blocked": False, "details": "لم يتم تفعيل التحليل الأساسي", "raw": {}}
+    sector_reading = {"available": False, "bonus": 0, "grade": "غير متوفر"}
+    backtest = {"available": False, "bonus": 0, "grade": "غير متوفر", "win_rate": 0, "trades": 0}
 
     score += 18
     reasons += trend_reasons
@@ -560,16 +581,32 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
 
     technical_score = score
 
+    if ENABLE_SECTOR_STRENGTH and sector and sector_stats and sector in sector_stats:
+        sector_reading = {"available": True, **sector_stats[sector]}
+        sector_bonus = int(sector_reading.get("bonus", 0))
+        score += sector_bonus
+        if sector_bonus > 0:
+            reasons.append(f"دعم قطاعي +{sector_bonus}: {sector_reading.get('grade')} ({sector_reading.get('avg_change_pct')}%)")
+        elif sector_bonus < 0:
+            reasons.append(f"ضغط قطاعي {sector_bonus}: {sector_reading.get('grade')} ({sector_reading.get('avg_change_pct')}%)")
+
+    if ENABLE_BACKTEST_SCORE:
+        backtest = calc_backtest_score(rows, atr_pct)
+        bt_bonus = int(backtest.get("bonus", 0))
+        score += bt_bonus
+        if bt_bonus > 0:
+            reasons.append(f"دعم باك تست +{bt_bonus}: نجاح {backtest.get('win_rate')}%")
+        elif bt_bonus < 0:
+            reasons.append(f"خصم باك تست {bt_bonus}: نجاح {backtest.get('win_rate')}%")
+
     if ENABLE_FUNDAMENTAL_SCORE and score_symbol is not None:
         try:
-            fundamental = score_symbol(symbol, stock.get("sector", ""))
+            fundamental = score_symbol(symbol, sector)
             if BLOCK_WEAK_FUNDAMENTALS and fundamental.get("blocked"):
                 reject(symbol, f"أساسيات سلبية: {fundamental.get('details')}")
                 return None
-
             bonus = int(fundamental.get("bonus", 0))
             score += bonus
-
             if bonus > 0:
                 reasons.append(f"دعم أساسي +{bonus}: {fundamental.get('details')}")
             elif bonus < 0:
@@ -580,30 +617,23 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
             print(f"⚠️ {symbol}: fundamental score skipped: {exc}")
 
     score = max(0, min(score, 100))
-
     if score < MIN_SIGNAL_SCORE:
         reject(symbol, f"Score {score} أقل من {MIN_SIGNAL_SCORE}")
         return None
 
     rr_score = min(rr * 28, 100)
     time_score = max(0, 100 - (expected_days_tp2 - 1) * 8)
-
     rased_score = round(score * 0.50 + rr_score * 0.25 + time_score * 0.25, 1)
 
     tier, tier_emoji = classify_tier(rased_score)
-
-    # لا نسمح بتصنيف Gold إلا إذا كان الهدف الأول 6% أو أكثر.
-    # ولا نسمح بتصنيف Platinum إلا إذا كان TP1 >= 8% أو TP2 >= 10%.
     if tier == "Platinum" and target1_pct < MIN_TP1_PCT_PLATINUM and target2_pct < MIN_TP2_PCT_PLATINUM:
         tier = "Gold"
         tier_emoji = "🌟"
-
     if tier == "Gold" and target1_pct < MIN_TP1_PCT_GOLDEN:
         tier = "Premium"
         tier_emoji = "⭐"
 
     risk_text, risk_emoji = risk_label(rr, atr_pct, rsi)
-
     signal_id = f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j%H%M')}-{symbol}"
 
     return {
@@ -611,7 +641,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         "symbol": symbol,
         "stock_name": stock.get("name") or stock.get("name_ar") or symbol,
         "name": stock.get("name") or stock.get("name_ar") or symbol,
-        "sector": stock.get("sector", ""),
+        "sector": sector,
         "current_price": round(price, 2),
         "entry_point": entry,
         "entry": entry,
@@ -628,10 +658,20 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         "rr_ratio": rr,
         "score": score,
         "technical_score": technical_score,
+        "sector_strength_bonus": int(sector_reading.get("bonus", 0)),
+        "sector_strength_grade": sector_reading.get("grade", "غير متوفر"),
+        "sector_strength_raw": sector_reading,
+        "backtest_bonus": int(backtest.get("bonus", 0)),
+        "backtest_grade": backtest.get("grade", "غير متوفر"),
+        "backtest_win_rate": backtest.get("win_rate", 0),
+        "backtest_trades": backtest.get("trades", 0),
+        "backtest_raw": backtest,
         "fundamental_bonus": int(fundamental.get("bonus", 0)),
         "fundamental_grade": fundamental.get("grade", "غير متوفر"),
         "fundamental_reading": fundamental.get("details", ""),
         "fundamental_raw": fundamental.get("raw", {}),
+        "growth_bonus": int(fundamental.get("growth_bonus", 0)),
+        "dividend_bonus": int(fundamental.get("dividend_bonus", 0)),
         "rased_score": rased_score,
         "tier": tier,
         "tier_emoji": tier_emoji,
@@ -658,11 +698,11 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]]) -> Optional[D
         "expected_days_to_target2": expected_days_tp2,
         "seven_day_filter_passed": True,
         "max_reasonable_7d_pct": max_reasonable_7d_pct,
-        "technical_reading": " — ".join(reasons[:5]),
-        "signal_reason": "اجتازت فلاتر راصد الخاصة بالاختراق والسيولة والزخم وإدارة المخاطر، مع إضافة تقييم أساسي من بيانات Starter عند توفره.",
+        "technical_reading": " — ".join(reasons[:7]),
+        "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
         "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
         "signal_id": signal_id,
-        "data_source": "sahmk_api_historical",
+        "data_source": "sahmk_api_historical_starter_plus",
         "provider": "sahmk",
         "historical_bars": len(rows),
         "engine_version": ENGINE_VERSION,
@@ -682,7 +722,6 @@ def save_blocked(reason: str, total_screened: int = 0) -> int:
         "engine_version": ENGINE_VERSION,
         "provider": "sahmk",
     }
-
     write_json(SIGNALS_FILE, out)
     print(f"ℹ️ {reason}")
     return 0
@@ -690,69 +729,41 @@ def save_blocked(reason: str, total_screened: int = 0) -> int:
 
 def main() -> int:
     print("=" * 60)
-    print("🚀 راصد — Sahmk Historical Signal Engine 7D")
+    print("🚀 راصد — Sahmk Starter Plus Signal Engine")
     print("=" * 60)
-
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-
     if not API_KEY:
         return save_blocked("API_KEY غير موجود")
 
     daily = load_json(DAILY_FILE, {})
-
     if daily.get("provider") != "sahmk" or daily.get("data_source") != "api":
         return save_blocked("daily.json ليس من Sahmk API الحقيقي")
 
+    stocks = daily.get("stocks", []) if isinstance(daily, dict) else []
     candidates = get_candidates(daily)
-
     if not candidates:
         return save_blocked("لا توجد أسهم مرشحة في daily.json")
 
-    hist_cache: Dict[str, Any] = {
-        "updated_at": datetime.now().isoformat(timespec="seconds"),
-        "symbols": {},
-    }
-
+    sector_stats = build_sector_strength(stocks)
+    hist_cache: Dict[str, Any] = {"updated_at": datetime.now().isoformat(timespec="seconds"), "symbols": {}}
     signals: List[Dict[str, Any]] = []
 
     for stock in candidates:
         sym = str(stock.get("symbol", "")).strip()
-
         try:
             rows = fetch_historical(sym, HIST_DAYS)
-
-            hist_cache["symbols"][sym] = {
-                "count": len(rows),
-                "latest": rows[-1].get("date") if rows else None,
-            }
-
-            sig = calc_signal(stock, rows)
-
+            hist_cache["symbols"][sym] = {"count": len(rows), "latest": rows[-1].get("date") if rows else None}
+            sig = calc_signal(stock, rows, sector_stats)
             if sig:
                 signals.append(sig)
-                print(
-                    f"✅ {sym}: {sig['tier']} | "
-                    f"RASED {sig['rased_score']} | "
-                    f"TP2 +{sig['target2_percent']}% | "
-                    f"{sig['expected_days_to_target2']}d"
-                )
+                print(f"✅ {sym}: {sig['tier']} | RASED {sig['rased_score']} | TP1 +{sig['target1_percent']}% | TP2 +{sig['target2_percent']}%")
             else:
                 print(f"— {sym}: لا يطابق فلاتر راصد")
-
         except Exception as exc:
             print(f"⚠️ {sym}: historical failed: {exc}")
 
     write_json(HIST_CACHE_FILE, hist_cache)
-
-    signals.sort(
-        key=lambda s: (
-            s.get("rased_score", 0),
-            s.get("score", 0),
-            s.get("rr", 0),
-        ),
-        reverse=True,
-    )
-
+    signals.sort(key=lambda s: (s.get("rased_score", 0), s.get("score", 0), s.get("rr", 0)), reverse=True)
     signals = signals[:5]
 
     out = {
@@ -763,6 +774,7 @@ def main() -> int:
         "engine_version": ENGINE_VERSION,
         "provider": "sahmk",
         "historical_source": "GET /historical/{symbol}/ interval=1d",
+        "sector_strength": sector_stats,
         "filters": {
             "MIN_SIGNAL_SCORE": MIN_SIGNAL_SCORE,
             "MIN_RR": MIN_RR,
@@ -771,13 +783,13 @@ def main() -> int:
             "MIN_RSI": MIN_RSI,
             "MAX_RSI": MAX_RSI,
             "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
-            "MAX_ENTRY_GAP_PCT": MAX_ENTRY_GAP_PCT,
-            "MAX_NEAR_RESISTANCE_PCT": MAX_NEAR_RESISTANCE_PCT,
             "MIN_TP1_PCT_NORMAL": MIN_TP1_PCT_NORMAL,
             "MIN_TP1_PCT_GOLDEN": MIN_TP1_PCT_GOLDEN,
             "MIN_TP1_PCT_PLATINUM": MIN_TP1_PCT_PLATINUM,
             "MIN_TP2_PCT_PLATINUM": MIN_TP2_PCT_PLATINUM,
             "ENABLE_FUNDAMENTAL_SCORE": ENABLE_FUNDAMENTAL_SCORE,
+            "ENABLE_SECTOR_STRENGTH": ENABLE_SECTOR_STRENGTH,
+            "ENABLE_BACKTEST_SCORE": ENABLE_BACKTEST_SCORE,
             "BLOCK_WEAK_FUNDAMENTALS": BLOCK_WEAK_FUNDAMENTALS,
         },
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
@@ -792,8 +804,7 @@ def main() -> int:
 
     out["status"] = "HAS_SIGNALS"
     write_json(SIGNALS_FILE, out)
-
-    print(f"\n✅ Generated {len(signals)} Sahmk historical signals")
+    print(f"\n✅ Generated {len(signals)} Sahmk Starter Plus signals")
     return 0
 
 
