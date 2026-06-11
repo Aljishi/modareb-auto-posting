@@ -104,12 +104,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.6 — سيولة طبيعية 1.0x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621430-2200",
+      "signal_id": "Signal #2026-1621435-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T14:30:50",
+      "generated_at": "2026-06-11T14:35:38",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -122,11 +122,11 @@
         "main_reasons": [
           "RSI is overheated at 71.63",
           "Volume ratio is weak at 0.99",
-          "Setup is not clear due to lack of breakout"
+          "Setup lacks clarity due to proximity to resistance"
         ],
-        "rejection_reason": "Setup lacks clarity and has an overheated RSI with weak volume confirmation.",
-        "arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد الحجم.",
-        "telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني."
+        "rejection_reason": "Setup is not clear and has an overheated RSI.",
+        "arabic_summary": "إشارة غير واضحة مع مؤشر القوة النسبية مرتفع.",
+        "telegram_note": "الإشارة مرفوضة بسبب ضعف الزخم وعدم وضوح الإعداد."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 74,
@@ -136,11 +136,11 @@
       "ai_reasons": [
         "RSI is overheated at 71.63",
         "Volume ratio is weak at 0.99",
-        "Setup is not clear due to lack of breakout"
+        "Setup lacks clarity due to proximity to resistance"
       ],
-      "ai_arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد الحجم.",
-      "ai_telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني.",
-      "ai_reviewed_at": "2026-06-11T14:31:56",
+      "ai_arabic_summary": "إشارة غير واضحة مع مؤشر القوة النسبية مرتفع.",
+      "ai_telegram_note": "الإشارة مرفوضة بسبب ضعف الزخم وعدم وضوح الإعداد.",
+      "ai_reviewed_at": "2026-06-11T14:36:01",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"
