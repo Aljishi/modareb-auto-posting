@@ -2,7 +2,7 @@
   "provider": "sahmk",
   "data_source": "api",
   "engine": "rased_market_intelligence_sahmk",
-  "generated_at": "2026-06-11T10:00:53",
+  "generated_at": "2026-06-11T10:05:34",
   "api_url": "https://app.sahmk.sa/api/v1",
   "market_summary": {
     "index": "TASI",
