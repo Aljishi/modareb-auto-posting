@@ -80,7 +80,7 @@
       "risk_emoji": "🟡",
       "confidence": "74%",
       "rsi": 71.63,
-      "volume_ratio": 0.96,
+      "volume_ratio": 0.99,
       "atr14": 0.2614,
       "atr_pct": 3.34,
       "support": 6.72,
@@ -93,7 +93,7 @@
       "setup_type": "دخول مشروط فوق المقاومة",
       "breakout": false,
       "entry_gap_pct": 1.28,
-      "value": 71693627.06,
+      "value": 73516586.36,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -101,15 +101,15 @@
       "expected_days_to_target2": 3,
       "seven_day_filter_passed": true,
       "max_reasonable_7d_pct": 18.37,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.6 — سيولة طبيعية 1.0x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.6 — سيولة طبيعية 1.0x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1621425-2200",
+      "signal_id": "Signal #2026-1621430-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-11T14:25:37",
+      "generated_at": "2026-06-11T14:30:50",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -120,13 +120,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Confidence score below threshold",
-          "RSI is overheated",
-          "Volume ratio below 1.0"
+          "RSI is overheated at 71.63",
+          "Volume ratio is weak at 0.99",
+          "Setup is not clear due to lack of breakout"
         ],
-        "rejection_reason": "Signal lacks strong momentum due to high RSI and weak volume confirmation.",
-        "arabic_summary": "الإشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد السيولة.",
-        "telegram_note": "الإشارة مرفوضة بسبب ضعف الزخم والضغط على مستوى المقاومة."
+        "rejection_reason": "Setup lacks clarity and has an overheated RSI with weak volume confirmation.",
+        "arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد الحجم.",
+        "telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 74,
@@ -134,13 +134,13 @@
       "ai_risk_score": 4,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Confidence score below threshold",
-        "RSI is overheated",
-        "Volume ratio below 1.0"
+        "RSI is overheated at 71.63",
+        "Volume ratio is weak at 0.99",
+        "Setup is not clear due to lack of breakout"
       ],
-      "ai_arabic_summary": "الإشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد السيولة.",
-      "ai_telegram_note": "الإشارة مرفوضة بسبب ضعف الزخم والضغط على مستوى المقاومة.",
-      "ai_reviewed_at": "2026-06-11T14:25:56",
+      "ai_arabic_summary": "الإشارة غير واضحة وRSI مرتفع مع ضعف تأكيد الحجم.",
+      "ai_telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني.",
+      "ai_reviewed_at": "2026-06-11T14:31:56",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 66.9 < 74.0"

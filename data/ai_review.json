@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-11T14:25:56",
+  "reviewed_at": "2026-06-11T14:31:56",
   "approved": 0,
   "total": 1,
   "signals": [
@@ -14,9 +14,9 @@
       "rased_score": 66.9,
       "tier": "Standard",
       "reasons": [
-        "Confidence score below threshold",
-        "RSI is overheated",
-        "Volume ratio below 1.0"
+        "RSI is overheated at 71.63",
+        "Volume ratio is weak at 0.99",
+        "Setup is not clear due to lack of breakout"
       ]
     }
   ]
