@@ -1,7 +1,149 @@
 {
-  "signals": [],
-  "generated_at": "2026-06-11T13:56:04",
-  "total": 0,
+  "signals": [
+    {
+      "stock_symbol": "2200",
+      "symbol": "2200",
+      "stock_name": "الشركة العربية للأنابيب",
+      "name": "الشركة العربية للأنابيب",
+      "sector": "",
+      "current_price": 7.84,
+      "entry_point": 7.92,
+      "entry": 7.92,
+      "target1": 8.4,
+      "target2": 8.48,
+      "stop_loss": 7.59,
+      "target1_percent": 6.06,
+      "target2_percent": 7.07,
+      "stop_loss_percent": 4.17,
+      "tp1_pct": 6.06,
+      "tp2_pct": 7.07,
+      "sl_pct": -4.17,
+      "rr": 1.7,
+      "rr_ratio": 1.7,
+      "score": 74,
+      "technical_score": 78,
+      "sector_strength_bonus": 0,
+      "sector_strength_grade": "غير متوفر",
+      "sector_strength_raw": {
+        "available": false,
+        "bonus": 0,
+        "grade": "غير متوفر"
+      },
+      "backtest_bonus": -4,
+      "backtest_grade": "ضعيف",
+      "backtest_win_rate": 36.4,
+      "backtest_trades": 22,
+      "backtest_raw": {
+        "available": true,
+        "bonus": -4,
+        "grade": "ضعيف",
+        "win_rate": 36.4,
+        "wins": 8,
+        "losses": 14,
+        "trades": 22
+      },
+      "fundamental_bonus": 0,
+      "fundamental_grade": "محايد",
+      "fundamental_reading": "أساسيات غير متوفرة | لا توجد قوائم مالية كافية | لا يوجد محفز توزيعات واضح",
+      "fundamental_raw": {
+        "quality": {
+          "bonus": 0,
+          "grade": "غير متوفر",
+          "details": "أساسيات غير متوفرة",
+          "raw": {}
+        },
+        "growth": {
+          "bonus": 0,
+          "grade": "غير متوفر",
+          "details": "لا توجد قوائم مالية كافية",
+          "raw": {}
+        },
+        "dividend": {
+          "bonus": 0,
+          "grade": "محايد",
+          "details": "لا يوجد محفز توزيعات واضح",
+          "raw": {
+            "recent": false,
+            "yield": 0.0,
+            "amount": 0.0
+          }
+        }
+      },
+      "growth_bonus": 0,
+      "dividend_bonus": 0,
+      "rased_score": 66.9,
+      "tier": "Standard",
+      "tier_emoji": "✅",
+      "risk_level": "متوسط",
+      "risk_level_ar": "متوسط",
+      "risk_emoji": "🟡",
+      "confidence": "74%",
+      "rsi": 71.9,
+      "volume_ratio": 0.88,
+      "atr14": 0.2614,
+      "atr_pct": 3.33,
+      "support": 6.72,
+      "resistance": 7.9,
+      "trend": "صاعد",
+      "trend_values": {
+        "sma10": 7.555,
+        "sma20": 7.269
+      },
+      "setup_type": "دخول مشروط فوق المقاومة",
+      "breakout": false,
+      "entry_gap_pct": 1.02,
+      "value": 65545175.36,
+      "expected_holding_period": "1-7 أيام",
+      "holding_period": "1 - 7 أيام",
+      "max_holding_days": 7,
+      "expected_days_to_target1": 3,
+      "expected_days_to_target2": 3,
+      "seven_day_filter_passed": true,
+      "max_reasonable_7d_pct": 18.32,
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.9 — سيولة طبيعية 0.9x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
+      "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
+      "signal_id": "Signal #2026-1621401-2200",
+      "data_source": "sahmk_api_historical_starter_plus",
+      "provider": "sahmk",
+      "historical_bars": 66,
+      "engine_version": "rased_sahmk_starter_plus_v9",
+      "generated_at": "2026-06-11T14:01:00",
+      "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
+      "ai_available": true,
+      "ai_review": {
+        "decision": "REJECT",
+        "confidence": 74,
+        "risk_level": "MEDIUM",
+        "risk_score": 4,
+        "rased_score_adjustment": 0,
+        "expected_holding_days": 3,
+        "main_reasons": [
+          "RSI is overheated at 71.9",
+          "Volume ratio is weak at 0.88",
+          "Setup lacks clarity due to resistance proximity"
+        ],
+        "rejection_reason": "Setup is not clear and has weak volume confirmation.",
+        "arabic_summary": "الإشارة غير واضحة وتفتقر إلى تأكيد السيولة.",
+        "telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني."
+      },
+      "ai_decision": "REJECT",
+      "ai_confidence": 74,
+      "ai_risk_level": "MEDIUM",
+      "ai_risk_score": 4,
+      "ai_expected_holding_days": 3,
+      "ai_reasons": [
+        "RSI is overheated at 71.9",
+        "Volume ratio is weak at 0.88",
+        "Setup lacks clarity due to resistance proximity"
+      ],
+      "ai_arabic_summary": "الإشارة غير واضحة وتفتقر إلى تأكيد السيولة.",
+      "ai_telegram_note": "الإشارة مرفوضة بسبب ضعف التأكيد الفني.",
+      "ai_reviewed_at": "2026-06-11T14:02:19"
+    }
+  ],
+  "generated_at": "2026-06-11T14:02:15",
+  "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9",
   "provider": "sahmk",
@@ -25,6 +167,9 @@
     "BLOCK_WEAK_FUNDAMENTALS": false
   },
   "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
-  "status": "NO_SIGNALS",
-  "message": "لا توجد إشارات تحقق شروط راصد اليوم"
+  "status": "HAS_SIGNALS",
+  "ai_reviewed": true,
+  "ai_available": true,
+  "ai_model": "gpt-4o-mini",
+  "ai_reviewed_at": "2026-06-11T14:02:19"
 }
