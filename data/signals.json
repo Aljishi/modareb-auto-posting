@@ -6,17 +6,17 @@
       "stock_name": "أبو معطي",
       "name": "أبو معطي",
       "sector": "التجزئة",
-      "current_price": 44.9,
-      "entry_point": 44.9,
-      "entry": 44.9,
-      "target1": 47.35,
-      "target2": 47.77,
-      "stop_loss": 43.21,
-      "target1_percent": 5.46,
-      "target2_percent": 6.39,
+      "current_price": 44.96,
+      "entry_point": 44.96,
+      "entry": 44.96,
+      "target1": 47.41,
+      "target2": 47.83,
+      "stop_loss": 43.27,
+      "target1_percent": 5.45,
+      "target2_percent": 6.38,
       "stop_loss_percent": 3.76,
-      "tp1_pct": 5.46,
-      "tp2_pct": 6.39,
+      "tp1_pct": 5.45,
+      "tp2_pct": 6.38,
       "sl_pct": -3.76,
       "rr": 1.7,
       "rr_ratio": 1.7,
@@ -28,10 +28,10 @@
         "available": true,
         "bonus": 7,
         "grade": "قوي جداً",
-        "avg_change_pct": 1.23,
-        "advance_ratio": 0.67,
+        "avg_change_pct": 1.28,
+        "advance_ratio": 0.83,
         "members": 6,
-        "total_value": 60956673.37
+        "total_value": 62587044.17
       },
       "backtest_bonus": -4,
       "backtest_grade": "ضعيف",
@@ -82,11 +82,11 @@
       "rased_score": 78.1,
       "tier": "Standard",
       "tier_emoji": "✅",
-      "risk_level": "متوسط",
-      "risk_level_ar": "متوسط",
-      "risk_emoji": "🟡",
+      "risk_level": "مرتفع",
+      "risk_level_ar": "مرتفع",
+      "risk_emoji": "🔴",
       "confidence": "92%",
-      "rsi": 77.31,
+      "rsi": 77.44,
       "volume_ratio": 3.56,
       "atr14": 1.3557,
       "atr_pct": 3.02,
@@ -94,13 +94,13 @@
       "resistance": 44.46,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 41.708,
-        "sma20": 41.437
+        "sma10": 41.714,
+        "sma20": 41.44
       },
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 38314382.3,
+      "value": 38393906.72,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -108,21 +108,21 @@
       "expected_days_to_target2": 2,
       "seven_day_filter_passed": true,
       "max_reasonable_7d_pct": 16.61,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.3 — سيولة قوية جداً 3.6x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.4 — سيولة قوية جداً 3.6x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651215-4191",
+      "signal_id": "Signal #2026-1651220-4191",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T12:15:51",
+      "generated_at": "2026-06-14T12:20:53",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
         "decision": "REJECT",
         "confidence": 92,
-        "risk_level": "MEDIUM",
+        "risk_level": "HIGH",
         "risk_score": 3,
         "rased_score_adjustment": 0,
         "expected_holding_days": 2,
@@ -130,22 +130,22 @@
           "TP2 looks unrealistic within 7 days",
           "RSI is overheated"
         ],
-        "rejection_reason": "TP2 looks unrealistic within 7 days and RSI is overheated.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام وارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
+        "rejection_reason": "The setup is not clear due to high RSI and unrealistic target within the expected holding period.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+        "telegram_note": "الإشارة غير موثوقة بسبب ظروف السوق الحالية."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 92,
-      "ai_risk_level": "MEDIUM",
+      "ai_risk_level": "HIGH",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 2,
       "ai_reasons": [
         "TP2 looks unrealistic within 7 days",
         "RSI is overheated"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام وارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
-      "ai_reviewed_at": "2026-06-14T12:16:52"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+      "ai_telegram_note": "الإشارة غير موثوقة بسبب ظروف السوق الحالية.",
+      "ai_reviewed_at": "2026-06-14T12:21:51"
     },
     {
       "stock_symbol": "8060",
@@ -153,12 +153,12 @@
       "stock_name": "شركة ولاء للتأمين التعاوني",
       "name": "شركة ولاء للتأمين التعاوني",
       "sector": "التأمين",
-      "current_price": 10.91,
-      "entry_point": 10.91,
-      "entry": 10.91,
-      "target1": 11.39,
-      "target2": 11.47,
-      "stop_loss": 10.58,
+      "current_price": 10.92,
+      "entry_point": 10.92,
+      "entry": 10.92,
+      "target1": 11.4,
+      "target2": 11.48,
+      "stop_loss": 10.59,
       "target1_percent": 4.4,
       "target2_percent": 5.13,
       "stop_loss_percent": 3.02,
@@ -167,18 +167,18 @@
       "sl_pct": -3.02,
       "rr": 1.7,
       "rr_ratio": 1.7,
-      "score": 87,
-      "technical_score": 84,
+      "score": 91,
+      "technical_score": 88,
       "sector_strength_bonus": 7,
       "sector_strength_grade": "قوي جداً",
       "sector_strength_raw": {
         "available": true,
         "bonus": 7,
         "grade": "قوي جداً",
-        "avg_change_pct": 2.17,
+        "avg_change_pct": 2.16,
         "advance_ratio": 1.0,
         "members": 5,
-        "total_value": 151042651.31
+        "total_value": 160242382.04
       },
       "backtest_bonus": -4,
       "backtest_grade": "ضعيف",
@@ -226,78 +226,78 @@
       },
       "growth_bonus": 0,
       "dividend_bonus": 0,
-      "rased_score": 74.3,
+      "rased_score": 76.6,
       "tier": "Standard",
       "tier_emoji": "✅",
-      "risk_level": "متوسط",
-      "risk_level_ar": "متوسط",
-      "risk_emoji": "🟡",
-      "confidence": "87%",
-      "rsi": 78.77,
-      "volume_ratio": 1.1,
+      "risk_level": "منخفض",
+      "risk_level_ar": "منخفض",
+      "risk_emoji": "🟢",
+      "confidence": "91%",
+      "rsi": 78.89,
+      "volume_ratio": 1.15,
       "atr14": 0.2664,
       "atr_pct": 2.44,
       "support": 9.62,
       "resistance": 10.8,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 10.326,
+        "sma10": 10.327,
         "sma20": 10.12
       },
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 5655209.41,
+      "value": 5899530.0,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
-      "expected_days_to_target1": 3,
+      "expected_days_to_target1": 2,
       "expected_days_to_target2": 3,
       "seven_day_filter_passed": true,
       "max_reasonable_7d_pct": 13.42,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 78.8 — سيولة طبيعية 1.1x — اختراق مقاومة مؤكد — زخم يومي صحي +2.7% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 78.9 — سيولة مقبولة 1.1x — اختراق مقاومة مؤكد — زخم يومي صحي +2.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651216-8060",
+      "signal_id": "Signal #2026-1651221-8060",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T12:16:21",
+      "generated_at": "2026-06-14T12:21:12",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
-        "decision": "REJECT",
-        "confidence": 87,
-        "risk_level": "MEDIUM",
+        "decision": "APPROVE",
+        "confidence": 91,
+        "risk_level": "LOW",
         "risk_score": 3,
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "RSI is overheated at 78.77",
-          "High risk due to RSI level",
-          "Unclear momentum despite breakout"
+          "Strong momentum setup",
+          "Clear breakout confirmed",
+          "Acceptable RSI and volume ratio"
         ],
-        "rejection_reason": "Setup has high RSI and potential risk due to overextension.",
-        "arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية.",
-        "telegram_note": "الإشارة مرفوضة بسبب ارتفاع RSI والمخاطر المحتملة."
+        "rejection_reason": "",
+        "arabic_summary": "إشارة شراء قوية على سهم شركة ولاء للتأمين التعاوني مع زخم صاعد واضح.",
+        "telegram_note": "إشارة شراء قوية على 8060 مع أهداف قريبة ووقف خسارة معقول."
       },
-      "ai_decision": "REJECT",
-      "ai_confidence": 87,
-      "ai_risk_level": "MEDIUM",
+      "ai_decision": "APPROVE",
+      "ai_confidence": 91,
+      "ai_risk_level": "LOW",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "RSI is overheated at 78.77",
-        "High risk due to RSI level",
-        "Unclear momentum despite breakout"
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "Acceptable RSI and volume ratio"
       ],
-      "ai_arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية.",
-      "ai_telegram_note": "الإشارة مرفوضة بسبب ارتفاع RSI والمخاطر المحتملة.",
-      "ai_reviewed_at": "2026-06-14T12:16:54"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة ولاء للتأمين التعاوني مع زخم صاعد واضح.",
+      "ai_telegram_note": "إشارة شراء قوية على 8060 مع أهداف قريبة ووقف خسارة معقول.",
+      "ai_reviewed_at": "2026-06-14T12:21:53"
     }
   ],
-  "generated_at": "2026-06-14T12:16:48",
+  "generated_at": "2026-06-14T12:21:48",
   "total": 2,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9",
@@ -307,34 +307,34 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.96,
+      "avg_change_pct": 1.0,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 252049360.03
+      "total_value": 254063651.06
     },
     "البتروكيماويات": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.62,
+      "avg_change_pct": 0.72,
       "advance_ratio": 0.67,
       "members": 3,
-      "total_value": 63453616.4
+      "total_value": 64483250.68
     },
     "الطاقة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.38,
+      "avg_change_pct": 0.26,
       "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 234834407.28
+      "total_value": 238993462.36
     },
     "الصناعات": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.15,
+      "avg_change_pct": -1.02,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 50735454.0
+      "total_value": 51005562.43
     },
     "متعدد": {
       "bonus": 0,
@@ -342,23 +342,23 @@
       "avg_change_pct": -0.92,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1417467.48
+      "total_value": 1628586.96
     },
     "النقل": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.1,
+      "avg_change_pct": 0.07,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 29199673.92
+      "total_value": 30462699.7
     },
     "العقارات": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.36,
+      "avg_change_pct": 1.35,
       "advance_ratio": 1.0,
       "members": 7,
-      "total_value": 40166745.86
+      "total_value": 42100933.01
     },
     "الأغذية والمشروبات": {
       "bonus": 7,
@@ -366,55 +366,55 @@
       "avg_change_pct": 1.47,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 5032044.8
+      "total_value": 5082032.0
     },
     "التجزئة": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.23,
-      "advance_ratio": 0.67,
+      "avg_change_pct": 1.28,
+      "advance_ratio": 0.83,
       "members": 6,
-      "total_value": 60956673.37
+      "total_value": 62587044.17
     },
     "الإعلام والترفيه": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.71,
+      "avg_change_pct": 0.75,
       "advance_ratio": 0.8,
       "members": 5,
-      "total_value": 35517255.62
+      "total_value": 36456125.52
     },
     "الاتصالات": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.37,
+      "avg_change_pct": 0.28,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 10033547.16
+      "total_value": 10113482.72
     },
     "التقنية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.05,
+      "avg_change_pct": 1.08,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 23192662.36
+      "total_value": 23458745.02
     },
     "التأمين": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 2.17,
+      "avg_change_pct": 2.16,
       "advance_ratio": 1.0,
       "members": 5,
-      "total_value": 151042651.31
+      "total_value": 160242382.04
     },
     "المواد الأساسية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.01,
-      "advance_ratio": 1.0,
+      "avg_change_pct": 0.94,
+      "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 44241185.52
+      "total_value": 44679737.38
     },
     "الموارد البشرية": {
       "bonus": 5,
@@ -422,7 +422,7 @@
       "avg_change_pct": 0.99,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 5529469.26
+      "total_value": 5613747.57
     }
   },
   "filters": {
@@ -448,5 +448,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-14T12:16:54"
+  "ai_reviewed_at": "2026-06-14T12:21:53"
 }
