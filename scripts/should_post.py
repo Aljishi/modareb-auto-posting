@@ -20,10 +20,14 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 SIGNALS_FILE = DATA_DIR / "signals.json"
 VALIDATED_FILE = DATA_DIR / "validated_signals.json"
 
-PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "70"))
-PY_ONLY_MIN_SCORE = float(os.getenv("PY_ONLY_MIN_SCORE", "70"))
-PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "1.6"))
+PY_ONLY_MIN_RASED_SCORE = float(os.getenv("PY_ONLY_MIN_RASED_SCORE", "84"))
+PY_ONLY_MIN_SCORE = float(os.getenv("PY_ONLY_MIN_SCORE", "84"))
+PY_ONLY_MIN_RR = float(os.getenv("PY_ONLY_MIN_RR", "2.0"))
 PY_ONLY_MIN_VOL_RATIO = float(os.getenv("PY_ONLY_MIN_VOL_RATIO", "0.80"))
+
+PY_ONLY_MAX_RSI = float(os.getenv("PY_ONLY_MAX_RSI", "72"))
+PY_ONLY_MIN_BACKTEST_WIN_RATE = float(os.getenv("PY_ONLY_MIN_BACKTEST_WIN_RATE", "40"))
+PY_ONLY_MIN_BACKTEST_TRADES = int(os.getenv("PY_ONLY_MIN_BACKTEST_TRADES", "8"))
 
 MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "3.0"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
@@ -85,6 +89,9 @@ def validate_signal(signal: Dict[str, Any]) -> List[str]:
     score = fnum(signal.get("score"))
     rr = fnum(signal.get("rr") or signal.get("rr_ratio"))
     vol = fnum(signal.get("volume_ratio"))
+    rsi = fnum(signal.get("rsi"))
+    backtest_win = fnum(signal.get("backtest_win_rate"))
+    backtest_trades = int(fnum(signal.get("backtest_trades")))
 
     tp1 = fnum(signal.get("target1_percent") or signal.get("tp1_pct"))
     tp2 = fnum(signal.get("target2_percent") or signal.get("tp2_pct"))
@@ -120,6 +127,15 @@ def validate_signal(signal: Dict[str, Any]) -> List[str]:
 
     if rr < PY_ONLY_MIN_RR:
         reasons.append(f"R:R {rr} < {PY_ONLY_MIN_RR}")
+
+    if rsi > PY_ONLY_MAX_RSI:
+        reasons.append(f"RSI {rsi} > {PY_ONLY_MAX_RSI} (overbought)")
+
+    if backtest_trades >= PY_ONLY_MIN_BACKTEST_TRADES and backtest_win < PY_ONLY_MIN_BACKTEST_WIN_RATE:
+        reasons.append(
+            f"Backtest win rate {backtest_win}% < {PY_ONLY_MIN_BACKTEST_WIN_RATE}% "
+            f"on {backtest_trades} similar cases"
+        )
 
     if vol < PY_ONLY_MIN_VOL_RATIO:
         reasons.append(f"Volume {vol}x < {PY_ONLY_MIN_VOL_RATIO}x")

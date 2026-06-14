@@ -52,15 +52,15 @@ API_URL = os.getenv("API_URL", "https://app.sahmk.sa/api/v1").rstrip("/")
 API_KEY = os.getenv("API_KEY") or os.getenv("SAHMK_API_KEY")
 TIMEOUT = int(os.getenv("SAHMK_TIMEOUT", "20"))
 
-ENGINE_VERSION = "rased_sahmk_starter_plus_v9"
+ENGINE_VERSION = "rased_sahmk_starter_plus_v9_1_consistency_fix"
 
 HIST_DAYS = int(os.getenv("HIST_DAYS", "75"))
 MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
 LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
-MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "72"))
-MIN_RR = float(os.getenv("MIN_RR", "1.7"))
+MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "84"))
+MIN_RR = float(os.getenv("MIN_RR", "2.0"))
 MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
 MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "750000"))
 
@@ -71,7 +71,7 @@ MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
 MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 MIN_RSI = float(os.getenv("MIN_RSI", "38"))
-MAX_RSI = float(os.getenv("MAX_RSI", "80"))
+MAX_RSI = float(os.getenv("MAX_RSI", "72"))
 
 MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
@@ -84,6 +84,12 @@ BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "false").lower() 
 ENABLE_SECTOR_STRENGTH = os.getenv("ENABLE_SECTOR_STRENGTH", "true").lower() != "false"
 ENABLE_BACKTEST_SCORE = os.getenv("ENABLE_BACKTEST_SCORE", "true").lower() != "false"
 ENABLE_SELF_LEARNING = os.getenv("ENABLE_SELF_LEARNING", "true").lower() != "false"
+
+# Hard consistency gates: prevent publishing signals that look strong visually
+# but contradict Rased risk discipline.
+MIN_BACKTEST_WIN_RATE = float(os.getenv("MIN_BACKTEST_WIN_RATE", "40"))
+MIN_BACKTEST_TRADES_FOR_HARD_REJECT = int(os.getenv("MIN_BACKTEST_TRADES_FOR_HARD_REJECT", "8"))
+MAX_OVERBOUGHT_RSI = float(os.getenv("MAX_OVERBOUGHT_RSI", "72"))
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -266,10 +272,25 @@ def classify_tier(score: float) -> Tuple[str, str]:
     return "Standard", "✅"
 
 
-def risk_label(rr: float, atr_pct: float, rsi: float) -> Tuple[str, str]:
-    if rr >= 2.5 and 0.5 <= atr_pct <= 6.5 and rsi <= 76:
+def risk_label(rr: float, atr_pct: float, rsi: float, backtest: Optional[Dict[str, Any]] = None, rased_score: float = 0.0) -> Tuple[str, str]:
+    backtest = backtest or {}
+    bt_available = bool(backtest.get("available"))
+    bt_win = fnum(backtest.get("win_rate"))
+    bt_trades = int(fnum(backtest.get("trades")))
+
+    # Any hard contradiction must force the risk label upward.
+    if rsi > MAX_OVERBOUGHT_RSI:
+        return "مرتفع", "🔴"
+    if rr < 2.0:
+        return "مرتفع", "🔴"
+    if rased_score and rased_score < 84:
+        return "مرتفع", "🔴"
+    if bt_available and bt_trades >= MIN_BACKTEST_TRADES_FOR_HARD_REJECT and bt_win < MIN_BACKTEST_WIN_RATE:
+        return "مرتفع", "🔴"
+
+    if rr >= 2.5 and 0.5 <= atr_pct <= 6.5 and rsi <= 68 and (not bt_available or bt_win >= 55 or bt_trades < MIN_BACKTEST_TRADES_FOR_HARD_REJECT):
         return "منخفض", "🟢"
-    if rr >= 1.7 and 0.5 <= atr_pct <= 8.0 and rsi <= 80:
+    if rr >= 2.0 and 0.5 <= atr_pct <= 8.0 and rsi <= MAX_OVERBOUGHT_RSI:
         return "متوسط", "🟡"
     return "مرتفع", "🔴"
 
@@ -524,6 +545,9 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
     if not (MIN_RSI <= rsi <= MAX_RSI):
         reject(symbol, f"RSI {rsi} خارج النطاق {MIN_RSI}-{MAX_RSI}")
         return None
+    if rsi > MAX_OVERBOUGHT_RSI:
+        reject(symbol, f"RSI {rsi} مرتفع جداً — احتمال مطاردة بعد صعود")
+        return None
     if vol_ratio < MIN_VOLUME_RATIO:
         reject(symbol, f"Volume {vol_ratio}x أقل من {MIN_VOLUME_RATIO}x")
         return None
@@ -605,6 +629,15 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
 
     if ENABLE_BACKTEST_SCORE:
         backtest = calc_backtest_score(rows, atr_pct)
+        bt_available = bool(backtest.get("available"))
+        bt_win = fnum(backtest.get("win_rate"))
+        bt_trades = int(fnum(backtest.get("trades")))
+
+        # Hard reject: a signal must not be approved when similar historical setups failed clearly.
+        if bt_available and bt_trades >= MIN_BACKTEST_TRADES_FOR_HARD_REJECT and bt_win < MIN_BACKTEST_WIN_RATE:
+            reject(symbol, f"Backtest ضعيف: نجاح {bt_win}% على {bt_trades} حالات مشابهة")
+            return None
+
         bt_bonus = int(backtest.get("bonus", 0))
         score += bt_bonus
         if bt_bonus > 0:
@@ -659,6 +692,9 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
     rr_score = min(rr * 28, 100)
     time_score = max(0, 100 - (expected_days_tp2 - 1) * 8)
     rased_score = round(score * 0.50 + rr_score * 0.25 + time_score * 0.25, 1)
+    if rased_score < MIN_SIGNAL_SCORE:
+        reject(symbol, f"RASED SCORE {rased_score} أقل من {MIN_SIGNAL_SCORE}")
+        return None
 
     tier, tier_emoji = classify_tier(rased_score)
     if tier == "Platinum" and target1_pct < MIN_TP1_PCT_PLATINUM and target2_pct < MIN_TP2_PCT_PLATINUM:
@@ -668,7 +704,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
         tier = "Premium"
         tier_emoji = "⭐"
 
-    risk_text, risk_emoji = risk_label(rr, atr_pct, rsi)
+    risk_text, risk_emoji = risk_label(rr, atr_pct, rsi, backtest, rased_score)
     signal_id = f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j%H%M')}-{symbol}"
 
     return {
@@ -676,7 +712,8 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
         "symbol": symbol,
         "stock_name": stock.get("name") or stock.get("name_ar") or symbol,
         "name": stock.get("name") or stock.get("name_ar") or symbol,
-        "sector": sector,
+        "sector": sector or "غير متوفر",
+        "sector_name": sector or "غير متوفر",
         "current_price": round(price, 2),
         "entry_point": entry,
         "entry": entry,

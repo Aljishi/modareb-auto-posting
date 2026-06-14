@@ -64,6 +64,49 @@ def ai_status(signal: Dict[str, Any]) -> str:
     return "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل."
 
 
+def rsi_reading(rsi: float) -> str:
+    if rsi <= 0:
+        return "غير متوفر"
+    if rsi < 45:
+        return f"هادئ ({rsi:.1f})"
+    if rsi <= 60:
+        return f"صحي ({rsi:.1f})"
+    if rsi <= 68:
+        return f"قوي ({rsi:.1f})"
+    if rsi <= 72:
+        return f"مرتفع بحذر ({rsi:.1f})"
+    return f"مرتفع جداً — غالباً مطاردة ({rsi:.1f})"
+
+
+def rr_reading(rr: float) -> str:
+    if rr >= 2.5:
+        return f"ممتاز ({rr:.2f})"
+    if rr >= 2.0:
+        return f"مقبول ({rr:.2f})"
+    return f"ضعيف ({rr:.2f})"
+
+
+def volume_reading(vol: float) -> str:
+    if vol >= 3:
+        return f"سيولة قوية جداً ({vol:.2f}x)"
+    if vol >= 2:
+        return f"سيولة قوية ({vol:.2f}x)"
+    if vol >= 1.15:
+        return f"سيولة جيدة ({vol:.2f}x)"
+    return f"سيولة عادية ({vol:.2f}x)"
+
+
+def backtest_reading(grade: str, win: float, trades: int) -> str:
+    if trades <= 0:
+        return "لا توجد حالات تاريخية كافية للمقارنة"
+    return f"{grade} | نجاح تاريخي: {win:.1f}% | الحالات المشابهة: {trades}"
+
+
+def clean_sector_name(signal: Dict[str, Any]) -> str:
+    sector = str(signal.get("sector_name") or signal.get("sector") or "").strip()
+    return sector if sector else "غير متوفر من مزود البيانات"
+
+
 def format_signal(signal: Dict[str, Any]) -> str:
     symbol = signal.get("stock_symbol") or signal.get("symbol") or ""
     name = signal.get("stock_name") or signal.get("name") or symbol
@@ -89,6 +132,7 @@ def format_signal(signal: Dict[str, Any]) -> str:
     atr = fnum(signal.get("atr_pct"))
     fundamental = signal.get("fundamental_grade") or "غير متوفر"
     fundamental_bonus = int(fnum(signal.get("fundamental_bonus")))
+    sector_name = clean_sector_name(signal)
     sector_grade = signal.get("sector_strength_grade") or "غير متوفر"
     sector_bonus = int(fnum(signal.get("sector_strength_bonus")))
     growth_bonus = int(fnum(signal.get("growth_bonus")))
@@ -129,18 +173,22 @@ def format_signal(signal: Dict[str, Any]) -> str:
 
 ━━━━━━━━━━━━━━
 
-📊 مؤشرات راصد
-RSI: {rsi:.1f} | Volume: {vol:.2f}x | R:R: {rr:.2f}
-ATR: {atr:.2f}% | Fundamental: {fundamental} ({fundamental_bonus:+d})
+📊 مؤشرات راصد المبسطة
+مؤشر الزخم: {rsi_reading(rsi)}
+السيولة: {volume_reading(vol)}
+العائد مقابل المخاطرة: {rr_reading(rr)}
+تذبذب السهم اليومي: {atr:.2f}%
+التحليل الأساسي: {fundamental} ({fundamental_bonus:+d})
 
 🏭 القطاع
-{sector_grade} ({sector_bonus:+d})
+{sector_name} | القوة: {sector_grade} ({sector_bonus:+d})
 
 📈 النمو والتوزيعات
-Growth: {growth_bonus:+d} | Dividend: {dividend_bonus:+d}
+النمو المالي: {growth_bonus:+d} | محفز التوزيعات: {dividend_bonus:+d}
 
-🧪 Backtest
-{backtest_grade} | نجاح: {backtest_win:.1f}% | عينة: {backtest_trades}
+🧪 الاختبار التاريخي
+{backtest_reading(backtest_grade, backtest_win, backtest_trades)}
+ملاحظة: الحالات المشابهة تعني عدد مرات ظهور ظروف قريبة تاريخياً على نفس السهم/النمط.
 
 ━━━━━━━━━━━━━━
 
