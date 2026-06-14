@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-14T11:36:15",
+  "generated_at": "2026-06-14T11:41:56",
   "database": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/rased_research.db",
   "counts": {
-    "signals": 1,
+    "signals": 2,
     "validated_signals": 1,
     "golden_signals": 0,
     "performance": 0,

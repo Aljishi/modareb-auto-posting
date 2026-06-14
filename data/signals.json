@@ -6,17 +6,17 @@
       "stock_name": "أبو معطي",
       "name": "أبو معطي",
       "sector": "التجزئة",
-      "current_price": 45.0,
-      "entry_point": 45.0,
-      "entry": 45.0,
-      "target1": 47.45,
-      "target2": 47.87,
-      "stop_loss": 43.31,
-      "target1_percent": 5.44,
-      "target2_percent": 6.38,
+      "current_price": 44.92,
+      "entry_point": 44.92,
+      "entry": 44.92,
+      "target1": 47.37,
+      "target2": 47.79,
+      "stop_loss": 43.23,
+      "target1_percent": 5.45,
+      "target2_percent": 6.39,
       "stop_loss_percent": 3.76,
-      "tp1_pct": 5.44,
-      "tp2_pct": 6.38,
+      "tp1_pct": 5.45,
+      "tp2_pct": 6.39,
       "sl_pct": -3.76,
       "rr": 1.7,
       "rr_ratio": 1.7,
@@ -28,10 +28,10 @@
         "available": true,
         "bonus": 7,
         "grade": "قوي جداً",
-        "avg_change_pct": 1.43,
+        "avg_change_pct": 1.34,
         "advance_ratio": 0.83,
         "members": 6,
-        "total_value": 49976784.1
+        "total_value": 54962689.09
       },
       "backtest_bonus": -4,
       "backtest_grade": "ضعيف",
@@ -86,37 +86,37 @@
       "risk_level_ar": "منخفض",
       "risk_emoji": "🟢",
       "confidence": "92%",
-      "rsi": 77.52,
-      "volume_ratio": 3.09,
-      "atr14": 1.35,
-      "atr_pct": 3.0,
+      "rsi": 77.35,
+      "volume_ratio": 3.37,
+      "atr14": 1.3557,
+      "atr_pct": 3.02,
       "support": 39.0,
       "resistance": 44.46,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 41.718,
-        "sma20": 41.442
+        "sma10": 41.71,
+        "sma20": 41.438
       },
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 33342120.0,
+      "value": 36323614.68,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
       "expected_days_to_target1": 2,
       "expected_days_to_target2": 2,
       "seven_day_filter_passed": true,
-      "max_reasonable_7d_pct": 16.5,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.5 — سيولة قوية جداً 3.1x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "max_reasonable_7d_pct": 16.61,
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.3 — سيولة قوية جداً 3.4x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651135-4191",
+      "signal_id": "Signal #2026-1651141-4191",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:35:44",
+      "generated_at": "2026-06-14T11:41:05",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,11 +130,11 @@
           "Strong momentum setup",
           "High confidence score",
           "Low risk level",
-          "Clear technical indicators"
+          "Clear breakout confirmation"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع ومخاطر منخفضة.",
-        "telegram_note": "إشارة شراء قوية على سهم 4191 - أبو معطي. استهدف 47.45 خلال يومين."
+        "arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 4191 - أبو معطي. استهدف 47.37 خلال يومين."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 92,
@@ -145,15 +145,164 @@
         "Strong momentum setup",
         "High confidence score",
         "Low risk level",
-        "Clear technical indicators"
+        "Clear breakout confirmation"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع ومخاطر منخفضة.",
-      "ai_telegram_note": "إشارة شراء قوية على سهم 4191 - أبو معطي. استهدف 47.45 خلال يومين.",
-      "ai_reviewed_at": "2026-06-14T11:36:14"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 4191 - أبو معطي. استهدف 47.37 خلال يومين.",
+      "ai_reviewed_at": "2026-06-14T11:41:53"
+    },
+    {
+      "stock_symbol": "8060",
+      "symbol": "8060",
+      "stock_name": "شركة ولاء للتأمين التعاوني",
+      "name": "شركة ولاء للتأمين التعاوني",
+      "sector": "التأمين",
+      "current_price": 10.99,
+      "entry_point": 10.99,
+      "entry": 10.99,
+      "target1": 11.47,
+      "target2": 11.55,
+      "stop_loss": 10.66,
+      "target1_percent": 4.37,
+      "target2_percent": 5.1,
+      "stop_loss_percent": 3.0,
+      "tp1_pct": 4.37,
+      "tp2_pct": 5.1,
+      "sl_pct": -3.0,
+      "rr": 1.7,
+      "rr_ratio": 1.7,
+      "score": 83,
+      "technical_score": 80,
+      "sector_strength_bonus": 7,
+      "sector_strength_grade": "قوي جداً",
+      "sector_strength_raw": {
+        "available": true,
+        "bonus": 7,
+        "grade": "قوي جداً",
+        "avg_change_pct": 2.47,
+        "advance_ratio": 1.0,
+        "members": 5,
+        "total_value": 138142506.15
+      },
+      "backtest_bonus": -4,
+      "backtest_grade": "ضعيف",
+      "backtest_win_rate": 18.2,
+      "backtest_trades": 22,
+      "backtest_raw": {
+        "available": true,
+        "bonus": -4,
+        "grade": "ضعيف",
+        "win_rate": 18.2,
+        "wins": 4,
+        "losses": 17,
+        "trades": 22
+      },
+      "self_learning_bonus": 0,
+      "self_learning_available": false,
+      "self_learning_known_outcomes": 0,
+      "self_learning_notes": [],
+      "fundamental_bonus": 0,
+      "fundamental_grade": "محايد",
+      "fundamental_reading": "أساسيات غير متوفرة | لا توجد قوائم مالية كافية | لا يوجد محفز توزيعات واضح",
+      "fundamental_raw": {
+        "quality": {
+          "bonus": 0,
+          "grade": "غير متوفر",
+          "details": "أساسيات غير متوفرة",
+          "raw": {}
+        },
+        "growth": {
+          "bonus": 0,
+          "grade": "غير متوفر",
+          "details": "لا توجد قوائم مالية كافية",
+          "raw": {}
+        },
+        "dividend": {
+          "bonus": 0,
+          "grade": "محايد",
+          "details": "لا يوجد محفز توزيعات واضح",
+          "raw": {
+            "recent": false,
+            "yield": 0.0,
+            "amount": 0.0
+          }
+        }
+      },
+      "growth_bonus": 0,
+      "dividend_bonus": 0,
+      "rased_score": 72.0,
+      "tier": "Standard",
+      "tier_emoji": "✅",
+      "risk_level": "متوسط",
+      "risk_level_ar": "متوسط",
+      "risk_emoji": "🟡",
+      "confidence": "83%",
+      "rsi": 79.68,
+      "volume_ratio": 0.95,
+      "atr14": 0.2657,
+      "atr_pct": 2.42,
+      "support": 9.62,
+      "resistance": 10.8,
+      "trend": "صاعد",
+      "trend_values": {
+        "sma10": 10.334,
+        "sma20": 10.124
+      },
+      "setup_type": "اختراق مؤكد",
+      "breakout": true,
+      "entry_gap_pct": 0.0,
+      "value": 4876043.2,
+      "expected_holding_period": "1-7 أيام",
+      "holding_period": "1 - 7 أيام",
+      "max_holding_days": 7,
+      "expected_days_to_target1": 3,
+      "expected_days_to_target2": 3,
+      "seven_day_filter_passed": true,
+      "max_reasonable_7d_pct": 13.31,
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 79.7 — سيولة طبيعية 0.9x — اختراق مقاومة مؤكد — زخم يومي صحي +3.6% — قيمة تداول مقبولة — الهدف الثاني منطقي زمنياً",
+      "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
+      "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
+      "signal_id": "Signal #2026-1651141-8060",
+      "data_source": "sahmk_api_historical_starter_plus",
+      "provider": "sahmk",
+      "historical_bars": 66,
+      "engine_version": "rased_sahmk_starter_plus_v9",
+      "generated_at": "2026-06-14T11:41:34",
+      "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
+      "ai_available": true,
+      "ai_review": {
+        "decision": "REJECT",
+        "confidence": 83,
+        "risk_level": "MEDIUM",
+        "risk_score": 3,
+        "rased_score_adjustment": 0,
+        "expected_holding_days": 3,
+        "main_reasons": [
+          "TP2 looks unrealistic within 7 days",
+          "RSI is overheated",
+          "Volume confirmation is weak"
+        ],
+        "rejection_reason": "The setup is not clear due to high RSI and weak volume confirmation.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+        "telegram_note": "الإشارة غير واضحة، تم رفضها."
+      },
+      "ai_decision": "REJECT",
+      "ai_confidence": 83,
+      "ai_risk_level": "MEDIUM",
+      "ai_risk_score": 3,
+      "ai_expected_holding_days": 3,
+      "ai_reasons": [
+        "TP2 looks unrealistic within 7 days",
+        "RSI is overheated",
+        "Volume confirmation is weak"
+      ],
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
+      "ai_reviewed_at": "2026-06-14T11:41:55"
     }
   ],
-  "generated_at": "2026-06-14T11:36:10",
-  "total": 1,
+  "generated_at": "2026-06-14T11:41:49",
+  "total": 2,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9",
   "provider": "sahmk",
@@ -162,82 +311,82 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.07,
+      "avg_change_pct": 1.04,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 191924082.56
+      "total_value": 199325852.69
     },
     "البتروكيماويات": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.19,
+      "avg_change_pct": 0.26,
       "advance_ratio": 0.67,
       "members": 3,
-      "total_value": 45774062.32
+      "total_value": 48313830.0
     },
     "الطاقة": {
-      "bonus": 5,
-      "grade": "قوي",
-      "avg_change_pct": 0.52,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.47,
       "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 202840872.58
+      "total_value": 209866903.0
     },
     "الصناعات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.9,
+      "bonus": -5,
+      "grade": "ضعيف",
+      "avg_change_pct": -1.02,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 46149680.34
+      "total_value": 46897175.65
     },
     "متعدد": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.69,
+      "avg_change_pct": -0.92,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 907188.2
+      "total_value": 955383.0
     },
     "النقل": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.15,
+      "avg_change_pct": 0.05,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 24171330.3
+      "total_value": 25473093.52
     },
     "العقارات": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.48,
-      "advance_ratio": 0.71,
+      "avg_change_pct": 1.4,
+      "advance_ratio": 1.0,
       "members": 7,
-      "total_value": 29473483.36
+      "total_value": 32368804.75
     },
     "الأغذية والمشروبات": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.31,
+      "avg_change_pct": 1.55,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 4495396.0
+      "total_value": 4782865.1
     },
     "التجزئة": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.43,
+      "avg_change_pct": 1.34,
       "advance_ratio": 0.83,
       "members": 6,
-      "total_value": 49976784.1
+      "total_value": 54962689.09
     },
     "الإعلام والترفيه": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.93,
-      "advance_ratio": 1.0,
+      "avg_change_pct": 0.7,
+      "advance_ratio": 0.8,
       "members": 5,
-      "total_value": 23601944.38
+      "total_value": 24748350.16
     },
     "الاتصالات": {
       "bonus": 2,
@@ -245,15 +394,15 @@
       "avg_change_pct": 0.28,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 9452893.13
+      "total_value": 9507464.95
     },
     "التقنية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.9,
+      "avg_change_pct": 0.86,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 17970580.1
+      "total_value": 18567483.65
     },
     "التأمين": {
       "bonus": 7,
@@ -261,23 +410,23 @@
       "avg_change_pct": 2.47,
       "advance_ratio": 1.0,
       "members": 5,
-      "total_value": 132553911.76
+      "total_value": 138142506.15
     },
     "المواد الأساسية": {
-      "bonus": 7,
-      "grade": "قوي جداً",
-      "avg_change_pct": 1.29,
+      "bonus": 5,
+      "grade": "قوي",
+      "avg_change_pct": 1.18,
       "advance_ratio": 1.0,
       "members": 4,
-      "total_value": 40040113.91
+      "total_value": 41280582.56
     },
     "الموارد البشرية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.68,
+      "avg_change_pct": 0.56,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 4524301.91
+      "total_value": 4619284.8
     }
   },
   "filters": {
@@ -303,5 +452,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-14T11:36:14"
+  "ai_reviewed_at": "2026-06-14T11:41:55"
 }
