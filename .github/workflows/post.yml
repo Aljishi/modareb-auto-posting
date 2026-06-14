@@ -11,6 +11,7 @@ on:
         options:
           - auto-post
           - golden-signal
+          - golden-confirmation
           - track-results
           - weekly-report
       force:
@@ -20,10 +21,11 @@ on:
         type: boolean
 
   schedule:
-    - cron: "*/5 7-12 * * 0-4"   # الإشارة العادية أثناء السوق 10:00-15:00 KSA
-    - cron: "30 6 * * 0-4"        # الإشارة الذهبية قبل الافتتاح 09:30 KSA
-    - cron: "0 11 * * 0-4"        # متابعة أداء الإشارات 14:00 KSA
-    - cron: "0 14 * * 4"          # التقرير الأسبوعي الخميس 17:00 KSA
+    - cron: "*/5 7-12 * * 0-4"   # الإشارة العادية 10:00-15:55 KSA
+    - cron: "30 6 * * 0-4"       # الذهبية الأولى 09:30 KSA
+    - cron: "30 7 * * 0-4"       # تأكيد الذهبية 10:30 KSA
+    - cron: "0 11 * * 0-4"       # متابعة الأداء 14:00 KSA
+    - cron: "0 14 * * 4"         # التقرير الأسبوعي الخميس 17:00 KSA
 
 permissions:
   contents: write
@@ -34,13 +36,11 @@ env:
   PYTHONUNBUFFERED: "1"
 
 jobs:
-
   auto-post:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '*/5 7-12 * * 0-4' ||
-      (github.event_name == 'workflow_dispatch' &&
-       github.event.inputs.job == 'auto-post')
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.job == 'auto-post')
 
     steps:
       - name: Checkout repository
@@ -93,10 +93,8 @@ jobs:
         run: |
           python - << 'PY'
           import json, os
-
           has_signals = False
           count = 0
-
           try:
               with open("data/signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
@@ -105,9 +103,7 @@ jobs:
               has_signals = count > 0
           except Exception as e:
               print(f"No valid signals.json: {e}")
-
           print(f"Signals found: {count}")
-
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"has_signals={'true' if has_signals else 'false'}\n")
               out.write(f"count={count}\n")
@@ -123,13 +119,14 @@ jobs:
         if: steps.signal_check.outputs.has_signals == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-4o-mini
-        run: python scripts/ai_signal_reviewer.py
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+        run: python scripts/ai_signal_reviewer.py || echo "⚠️ OpenAI unavailable — continue with Python gate"
 
       - name: Validate signal quality
         id: validate
         if: steps.signal_check.outputs.has_signals == 'true'
         run: python scripts/should_post.py
+        continue-on-error: true
 
       - name: Check validated signal count
         id: valid_check
@@ -137,15 +134,13 @@ jobs:
         run: |
           python - << 'PY'
           import json, os
-
           count = 0
           try:
               with open("data/validated_signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
-              count = len(data.get("validated_signals", []))
+              count = len(data.get("validated_signals", data.get("signals", [])))
           except Exception as e:
               print(f"No valid validated_signals.json: {e}")
-
           print(f"Validated signals: {count}")
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"has_valid={'true' if count > 0 else 'false'}\n")
@@ -179,17 +174,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ output.png 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "📊 راصد — تحديث إشارة $(date +'%H:%M')"
+          git diff --cached --quiet || git commit -m "راصد — تحديث إشارة $(date +'%H:%M')"
           git push || true
         continue-on-error: true
-
 
   golden-signal:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '30 6 * * 0-4' ||
-      (github.event_name == 'workflow_dispatch' &&
-       github.event.inputs.job == 'golden-signal')
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.job == 'golden-signal')
 
     steps:
       - name: Checkout repository
@@ -204,36 +197,38 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install openai pandas requests pillow arabic-reshaper python-bidi ta
+          pip install pandas numpy requests pillow arabic-reshaper python-bidi
 
       - name: Create data folder
         run: mkdir -p data
 
-      - name: Generate golden signal before market open
+      - name: Fetch Sahmk market data
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: python scripts/market_intelligence.py || echo "⚠️ Could not refresh daily data; using existing data"
+
+      - name: Generate pre-market golden signal 09:30
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-4o-mini
-        run: python scripts/golden_signal_analysis.py || true
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          GOLDEN_RUN_MODE: premarket
+          REQUIRE_OPENAI_FOR_GOLDEN: "true"
+        run: python scripts/golden_signal_analysis.py
 
       - name: Check golden signal count
         id: golden_check
         run: |
           python - << 'PY'
           import json, os
-
+          from pathlib import Path
+          p = Path("data/golden_signals.json")
           count = 0
-          try:
-              with open("data/golden_signals.json", "r", encoding="utf-8") as f:
-                  data = json.load(f)
-              if isinstance(data, list):
-                  count = len(data)
-              elif isinstance(data, dict):
-                  count = len(data.get("golden_signals", data.get("signals", [])))
-          except Exception as e:
-              print(f"No valid golden_signals.json: {e}")
-
+          if p.exists():
+              data = json.loads(p.read_text(encoding="utf-8"))
+              count = len(data) if isinstance(data, list) else len(data.get("golden_signals", data.get("signals", [])))
           print(f"Golden signals found: {count}")
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"found={'true' if count > 0 else 'false'}\n")
@@ -259,7 +254,7 @@ jobs:
 
       - name: Log published golden signal
         if: steps.golden_check.outputs.found == 'true'
-        run: python scripts/log_published_signal.py
+        run: python scripts/log_published_signal.py || echo "⚠️ Log skipped"
 
       - name: Commit golden updates
         if: always()
@@ -267,17 +262,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ golden_output.png 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "👑 راصد — إشارة ذهبية $(date +'%H:%M')"
+          git diff --cached --quiet || git commit -m "راصد — إشارة ذهبية 09:30 $(date +'%H:%M')"
           git push || true
         continue-on-error: true
 
-
-  track-results:
+  golden-confirmation:
     runs-on: ubuntu-latest
     if: >
-      github.event.schedule == '0 11 * * 0-4' ||
-      (github.event_name == 'workflow_dispatch' &&
-       github.event.inputs.job == 'track-results')
+      github.event.schedule == '30 7 * * 0-4' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.job == 'golden-confirmation')
 
     steps:
       - name: Checkout repository
@@ -292,68 +285,140 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pandas requests
+          pip install pandas numpy requests pillow arabic-reshaper python-bidi
 
+      - name: Create data folder
+        run: mkdir -p data
+
+      - name: Fetch Sahmk market data after open
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+        run: python scripts/market_intelligence.py || echo "⚠️ Could not refresh daily data; using existing data"
+
+      - name: Confirm or cancel golden signal 10:30
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          GOLDEN_RUN_MODE: confirmation
+          REQUIRE_OPENAI_FOR_GOLDEN: "true"
+        run: python scripts/golden_signal_analysis.py
+
+      - name: Check confirmation output
+        id: confirm_check
+        run: |
+          python - << 'PY'
+          import json, os
+          from pathlib import Path
+          p = Path("data/golden_signals.json")
+          count = 0
+          if p.exists():
+              data = json.loads(p.read_text(encoding="utf-8"))
+              count = len(data) if isinstance(data, list) else len(data.get("golden_signals", data.get("signals", [])))
+          print(f"Golden confirmation messages: {count}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"found={'true' if count > 0 else 'false'}\n")
+              out.write(f"count={count}\n")
+          PY
+
+      - name: Stop cleanly if no confirmation message
+        if: steps.confirm_check.outputs.found != 'true'
+        run: |
+          echo "ℹ️ لا توجد إشارة ذهبية سابقة للتأكيد — انتهاء ناجح بدون نشر"
+          exit 0
+
+      - name: Generate golden confirmation image
+        if: steps.confirm_check.outputs.found == 'true'
+        run: python scripts/generate_golden_post.py data/golden_signals.json golden_output.png
+
+      - name: Post golden confirmation to Telegram
+        if: steps.confirm_check.outputs.found == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_golden_signal.py
+
+      - name: Commit confirmation updates
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ golden_output.png 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "راصد — تأكيد الذهبية 10:30 $(date +'%H:%M')"
+          git push || true
+        continue-on-error: true
+
+  track-results:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.schedule == '0 11 * * 0-4' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.job == 'track-results')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pandas requests
       - name: Track signal performance
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
-
       - name: Commit performance updates
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "📈 راصد — تحديث أداء الإشارات $(date +'%H:%M')"
+          git diff --cached --quiet || git commit -m "راصد — تحديث أداء الإشارات $(date +'%H:%M')"
           git push || true
         continue-on-error: true
-
 
   weekly-report:
     runs-on: ubuntu-latest
     if: >
       github.event.schedule == '0 14 * * 4' ||
-      (github.event_name == 'workflow_dispatch' &&
-       github.event.inputs.job == 'weekly-report')
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.job == 'weekly-report')
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pandas requests
-
       - name: Update performance before weekly report
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
-
       - name: Generate weekly report
         run: python scripts/weekly_report.py
-
       - name: Post weekly report to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_weekly_report.py
-
       - name: Commit weekly report updates
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ docs/ 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "📊 راصد — التقرير الأسبوعي $(date +'%H:%M')"
+          git diff --cached --quiet || git commit -m "راصد — التقرير الأسبوعي $(date +'%H:%M')"
           git push || true
         continue-on-error: true
