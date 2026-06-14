@@ -1,20 +1,23 @@
 {
-  "model": "",
-  "available": false,
-  "reviewed_at": "2026-06-14T11:06:39",
-  "approved": 0,
+  "model": "gpt-4o-mini",
+  "available": true,
+  "reviewed_at": "2026-06-14T11:09:57",
+  "approved": 1,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "4191",
-      "decision": "SKIPPED",
-      "confidence": 0,
-      "risk_level": "UNKNOWN",
+      "decision": "APPROVE",
+      "confidence": 89,
+      "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 73.9,
+      "rased_score": 75.5,
       "tier": "Standard",
       "reasons": [
-        "AI review skipped: Error code: 400 - {'error': {'message': 'you must provide a model parameter', 'type': 'invalid_request_error', 'param': None, 'code': None}}"
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "High volume ratio",
+        "Realistic target within holding period"
       ]
     }
   ]
