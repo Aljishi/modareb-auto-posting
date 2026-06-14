@@ -1,22 +1,20 @@
 {
-  "model": "gpt-4o-mini",
-  "available": true,
-  "reviewed_at": "2026-06-14T10:33:22",
+  "model": "",
+  "available": false,
+  "reviewed_at": "2026-06-14T10:39:25",
   "approved": 0,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "4191",
-      "decision": "REJECT",
-      "confidence": 78,
-      "risk_level": "MEDIUM",
+      "decision": "SKIPPED",
+      "confidence": 0,
+      "risk_level": "UNKNOWN",
       "expected_holding_days": 3,
-      "rased_score": 69.2,
+      "rased_score": 71.9,
       "tier": "Standard",
       "reasons": [
-        "RSI is overheated at 77.09",
-        "TP2 looks unrealistic within 7 days",
-        "Volume confirmation is weak"
+        "AI review skipped: Error code: 400 - {'error': {'message': 'you must provide a model parameter', 'type': 'invalid_request_error', 'param': None, 'code': None}}"
       ]
     }
   ]
