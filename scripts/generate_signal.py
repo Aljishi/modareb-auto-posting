@@ -32,6 +32,17 @@ try:
 except Exception:
     score_symbol = None
 
+try:
+    from self_learning_engine import get_learning_adjustment, load_learning_model
+except Exception:
+    get_learning_adjustment = None
+    load_learning_model = None
+
+try:
+    from sector_rotation import build_sector_rotation
+except Exception:
+    build_sector_rotation = None
+
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DAILY_FILE = DATA_DIR / "daily.json"
 SIGNALS_FILE = DATA_DIR / "signals.json"
@@ -72,6 +83,7 @@ ENABLE_FUNDAMENTAL_SCORE = os.getenv("ENABLE_FUNDAMENTAL_SCORE", "true").lower()
 BLOCK_WEAK_FUNDAMENTALS = os.getenv("BLOCK_WEAK_FUNDAMENTALS", "false").lower() != "false"
 ENABLE_SECTOR_STRENGTH = os.getenv("ENABLE_SECTOR_STRENGTH", "true").lower() != "false"
 ENABLE_BACKTEST_SCORE = os.getenv("ENABLE_BACKTEST_SCORE", "true").lower() != "false"
+ENABLE_SELF_LEARNING = os.getenv("ENABLE_SELF_LEARNING", "true").lower() != "false"
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -399,7 +411,7 @@ def calc_backtest_score(rows: List[Dict[str, Any]], atr_pct_now: float) -> Dict[
     }
 
 
-def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats: Optional[Dict[str, Dict[str, Any]]] = None) -> Optional[Dict[str, Any]]:
+def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats: Optional[Dict[str, Dict[str, Any]]] = None, learning_model: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
     symbol = str(stock.get("symbol", "")).strip()
     price = fnum(stock.get("current_price") or stock.get("price"))
     high = fnum(stock.get("high"))
@@ -524,6 +536,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
     fundamental = {"available": False, "bonus": 0, "grade": "غير متوفر", "blocked": False, "details": "لم يتم تفعيل التحليل الأساسي", "raw": {}}
     sector_reading = {"available": False, "bonus": 0, "grade": "غير متوفر"}
     backtest = {"available": False, "bonus": 0, "grade": "غير متوفر", "win_rate": 0, "trades": 0}
+    self_learning = {"available": False, "bonus": 0, "notes": [], "known_outcomes": 0}
 
     score += 18
     reasons += trend_reasons
@@ -616,6 +629,28 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
         except Exception as exc:
             print(f"⚠️ {symbol}: fundamental score skipped: {exc}")
 
+
+    if ENABLE_SELF_LEARNING and get_learning_adjustment is not None:
+        try:
+            learning_probe = {
+                "symbol": symbol,
+                "stock_symbol": symbol,
+                "sector": sector,
+                "rsi": rsi,
+                "volume_ratio": vol_ratio,
+                "rr": rr,
+                "rr_ratio": rr,
+            }
+            self_learning = get_learning_adjustment(learning_probe, learning_model)
+            learning_bonus = int(self_learning.get("bonus", 0))
+            score += learning_bonus
+            if learning_bonus > 0:
+                reasons.append(f"تعلم ذاتي +{learning_bonus}: تحسن تاريخي في ظروف مشابهة")
+            elif learning_bonus < 0:
+                reasons.append(f"خصم تعلم ذاتي {learning_bonus}: أداء تاريخي أضعف في ظروف مشابهة")
+        except Exception as exc:
+            print(f"⚠️ {symbol}: self-learning skipped: {exc}")
+
     score = max(0, min(score, 100))
     if score < MIN_SIGNAL_SCORE:
         reject(symbol, f"Score {score} أقل من {MIN_SIGNAL_SCORE}")
@@ -666,6 +701,10 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
         "backtest_win_rate": backtest.get("win_rate", 0),
         "backtest_trades": backtest.get("trades", 0),
         "backtest_raw": backtest,
+        "self_learning_bonus": int(self_learning.get("bonus", 0)),
+        "self_learning_available": bool(self_learning.get("available", False)),
+        "self_learning_known_outcomes": int(self_learning.get("known_outcomes", 0)),
+        "self_learning_notes": self_learning.get("notes", []),
         "fundamental_bonus": int(fundamental.get("bonus", 0)),
         "fundamental_grade": fundamental.get("grade", "غير متوفر"),
         "fundamental_reading": fundamental.get("details", ""),
@@ -699,7 +738,7 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
         "seven_day_filter_passed": True,
         "max_reasonable_7d_pct": max_reasonable_7d_pct,
         "technical_reading": " — ".join(reasons[:7]),
-        "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، والباك تست عند توفر البيانات.",
+        "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
         "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
         "signal_id": signal_id,
         "data_source": "sahmk_api_historical_starter_plus",
@@ -745,6 +784,13 @@ def main() -> int:
         return save_blocked("لا توجد أسهم مرشحة في daily.json")
 
     sector_stats = build_sector_strength(stocks)
+    learning_model = None
+    if ENABLE_SELF_LEARNING and load_learning_model is not None:
+        try:
+            learning_model = load_learning_model()
+            print(f"🧠 Self-learning loaded: {learning_model.get('total_known_outcomes', 0)} outcomes")
+        except Exception as exc:
+            print(f"⚠️ self-learning unavailable: {exc}")
     hist_cache: Dict[str, Any] = {"updated_at": datetime.now().isoformat(timespec="seconds"), "symbols": {}}
     signals: List[Dict[str, Any]] = []
 
@@ -753,7 +799,7 @@ def main() -> int:
         try:
             rows = fetch_historical(sym, HIST_DAYS)
             hist_cache["symbols"][sym] = {"count": len(rows), "latest": rows[-1].get("date") if rows else None}
-            sig = calc_signal(stock, rows, sector_stats)
+            sig = calc_signal(stock, rows, sector_stats, learning_model)
             if sig:
                 signals.append(sig)
                 print(f"✅ {sym}: {sig['tier']} | RASED {sig['rased_score']} | TP1 +{sig['target1_percent']}% | TP2 +{sig['target2_percent']}%")
@@ -790,6 +836,7 @@ def main() -> int:
             "ENABLE_FUNDAMENTAL_SCORE": ENABLE_FUNDAMENTAL_SCORE,
             "ENABLE_SECTOR_STRENGTH": ENABLE_SECTOR_STRENGTH,
             "ENABLE_BACKTEST_SCORE": ENABLE_BACKTEST_SCORE,
+            "ENABLE_SELF_LEARNING": ENABLE_SELF_LEARNING,
             "BLOCK_WEAK_FUNDAMENTALS": BLOCK_WEAK_FUNDAMENTALS,
         },
         "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
@@ -804,6 +851,11 @@ def main() -> int:
 
     out["status"] = "HAS_SIGNALS"
     write_json(SIGNALS_FILE, out)
+    if build_sector_rotation is not None:
+        try:
+            build_sector_rotation()
+        except Exception as exc:
+            print(f"⚠️ sector rotation skipped: {exc}")
     print(f"\n✅ Generated {len(signals)} Sahmk Starter Plus signals")
     return 0
 
