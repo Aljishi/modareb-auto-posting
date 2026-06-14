@@ -80,12 +80,20 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/market_intelligence.py
 
+      - name: Update self-learning model
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
+
       - name: Generate signals
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/generate_signal.py
+
+      - name: Update sector rotation
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        run: python scripts/sector_rotation.py || echo "⚠️ Sector rotation skipped"
 
       - name: Check if signals exist
         id: signal_check
@@ -168,12 +176,24 @@ jobs:
         if: steps.valid_check.outputs.has_valid == 'true'
         run: python scripts/log_published_signal.py
 
+      - name: Generate portfolio allocation
+        if: steps.valid_check.outputs.has_valid == 'true'
+        run: python scripts/portfolio_engine.py
+
+      - name: Update central database
+        if: steps.valid_check.outputs.has_valid == 'true'
+        run: python scripts/rased_database.py
+
+      - name: Build subscriber dashboard
+        if: steps.valid_check.outputs.has_valid == 'true'
+        run: python scripts/dashboard_builder.py
+
       - name: Commit auto-post updates
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ output.png 2>/dev/null || true
+          git add data/ docs/ output.png 2>/dev/null || true
           git diff --cached --quiet || git commit -m "راصد — تحديث إشارة $(date +'%H:%M')"
           git push || true
         continue-on-error: true
@@ -373,6 +393,16 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
+      - name: Update self-learning model
+        run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
+      - name: Update sector rotation
+        run: python scripts/sector_rotation.py || echo "⚠️ Sector rotation skipped"
+      - name: Generate portfolio allocation
+        run: python scripts/portfolio_engine.py || echo "⚠️ Portfolio skipped"
+      - name: Update central database
+        run: python scripts/rased_database.py || echo "⚠️ Database skipped"
+      - name: Build subscriber dashboard
+        run: python scripts/dashboard_builder.py || echo "⚠️ Dashboard skipped"
       - name: Commit performance updates
         if: always()
         run: |
@@ -406,6 +436,16 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
+      - name: Update self-learning model
+        run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
+      - name: Update sector rotation
+        run: python scripts/sector_rotation.py || echo "⚠️ Sector rotation skipped"
+      - name: Generate portfolio allocation
+        run: python scripts/portfolio_engine.py || echo "⚠️ Portfolio skipped"
+      - name: Update central database
+        run: python scripts/rased_database.py || echo "⚠️ Database skipped"
+      - name: Build subscriber dashboard
+        run: python scripts/dashboard_builder.py || echo "⚠️ Dashboard skipped"
       - name: Generate weekly report
         run: python scripts/weekly_report.py
       - name: Post weekly report to Telegram
