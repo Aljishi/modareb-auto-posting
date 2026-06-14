@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.3 — سيولة قوية جداً 3.4x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651141-4191",
+      "signal_id": "Signal #2026-1651145-4191",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:41:05",
+      "generated_at": "2026-06-14T11:45:55",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -127,14 +127,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 2,
         "main_reasons": [
-          "Strong momentum setup",
+          "Strong momentum with confirmed breakout",
           "High confidence score",
           "Low risk level",
-          "Clear breakout confirmation"
+          "Realistic targets within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وهدف منطقي.",
-        "telegram_note": "إشارة شراء قوية على 4191 - أبو معطي. استهدف 47.37 خلال يومين."
+        "arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على سهم 4191 أبو معطي، استعد لتحقيق أهداف سريعة!"
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 92,
@@ -142,14 +142,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 2,
       "ai_reasons": [
-        "Strong momentum setup",
+        "Strong momentum with confirmed breakout",
         "High confidence score",
         "Low risk level",
-        "Clear breakout confirmation"
+        "Realistic targets within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وهدف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على 4191 - أبو معطي. استهدف 47.37 خلال يومين.",
-      "ai_reviewed_at": "2026-06-14T11:41:53"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على سهم 4191 أبو معطي، استعد لتحقيق أهداف سريعة!",
+      "ai_reviewed_at": "2026-06-14T11:46:53"
     },
     {
       "stock_symbol": "8060",
@@ -262,12 +262,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 79.7 — سيولة طبيعية 0.9x — اختراق مقاومة مؤكد — زخم يومي صحي +3.6% — قيمة تداول مقبولة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651141-8060",
+      "signal_id": "Signal #2026-1651146-8060",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:41:34",
+      "generated_at": "2026-06-14T11:46:32",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -278,13 +278,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "TP2 looks unrealistic within 7 days",
-          "RSI is overheated",
-          "Volume confirmation is weak"
+          "RSI is overheated at 79.68",
+          "Volume ratio is below 1.0 indicating weak volume confirmation",
+          "Setup lacks clarity due to high RSI"
         ],
-        "rejection_reason": "The setup is not clear due to high RSI and weak volume confirmation.",
-        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
-        "telegram_note": "الإشارة غير واضحة، تم رفضها."
+        "rejection_reason": "Setup is not clear due to high RSI and weak volume confirmation.",
+        "arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+        "telegram_note": "إشارة مرفوضة بسبب ضعف التأكيد الفني."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 83,
@@ -292,16 +292,16 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated",
-        "Volume confirmation is weak"
+        "RSI is overheated at 79.68",
+        "Volume ratio is below 1.0 indicating weak volume confirmation",
+        "Setup lacks clarity due to high RSI"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
-      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
-      "ai_reviewed_at": "2026-06-14T11:41:55"
+      "ai_arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+      "ai_telegram_note": "إشارة مرفوضة بسبب ضعف التأكيد الفني.",
+      "ai_reviewed_at": "2026-06-14T11:46:56"
     }
   ],
-  "generated_at": "2026-06-14T11:41:49",
+  "generated_at": "2026-06-14T11:46:50",
   "total": 2,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9",
@@ -452,5 +452,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-14T11:41:55"
+  "ai_reviewed_at": "2026-06-14T11:46:56"
 }

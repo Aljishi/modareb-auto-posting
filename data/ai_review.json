@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-14T11:41:55",
+  "reviewed_at": "2026-06-14T11:46:56",
   "approved": 1,
   "total": 2,
   "signals": [
@@ -14,10 +14,10 @@
       "rased_score": 78.1,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
+        "Strong momentum with confirmed breakout",
         "High confidence score",
         "Low risk level",
-        "Clear breakout confirmation"
+        "Realistic targets within expected holding days"
       ]
     },
     {
@@ -29,9 +29,9 @@
       "rased_score": 72.0,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated",
-        "Volume confirmation is weak"
+        "RSI is overheated at 79.68",
+        "Volume ratio is below 1.0 indicating weak volume confirmation",
+        "Setup lacks clarity due to high RSI"
       ]
     }
   ]
