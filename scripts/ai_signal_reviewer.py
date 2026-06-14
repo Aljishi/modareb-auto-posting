@@ -24,7 +24,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 SIGNALS_FILE = DATA_DIR / "signals.json"
 AI_REVIEW_FILE = DATA_DIR / "ai_review.json"
 
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini").strip() or "gpt-4o-mini"
 MIN_AI_CONFIDENCE = int(os.getenv("MIN_AI_CONFIDENCE", "82"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
