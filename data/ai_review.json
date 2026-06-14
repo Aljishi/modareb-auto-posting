@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-14T12:02:24",
+  "reviewed_at": "2026-06-14T12:06:00",
   "approved": 0,
   "total": 2,
   "signals": [
@@ -9,7 +9,7 @@
       "stock_symbol": "4191",
       "decision": "REJECT",
       "confidence": 92,
-      "risk_level": "MEDIUM",
+      "risk_level": "HIGH",
       "expected_holding_days": 2,
       "rased_score": 78.1,
       "tier": "Standard",
@@ -28,7 +28,6 @@
       "tier": "Standard",
       "reasons": [
         "RSI is overheated at 78.89",
-        "Volume confirmation is weak with a ratio of 1.07",
         "TP2 looks unrealistic within 7 days"
       ]
     }
