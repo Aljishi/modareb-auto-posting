@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.1 — سيولة قوية جداً 3.4x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651150-4191",
+      "signal_id": "Signal #2026-1651155-4191",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:50:57",
+      "generated_at": "2026-06-14T11:55:44",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -129,8 +129,8 @@
         "main_reasons": [
           "Strong momentum setup",
           "High confidence score",
-          "Clear breakout",
-          "Acceptable RSI",
+          "Clear breakout confirmation",
+          "Acceptable RSI level",
           "Strong volume confirmation"
         ],
         "rejection_reason": "",
@@ -145,13 +145,13 @@
       "ai_reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Clear breakout",
-        "Acceptable RSI",
+        "Clear breakout confirmation",
+        "Acceptable RSI level",
         "Strong volume confirmation"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع ومؤشرات إيجابية.",
       "ai_telegram_note": "إشارة شراء قوية على سهم 4191 - أبو معطي. استهدف 47.27 خلال يومين.",
-      "ai_reviewed_at": "2026-06-14T11:52:06",
+      "ai_reviewed_at": "2026-06-14T11:56:26",
       "post_approved": true
     }
   ],
@@ -267,12 +267,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 79.1 — سيولة طبيعية 1.0x — اختراق مقاومة مؤكد — زخم يومي صحي +3.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651151-8060",
+      "signal_id": "Signal #2026-1651156-8060",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:51:19",
+      "generated_at": "2026-06-14T11:56:00",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -287,9 +287,9 @@
           "Volume confirmation is weak with a ratio of 1.04",
           "TP2 looks unrealistic within 7 days"
         ],
-        "rejection_reason": "Setup is not clear due to high RSI and unrealistic target.",
-        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وعدم وضوح الهدف الثاني.",
-        "telegram_note": "الإشارة غير مناسبة بسبب ظروف السوق الحالية."
+        "rejection_reason": "Setup is not clear due to high RSI and weak volume confirmation.",
+        "arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+        "telegram_note": "إشارة مرفوضة بسبب ظروف السوق الحالية."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 87,
@@ -301,9 +301,9 @@
         "Volume confirmation is weak with a ratio of 1.04",
         "TP2 looks unrealistic within 7 days"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية وعدم وضوح الهدف الثاني.",
-      "ai_telegram_note": "الإشارة غير مناسبة بسبب ظروف السوق الحالية.",
-      "ai_reviewed_at": "2026-06-14T11:52:08",
+      "ai_arabic_summary": "إشارة غير واضحة بسبب ارتفاع مؤشر القوة النسبية وضعف تأكيد الحجم.",
+      "ai_telegram_note": "إشارة مرفوضة بسبب ظروف السوق الحالية.",
+      "ai_reviewed_at": "2026-06-14T11:56:29",
       "post_rejected_reasons": [
         "OpenAI rejected the signal"
       ]
