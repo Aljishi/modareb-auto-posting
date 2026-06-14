@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 77.5 — سيولة قوية جداً 3.1x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1651133-4191",
+      "signal_id": "Signal #2026-1651135-4191",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9",
-      "generated_at": "2026-06-14T11:33:49",
+      "generated_at": "2026-06-14T11:35:44",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,7 +130,7 @@
           "Strong momentum setup",
           "High confidence score",
           "Low risk level",
-          "Clear breakout confirmation"
+          "Clear technical indicators"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع ومخاطر منخفضة.",
@@ -145,11 +145,11 @@
         "Strong momentum setup",
         "High confidence score",
         "Low risk level",
-        "Clear breakout confirmation"
+        "Clear technical indicators"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم أبو معطي مع زخم مرتفع ومخاطر منخفضة.",
       "ai_telegram_note": "إشارة شراء قوية على سهم 4191 - أبو معطي. استهدف 47.45 خلال يومين.",
-      "ai_reviewed_at": "2026-06-14T11:34:18",
+      "ai_reviewed_at": "2026-06-14T11:36:14",
       "post_approved": true
     }
   ],
