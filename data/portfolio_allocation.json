@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-14T11:34:19",
+  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/validated_signals.json",
+  "capital_sar": 500000.0,
+  "max_position_pct": 35.0,
+  "min_cash_pct": 10.0,
+  "positions": [
+    {
+      "symbol": "4191",
+      "name": "أبو معطي",
+      "sector": "التجزئة",
+      "tier": "Standard",
+      "rased_score": 78.1,
+      "entry": 45.0,
+      "target1": 47.45,
+      "target2": 47.87,
+      "stop_loss": 43.31,
+      "weight_pct": 35.0,
+      "amount_sar": 175000.0,
+      "position_risk_pct": 3.76,
+      "portfolio_risk_pct": 1.31
+    }
+  ],
+  "cash": {
+    "weight_pct": 65.0,
+    "amount_sar": 325000.0
+  },
+  "sector_exposure": {
+    "التجزئة": 35.0
+  },
+  "total_portfolio_risk_pct": 1.31,
+  "note": "توزيع آلي مبني على جودة الإشارة وليس توصية شخصية. التزم بوقف الخسارة."
+}
