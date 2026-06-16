@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-06-16T12:26:14",
+  "generated_at": "2026-06-16T12:32:38",
   "total": 0,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -10,122 +10,122 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.89,
+      "avg_change_pct": 0.85,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 310184088.32
+      "total_value": 314645569.78
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.02,
+      "avg_change_pct": -0.02,
       "advance_ratio": 0.33,
       "members": 3,
-      "total_value": 61310146.23
+      "total_value": 62637143.07
     },
     "الطاقة": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.57,
+      "avg_change_pct": 0.59,
       "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 142927959.54
+      "total_value": 151257209.38
     },
     "الصناعات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.13,
-      "advance_ratio": 0.0,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.13,
+      "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 19158240.0
+      "total_value": 20617937.44
     },
     "متعدد": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.23,
+      "avg_change_pct": -0.47,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 877507.0
+      "total_value": 881289.57
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.18,
+      "avg_change_pct": -0.21,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 25237606.9
+      "total_value": 25621389.14
     },
     "العقارات": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.76,
-      "advance_ratio": 1.0,
+      "avg_change_pct": 0.7,
+      "advance_ratio": 0.86,
       "members": 7,
-      "total_value": 52534156.66
+      "total_value": 53294841.2
     },
     "الأغذية والمشروبات": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.28,
+      "avg_change_pct": 1.35,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 12388695.75
+      "total_value": 12664797.0
     },
     "التجزئة": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.78,
+      "avg_change_pct": 0.83,
       "advance_ratio": 0.67,
       "members": 6,
-      "total_value": 66169336.76
+      "total_value": 66786510.76
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.25,
+      "avg_change_pct": -0.3,
       "advance_ratio": 0.4,
       "members": 5,
-      "total_value": 26118778.22
+      "total_value": 28042877.28
     },
     "الاتصالات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.27,
+      "avg_change_pct": -0.09,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 7025825.86
+      "total_value": 7117127.7
     },
     "التقنية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.45,
+      "avg_change_pct": 0.42,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 33935193.99
+      "total_value": 34626280.42
     },
     "التأمين": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": 0.22,
-      "advance_ratio": 0.4,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.32,
+      "advance_ratio": 0.6,
       "members": 5,
-      "total_value": 104494692.87
+      "total_value": 108463005.34
     },
     "المواد الأساسية": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 1.27,
+      "avg_change_pct": 1.31,
       "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 82005286.8
+      "total_value": 85632782.15
     },
     "الموارد البشرية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.29,
+      "avg_change_pct": 0.32,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 3483151.82
+      "total_value": 3503827.72
     }
   },
   "filters": {
