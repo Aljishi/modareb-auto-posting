@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-06-16T14:46:23",
+  "generated_at": "2026-06-16T14:51:59",
   "total": 0,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -10,66 +10,66 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.82,
+      "avg_change_pct": 0.74,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 532873079.32
+      "total_value": 546105756.52
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.53,
+      "avg_change_pct": -0.61,
       "advance_ratio": 0.33,
       "members": 3,
-      "total_value": 130774467.76
+      "total_value": 137093795.81
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.22,
+      "avg_change_pct": -0.32,
       "advance_ratio": 0.5,
       "members": 4,
-      "total_value": 258721186.84
+      "total_value": 268225487.23
     },
     "الصناعات": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.8,
+      "avg_change_pct": 0.67,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 37564709.41
+      "total_value": 38220880.32
     },
     "متعدد": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.7,
+      "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1609210.74
+      "total_value": 1832851.02
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.79,
+      "avg_change_pct": -0.72,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 38612416.1
+      "total_value": 39331549.68
     },
     "العقارات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.01,
-      "advance_ratio": 0.43,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.09,
+      "advance_ratio": 0.57,
       "members": 7,
-      "total_value": 83195382.18
+      "total_value": 86664771.72
     },
     "الأغذية والمشروبات": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.53,
+      "avg_change_pct": 0.6,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 19670946.75
+      "total_value": 20352719.4
     },
     "التجزئة": {
       "bonus": 5,
@@ -77,55 +77,55 @@
       "avg_change_pct": 0.6,
       "advance_ratio": 0.67,
       "members": 6,
-      "total_value": 101060222.18
+      "total_value": 105165683.24
     },
     "الإعلام والترفيه": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.1,
+      "avg_change_pct": -1.11,
       "advance_ratio": 0.2,
       "members": 5,
-      "total_value": 59454852.74
+      "total_value": 60190670.14
     },
     "الاتصالات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.37,
+      "avg_change_pct": -0.46,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 17070897.48
+      "total_value": 17158593.4
     },
     "التقنية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.08,
+      "avg_change_pct": 0.11,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 51389036.1
+      "total_value": 52348395.42
     },
     "التأمين": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.24,
+      "avg_change_pct": 0.19,
       "advance_ratio": 0.8,
       "members": 5,
-      "total_value": 168933138.82
+      "total_value": 174885039.88
     },
     "المواد الأساسية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.66,
+      "avg_change_pct": 0.62,
       "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 124686362.65
+      "total_value": 126562467.33
     },
     "الموارد البشرية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.21,
+      "avg_change_pct": -0.37,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 8255103.98
+      "total_value": 8439803.12
     }
   },
   "filters": {
