@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T19:14:06",
+  "generated_at": "2026-06-16T10:02:29",
   "top_sectors": [
     {
       "sector": "المواد الأساسية",
@@ -14,12 +14,12 @@
     },
     {
       "sector": "التقنية",
-      "rotation_score": 51.4,
+      "rotation_score": 53.6,
       "grade": "محايد",
-      "avg_change_pct": 1.12,
+      "avg_change_pct": 1.49,
       "advancing_ratio": 1.0,
-      "total_value": 82270167.9,
-      "stocks_count": 2,
+      "total_value": 79183033.5,
+      "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -126,12 +126,12 @@
     },
     {
       "sector": "التقنية",
-      "rotation_score": 51.4,
+      "rotation_score": 53.6,
       "grade": "محايد",
-      "avg_change_pct": 1.12,
+      "avg_change_pct": 1.49,
       "advancing_ratio": 1.0,
-      "total_value": 82270167.9,
-      "stocks_count": 2,
+      "total_value": 79183033.5,
+      "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -258,12 +258,12 @@
     },
     {
       "sector": "البتروكيماويات",
-      "rotation_score": 15.1,
+      "rotation_score": 18.4,
       "grade": "ضعيف",
-      "avg_change_pct": -1.11,
+      "avg_change_pct": -0.23,
       "advancing_ratio": 0.0,
-      "total_value": 207284795.06,
-      "stocks_count": 3,
+      "total_value": 106032378.8,
+      "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
