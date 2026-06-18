@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-18T14:32:11",
+  "reviewed_at": "2026-06-18T14:41:48",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -15,9 +15,8 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum with confirmed breakout",
-        "Healthy RSI at 60.0",
-        "Acceptable volume ratio of 1.71",
-        "Realistic target within expected holding days"
+        "Healthy RSI indicating upward trend",
+        "Acceptable volume ratio supporting the setup"
       ]
     }
   ]
