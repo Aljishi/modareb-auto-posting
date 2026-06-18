@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 59.1 — سيولة مقبولة 1.2x — اختراق مقاومة مؤكد — زخم يومي صحي +2.3% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1691231-4004",
+      "signal_id": "Signal #2026-1691235-4004",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-06-18T12:31:28",
+      "generated_at": "2026-06-18T12:35:54",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -126,9 +126,9 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with confirmed breakout",
-          "Healthy RSI indicating upward trend",
-          "Acceptable volume ratio supporting the setup"
+          "Strong momentum setup",
+          "Clear breakout confirmed",
+          "Healthy RSI and volume ratio"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صاعد واضح.",
@@ -140,16 +140,16 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with confirmed breakout",
-        "Healthy RSI indicating upward trend",
-        "Acceptable volume ratio supporting the setup"
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "Healthy RSI and volume ratio"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صاعد واضح.",
       "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي.",
-      "ai_reviewed_at": "2026-06-18T12:32:31"
+      "ai_reviewed_at": "2026-06-18T12:36:20"
     }
   ],
-  "generated_at": "2026-06-18T12:32:24",
+  "generated_at": "2026-06-18T12:36:17",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -300,5 +300,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-18T12:32:31"
+  "ai_reviewed_at": "2026-06-18T12:36:20"
 }
