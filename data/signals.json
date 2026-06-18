@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 60.1 — سيولة مقبولة 1.6x — اختراق مقاومة مؤكد — زخم يومي صحي +2.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1691401-4004",
+      "signal_id": "Signal #2026-1691405-4004",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-06-18T14:01:12",
+      "generated_at": "2026-06-18T14:05:48",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -148,10 +148,10 @@
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صحي وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف واضحة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-06-18T14:01:58"
+      "ai_reviewed_at": "2026-06-18T14:06:08"
     }
   ],
-  "generated_at": "2026-06-18T14:01:54",
+  "generated_at": "2026-06-18T14:06:04",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -302,5 +302,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-18T14:01:58"
+  "ai_reviewed_at": "2026-06-18T14:06:08"
 }
