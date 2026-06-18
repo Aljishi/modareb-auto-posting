@@ -1,35 +1,22 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-14T12:21:53",
+  "reviewed_at": "2026-06-18T12:32:31",
   "approved": 1,
-  "total": 2,
+  "total": 1,
   "signals": [
     {
-      "stock_symbol": "4191",
-      "decision": "REJECT",
-      "confidence": 92,
-      "risk_level": "HIGH",
-      "expected_holding_days": 2,
-      "rased_score": 78.1,
-      "tier": "Standard",
-      "reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated"
-      ]
-    },
-    {
-      "stock_symbol": "8060",
+      "stock_symbol": "4004",
       "decision": "APPROVE",
-      "confidence": 91,
+      "confidence": 98,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 76.6,
+      "rased_score": 83.3,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "Clear breakout confirmed",
-        "Acceptable RSI and volume ratio"
+        "Strong momentum with confirmed breakout",
+        "Healthy RSI indicating upward trend",
+        "Acceptable volume ratio supporting the setup"
       ]
     }
   ]
