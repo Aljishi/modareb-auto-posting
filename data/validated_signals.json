@@ -30,10 +30,10 @@
         "available": true,
         "bonus": 5,
         "grade": "قوي",
-        "avg_change_pct": 0.78,
-        "advance_ratio": 0.71,
+        "avg_change_pct": 0.72,
+        "advance_ratio": 0.57,
         "members": 7,
-        "total_value": 45335353.12
+        "total_value": 46365154.74
       },
       "backtest_bonus": 0,
       "backtest_grade": "عينة صغيرة",
@@ -87,7 +87,7 @@
       "risk_emoji": "🟢",
       "confidence": "98%",
       "rsi": 59.15,
-      "volume_ratio": 1.27,
+      "volume_ratio": 1.32,
       "atr14": 3.4357,
       "atr_pct": 2.95,
       "support": 102.5,
@@ -100,7 +100,7 @@
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 20722459.2,
+      "value": 21553089.6,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 59.1 — سيولة مقبولة 1.3x — اختراق مقاومة مؤكد — زخم يومي صحي +2.3% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1691305-4004",
+      "signal_id": "Signal #2026-1691310-4004",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-06-18T13:05:53",
+      "generated_at": "2026-06-18T13:10:59",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -147,7 +147,7 @@
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صاعد واضح.",
       "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي.",
-      "ai_reviewed_at": "2026-06-18T13:06:17",
+      "ai_reviewed_at": "2026-06-18T13:11:56",
       "post_rejected_reasons": [
         "RASED 83.3 < 84.0"
       ]
