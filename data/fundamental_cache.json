@@ -1117,7 +1117,7 @@
       }
     },
     "1301": {
-      "cached_at": "2026-06-17T11:33:03",
+      "cached_at": "2026-06-18T14:10:57",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1228,7 +1228,7 @@
               "is_full_year": true,
               "operating_cash_flow": 29880938.0,
               "investing_cash_flow": -11115373.0,
-              "financing_cash_flow": -15516392.0,
+              "financing_cash_flow": -15036158.0,
               "free_cash_flow": 5309713.0
             },
             {
@@ -1268,7 +1268,7 @@
         },
         "dividends": {
           "symbol": "1301",
-          "current_price": 16.92,
+          "current_price": 16.89,
           "trailing_12m_yield": 2.96,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 1,
