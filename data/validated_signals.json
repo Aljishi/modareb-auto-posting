@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 60.0 — سيولة مقبولة 1.7x — اختراق مقاومة مؤكد — زخم يومي صحي +2.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1691445-4004",
+      "signal_id": "Signal #2026-1691451-4004",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 66,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-06-18T14:45:54",
+      "generated_at": "2026-06-18T14:51:01",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -127,14 +127,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum setup with confirmed breakout",
+          "Strong momentum with confirmed breakout",
           "Healthy RSI at 60.0",
           "Acceptable volume ratio of 1.74",
           "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-        "telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي."
+        "arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صحي وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على 4004 مع أهداف واضحة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 98,
@@ -142,14 +142,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum setup with confirmed breakout",
+        "Strong momentum with confirmed breakout",
         "Healthy RSI at 60.0",
         "Acceptable volume ratio of 1.74",
         "Realistic target within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-      "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي.",
-      "ai_reviewed_at": "2026-06-18T14:46:12",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صحي وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف واضحة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-06-18T14:51:28",
       "post_rejected_reasons": [
         "RASED 83.3 < 84.0"
       ]
