@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-18T14:56:21",
+  "generated_at": "2026-06-18T17:00:19",
   "top_sectors": [
     {
       "sector": "العقارات",
-      "rotation_score": 61.1,
+      "rotation_score": 60.9,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.84,
       "advancing_ratio": 0.71,
       "total_value": 67058140.95,
       "stocks_count": 7,
       "signals_count": 1,
-      "avg_signal_score": 84.0
+      "avg_signal_score": 83.3
     },
     {
       "sector": "التأمين",
@@ -115,14 +115,14 @@
   "all_sectors": [
     {
       "sector": "العقارات",
-      "rotation_score": 61.1,
+      "rotation_score": 60.9,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.84,
       "advancing_ratio": 0.71,
       "total_value": 67058140.95,
       "stocks_count": 7,
       "signals_count": 1,
-      "avg_signal_score": 84.0
+      "avg_signal_score": 83.3
     },
     {
       "sector": "التأمين",
