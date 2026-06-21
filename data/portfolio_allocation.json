@@ -1,33 +1,15 @@
 {
-  "generated_at": "2026-06-18T19:49:26",
+  "generated_at": "2026-06-21T16:03:00",
   "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/signals.json",
   "capital_sar": 500000.0,
   "max_position_pct": 35.0,
   "min_cash_pct": 10.0,
-  "positions": [
-    {
-      "symbol": "4004",
-      "name": "شركة دله للخدمات الصحية",
-      "sector": "العقارات",
-      "tier": "Standard",
-      "rased_score": 83.3,
-      "entry": 117.1,
-      "target1": 123.39,
-      "target2": 125.78,
-      "stop_loss": 112.76,
-      "weight_pct": 35.0,
-      "amount_sar": 175000.0,
-      "position_risk_pct": 3.71,
-      "portfolio_risk_pct": 1.3
-    }
-  ],
+  "positions": [],
   "cash": {
-    "weight_pct": 65.0,
-    "amount_sar": 325000.0
+    "weight_pct": 100.0,
+    "amount_sar": 500000.0
   },
-  "sector_exposure": {
-    "العقارات": 35.0
-  },
-  "total_portfolio_risk_pct": 1.3,
+  "sector_exposure": {},
+  "total_portfolio_risk_pct": 0,
   "note": "توزيع آلي مبني على جودة الإشارة وليس توصية شخصية. التزم بوقف الخسارة."
 }
