@@ -1,157 +1,8 @@
 {
-  "signals": [
-    {
-      "stock_symbol": "4004",
-      "symbol": "4004",
-      "stock_name": "شركة دله للخدمات الصحية",
-      "name": "شركة دله للخدمات الصحية",
-      "sector": "العقارات",
-      "sector_name": "العقارات",
-      "current_price": 117.1,
-      "entry_point": 117.1,
-      "entry": 117.1,
-      "target1": 123.39,
-      "target2": 125.78,
-      "stop_loss": 112.76,
-      "target1_percent": 5.37,
-      "target2_percent": 7.41,
-      "stop_loss_percent": 3.71,
-      "tp1_pct": 5.37,
-      "tp2_pct": 7.41,
-      "sl_pct": -3.71,
-      "rr": 2.0,
-      "rr_ratio": 2.0,
-      "score": 98,
-      "technical_score": 93,
-      "sector_strength_bonus": 5,
-      "sector_strength_grade": "قوي",
-      "sector_strength_raw": {
-        "available": true,
-        "bonus": 5,
-        "grade": "قوي",
-        "avg_change_pct": 0.84,
-        "advance_ratio": 0.71,
-        "members": 7,
-        "total_value": 67058140.95
-      },
-      "backtest_bonus": 0,
-      "backtest_grade": "عينة صغيرة",
-      "backtest_win_rate": 0,
-      "backtest_trades": 0,
-      "backtest_raw": {
-        "available": false,
-        "bonus": 0,
-        "grade": "عينة صغيرة",
-        "win_rate": 0,
-        "trades": 0
-      },
-      "self_learning_bonus": 0,
-      "self_learning_available": false,
-      "self_learning_known_outcomes": 0,
-      "self_learning_notes": [],
-      "fundamental_bonus": 0,
-      "fundamental_grade": "محايد",
-      "fundamental_reading": "أساسيات غير متوفرة | لا توجد قوائم مالية كافية | لا يوجد محفز توزيعات واضح",
-      "fundamental_raw": {
-        "quality": {
-          "bonus": 0,
-          "grade": "غير متوفر",
-          "details": "أساسيات غير متوفرة",
-          "raw": {}
-        },
-        "growth": {
-          "bonus": 0,
-          "grade": "غير متوفر",
-          "details": "لا توجد قوائم مالية كافية",
-          "raw": {}
-        },
-        "dividend": {
-          "bonus": 0,
-          "grade": "محايد",
-          "details": "لا يوجد محفز توزيعات واضح",
-          "raw": {
-            "recent": false,
-            "yield": 0.0,
-            "amount": 0.0
-          }
-        }
-      },
-      "growth_bonus": 0,
-      "dividend_bonus": 0,
-      "rased_score": 83.3,
-      "tier": "Standard",
-      "tier_emoji": "✅",
-      "risk_level": "منخفض",
-      "risk_level_ar": "منخفض",
-      "risk_emoji": "🟢",
-      "confidence": "98%",
-      "rsi": 60.14,
-      "volume_ratio": 1.76,
-      "atr14": 3.4714,
-      "atr_pct": 2.96,
-      "support": 102.5,
-      "resistance": 115.8,
-      "trend": "صاعد",
-      "trend_values": {
-        "sma10": 110.1,
-        "sma20": 109.32
-      },
-      "setup_type": "اختراق مؤكد",
-      "breakout": true,
-      "entry_gap_pct": 0.0,
-      "value": 28911990.0,
-      "expected_holding_period": "1-7 أيام",
-      "holding_period": "1 - 7 أيام",
-      "max_holding_days": 7,
-      "expected_days_to_target1": 2,
-      "expected_days_to_target2": 3,
-      "seven_day_filter_passed": true,
-      "max_reasonable_7d_pct": 16.28,
-      "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 60.1 — سيولة مقبولة 1.8x — اختراق مقاومة مؤكد — زخم يومي صحي +2.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
-      "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
-      "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1691455-4004",
-      "data_source": "sahmk_api_historical_starter_plus",
-      "provider": "sahmk",
-      "historical_bars": 66,
-      "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-06-18T14:55:51",
-      "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
-      "ai_available": true,
-      "ai_review": {
-        "decision": "APPROVE",
-        "confidence": 98,
-        "risk_level": "LOW",
-        "risk_score": 3,
-        "rased_score_adjustment": 0,
-        "expected_holding_days": 3,
-        "main_reasons": [
-          "Strong momentum setup",
-          "Clear breakout confirmed",
-          "Healthy RSI and volume ratio"
-        ],
-        "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صاعد واضح.",
-        "telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي."
-      },
-      "ai_decision": "APPROVE",
-      "ai_confidence": 98,
-      "ai_risk_level": "LOW",
-      "ai_risk_score": 3,
-      "ai_expected_holding_days": 3,
-      "ai_reasons": [
-        "Strong momentum setup",
-        "Clear breakout confirmed",
-        "Healthy RSI and volume ratio"
-      ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة دله للخدمات الصحية مع زخم صاعد واضح.",
-      "ai_telegram_note": "إشارة شراء قوية على 4004 مع أهداف منطقية وزخم صحي.",
-      "ai_reviewed_at": "2026-06-18T14:56:25"
-    }
-  ],
-  "generated_at": "2026-06-18T14:56:21",
-  "total": 1,
-  "total_screened": 46,
+  "signals": [],
+  "generated_at": "2026-06-21T10:02:26",
+  "total": 0,
+  "total_screened": 42,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
@@ -159,82 +10,74 @@
     "البنوك": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.14,
+      "avg_change_pct": 0.39,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 285537595.08
+      "total_value": 794221199.85
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.19,
+      "avg_change_pct": -0.73,
       "advance_ratio": 0.33,
       "members": 3,
-      "total_value": 250050938.03
+      "total_value": 375920523.35
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.29,
-      "advance_ratio": 0.25,
-      "members": 4,
-      "total_value": 370168400.5
+      "avg_change_pct": 0.14,
+      "advance_ratio": 0.33,
+      "members": 3,
+      "total_value": 767970819.24
     },
     "الصناعات": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.58,
+      "avg_change_pct": -1.84,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 29116752.72
-    },
-    "متعدد": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.23,
-      "advance_ratio": 1.0,
-      "members": 1,
-      "total_value": 1261581.36
+      "total_value": 31769678.2
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.12,
+      "avg_change_pct": -0.22,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 41736477.38
+      "total_value": 56196135.42
     },
     "العقارات": {
-      "bonus": 5,
-      "grade": "قوي",
-      "avg_change_pct": 0.84,
-      "advance_ratio": 0.71,
-      "members": 7,
-      "total_value": 67058140.95
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.65,
+      "advance_ratio": 0.5,
+      "members": 6,
+      "total_value": 73317499.9
     },
     "الأغذية والمشروبات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.3,
+      "avg_change_pct": -0.98,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 20332685.1
+      "total_value": 48512090.1
     },
     "التجزئة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.56,
+      "avg_change_pct": -0.65,
       "advance_ratio": 0.33,
       "members": 6,
-      "total_value": 104143447.73
+      "total_value": 156289007.58
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.24,
-      "advance_ratio": 0.4,
-      "members": 5,
-      "total_value": 42020353.84
+      "avg_change_pct": -0.37,
+      "advance_ratio": 0.25,
+      "members": 4,
+      "total_value": 41717536.45
     },
     "الاتصالات": {
       "bonus": 0,
@@ -242,39 +85,39 @@
       "avg_change_pct": -0.09,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 16085625.72
+      "total_value": 19860920.4
     },
     "التقنية": {
-      "bonus": -5,
-      "grade": "ضعيف",
-      "avg_change_pct": -1.12,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -0.78,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 96527170.02
+      "total_value": 142295125.5
     },
     "التأمين": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.52,
+      "avg_change_pct": 0.4,
       "advance_ratio": 0.4,
       "members": 5,
-      "total_value": 344087256.84
+      "total_value": 682863019.02
     },
     "المواد الأساسية": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.96,
+      "bonus": -5,
+      "grade": "ضعيف",
+      "avg_change_pct": -1.11,
       "advance_ratio": 0.0,
       "members": 4,
-      "total_value": 88791425.14
+      "total_value": 102769420.74
     },
     "الموارد البشرية": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.26,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -0.14,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 13098826.04
+      "total_value": 19172114.32
     }
   },
   "filters": {
@@ -296,9 +139,6 @@
     "BLOCK_WEAK_FUNDAMENTALS": false
   },
   "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
-  "status": "HAS_SIGNALS",
-  "ai_reviewed": true,
-  "ai_available": true,
-  "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-06-18T14:56:25"
+  "status": "NO_SIGNALS",
+  "message": "لا توجد إشارات تحقق شروط راصد اليوم"
 }
