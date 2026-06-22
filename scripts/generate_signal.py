@@ -59,10 +59,10 @@ MIN_HISTORY_BARS = int(os.getenv("MIN_HISTORY_BARS", "25"))
 LOOKBACK_RESISTANCE = int(os.getenv("LOOKBACK_RESISTANCE", "20"))
 MAX_HOLD_DAYS = int(os.getenv("MAX_HOLD_DAYS", "7"))
 
-MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "84"))
-MIN_RR = float(os.getenv("MIN_RR", "2.0"))
+MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "80"))
+MIN_RR = float(os.getenv("MIN_RR", "1.8"))
 MIN_VOLUME_RATIO = float(os.getenv("MIN_VOLUME_RATIO", "0.85"))
-MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "750000"))
+MIN_VALUE_SAR = float(os.getenv("MIN_VALUE_SAR", "300000"))
 
 MAX_ENTRY_GAP_PCT = float(os.getenv("MAX_ENTRY_GAP_PCT", "5.0"))
 MAX_NEAR_RESISTANCE_PCT = float(os.getenv("MAX_NEAR_RESISTANCE_PCT", "10.0"))
@@ -71,9 +71,9 @@ MAX_TP2_ATR_MULTIPLE_7D = float(os.getenv("MAX_TP2_ATR_MULTIPLE_7D", "5.5"))
 MIN_ATR_PCT = float(os.getenv("MIN_ATR_PCT", "0.5"))
 MAX_ATR_PCT = float(os.getenv("MAX_ATR_PCT", "9.0"))
 MIN_RSI = float(os.getenv("MIN_RSI", "38"))
-MAX_RSI = float(os.getenv("MAX_RSI", "72"))
+MAX_RSI = float(os.getenv("MAX_RSI", "74"))
 
-MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "4.0"))
+MIN_TP1_PCT_NORMAL = float(os.getenv("MIN_TP1_PCT_NORMAL", "3.25"))
 MIN_TP1_PCT_GOLDEN = float(os.getenv("MIN_TP1_PCT_GOLDEN", "6.0"))
 MIN_TP1_PCT_PLATINUM = float(os.getenv("MIN_TP1_PCT_PLATINUM", "8.0"))
 MIN_TP2_PCT_PLATINUM = float(os.getenv("MIN_TP2_PCT_PLATINUM", "10.0"))
@@ -89,7 +89,7 @@ ENABLE_SELF_LEARNING = os.getenv("ENABLE_SELF_LEARNING", "true").lower() != "fal
 # but contradict Rased risk discipline.
 MIN_BACKTEST_WIN_RATE = float(os.getenv("MIN_BACKTEST_WIN_RATE", "40"))
 MIN_BACKTEST_TRADES_FOR_HARD_REJECT = int(os.getenv("MIN_BACKTEST_TRADES_FOR_HARD_REJECT", "8"))
-MAX_OVERBOUGHT_RSI = float(os.getenv("MAX_OVERBOUGHT_RSI", "72"))
+MAX_OVERBOUGHT_RSI = float(os.getenv("MAX_OVERBOUGHT_RSI", "74"))
 
 
 def fnum(x: Any, default: float = 0.0) -> float:
@@ -281,9 +281,9 @@ def risk_label(rr: float, atr_pct: float, rsi: float, backtest: Optional[Dict[st
     # Any hard contradiction must force the risk label upward.
     if rsi > MAX_OVERBOUGHT_RSI:
         return "مرتفع", "🔴"
-    if rr < 2.0:
+    if rr < MIN_RR:
         return "مرتفع", "🔴"
-    if rased_score and rased_score < 84:
+    if rased_score and rased_score < MIN_SIGNAL_SCORE:
         return "مرتفع", "🔴"
     if bt_available and bt_trades >= MIN_BACKTEST_TRADES_FOR_HARD_REJECT and bt_win < MIN_BACKTEST_WIN_RATE:
         return "مرتفع", "🔴"
@@ -661,7 +661,6 @@ def calc_signal(stock: Dict[str, Any], rows: List[Dict[str, Any]], sector_stats:
                 reasons.append(f"أساسيات محايدة: {fundamental.get('details')}")
         except Exception as exc:
             print(f"⚠️ {symbol}: fundamental score skipped: {exc}")
-
 
     if ENABLE_SELF_LEARNING and get_learning_adjustment is not None:
         try:
