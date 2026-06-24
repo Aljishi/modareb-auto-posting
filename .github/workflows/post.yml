@@ -23,11 +23,11 @@ on:
 
   schedule:
     - cron: "*/5 7-12 * * 0-4"   # الإشارة العادية 10:00-15:55 KSA
-    - cron: "30 6 * * 0-4"       # الذهبية الأولى 09:30 KSA
-    - cron: "30 7 * * 0-4"       # تأكيد الذهبية 10:30 KSA
-    - cron: "0 11 * * 0-4"       # متابعة الأداء 14:00 KSA
-    - cron: "0 14 * * 4"         # التقرير الأسبوعي الخميس 17:00 KSA
-    - cron: "45 12 * * 0-4"      # التقرير اليومي للسوق 15:45 KSA
+    - cron: "30 6 * * 0-4"        # الذهبية الأولى 09:30 KSA
+    - cron: "30 7 * * 0-4"        # تأكيد الذهبية 10:30 KSA
+    - cron: "0 11 * * 0-4"        # متابعة الأداء 14:00 KSA
+    - cron: "0 14 * * 4"          # التقرير الأسبوعي الخميس 17:00 KSA
+    - cron: "45 12 * * 0-4"       # التقرير اليومي للسوق 15:45 KSA
 
 permissions:
   contents: write
@@ -82,6 +82,10 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/market_intelligence.py
 
+      - name: Data quality gate
+        if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
+        run: python scripts/data_quality_gate.py
+
       - name: Update self-learning model
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
         run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
@@ -91,7 +95,8 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
-        run: python scripts/generate_signal.py
+        run: |
+          python scripts/generate_signal.py 2>&1 | tee data/generation.log
 
       - name: Update sector rotation
         if: steps.market.outputs.open == 'true' || github.event.inputs.force == 'true'
@@ -103,8 +108,10 @@ jobs:
         run: |
           python - << 'PY'
           import json, os
+
           has_signals = False
           count = 0
+
           try:
               with open("data/signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
@@ -113,16 +120,29 @@ jobs:
               has_signals = count > 0
           except Exception as e:
               print(f"No valid signals.json: {e}")
+
           print(f"Signals found: {count}")
+
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"has_signals={'true' if has_signals else 'false'}\n")
               out.write(f"count={count}\n")
           PY
 
+      - name: Build rejection report if no signals
+        if: steps.signal_check.outputs.has_signals != 'true'
+        run: python scripts/rejection_report.py
+
+      - name: Post no-signal report if no signals
+        if: steps.signal_check.outputs.has_signals != 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_no_signal_report.py
+
       - name: Stop cleanly if no signals
         if: steps.signal_check.outputs.has_signals != 'true'
         run: |
-          echo "ℹ️ لا توجد إشارات اليوم — انتهاء ناجح بدون نشر"
+          echo "ℹ️ لا توجد إشارات اليوم — تم نشر ملخص أسباب الرفض"
           exit 0
 
       - name: OpenAI signal review
@@ -144,23 +164,38 @@ jobs:
         run: |
           python - << 'PY'
           import json, os
+
           count = 0
+
           try:
               with open("data/validated_signals.json", "r", encoding="utf-8") as f:
                   data = json.load(f)
               count = len(data.get("validated_signals", data.get("signals", [])))
           except Exception as e:
               print(f"No valid validated_signals.json: {e}")
+
           print(f"Validated signals: {count}")
+
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"has_valid={'true' if count > 0 else 'false'}\n")
               out.write(f"count={count}\n")
           PY
 
+      - name: Build rejection report if no valid signal
+        if: steps.valid_check.outputs.has_valid != 'true'
+        run: python scripts/rejection_report.py
+
+      - name: Post no-signal report if no valid signal
+        if: steps.valid_check.outputs.has_valid != 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_no_signal_report.py
+
       - name: Stop cleanly if no valid signal
         if: steps.valid_check.outputs.has_valid != 'true'
         run: |
-          echo "ℹ️ لا توجد إشارات مجازة للنشر — انتهاء ناجح بدون نشر"
+          echo "ℹ️ لا توجد إشارات مجازة للنشر — تم نشر ملخص أسباب الرفض"
           exit 0
 
       - name: Generate post image
@@ -246,12 +281,16 @@ jobs:
           python - << 'PY'
           import json, os
           from pathlib import Path
+
           p = Path("data/golden_signals.json")
           count = 0
+
           if p.exists():
               data = json.loads(p.read_text(encoding="utf-8"))
               count = len(data) if isinstance(data, list) else len(data.get("golden_signals", data.get("signals", [])))
+
           print(f"Golden signals found: {count}")
+
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"found={'true' if count > 0 else 'false'}\n")
               out.write(f"count={count}\n")
@@ -334,12 +373,16 @@ jobs:
           python - << 'PY'
           import json, os
           from pathlib import Path
+
           p = Path("data/golden_signals.json")
           count = 0
+
           if p.exists():
               data = json.loads(p.read_text(encoding="utf-8"))
               count = len(data) if isinstance(data, list) else len(data.get("golden_signals", data.get("signals", [])))
+
           print(f"Golden confirmation messages: {count}")
+
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"found={'true' if count > 0 else 'false'}\n")
               out.write(f"count={count}\n")
@@ -381,30 +424,39 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pandas requests
+
       - name: Track signal performance
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
+
       - name: Update self-learning model
         run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
+
       - name: Update sector rotation
         run: python scripts/sector_rotation.py || echo "⚠️ Sector rotation skipped"
+
       - name: Generate portfolio allocation
         run: python scripts/portfolio_engine.py || echo "⚠️ Portfolio skipped"
+
       - name: Update central database
         run: python scripts/rased_database.py || echo "⚠️ Database skipped"
+
       - name: Build subscriber dashboard
         run: python scripts/dashboard_builder.py || echo "⚠️ Dashboard skipped"
+
       - name: Commit performance updates
         if: always()
         run: |
@@ -424,37 +476,48 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pandas requests
+
       - name: Update performance before weekly report
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: python scripts/track_signal_performance.py
+
       - name: Update self-learning model
         run: python scripts/self_learning_engine.py || echo "⚠️ Self-learning skipped"
+
       - name: Update sector rotation
         run: python scripts/sector_rotation.py || echo "⚠️ Sector rotation skipped"
+
       - name: Generate portfolio allocation
         run: python scripts/portfolio_engine.py || echo "⚠️ Portfolio skipped"
+
       - name: Update central database
         run: python scripts/rased_database.py || echo "⚠️ Database skipped"
+
       - name: Build subscriber dashboard
         run: python scripts/dashboard_builder.py || echo "⚠️ Dashboard skipped"
+
       - name: Generate weekly report
         run: python scripts/weekly_report.py
+
       - name: Post weekly report to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/post_weekly_report.py
+
       - name: Commit weekly report updates
         if: always()
         run: |
