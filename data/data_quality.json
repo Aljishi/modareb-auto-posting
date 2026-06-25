@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "score": 100.0,
+  "total_stocks": 46,
+  "valid_stocks": 46,
+  "invalid_stocks": [],
+  "reason": "جودة البيانات مقبولة",
+  "generated_at": "2026-06-25T10:00:57"
+}
