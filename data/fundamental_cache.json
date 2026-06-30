@@ -2034,7 +2034,7 @@
       }
     },
     "4190": {
-      "cached_at": "2026-06-29T13:21:04",
+      "cached_at": "2026-06-30T14:02:04",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -2181,8 +2181,8 @@
         },
         "dividends": {
           "symbol": "4190",
-          "current_price": 16.7,
-          "trailing_12m_yield": 5.45,
+          "current_price": 16.81,
+          "trailing_12m_yield": 5.41,
           "trailing_12m_dividends": 0.91,
           "payments_last_year": 4,
           "upcoming": [],
