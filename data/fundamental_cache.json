@@ -1117,7 +1117,7 @@
       }
     },
     "1301": {
-      "cached_at": "2026-06-23T10:01:20",
+      "cached_at": "2026-07-02T10:02:59",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1133,8 +1133,7 @@
               "total_revenue": 770546967.0,
               "gross_profit": 49246681.0,
               "operating_income": 3224774.0,
-              "net_income": 5182654.0,
-              "adjusted_net_income": 6154413.0
+              "net_income": 5182654.0
             },
             {
               "report_date": "2024-12-31",
@@ -1145,8 +1144,7 @@
               "total_revenue": 707286079.0,
               "gross_profit": null,
               "operating_income": 3670355.0,
-              "net_income": 16232927.0,
-              "adjusted_net_income": null
+              "net_income": 16232927.0
             },
             {
               "report_date": "2023-12-31",
@@ -1157,8 +1155,7 @@
               "total_revenue": 792781846.0,
               "gross_profit": null,
               "operating_income": null,
-              "net_income": 20419420.0,
-              "adjusted_net_income": null
+              "net_income": 20419420.0
             },
             {
               "report_date": "2022-12-31",
@@ -1169,8 +1166,7 @@
               "total_revenue": 1026362591.0,
               "gross_profit": null,
               "operating_income": null,
-              "net_income": 56675330.0,
-              "adjusted_net_income": null
+              "net_income": 56675330.0
             }
           ],
           "balance_sheets": [
@@ -1268,8 +1264,8 @@
         },
         "dividends": {
           "symbol": "1301",
-          "current_price": 16.87,
-          "trailing_12m_yield": 2.96,
+          "current_price": 16.85,
+          "trailing_12m_yield": 2.97,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 1,
           "upcoming": [],
@@ -1280,7 +1276,7 @@
               "period": "EXCEPTIONAL",
               "fiscal_year": "2024-2025",
               "announcement_date": "2025-11-12",
-              "eligibility_date": "2025-11-17",
+              "eligibility_date": "2026-06-16",
               "distribution_date": "2025-12-08"
             },
             {
