@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-07-05T13:55:51",
+  "generated_at": "2026-07-05T14:02:56",
   "total": 0,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -13,31 +13,31 @@
       "avg_change_pct": 0.08,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 199613785.0
+      "total_value": 207430132.1
     },
     "البتروكيماويات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": 0.06,
-      "advance_ratio": 0.33,
+      "bonus": 5,
+      "grade": "قوي",
+      "avg_change_pct": 0.59,
+      "advance_ratio": 1.0,
       "members": 3,
-      "total_value": 33303383.17
+      "total_value": 37175841.12
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.34,
+      "avg_change_pct": -0.33,
       "advance_ratio": 0.25,
       "members": 4,
-      "total_value": 85288370.86
+      "total_value": 90382252.34
     },
     "الصناعات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.89,
+      "avg_change_pct": -0.74,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 7612131.3
+      "total_value": 7745587.85
     },
     "متعدد": {
       "bonus": -5,
@@ -45,47 +45,47 @@
       "avg_change_pct": -1.9,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1152724.3
+      "total_value": 1153219.9
     },
     "النقل": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.1,
+      "avg_change_pct": -1.06,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 25996871.38
+      "total_value": 26282497.54
     },
     "العقارات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.1,
+      "avg_change_pct": -0.09,
       "advance_ratio": 0.71,
       "members": 7,
-      "total_value": 16932841.06
+      "total_value": 17370059.3
     },
     "الأغذية والمشروبات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.72,
+      "avg_change_pct": -0.88,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 5851652.1
+      "total_value": 6136714.2
     },
     "التجزئة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.52,
+      "avg_change_pct": -0.43,
       "advance_ratio": 0.33,
       "members": 6,
-      "total_value": 40622829.24
+      "total_value": 41485082.27
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.86,
+      "avg_change_pct": -0.78,
       "advance_ratio": 0.2,
       "members": 5,
-      "total_value": 50913097.0
+      "total_value": 52074347.03
     },
     "الاتصالات": {
       "bonus": 0,
@@ -93,39 +93,39 @@
       "avg_change_pct": -0.39,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 6979105.2
+      "total_value": 7057288.2
     },
     "التقنية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.01,
+      "avg_change_pct": 0.2,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 34126341.93
+      "total_value": 34517968.64
     },
     "التأمين": {
-      "bonus": -5,
-      "grade": "ضعيف",
-      "avg_change_pct": -1.05,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -1.0,
       "advance_ratio": 0.0,
       "members": 5,
-      "total_value": 45164701.55
+      "total_value": 46416642.38
     },
     "المواد الأساسية": {
-      "bonus": 5,
-      "grade": "قوي",
-      "avg_change_pct": 0.64,
-      "advance_ratio": 0.75,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.74,
+      "advance_ratio": 0.5,
       "members": 4,
-      "total_value": 26776085.38
+      "total_value": 28523798.35
     },
     "الموارد البشرية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.37,
+      "avg_change_pct": 0.15,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 13269278.46
+      "total_value": 13467117.3
     }
   },
   "filters": {
