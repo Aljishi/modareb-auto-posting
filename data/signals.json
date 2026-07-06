@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-07-06T11:26:09",
+  "generated_at": "2026-07-06T11:34:13",
   "total": 0,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -10,34 +10,34 @@
     "البنوك": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.05,
-      "advance_ratio": 0.5,
+      "avg_change_pct": 0.2,
+      "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 82004465.48
+      "total_value": 88571826.74
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.1,
-      "advance_ratio": 0.33,
+      "avg_change_pct": -0.46,
+      "advance_ratio": 0.0,
       "members": 3,
-      "total_value": 42134008.33
+      "total_value": 45141389.76
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.01,
+      "avg_change_pct": -0.06,
       "advance_ratio": 0.25,
       "members": 4,
-      "total_value": 26423232.04
+      "total_value": 31195534.7
     },
     "الصناعات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": 0.0,
-      "advance_ratio": 0.0,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.15,
+      "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 2949320.2
+      "total_value": 3462817.59
     },
     "متعدد": {
       "bonus": 0,
@@ -45,31 +45,31 @@
       "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1121447.52
+      "total_value": 1135603.84
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.45,
+      "avg_change_pct": -0.39,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 6315828.8
+      "total_value": 7915978.26
     },
     "العقارات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.32,
+      "avg_change_pct": 0.71,
       "advance_ratio": 0.43,
       "members": 7,
-      "total_value": 19740907.79
+      "total_value": 26196515.7
     },
     "الأغذية والمشروبات": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.08,
+      "avg_change_pct": 0.24,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 1877000.0
+      "total_value": 2239202.0
     },
     "التجزئة": {
       "bonus": 2,
@@ -77,15 +77,15 @@
       "avg_change_pct": 0.17,
       "advance_ratio": 0.5,
       "members": 6,
-      "total_value": 10944549.04
+      "total_value": 12465463.2
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.23,
-      "advance_ratio": 0.4,
+      "avg_change_pct": -0.15,
+      "advance_ratio": 0.2,
       "members": 5,
-      "total_value": 15599475.94
+      "total_value": 18902292.46
     },
     "الاتصالات": {
       "bonus": 2,
@@ -93,39 +93,39 @@
       "avg_change_pct": 0.1,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 1403535.54
+      "total_value": 1611173.85
     },
     "التقنية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.71,
+      "avg_change_pct": -0.68,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 9210721.9
+      "total_value": 11787586.02
     },
     "التأمين": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.05,
+      "avg_change_pct": 0.35,
       "advance_ratio": 0.4,
       "members": 5,
-      "total_value": 29731492.49
+      "total_value": 34363717.8
     },
     "المواد الأساسية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.21,
+      "avg_change_pct": -0.17,
       "advance_ratio": 0.5,
       "members": 4,
-      "total_value": 22819123.97
+      "total_value": 24032427.14
     },
     "الموارد البشرية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.11,
+      "avg_change_pct": -0.06,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 2759477.96
+      "total_value": 2922743.16
     }
   },
   "filters": {
