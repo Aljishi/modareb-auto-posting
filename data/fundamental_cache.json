@@ -1117,7 +1117,7 @@
       }
     },
     "1301": {
-      "cached_at": "2026-07-06T10:04:01",
+      "cached_at": "2026-07-07T10:06:55",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1264,8 +1264,8 @@
         },
         "dividends": {
           "symbol": "1301",
-          "current_price": 17.44,
-          "trailing_12m_yield": 2.87,
+          "current_price": 17.24,
+          "trailing_12m_yield": 2.9,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 1,
           "upcoming": [],
