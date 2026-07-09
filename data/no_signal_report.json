@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T12:16:29",
+  "generated_at": "2026-07-09T12:26:18",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
@@ -12,7 +12,7 @@
   "sample_rejections": [
     {
       "symbol": "2380",
-      "reason": "فجوة الدخول 6.89% أكبر من 5.0%",
+      "reason": "فجوة الدخول 7.13% أكبر من 5.0%",
       "category": "أسباب فنية أخرى"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "symbol": "4190",
-      "reason": "Volume 0.24x أقل من 0.85x",
+      "reason": "Volume 0.26x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
@@ -106,9 +106,9 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "4002",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "symbol": "4005",
+      "reason": "Volume 0.21x أقل من 0.85x",
+      "category": "ضعف السيولة أو الحجم"
     }
   ],
   "status": "NO_VALID_SIGNAL"
