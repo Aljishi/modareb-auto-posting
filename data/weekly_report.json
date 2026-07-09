@@ -1,7 +1,7 @@
 {
-  "week_start": "2026-06-25",
-  "week_end": "2026-07-02",
-  "generated_at": "2026-07-02T18:57:55",
+  "week_start": "2026-07-02",
+  "week_end": "2026-07-09",
+  "generated_at": "2026-07-09T19:18:17",
   "total_published": 33,
   "total_this_week": 0,
   "closed_signals": 33,
@@ -29,7 +29,7 @@
   "minimum_sample_warning": false,
   "note": "الإحصائيات مبنية على الإشارات المنشورة فعلياً فقط. الأداء السابق لا يضمن النتائج المستقبلية.",
   "raw_summary": {
-    "updated_at": "2026-07-02T18:57:54",
+    "updated_at": "2026-07-09T19:18:17",
     "total_published": 33,
     "closed_signals": 33,
     "open_signals": 0,
