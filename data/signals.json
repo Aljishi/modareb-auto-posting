@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 58.7 — سيولة قوية 2.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.6% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-1901011-2083",
+      "signal_id": "Signal #2026-1901017-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-09T10:11:46",
+      "generated_at": "2026-07-09T10:17:04",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -128,14 +128,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with a high score of 94",
-          "Healthy RSI at 58.72",
-          "Strong volume ratio of 2.06",
-          "Clear setup with realistic targets within 7 days"
+          "Strong momentum setup with a high score of 94",
+          "RSI is healthy at 58.72",
+          "Volume ratio indicates strong buying interest",
+          "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستويات دعم ومقاومة واضحة.",
-        "telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف منطقية وزخم إيجابي."
+        "arabic_summary": "إشارة قوية للشراء مع زخم صحي وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على سهم 2083 مع زخم إيجابي وأهداف قريبة."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -143,17 +143,17 @@
       "ai_risk_score": 2,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with a high score of 94",
-        "Healthy RSI at 58.72",
-        "Strong volume ratio of 2.06",
-        "Clear setup with realistic targets within 7 days"
+        "Strong momentum setup with a high score of 94",
+        "RSI is healthy at 58.72",
+        "Volume ratio indicates strong buying interest",
+        "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستويات دعم ومقاومة واضحة.",
-      "ai_telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-09T10:13:15"
+      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على سهم 2083 مع زخم إيجابي وأهداف قريبة.",
+      "ai_reviewed_at": "2026-07-09T10:17:32"
     }
   ],
-  "generated_at": "2026-07-09T10:13:11",
+  "generated_at": "2026-07-09T10:17:28",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -198,7 +198,7 @@
       "avg_change_pct": -0.24,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 2456522.34
+      "total_value": 2438591.52
     },
     "النقل": {
       "bonus": 0,
@@ -214,7 +214,7 @@
       "avg_change_pct": -0.89,
       "advance_ratio": 0.14,
       "members": 7,
-      "total_value": 52576220.98
+      "total_value": 52588409.73
     },
     "الأغذية والمشروبات": {
       "bonus": 0,
@@ -230,7 +230,7 @@
       "avg_change_pct": -1.64,
       "advance_ratio": 0.0,
       "members": 6,
-      "total_value": 117813976.7
+      "total_value": 117807694.2
     },
     "الإعلام والترفيه": {
       "bonus": -5,
@@ -238,7 +238,7 @@
       "avg_change_pct": -2.41,
       "advance_ratio": 0.0,
       "members": 5,
-      "total_value": 56216621.15
+      "total_value": 56221908.42
     },
     "الاتصالات": {
       "bonus": 0,
@@ -262,7 +262,7 @@
       "avg_change_pct": -3.08,
       "advance_ratio": 0.0,
       "members": 5,
-      "total_value": 115465371.5
+      "total_value": 115431691.7
     },
     "المواد الأساسية": {
       "bonus": -5,
@@ -304,5 +304,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-09T10:13:15"
+  "ai_reviewed_at": "2026-07-09T10:17:32"
 }

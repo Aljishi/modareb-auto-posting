@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T10:13:11",
+  "generated_at": "2026-07-09T10:17:28",
   "top_sectors": [
     {
       "sector": "الطاقة",
@@ -73,7 +73,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.89,
       "advancing_ratio": 0.14,
-      "total_value": 52576220.98,
+      "total_value": 52588409.73,
       "stocks_count": 7,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -95,7 +95,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.24,
       "advancing_ratio": 0.0,
-      "total_value": 2456522.34,
+      "total_value": 2438591.52,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -185,7 +185,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.89,
       "advancing_ratio": 0.14,
-      "total_value": 52576220.98,
+      "total_value": 52588409.73,
       "stocks_count": 7,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -207,7 +207,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.24,
       "advancing_ratio": 0.0,
-      "total_value": 2456522.34,
+      "total_value": 2438591.52,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -229,7 +229,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -1.64,
       "advancing_ratio": 0.0,
-      "total_value": 117813976.7,
+      "total_value": 117807694.2,
       "stocks_count": 6,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -262,7 +262,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -3.08,
       "advancing_ratio": 0.0,
-      "total_value": 115465371.5,
+      "total_value": 115431691.7,
       "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -273,7 +273,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -2.41,
       "advancing_ratio": 0.0,
-      "total_value": 56216621.15,
+      "total_value": 56221908.42,
       "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
