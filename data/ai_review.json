@@ -1,22 +1,23 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-06-18T14:56:25",
+  "reviewed_at": "2026-07-09T10:02:36",
   "approved": 1,
   "total": 1,
   "signals": [
     {
-      "stock_symbol": "4004",
+      "stock_symbol": "2083",
       "decision": "APPROVE",
-      "confidence": 98,
+      "confidence": 94,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 83.3,
+      "rased_score": 79.2,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "Clear breakout confirmed",
-        "Healthy RSI and volume ratio"
+        "Strong momentum with a high score of 94",
+        "Healthy RSI at 58.72",
+        "Strong volume ratio of 2.06",
+        "Realistic targets within expected holding days"
       ]
     }
   ]

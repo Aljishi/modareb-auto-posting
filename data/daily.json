@@ -2,16 +2,16 @@
   "provider": "sahmk",
   "data_source": "api",
   "engine": "rased_market_intelligence_sahmk",
-  "generated_at": "2026-07-08T18:00:26",
+  "generated_at": "2026-07-09T10:00:52",
   "api_url": "https://app.sahmk.sa/api/v1",
   "market_summary": {
     "index": "TASI",
     "is_delayed": true,
-    "timestamp": "2026-07-08T12:20:00+00:00",
+    "timestamp": "2026-07-08T13:00:00+00:00",
     "index_value": 10853.73,
     "index_change": 1.32,
     "index_change_percent": 0.01,
-    "total_volume": 228020099,
+    "total_volume": 228059985,
     "advancing": 62,
     "declining": 200,
     "unchanged": 8,
@@ -36,7 +36,7 @@
       "turnover": 226224390.70000002,
       "bid": 65.4,
       "ask": 65.45,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -59,7 +59,7 @@
       "turnover": 141644320.28,
       "bid": 38.42,
       "ask": 38.54,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -82,7 +82,7 @@
       "turnover": 85980457.5,
       "bid": 52.45,
       "ask": 52.5,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -105,7 +105,7 @@
       "turnover": 310696592.36,
       "bid": 26.84,
       "ask": 26.86,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -128,7 +128,7 @@
       "turnover": 97791068.8,
       "bid": 7.35,
       "ask": 7.36,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -151,7 +151,7 @@
       "turnover": 2456522.3400000003,
       "bid": 4.08,
       "ask": 4.11,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -174,7 +174,7 @@
       "turnover": 65409598.800000004,
       "bid": 32.18,
       "ask": 32.2,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -197,7 +197,7 @@
       "turnover": 9081010.08,
       "bid": 29.82,
       "ask": 29.88,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -220,7 +220,7 @@
       "turnover": 11456080.56,
       "bid": 5.42,
       "ask": 5.43,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -243,7 +243,7 @@
       "turnover": 14197124.75,
       "bid": 62.4,
       "ask": 62.75,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -266,7 +266,7 @@
       "turnover": 48958603.4,
       "bid": 69.3,
       "ask": 69.35,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -289,7 +289,7 @@
       "turnover": 4421241.0,
       "bid": 110.5,
       "ask": 111.0,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -312,7 +312,7 @@
       "turnover": 16344420.299999999,
       "bid": 113.1,
       "ask": 113.2,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -335,7 +335,7 @@
       "turnover": 4756195.4,
       "bid": 26.54,
       "ask": 26.62,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -358,7 +358,7 @@
       "turnover": 795235.3500000001,
       "bid": 11.05,
       "ask": 11.08,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -381,7 +381,7 @@
       "turnover": 11666602.5,
       "bid": 92.8,
       "ask": 92.85,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -404,7 +404,7 @@
       "turnover": 49349939.22,
       "bid": 17.46,
       "ask": 17.47,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -427,7 +427,7 @@
       "turnover": 3227457.3000000003,
       "bid": 43.04,
       "ask": 43.1,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -450,7 +450,7 @@
       "turnover": 1342158.66,
       "bid": 6.59,
       "ask": 6.62,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -473,7 +473,7 @@
       "turnover": 3269215.62,
       "bid": 44.82,
       "ask": 44.9,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -496,7 +496,7 @@
       "turnover": 16068447.84,
       "bid": 30.32,
       "ask": 30.48,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -519,7 +519,7 @@
       "turnover": 12192444.62,
       "bid": 23.05,
       "ask": 23.06,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -542,7 +542,7 @@
       "turnover": 2615874.2399999998,
       "bid": 32.48,
       "ask": 32.5,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -565,7 +565,7 @@
       "turnover": 10544686.49,
       "bid": 17.03,
       "ask": 17.05,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -588,7 +588,7 @@
       "turnover": 4258361.88,
       "bid": 8.04,
       "ask": 8.07,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -611,7 +611,7 @@
       "turnover": 11727594.0,
       "bid": 74.0,
       "ask": 74.05,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -634,7 +634,7 @@
       "turnover": 13612260.450000001,
       "bid": 15.63,
       "ask": 15.65,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -657,7 +657,7 @@
       "turnover": 18279869.7,
       "bid": 10.17,
       "ask": 10.18,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -680,7 +680,7 @@
       "turnover": 36249024.0,
       "bid": 668.0,
       "ask": 672.0,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -703,7 +703,7 @@
       "turnover": 3133363.01,
       "bid": 6.31,
       "ask": 6.35,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -726,7 +726,7 @@
       "turnover": 37911088.800000004,
       "bid": 140.3,
       "ask": 140.4,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -749,7 +749,7 @@
       "turnover": 7830637.4,
       "bid": 9.92,
       "ask": 9.97,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -772,7 +772,7 @@
       "turnover": 9398601.299999999,
       "bid": 9.85,
       "ask": 9.86,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -795,7 +795,7 @@
       "turnover": 54070224.0,
       "bid": 58.4,
       "ask": 58.55,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -818,7 +818,7 @@
       "turnover": 6254820.0,
       "bid": 129.9,
       "ask": 130.0,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -841,7 +841,7 @@
       "turnover": 978784.62,
       "bid": 16.9,
       "ask": 16.91,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -864,7 +864,7 @@
       "turnover": 6054464.0,
       "bid": 37.98,
       "ask": 38.0,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -887,7 +887,7 @@
       "turnover": 54428841.32,
       "bid": 14.98,
       "ask": 15.0,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -910,7 +910,7 @@
       "turnover": 9393688.200000001,
       "bid": 68.9,
       "ask": 68.95,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -933,7 +933,7 @@
       "turnover": 8873678.7,
       "bid": 21.18,
       "ask": 21.22,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -956,7 +956,7 @@
       "turnover": 4636037.600000001,
       "bid": 2.61,
       "ask": 2.62,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -979,7 +979,7 @@
       "turnover": 81171598.19999999,
       "bid": 194.7,
       "ask": 195.1,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -1002,7 +1002,7 @@
       "turnover": 16097872.000000002,
       "bid": 39.1,
       "ask": 39.2,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -1025,7 +1025,7 @@
       "turnover": 7277695.29,
       "bid": 14.72,
       "ask": 14.73,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -1048,7 +1048,7 @@
       "turnover": 159042697.58,
       "bid": 13.39,
       "ask": 13.4,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
@@ -1071,7 +1071,7 @@
       "turnover": 5436579.6,
       "bid": 91.55,
       "ask": 91.8,
-      "updated_at": "2026-07-08T12:20:00+00:00",
+      "updated_at": "2026-07-08T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
       "data_source": "api"
