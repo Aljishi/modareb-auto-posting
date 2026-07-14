@@ -1,9 +1,9 @@
 {
   "status": "PASS",
   "score": 100.0,
-  "total_stocks": 47,
-  "valid_stocks": 47,
+  "total_stocks": 46,
+  "valid_stocks": 46,
   "invalid_stocks": [],
   "reason": "جودة البيانات مقبولة",
-  "generated_at": "2026-07-14T14:35:23"
+  "generated_at": "2026-07-14T14:40:50"
 }
