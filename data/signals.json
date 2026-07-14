@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-07-14T14:05:20",
+  "generated_at": "2026-07-14T14:13:53",
   "total": 0,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -10,34 +10,34 @@
     "البنوك": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.26,
+      "avg_change_pct": -1.33,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 357578692.69
+      "total_value": 376314805.77
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.25,
+      "avg_change_pct": -0.37,
       "advance_ratio": 0.0,
       "members": 3,
-      "total_value": 187714027.08
+      "total_value": 190930960.42
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.73,
+      "avg_change_pct": -0.8,
       "advance_ratio": 0.25,
       "members": 4,
-      "total_value": 212050578.64
+      "total_value": 216112917.9
     },
     "الصناعات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.85,
+      "avg_change_pct": -0.71,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 20257010.28
+      "total_value": 20719462.76
     },
     "متعدد": {
       "bonus": 2,
@@ -45,23 +45,23 @@
       "avg_change_pct": 0.24,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 2218998.6
+      "total_value": 2299575.42
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.56,
+      "avg_change_pct": -0.59,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 28506398.82
+      "total_value": 29872513.2
     },
     "العقارات": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.95,
+      "bonus": -5,
+      "grade": "ضعيف",
+      "avg_change_pct": -1.04,
       "advance_ratio": 0.14,
       "members": 7,
-      "total_value": 23399174.67
+      "total_value": 25245041.83
     },
     "الأغذية والمشروبات": {
       "bonus": 0,
@@ -69,63 +69,63 @@
       "avg_change_pct": -0.8,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 9754203.0
+      "total_value": 10644493.8
     },
     "التجزئة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.77,
+      "avg_change_pct": -0.85,
       "advance_ratio": 0.0,
       "members": 6,
-      "total_value": 44272042.14
+      "total_value": 45697098.45
     },
     "الإعلام والترفيه": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.23,
+      "avg_change_pct": -1.44,
       "advance_ratio": 0.0,
       "members": 5,
-      "total_value": 61603120.05
+      "total_value": 65177242.61
     },
     "الاتصالات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.39,
+      "avg_change_pct": -0.59,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 6709748.16
+      "total_value": 7365724.2
     },
     "التقنية": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.32,
+      "avg_change_pct": -1.08,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 22660464.25
+      "total_value": 22971138.44
     },
     "التأمين": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.45,
+      "avg_change_pct": -0.34,
       "advance_ratio": 0.4,
       "members": 5,
-      "total_value": 63617312.87
+      "total_value": 66004902.9
     },
     "المواد الأساسية": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.13,
+      "avg_change_pct": -1.07,
       "advance_ratio": 0.0,
       "members": 4,
-      "total_value": 58979036.27
+      "total_value": 62723973.3
     },
     "الموارد البشرية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.83,
+      "avg_change_pct": 1.39,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 17849780.07
+      "total_value": 19071171.04
     }
   },
   "filters": {
