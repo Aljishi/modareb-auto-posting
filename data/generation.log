@@ -30,9 +30,12 @@
 — 7203: لا يطابق فلاتر راصد
 ⚠️ 8010: الترند غير مناسب
 — 8010: لا يطابق فلاتر راصد
-⚠️ 6004: historical failed: HTTPSConnectionPool(host='app.sahmk.sa', port=443): Read timed out. (read timeout=20)
-⚠️ 1302: historical failed: HTTPSConnectionPool(host='app.sahmk.sa', port=443): Read timed out. (read timeout=20)
-⚠️ 8311: historical failed: HTTPSConnectionPool(host='app.sahmk.sa', port=443): Read timed out. (read timeout=20)
+⚠️ 6004: الترند غير مناسب
+— 6004: لا يطابق فلاتر راصد
+⚠️ 1302: الترند غير مناسب
+— 1302: لا يطابق فلاتر راصد
+⚠️ 8311: الترند غير مناسب
+— 8311: لا يطابق فلاتر راصد
 ⚠️ 4002: الترند غير مناسب
 — 4002: لا يطابق فلاتر راصد
 ⚠️ 8060: الترند غير مناسب
