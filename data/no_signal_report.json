@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T14:53:49",
+  "generated_at": "2026-07-15T14:56:47",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
@@ -26,7 +26,7 @@
     },
     {
       "symbol": "2380",
-      "reason": "فجوة الدخول 7.26% أكبر من 5.0%",
+      "reason": "فجوة الدخول 7.18% أكبر من 5.0%",
       "category": "أسباب فنية أخرى"
     },
     {
