@@ -10,7 +10,8 @@
 — 2222: لا يطابق فلاتر راصد
 ⚠️ 2380: فجوة الدخول 8.57% أكبر من 5.0%
 — 2380: لا يطابق فلاتر راصد
-⚠️ 4190: historical failed: SAHMK 502: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/","title":"Error 502: Bad gateway","status":502,"detail":"The origin web server returned an invalid or incomplete response to Cloudfl
+⚠️ 4190: RASED SCORE 79.1 أقل من 80
+— 4190: لا يطابق فلاتر راصد
 ⚠️ 1211: الترند غير مناسب
 — 1211: لا يطابق فلاتر راصد
 ⚠️ 4030: الترند غير مناسب
