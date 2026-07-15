@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-07-15T13:56:13",
+  "generated_at": "2026-07-15T14:03:58",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
     "الاتجاه الفني غير مناسب": 41,
     "العائد مقابل المخاطرة غير مناسب": 2,
-    "أسباب فنية أخرى": 2,
+    "أسباب فنية أخرى": 1,
+    "بيانات تاريخية غير كافية": 1,
     "ضعف السيولة أو الحجم": 1
   },
   "sample_rejections": [
@@ -27,13 +28,13 @@
     },
     {
       "symbol": "2380",
-      "reason": "فجوة الدخول 8.89% أكبر من 5.0%",
+      "reason": "فجوة الدخول 8.57% أكبر من 5.0%",
       "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "4190",
-      "reason": "RASED SCORE 79.1 أقل من 80",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 502: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1211",
@@ -66,22 +67,22 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "8010",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
       "symbol": "4002",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "4260",
+      "symbol": "8010",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
       "symbol": "2200",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "4260",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
