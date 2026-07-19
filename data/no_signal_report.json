@@ -1,40 +1,36 @@
 {
-  "generated_at": "2026-07-19T10:28:22",
+  "generated_at": "2026-07-19T10:34:02",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "ضعف السيولة أو الحجم": 26,
-    "الاتجاه الفني غير مناسب": 13,
-    "بيانات تاريخية غير كافية": 5,
-    "بعيد عن الاختراق أو قريب من مقاومة": 1,
-    "العائد مقابل المخاطرة غير مناسب": 1
+    "الاتجاه الفني غير مناسب": 24,
+    "ضعف السيولة أو الحجم": 16,
+    "العائد مقابل المخاطرة غير مناسب": 3,
+    "الزخم غير مناسب": 1,
+    "أسباب فنية أخرى": 1,
+    "بيانات تاريخية غير كافية": 1
   },
   "sample_rejections": [
     {
       "symbol": "2380",
-      "reason": "بعيد عن المقاومة: -0.07%",
-      "category": "بعيد عن الاختراق أو قريب من مقاومة"
+      "reason": "RSI 81.76 خارج النطاق 38.0-74.0",
+      "category": "الزخم غير مناسب"
     },
     {
       "symbol": "1120",
-      "reason": "historical failed: SAHMK 525:",
-      "category": "بيانات تاريخية غير كافية"
-    },
-    {
-      "symbol": "2222",
-      "reason": "historical failed: SAHMK 522:",
-      "category": "بيانات تاريخية غير كافية"
-    },
-    {
-      "symbol": "2010",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
+      "symbol": "2222",
+      "reason": "R:R 1.79 أقل من 1.8",
+      "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
       "symbol": "4030",
-      "reason": "historical failed: SAHMK 522:",
-      "category": "بيانات تاريخية غير كافية"
+      "reason": "TP1% 2.54% أقل من الحد الأدنى للإشارة العادية 3.25%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
       "symbol": "4191",
@@ -42,17 +38,7 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "2082",
-      "reason": "historical failed: SAHMK 500: <html>",
-      "category": "بيانات تاريخية غير كافية"
-    },
-    {
-      "symbol": "1211",
-      "reason": "historical failed: SAHMK 525:",
-      "category": "بيانات تاريخية غير كافية"
-    },
-    {
-      "symbol": "1303",
+      "symbol": "2010",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -62,14 +48,29 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "7203",
+      "symbol": "2082",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "1303",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "1211",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
       "symbol": "4190",
-      "reason": "Volume 0.02x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "فجوة الدخول 5.61% أكبر من 5.0%",
+      "category": "أسباب فنية أخرى"
+    },
+    {
+      "symbol": "2084",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
     },
     {
       "symbol": "2200",
@@ -77,22 +78,17 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "1810",
-      "reason": "TP1% 2.69% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
+      "symbol": "7203",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "4031",
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "6004",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "4003",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "4005",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -102,12 +98,17 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "4001",
+      "symbol": "1810",
+      "reason": "TP1% 2.69% أقل من الحد الأدنى للإشارة العادية 3.25%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
+      "symbol": "4003",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "4261",
+      "symbol": "2083",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
