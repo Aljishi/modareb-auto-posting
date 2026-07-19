@@ -2,21 +2,22 @@
 🚀 راصد — Sahmk Starter Plus Signal Engine
 ============================================================
 🧠 Self-learning loaded: 0 outcomes
-⚠️ 2380: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
-⚠️ 1120: الترند غير مناسب
-— 1120: لا يطابق فلاتر راصد
-⚠️ 2222: R:R 1.79 أقل من 1.8
-— 2222: لا يطابق فلاتر راصد
+⚠️ 2380: بعيد عن المقاومة: -0.07%
+— 2380: لا يطابق فلاتر راصد
+⚠️ 1120: historical failed: SAHMK 525: 
+⚠️ 2222: historical failed: SAHMK 522: 
 ⚠️ 2010: الترند غير مناسب
 — 2010: لا يطابق فلاتر راصد
-⚠️ 4030: R:R 1.79 أقل من 1.8
-— 4030: لا يطابق فلاتر راصد
+⚠️ 4030: historical failed: SAHMK 522: 
 ⚠️ 4191: الترند غير مناسب
 — 4191: لا يطابق فلاتر راصد
-⚠️ 2082: الترند غير مناسب
-— 2082: لا يطابق فلاتر راصد
-⚠️ 1211: الترند غير مناسب
-— 1211: لا يطابق فلاتر راصد
+⚠️ 2082: historical failed: SAHMK 500: <html>
+<head><title>500 Internal Server Error</title></head>
+<body>
+<center><h1>500 Internal Server Error</h1></center>
+<hr><center>nginx/1.25.5</center>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){va
+⚠️ 1211: historical failed: SAHMK 525: 
 ⚠️ 1303: الترند غير مناسب
 — 1303: لا يطابق فلاتر راصد
 ⚠️ 1180: الترند غير مناسب
