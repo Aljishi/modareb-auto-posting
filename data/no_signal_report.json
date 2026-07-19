@@ -1,13 +1,14 @@
 {
-  "generated_at": "2026-07-19T12:03:35",
+  "generated_at": "2026-07-19T12:06:59",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
     "الاتجاه الفني غير مناسب": 39,
-    "العائد مقابل المخاطرة غير مناسب": 3,
+    "العائد مقابل المخاطرة غير مناسب": 2,
     "ضعف السيولة أو الحجم": 2,
     "الزخم غير مناسب": 1,
+    "بيانات تاريخية غير كافية": 1,
     "أسباب فنية أخرى": 1
   },
   "sample_rejections": [
@@ -28,8 +29,8 @@
     },
     {
       "symbol": "2222",
-      "reason": "R:R 1.79 أقل من 1.8",
-      "category": "العائد مقابل المخاطرة غير مناسب"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2082",

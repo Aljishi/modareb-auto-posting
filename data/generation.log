@@ -8,8 +8,7 @@
 — 1120: لا يطابق فلاتر راصد
 ⚠️ 4030: TP1% 2.57% أقل من الحد الأدنى للإشارة العادية 3.25%
 — 4030: لا يطابق فلاتر راصد
-⚠️ 2222: R:R 1.79 أقل من 1.8
-— 2222: لا يطابق فلاتر راصد
+⚠️ 2222: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
 ⚠️ 2082: الترند غير مناسب
 — 2082: لا يطابق فلاتر راصد
 ⚠️ 1211: الترند غير مناسب
