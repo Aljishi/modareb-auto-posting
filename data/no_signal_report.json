@@ -1,35 +1,34 @@
 {
-  "generated_at": "2026-07-19T09:55:42",
+  "generated_at": "2026-07-19T10:09:30",
   "total_rejected": 46,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "الاتجاه الفني غير مناسب": 39,
+    "الاتجاه الفني غير مناسب": 37,
+    "بيانات تاريخية غير كافية": 4,
     "العائد مقابل المخاطرة غير مناسب": 3,
-    "أسباب فنية أخرى": 2,
-    "الزخم غير مناسب": 1,
-    "ضعف السيولة أو الحجم": 1
+    "أسباب فنية أخرى": 2
   },
   "sample_rejections": [
     {
-      "symbol": "2380",
-      "reason": "RASED SCORE 78.6 أقل من 80",
-      "category": "أسباب فنية أخرى"
-    },
-    {
       "symbol": "1120",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "2222",
-      "reason": "TP1% 1.93% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1180",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "2380",
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "2222",
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1303",
@@ -38,13 +37,13 @@
     },
     {
       "symbol": "4190",
-      "reason": "RSI 74.1 خارج النطاق 38.0-74.0",
-      "category": "الزخم غير مناسب"
+      "reason": "RASED SCORE 76.1 أقل من 80",
+      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "4030",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "TP1% 2.51% أقل من الحد الأدنى للإشارة العادية 3.25%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
       "symbol": "4191",
@@ -62,6 +61,11 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
+      "symbol": "2010",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
       "symbol": "7203",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
@@ -72,7 +76,7 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "2010",
+      "symbol": "8010",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -82,22 +86,7 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "8010",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
       "symbol": "6004",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "1810",
-      "reason": "TP1% 2.65% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
-    },
-    {
-      "symbol": "2200",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -107,7 +96,17 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "1212",
+      "symbol": "2083",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "1810",
+      "reason": "TP1% 2.79% أقل من الحد الأدنى للإشارة العادية 3.25%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
+      "symbol": "2200",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
