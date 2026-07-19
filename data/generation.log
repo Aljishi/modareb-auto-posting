@@ -14,8 +14,7 @@
 — 2082: لا يطابق فلاتر راصد
 ⚠️ 1211: الترند غير مناسب
 — 1211: لا يطابق فلاتر راصد
-⚠️ 1180: الترند غير مناسب
-— 1180: لا يطابق فلاتر راصد
+⚠️ 1180: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
 ⚠️ 1303: الترند غير مناسب
 — 1303: لا يطابق فلاتر راصد
 ⚠️ 2010: الترند غير مناسب
