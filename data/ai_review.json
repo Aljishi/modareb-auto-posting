@@ -1,22 +1,22 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-26T12:56:04",
+  "reviewed_at": "2026-07-26T13:01:10",
   "approved": 1,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "1322",
       "decision": "APPROVE",
-      "confidence": 100,
+      "confidence": 95,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 82.7,
+      "rased_score": 79.8,
       "tier": "Standard",
       "reasons": [
         "Strong momentum with confirmed breakout",
-        "Healthy RSI at 62.3",
-        "Acceptable volume ratio of 1.45",
+        "Healthy RSI at 62.21",
+        "Acceptable volume ratio of 1.47",
         "Realistic target within expected holding days"
       ]
     }
