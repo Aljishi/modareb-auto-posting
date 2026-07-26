@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.2 — سيولة مقبولة 1.5x — اختراق مقاومة مؤكد — زخم يومي صحي +3.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2071300-1322",
+      "signal_id": "Signal #2026-2071305-1322",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-26T13:00:53",
+      "generated_at": "2026-07-26T13:05:43",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -126,14 +126,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with confirmed breakout",
-          "Healthy RSI at 62.21",
-          "Acceptable volume ratio of 1.47",
-          "Realistic target within expected holding days"
+          "Strong momentum setup",
+          "Clear breakout confirmed",
+          "Healthy RSI and volume ratio"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 1322 مع زخم صاعد مؤكد وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على شركة المصانع الكبرى للتعدين (1322) مع أهداف واضحة وزخم صحي."
+        "arabic_summary": "إشارة شراء قوية على سهم 1322 مع زخم صاعد واضح وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 1322 مع أهداف قريبة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 95,
@@ -141,17 +140,16 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with confirmed breakout",
-        "Healthy RSI at 62.21",
-        "Acceptable volume ratio of 1.47",
-        "Realistic target within expected holding days"
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "Healthy RSI and volume ratio"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 1322 مع زخم صاعد مؤكد وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة المصانع الكبرى للتعدين (1322) مع أهداف واضحة وزخم صحي.",
-      "ai_reviewed_at": "2026-07-26T13:01:10"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم 1322 مع زخم صاعد واضح وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 1322 مع أهداف قريبة وزخم صحي.",
+      "ai_reviewed_at": "2026-07-26T13:06:01"
     }
   ],
-  "generated_at": "2026-07-26T13:01:06",
+  "generated_at": "2026-07-26T13:05:59",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -302,5 +300,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-26T13:01:10"
+  "ai_reviewed_at": "2026-07-26T13:06:01"
 }
