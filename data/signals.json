@@ -7,32 +7,32 @@
       "name": "شركة المصانع الكبرى للتعدين",
       "sector": "المواد الأساسية",
       "sector_name": "المواد الأساسية",
-      "current_price": 74.25,
-      "entry_point": 74.25,
-      "entry": 74.25,
-      "target1": 78.08,
-      "target2": 79.0,
-      "stop_loss": 71.61,
-      "target1_percent": 5.16,
-      "target2_percent": 6.4,
-      "stop_loss_percent": 3.56,
-      "tp1_pct": 5.16,
-      "tp2_pct": 6.4,
-      "sl_pct": -3.56,
+      "current_price": 73.8,
+      "entry_point": 73.8,
+      "entry": 73.8,
+      "target1": 77.63,
+      "target2": 78.55,
+      "stop_loss": 71.16,
+      "target1_percent": 5.19,
+      "target2_percent": 6.44,
+      "stop_loss_percent": 3.58,
+      "tp1_pct": 5.19,
+      "tp2_pct": 6.44,
+      "sl_pct": -3.58,
       "rr": 1.8,
       "rr_ratio": 1.8,
-      "score": 95,
+      "score": 100,
       "technical_score": 93,
-      "sector_strength_bonus": 2,
-      "sector_strength_grade": "محايد إيجابي",
+      "sector_strength_bonus": 7,
+      "sector_strength_grade": "قوي جداً",
       "sector_strength_raw": {
         "available": true,
-        "bonus": 2,
-        "grade": "محايد إيجابي",
-        "avg_change_pct": 1.33,
-        "advance_ratio": 0.5,
+        "bonus": 7,
+        "grade": "قوي جداً",
+        "avg_change_pct": 1.28,
+        "advance_ratio": 0.75,
         "members": 4,
-        "total_value": 96378667.53
+        "total_value": 96488767.6
       },
       "backtest_bonus": 0,
       "backtest_grade": "عينة صغيرة",
@@ -78,57 +78,57 @@
       },
       "growth_bonus": 0,
       "dividend_bonus": 0,
-      "rased_score": 79.8,
+      "rased_score": 82.7,
       "tier": "Standard",
       "tier_emoji": "✅",
       "risk_level": "منخفض",
       "risk_level_ar": "منخفض",
       "risk_emoji": "🟢",
-      "confidence": "95%",
-      "rsi": 63.38,
-      "volume_ratio": 1.78,
+      "confidence": "100%",
+      "rsi": 62.43,
+      "volume_ratio": 1.79,
       "atr14": 2.1107,
-      "atr_pct": 2.84,
+      "atr_pct": 2.86,
       "support": 67.0,
       "resistance": 73.3,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 70.25,
-        "sma20": 70.073
+        "sma10": 70.205,
+        "sma20": 70.05
       },
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 27526702.5,
+      "value": 27505260.0,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
       "expected_days_to_target1": 2,
       "expected_days_to_target2": 3,
       "seven_day_filter_passed": true,
-      "max_reasonable_7d_pct": 15.62,
-      "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.4 — سيولة مقبولة 1.8x — اختراق مقاومة مؤكد — زخم يومي صحي +4.6% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "max_reasonable_7d_pct": 15.73,
+      "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.4 — سيولة مقبولة 1.8x — اختراق مقاومة مؤكد — زخم يومي صحي +3.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2071405-1322",
+      "signal_id": "Signal #2026-2071410-1322",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-26T14:05:38",
+      "generated_at": "2026-07-26T14:10:45",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
         "decision": "APPROVE",
-        "confidence": 95,
+        "confidence": 100,
         "risk_level": "LOW",
         "risk_score": 3,
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum with confirmed breakout",
-          "Healthy RSI at 63.38",
-          "Acceptable volume ratio of 1.78",
+          "Healthy RSI at 62.4",
+          "Acceptable volume ratio of 1.79",
           "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
@@ -136,22 +136,22 @@
         "telegram_note": "إشارة شراء قوية على 1322 مع أهداف منطقية وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
-      "ai_confidence": 95,
+      "ai_confidence": 100,
       "ai_risk_level": "LOW",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum with confirmed breakout",
-        "Healthy RSI at 63.38",
-        "Acceptable volume ratio of 1.78",
+        "Healthy RSI at 62.4",
+        "Acceptable volume ratio of 1.79",
         "Realistic target within expected holding days"
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
       "ai_telegram_note": "إشارة شراء قوية على 1322 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-26T14:05:55"
+      "ai_reviewed_at": "2026-07-26T14:11:03"
     }
   ],
-  "generated_at": "2026-07-26T14:05:52",
+  "generated_at": "2026-07-26T14:11:00",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -161,58 +161,58 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.8,
+      "avg_change_pct": 0.78,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 155543548.64
+      "total_value": 164998435.7
     },
     "البتروكيماويات": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.21,
+      "avg_change_pct": 0.12,
       "advance_ratio": 0.67,
       "members": 3,
-      "total_value": 117635452.04
+      "total_value": 121936636.86
     },
     "الطاقة": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.27,
+      "avg_change_pct": -1.38,
       "advance_ratio": 0.0,
       "members": 4,
-      "total_value": 70221546.94
+      "total_value": 72299500.0
     },
     "الصناعات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.15,
+      "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 10608384.5
+      "total_value": 11029913.31
     },
     "متعدد": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.26,
+      "avg_change_pct": -1.01,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1653981.28
+      "total_value": 1771836.57
     },
     "النقل": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.61,
+      "avg_change_pct": 0.64,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 46342295.38
+      "total_value": 47774529.06
     },
     "العقارات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.27,
+      "avg_change_pct": 0.24,
       "advance_ratio": 0.29,
       "members": 7,
-      "total_value": 18468398.65
+      "total_value": 18803616.91
     },
     "الأغذية والمشروبات": {
       "bonus": 7,
@@ -220,23 +220,23 @@
       "avg_change_pct": 1.83,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 12347853.15
+      "total_value": 13311293.55
     },
     "التجزئة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.58,
+      "avg_change_pct": -0.63,
       "advance_ratio": 0.33,
       "members": 6,
-      "total_value": 64166954.5
+      "total_value": 65035161.55
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.13,
+      "avg_change_pct": 0.19,
       "advance_ratio": 0.4,
       "members": 5,
-      "total_value": 18361566.54
+      "total_value": 19452253.84
     },
     "الاتصالات": {
       "bonus": 0,
@@ -244,31 +244,31 @@
       "avg_change_pct": -0.1,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 3293157.87
+      "total_value": 3364469.91
     },
     "التقنية": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.28,
+      "avg_change_pct": -1.57,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 42098197.65
+      "total_value": 42934050.82
     },
     "التأمين": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.66,
+      "avg_change_pct": -0.63,
       "advance_ratio": 0.0,
       "members": 5,
-      "total_value": 41821146.9
+      "total_value": 42453518.58
     },
     "المواد الأساسية": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 1.33,
-      "advance_ratio": 0.5,
+      "bonus": 7,
+      "grade": "قوي جداً",
+      "avg_change_pct": 1.28,
+      "advance_ratio": 0.75,
       "members": 4,
-      "total_value": 96378667.53
+      "total_value": 96488767.6
     },
     "الموارد البشرية": {
       "bonus": 2,
@@ -276,7 +276,7 @@
       "avg_change_pct": 0.08,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 5997302.28
+      "total_value": 6016078.44
     }
   },
   "filters": {
@@ -302,5 +302,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-26T14:05:55"
+  "ai_reviewed_at": "2026-07-26T14:11:03"
 }
