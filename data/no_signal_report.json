@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-26T14:35:53",
+  "generated_at": "2026-07-26T14:41:02",
   "total_rejected": 45,
   "total_generated": 1,
   "total_validated": 0,
   "categories": {
     "الاتجاه الفني غير مناسب": 39,
     "العائد مقابل المخاطرة غير مناسب": 3,
-    "ضعف السيولة أو الحجم": 2,
-    "أسباب فنية أخرى": 1
+    "أسباب فنية أخرى": 2,
+    "ضعف السيولة أو الحجم": 1
   },
   "sample_rejections": [
     {
@@ -17,8 +17,8 @@
     },
     {
       "symbol": "2380",
-      "reason": "Volume 0.84x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "Score 74 أقل من 80",
+      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "1303",
@@ -37,7 +37,7 @@
     },
     {
       "symbol": "4030",
-      "reason": "RASED SCORE 77.6 أقل من 80",
+      "reason": "RASED SCORE 79.6 أقل من 80",
       "category": "أسباب فنية أخرى"
     },
     {
