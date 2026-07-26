@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T14:11:04",
+  "generated_at": "2026-07-26T14:15:59",
   "total_rejected": 45,
   "total_generated": 1,
   "total_validated": 0,
@@ -106,7 +106,7 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "2084",
+      "symbol": "4261",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
