@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T14:50:59",
+  "generated_at": "2026-07-26T14:55:58",
   "total_rejected": 45,
   "total_generated": 1,
   "total_validated": 0,
@@ -17,13 +17,18 @@
     },
     {
       "symbol": "2380",
-      "reason": "Score 74 أقل من 80",
+      "reason": "RASED SCORE 74.1 أقل من 80",
       "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "1303",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "4030",
+      "reason": "RASED SCORE 79.6 أقل من 80",
+      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "1180",
@@ -34,11 +39,6 @@
       "symbol": "2222",
       "reason": "R:R 1.79 أقل من 1.8",
       "category": "العائد مقابل المخاطرة غير مناسب"
-    },
-    {
-      "symbol": "4030",
-      "reason": "RASED SCORE 79.6 أقل من 80",
-      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "7203",
