@@ -2,7 +2,7 @@
   "provider": "sahmk",
   "data_source": "api",
   "engine": "rased_market_intelligence_sahmk",
-  "generated_at": "2026-07-23T17:53:51",
+  "generated_at": "2026-07-26T10:00:54",
   "api_url": "https://app.sahmk.sa/api/v1",
   "market_summary": {
     "index": "TASI",
@@ -11,7 +11,7 @@
     "index_value": 10804.11,
     "index_change": 28.65,
     "index_change_percent": 0.27,
-    "total_volume": 178345080,
+    "total_volume": 178369769,
     "advancing": 130,
     "declining": 121,
     "unchanged": 19,
