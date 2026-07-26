@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T14:25:58",
+  "generated_at": "2026-07-26T14:31:09",
   "total_rejected": 45,
   "total_generated": 1,
   "total_validated": 0,
@@ -17,7 +17,7 @@
     },
     {
       "symbol": "2380",
-      "reason": "Volume 0.81x أقل من 0.85x",
+      "reason": "Volume 0.84x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
@@ -31,14 +31,14 @@
       "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
-      "symbol": "4030",
-      "reason": "RASED SCORE 76.1 أقل من 80",
-      "category": "أسباب فنية أخرى"
-    },
-    {
       "symbol": "2222",
       "reason": "R:R 1.79 أقل من 1.8",
       "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
+      "symbol": "4030",
+      "reason": "RASED SCORE 77.6 أقل من 80",
+      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "7203",
@@ -91,8 +91,13 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
+      "symbol": "6010",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
       "symbol": "4005",
-      "reason": "Volume 0.49x أقل من 0.85x",
+      "reason": "Volume 0.51x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
@@ -102,11 +107,6 @@
     },
     {
       "symbol": "4260",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "4261",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
