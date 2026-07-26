@@ -30,10 +30,10 @@
         "available": true,
         "bonus": 2,
         "grade": "محايد إيجابي",
-        "avg_change_pct": 0.81,
+        "avg_change_pct": 0.85,
         "advance_ratio": 0.5,
         "members": 4,
-        "total_value": 103697332.4
+        "total_value": 104211335.74
       },
       "backtest_bonus": 0,
       "backtest_grade": "عينة صغيرة",
@@ -87,7 +87,7 @@
       "risk_emoji": "🟢",
       "confidence": "95%",
       "rsi": 62.21,
-      "volume_ratio": 1.91,
+      "volume_ratio": 1.93,
       "atr14": 2.1107,
       "atr_pct": 2.86,
       "support": 67.0,
@@ -100,7 +100,7 @@
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 29346013.4,
+      "value": 29577578.8,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.2 — سيولة مقبولة 1.9x — اختراق مقاومة مؤكد — زخم يومي صحي +3.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2071440-1322",
+      "signal_id": "Signal #2026-2071445-1322",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-26T14:40:45",
+      "generated_at": "2026-07-26T14:45:41",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -129,7 +129,7 @@
         "main_reasons": [
           "Strong momentum with confirmed breakout",
           "Healthy RSI at 62.21",
-          "Acceptable volume ratio of 1.91",
+          "Acceptable volume ratio of 1.93",
           "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
@@ -144,12 +144,12 @@
       "ai_reasons": [
         "Strong momentum with confirmed breakout",
         "Healthy RSI at 62.21",
-        "Acceptable volume ratio of 1.91",
+        "Acceptable volume ratio of 1.93",
         "Realistic target within expected holding days"
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
       "ai_telegram_note": "إشارة شراء قوية على 1322 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-26T14:41:02",
+      "ai_reviewed_at": "2026-07-26T14:45:54",
       "post_rejected_reasons": [
         "RASED 79.8 < 84.0",
         "R:R 1.8 < 2.0"

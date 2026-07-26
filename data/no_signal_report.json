@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T14:41:02",
+  "generated_at": "2026-07-26T14:45:55",
   "total_rejected": 45,
   "total_generated": 1,
   "total_validated": 0,
@@ -96,14 +96,14 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "4005",
-      "reason": "Volume 0.51x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
-    },
-    {
       "symbol": "4004",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "4005",
+      "reason": "Volume 0.51x أقل من 0.85x",
+      "category": "ضعف السيولة أو الحجم"
     },
     {
       "symbol": "4260",
