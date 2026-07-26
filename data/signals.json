@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.1 — سيولة مقبولة 1.5x — اختراق مقاومة مؤكد — زخم يومي صحي +4.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2071320-1322",
+      "signal_id": "Signal #2026-2071325-1322",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-26T13:20:48",
+      "generated_at": "2026-07-26T13:25:44",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -148,10 +148,10 @@
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
       "ai_telegram_note": "إشارة شراء قوية على 1322 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-26T13:21:07"
+      "ai_reviewed_at": "2026-07-26T13:26:03"
     }
   ],
-  "generated_at": "2026-07-26T13:21:03",
+  "generated_at": "2026-07-26T13:26:00",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -302,5 +302,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-26T13:21:07"
+  "ai_reviewed_at": "2026-07-26T13:26:03"
 }
