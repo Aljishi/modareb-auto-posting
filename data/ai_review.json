@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-27T14:16:05",
+  "reviewed_at": "2026-07-27T14:20:59",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -9,14 +9,14 @@
       "stock_symbol": "2380",
       "decision": "APPROVE",
       "confidence": 90,
-      "risk_level": "MEDIUM",
+      "risk_level": "LOW",
       "expected_holding_days": 2,
-      "rased_score": 77.8,
-      "tier": "Standard",
+      "rased_score": 87.8,
+      "tier": "Premium",
       "reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Clear breakout confirmation",
+        "Clear breakout",
         "Acceptable RSI level",
         "Strong volume confirmation"
       ]
