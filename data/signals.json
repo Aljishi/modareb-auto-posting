@@ -7,18 +7,18 @@
       "name": "شركة رابغ للتكرير والبتروكيماويات",
       "sector": "البتروكيماويات",
       "sector_name": "البتروكيماويات",
-      "current_price": 15.62,
-      "entry_point": 15.62,
-      "entry": 15.62,
-      "target1": 17.19,
-      "target2": 17.56,
-      "stop_loss": 14.54,
-      "target1_percent": 10.05,
-      "target2_percent": 12.42,
-      "stop_loss_percent": 6.91,
-      "tp1_pct": 10.05,
-      "tp2_pct": 12.42,
-      "sl_pct": -6.91,
+      "current_price": 15.73,
+      "entry_point": 15.73,
+      "entry": 15.73,
+      "target1": 17.3,
+      "target2": 17.67,
+      "stop_loss": 14.65,
+      "target1_percent": 9.98,
+      "target2_percent": 12.33,
+      "stop_loss_percent": 6.87,
+      "tp1_pct": 9.98,
+      "tp2_pct": 12.33,
+      "sl_pct": -6.87,
       "rr": 1.8,
       "rr_ratio": 1.8,
       "score": 96,
@@ -29,10 +29,10 @@
         "available": true,
         "bonus": 0,
         "grade": "محايد",
-        "avg_change_pct": -0.48,
+        "avg_change_pct": -0.14,
         "advance_ratio": 0.33,
         "members": 3,
-        "total_value": 555660920.61
+        "total_value": 568794273.71
       },
       "backtest_bonus": 1,
       "backtest_grade": "محايد",
@@ -87,37 +87,37 @@
       "risk_level_ar": "منخفض",
       "risk_emoji": "🟢",
       "confidence": "96%",
-      "rsi": 70.6,
-      "volume_ratio": 3.74,
+      "rsi": 71.28,
+      "volume_ratio": 3.81,
       "atr14": 0.8657,
-      "atr_pct": 5.54,
+      "atr_pct": 5.5,
       "support": 11.81,
       "resistance": 15.56,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 14.772,
-        "sma20": 14.031
+        "sma10": 14.783,
+        "sma20": 14.037
       },
       "setup_type": "اختراق مؤكد",
       "breakout": true,
       "entry_gap_pct": 0.0,
-      "value": 497202063.16,
+      "value": 509749636.11,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
       "expected_days_to_target1": 2,
       "expected_days_to_target2": 2,
       "seven_day_filter_passed": true,
-      "max_reasonable_7d_pct": 30.47,
-      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 70.6 — سيولة قوية جداً 3.7x — اختراق مقاومة مؤكد — زخم يومي صحي +2.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "max_reasonable_7d_pct": 30.25,
+      "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 71.3 — سيولة قوية جداً 3.8x — اختراق مقاومة مؤكد — زخم يومي صحي +2.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081325-2380",
+      "signal_id": "Signal #2026-2081330-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T13:25:39",
+      "generated_at": "2026-07-27T13:30:48",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,12 +130,12 @@
         "main_reasons": [
           "Strong momentum setup",
           "High confidence score",
-          "Clear breakout confirmation",
+          "Clear breakout",
           "Healthy daily momentum"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات (2380) مع أهداف واضحة وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -145,15 +145,15 @@
       "ai_reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Clear breakout confirmation",
+        "Clear breakout",
         "Healthy daily momentum"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات (2380) مع أهداف واضحة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T13:25:56"
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-07-27T13:31:20"
     }
   ],
-  "generated_at": "2026-07-27T13:25:52",
+  "generated_at": "2026-07-27T13:31:17",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -163,34 +163,34 @@
     "البنوك": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.46,
+      "avg_change_pct": -0.32,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 326413574.62
+      "total_value": 332346428.46
     },
     "البتروكيماويات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.48,
+      "avg_change_pct": -0.14,
       "advance_ratio": 0.33,
       "members": 3,
-      "total_value": 555660920.61
+      "total_value": 568794273.71
     },
     "الطاقة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.72,
+      "avg_change_pct": 0.64,
       "advance_ratio": 0.5,
       "members": 4,
-      "total_value": 169949542.98
+      "total_value": 172737610.63
     },
     "الصناعات": {
       "bonus": -5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.35,
+      "avg_change_pct": -1.2,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 18671972.85
+      "total_value": 18750736.48
     },
     "متعدد": {
       "bonus": 5,
@@ -198,39 +198,39 @@
       "avg_change_pct": 0.52,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 1671511.24
+      "total_value": 1676143.24
     },
     "النقل": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.15,
+      "avg_change_pct": 0.04,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 47658747.36
+      "total_value": 48263315.26
     },
     "العقارات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": 0.19,
+      "avg_change_pct": 0.24,
       "advance_ratio": 0.43,
       "members": 7,
-      "total_value": 30032479.78
+      "total_value": 30897192.61
     },
     "الأغذية والمشروبات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.9,
+      "avg_change_pct": -0.98,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 9505399.8
+      "total_value": 9568326.4
     },
     "التجزئة": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.11,
-      "advance_ratio": 0.5,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": 0.04,
+      "advance_ratio": 0.33,
       "members": 6,
-      "total_value": 52985154.01
+      "total_value": 53505971.9
     },
     "الإعلام والترفيه": {
       "bonus": 0,
@@ -238,47 +238,47 @@
       "avg_change_pct": -0.34,
       "advance_ratio": 0.2,
       "members": 5,
-      "total_value": 22272175.8
+      "total_value": 22854779.35
     },
     "الاتصالات": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.49,
+      "avg_change_pct": 0.39,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 13018276.88
+      "total_value": 13159893.62
     },
     "التقنية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.04,
+      "avg_change_pct": 0.84,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 46368192.24
+      "total_value": 47230475.74
     },
     "التأمين": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.07,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -0.16,
       "advance_ratio": 0.6,
       "members": 5,
-      "total_value": 79569128.77
+      "total_value": 83521522.5
     },
     "المواد الأساسية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.09,
+      "avg_change_pct": -0.23,
       "advance_ratio": 0.25,
       "members": 4,
-      "total_value": 105720122.97
+      "total_value": 106966247.1
     },
     "الموارد البشرية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.37,
-      "advance_ratio": 0.5,
+      "avg_change_pct": -0.53,
+      "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 7743273.07
+      "total_value": 7902752.34
     }
   },
   "filters": {
@@ -304,5 +304,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T13:25:56"
+  "ai_reviewed_at": "2026-07-27T13:31:20"
 }
