@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-07-27T14:55:51",
+  "generated_at": "2026-07-27T16:34:47",
   "top_sectors": [
     {
       "sector": "البتروكيماويات",
-      "rotation_score": 64.7,
+      "rotation_score": 64.2,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.34,
       "advancing_ratio": 0.33,
       "total_value": 678456689.28,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 83.6
+      "avg_signal_score": 81.3
     },
     {
       "sector": "النقل",
@@ -115,14 +115,14 @@
   "all_sectors": [
     {
       "sector": "البتروكيماويات",
-      "rotation_score": 64.7,
+      "rotation_score": 64.2,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.34,
       "advancing_ratio": 0.33,
       "total_value": 678456689.28,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 83.6
+      "avg_signal_score": 81.3
     },
     {
       "sector": "النقل",
