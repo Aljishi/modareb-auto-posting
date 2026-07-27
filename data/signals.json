@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.5 — سيولة قوية 2.8x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081130-2380",
+      "signal_id": "Signal #2026-2081135-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T11:30:49",
+      "generated_at": "2026-07-27T11:35:35",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -135,8 +135,8 @@
           "Strong volume confirmation"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع واستقرار في السيولة.",
-        "telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات. استهدف 17.71 و 18.08 مع وقف خسارة عند 15.06."
+        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات، استهدف 17.71 و18.08 خلال 3 أيام."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -150,12 +150,12 @@
         "Acceptable RSI level",
         "Strong volume confirmation"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع واستقرار في السيولة.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات. استهدف 17.71 و 18.08 مع وقف خسارة عند 15.06.",
-      "ai_reviewed_at": "2026-07-27T11:31:12"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات، استهدف 17.71 و18.08 خلال 3 أيام.",
+      "ai_reviewed_at": "2026-07-27T11:35:57"
     }
   ],
-  "generated_at": "2026-07-27T11:31:08",
+  "generated_at": "2026-07-27T11:35:54",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -306,5 +306,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T11:31:12"
+  "ai_reviewed_at": "2026-07-27T11:35:57"
 }
