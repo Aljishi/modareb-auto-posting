@@ -113,12 +113,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.7 — سيولة قوية 2.5x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081110-2380",
+      "signal_id": "Signal #2026-2081115-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T11:10:44",
+      "generated_at": "2026-07-27T11:15:38",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -132,9 +132,9 @@
           "TP2 looks unrealistic within 7 days",
           "RSI is overheated"
         ],
-        "rejection_reason": "The setup is rejected due to an overheated RSI and unrealistic target within the expected holding period.",
-        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية ضمن الفترة المتوقعة.",
-        "telegram_note": "الإشارة غير مناسبة بسبب ارتفاع RSI والأهداف غير المنطقية."
+        "rejection_reason": "The setup is not clear due to high RSI and unrealistic target within the expected holding period.",
+        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+        "telegram_note": "الإشارة غير موثوقة بسبب ظروف السوق الحالية."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 94,
@@ -145,9 +145,9 @@
         "TP2 looks unrealistic within 7 days",
         "RSI is overheated"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية ضمن الفترة المتوقعة.",
-      "ai_telegram_note": "الإشارة غير مناسبة بسبب ارتفاع RSI والأهداف غير المنطقية.",
-      "ai_reviewed_at": "2026-07-27T11:11:07",
+      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
+      "ai_telegram_note": "الإشارة غير موثوقة بسبب ظروف السوق الحالية.",
+      "ai_reviewed_at": "2026-07-27T11:15:56",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 79.2 < 84.0",
