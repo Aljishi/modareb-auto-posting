@@ -113,12 +113,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.8 — سيولة قوية جداً 3.0x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081210-2380",
+      "signal_id": "Signal #2026-2081215-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T12:10:42",
+      "generated_at": "2026-07-27T12:15:38",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -134,7 +134,7 @@
         ],
         "rejection_reason": "The setup is rejected due to an overheated RSI and unrealistic target within the expected holding period.",
         "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
-        "telegram_note": "الإشارة غير مناسبة بسبب ظروف السوق الحالية."
+        "telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 90,
@@ -146,8 +146,8 @@
         "RSI is overheated"
       ],
       "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
-      "ai_telegram_note": "الإشارة غير مناسبة بسبب ظروف السوق الحالية.",
-      "ai_reviewed_at": "2026-07-27T12:10:59",
+      "ai_telegram_note": "الإشارة غير مناسبة للتداول في الوقت الحالي.",
+      "ai_reviewed_at": "2026-07-27T12:16:01",
       "post_rejected_reasons": [
         "OpenAI rejected the signal",
         "RASED 77.8 < 84.0",

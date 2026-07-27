@@ -3153,7 +3153,7 @@
       }
     },
     "1322": {
-      "cached_at": "2026-07-26T12:10:48",
+      "cached_at": "2026-07-27T12:15:44",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -3178,7 +3178,7 @@
               "quarters_reported": 4,
               "is_full_year": true,
               "total_revenue": 780648910.0,
-              "gross_profit": null,
+              "gross_profit": 398737398.0,
               "operating_income": 73767624.0,
               "net_income": 177898746.0
             },
@@ -3189,8 +3189,8 @@
               "quarters_reported": 4,
               "is_full_year": true,
               "total_revenue": 487894683.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 310187756.0,
+              "operating_income": 116589138.0,
               "net_income": 54582956.0
             },
             {
@@ -3300,8 +3300,8 @@
         },
         "dividends": {
           "symbol": "1322",
-          "current_price": 74.3,
-          "trailing_12m_yield": 1.68,
+          "current_price": 73.3,
+          "trailing_12m_yield": 1.71,
           "trailing_12m_dividends": 1.25,
           "payments_last_year": 1,
           "upcoming": [],
