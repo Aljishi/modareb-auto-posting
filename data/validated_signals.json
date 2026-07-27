@@ -113,12 +113,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 72.9 — سيولة قوية جداً 3.9x — اختراق مقاومة مؤكد — زخم يومي صحي +4.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081344-2380",
+      "signal_id": "Signal #2026-2081345-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T13:44:25",
+      "generated_at": "2026-07-27T13:45:40",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -137,7 +137,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على 2380 مع زخم إيجابي وأهداف قريبة."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -152,8 +152,8 @@
         "Realistic targets within the expected holding period"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T13:44:44",
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع زخم إيجابي وأهداف قريبة.",
+      "ai_reviewed_at": "2026-07-27T13:46:07",
       "post_rejected_reasons": [
         "RASED 81.3 < 84.0",
         "R:R 1.8 < 2.0",
