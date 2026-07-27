@@ -113,12 +113,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 72.7 — سيولة قوية جداً 4.2x — اختراق مقاومة مؤكد — زخم يومي صحي +4.5% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081430-2380",
+      "signal_id": "Signal #2026-2081435-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T14:30:44",
+      "generated_at": "2026-07-27T14:35:40",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -129,14 +129,15 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 2,
         "main_reasons": [
-          "Strong momentum setup",
-          "High confidence score",
+          "Strong momentum with a high score of 96",
           "Clear breakout confirmed",
-          "Healthy daily momentum"
+          "Healthy daily momentum with a 4.5% increase",
+          "Strong volume ratio of 4.2",
+          "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي."
+        "arabic_summary": "إشارة شراء قوية مع زخم صاعد واضح وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -144,14 +145,15 @@
       "ai_risk_score": 6,
       "ai_expected_holding_days": 2,
       "ai_reasons": [
-        "Strong momentum setup",
-        "High confidence score",
+        "Strong momentum with a high score of 96",
         "Clear breakout confirmed",
-        "Healthy daily momentum"
+        "Healthy daily momentum with a 4.5% increase",
+        "Strong volume ratio of 4.2",
+        "Realistic target within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T14:31:06",
+      "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد واضح وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم صحي.",
+      "ai_reviewed_at": "2026-07-27T14:36:05",
       "post_rejected_reasons": [
         "RASED 81.3 < 84.0",
         "R:R 1.8 < 2.0",

@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-27T14:31:06",
+  "reviewed_at": "2026-07-27T14:36:05",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -14,10 +14,11 @@
       "rased_score": 81.3,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "High confidence score",
+        "Strong momentum with a high score of 96",
         "Clear breakout confirmed",
-        "Healthy daily momentum"
+        "Healthy daily momentum with a 4.5% increase",
+        "Strong volume ratio of 4.2",
+        "Realistic target within expected holding days"
       ]
     }
   ]
