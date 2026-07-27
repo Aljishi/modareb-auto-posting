@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.0 — سيولة قوية جداً 4.0x — اختراق مقاومة مؤكد — زخم يومي صحي +5.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081400-2380",
+      "signal_id": "Signal #2026-2081405-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T14:00:55",
+      "generated_at": "2026-07-27T14:05:40",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -131,9 +131,9 @@
           "TP2 looks unrealistic within 7 days",
           "RSI is overheated"
         ],
-        "rejection_reason": "The setup is not clear due to high RSI and unrealistic target within the expected holding period.",
-        "arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
-        "telegram_note": "إشارة غير واضحة، يرجى مراجعة الإعدادات."
+        "rejection_reason": "TP2 looks unrealistic within 7 days and RSI is overheated.",
+        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام وارتفاع مؤشر القوة النسبية.",
+        "telegram_note": "إشارة غير موثوقة، يرجى مراجعة الإعدادات."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 96,
@@ -144,12 +144,12 @@
         "TP2 looks unrealistic within 7 days",
         "RSI is overheated"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب ارتفاع مؤشر القوة النسبية والأهداف غير الواقعية.",
-      "ai_telegram_note": "إشارة غير واضحة، يرجى مراجعة الإعدادات.",
-      "ai_reviewed_at": "2026-07-27T14:01:21"
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام وارتفاع مؤشر القوة النسبية.",
+      "ai_telegram_note": "إشارة غير موثوقة، يرجى مراجعة الإعدادات.",
+      "ai_reviewed_at": "2026-07-27T14:06:04"
     }
   ],
-  "generated_at": "2026-07-27T14:01:18",
+  "generated_at": "2026-07-27T14:06:00",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -300,5 +300,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T14:01:21"
+  "ai_reviewed_at": "2026-07-27T14:06:04"
 }
