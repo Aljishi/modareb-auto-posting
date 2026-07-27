@@ -3383,7 +3383,7 @@
       }
     },
     "4030": {
-      "cached_at": "2026-07-26T13:30:58",
+      "cached_at": "2026-07-27T13:35:40",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -3419,8 +3419,8 @@
               "quarters_reported": 4,
               "is_full_year": true,
               "total_revenue": 8777500000.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 2490791000.0,
+              "operating_income": 2172274000.0,
               "net_income": 1613428000.0
             },
             {
@@ -3530,8 +3530,8 @@
         },
         "dividends": {
           "symbol": "4030",
-          "current_price": 32.9,
-          "trailing_12m_yield": 3.04,
+          "current_price": 33.2,
+          "trailing_12m_yield": 3.01,
           "trailing_12m_dividends": 1.0,
           "payments_last_year": 1,
           "upcoming": [],
