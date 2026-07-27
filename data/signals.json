@@ -80,12 +80,12 @@
       },
       "growth_bonus": 0,
       "dividend_bonus": 0,
-      "rased_score": 87.8,
-      "tier": "Premium",
-      "tier_emoji": "⭐",
-      "risk_level": "منخفض",
-      "risk_level_ar": "منخفض",
-      "risk_emoji": "🟢",
+      "rased_score": 77.8,
+      "tier": "Standard",
+      "tier_emoji": "✅",
+      "risk_level": "متوسط",
+      "risk_level_ar": "متوسط",
+      "risk_emoji": "🟡",
       "confidence": "90%",
       "rsi": 73.6,
       "volume_ratio": 4.05,
@@ -112,48 +112,50 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.6 — سيولة قوية جداً 4.0x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081410-2380",
+      "signal_id": "Signal #2026-2081415-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T14:10:45",
+      "generated_at": "2026-07-27T14:15:41",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
         "decision": "APPROVE",
         "confidence": 90,
-        "risk_level": "LOW",
+        "risk_level": "MEDIUM",
         "risk_score": 6,
-        "rased_score_adjustment": 10,
+        "rased_score_adjustment": 0,
         "expected_holding_days": 2,
         "main_reasons": [
           "Strong momentum setup",
           "High confidence score",
-          "Low risk level",
-          "Clear breakout confirmation"
+          "Clear breakout confirmation",
+          "Acceptable RSI level",
+          "Strong volume confirmation"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع وهدف منطقي.",
-        "telegram_note": "إشارة شراء قوية على 2380، استعد لتحقيق أهداف سريعة!"
+        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع واختراق واضح للمقاومة.",
+        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف منطقية وزخم مرتفع. استعد لتحقيق الأرباح خلال يومين!"
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 90,
-      "ai_risk_level": "LOW",
+      "ai_risk_level": "MEDIUM",
       "ai_risk_score": 6,
       "ai_expected_holding_days": 2,
       "ai_reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Low risk level",
-        "Clear breakout confirmation"
+        "Clear breakout confirmation",
+        "Acceptable RSI level",
+        "Strong volume confirmation"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع وهدف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على 2380، استعد لتحقيق أهداف سريعة!",
-      "ai_reviewed_at": "2026-07-27T14:11:08"
+      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم مرتفع واختراق واضح للمقاومة.",
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف منطقية وزخم مرتفع. استعد لتحقيق الأرباح خلال يومين!",
+      "ai_reviewed_at": "2026-07-27T14:16:05"
     }
   ],
-  "generated_at": "2026-07-27T14:11:05",
+  "generated_at": "2026-07-27T14:16:00",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -304,5 +306,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T14:11:08"
+  "ai_reviewed_at": "2026-07-27T14:16:05"
 }
