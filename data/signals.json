@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.3 — سيولة قوية جداً 3.2x — اختراق مقاومة مؤكد — زخم يومي صحي +5.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081230-2380",
+      "signal_id": "Signal #2026-2081235-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T12:30:45",
+      "generated_at": "2026-07-27T12:35:35",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,7 +130,7 @@
         "main_reasons": [
           "Strong momentum setup",
           "High confidence score",
-          "Clear breakout",
+          "Clear breakout confirmed",
           "Healthy daily momentum"
         ],
         "rejection_reason": "",
@@ -145,15 +145,15 @@
       "ai_reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Clear breakout",
+        "Clear breakout confirmed",
         "Healthy daily momentum"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T12:31:06"
+      "ai_reviewed_at": "2026-07-27T12:35:57"
     }
   ],
-  "generated_at": "2026-07-27T12:31:03",
+  "generated_at": "2026-07-27T12:35:54",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -304,5 +304,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T12:31:06"
+  "ai_reviewed_at": "2026-07-27T12:35:57"
 }

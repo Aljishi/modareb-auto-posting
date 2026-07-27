@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-27T12:31:06",
+  "reviewed_at": "2026-07-27T12:35:57",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -16,7 +16,7 @@
       "reasons": [
         "Strong momentum setup",
         "High confidence score",
-        "Clear breakout",
+        "Clear breakout confirmed",
         "Healthy daily momentum"
       ]
     }
