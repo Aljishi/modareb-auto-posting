@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 72.3 — سيولة قوية 2.3x — اختراق مقاومة مؤكد — زخم يومي صحي +4.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081100-2380",
+      "signal_id": "Signal #2026-2081105-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T11:00:50",
+      "generated_at": "2026-07-27T11:05:36",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -135,7 +135,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم صحي. استعد لتحقيق الأرباح!"
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 98,
@@ -149,11 +149,11 @@
         "Volume ratio indicates strong liquidity"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T11:01:12"
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة وزخم صحي. استعد لتحقيق الأرباح!",
+      "ai_reviewed_at": "2026-07-27T11:05:56"
     }
   ],
-  "generated_at": "2026-07-27T11:01:08",
+  "generated_at": "2026-07-27T11:05:52",
   "total": 1,
   "total_screened": 46,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -304,5 +304,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-07-27T11:01:12"
+  "ai_reviewed_at": "2026-07-27T11:05:56"
 }
