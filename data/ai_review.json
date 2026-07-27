@@ -1,24 +1,21 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-27T11:21:06",
-  "approved": 1,
+  "reviewed_at": "2026-07-27T11:26:07",
+  "approved": 0,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "2380",
-      "decision": "APPROVE",
-      "confidence": 94,
+      "decision": "REJECT",
+      "confidence": 100,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 79.2,
+      "rased_score": 82.7,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a high score of 94",
-        "Clear breakout confirmed",
-        "RSI at acceptable level of 74.0",
-        "Strong volume ratio of 2.7",
-        "Realistic target within expected holding days"
+        "TP2 looks unrealistic within 7 days",
+        "RSI is overheated"
       ]
     }
   ]
