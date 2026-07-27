@@ -113,12 +113,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.0 — سيولة قوية جداً 4.4x — اختراق مقاومة مؤكد — زخم يومي صحي +5.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2081450-2380",
+      "signal_id": "Signal #2026-2081455-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-27T14:50:42",
+      "generated_at": "2026-07-27T14:55:34",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -137,7 +137,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات (2380) مع أهداف قريبة وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -152,8 +152,8 @@
         "Realistic targets within the expected holding period"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات (2380) مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-07-27T14:51:02",
+      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف قريبة وزخم صحي.",
+      "ai_reviewed_at": "2026-07-27T14:55:54",
       "post_rejected_reasons": [
         "RASED 81.3 < 84.0",
         "R:R 1.8 < 2.0",
