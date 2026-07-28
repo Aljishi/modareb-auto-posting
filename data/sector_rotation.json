@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T10:11:01",
+  "generated_at": "2026-07-28T10:16:06",
   "top_sectors": [
     {
       "sector": "النقل",
@@ -7,7 +7,7 @@
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.01,
       "advancing_ratio": 1.0,
-      "total_value": 110220035.0,
+      "total_value": 110196937.76,
       "stocks_count": 2,
       "signals_count": 1,
       "avg_signal_score": 81.6
@@ -18,7 +18,7 @@
       "grade": "محايد",
       "avg_change_pct": 1.42,
       "advancing_ratio": 0.75,
-      "total_value": 295982021.36,
+      "total_value": 294386552.72,
       "stocks_count": 4,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -29,7 +29,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.67,
       "advancing_ratio": 1.0,
-      "total_value": 74615924.98,
+      "total_value": 74447341.64,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -40,7 +40,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.79,
       "advancing_ratio": 1.0,
-      "total_value": 24422295.75,
+      "total_value": 24469949.01,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -51,7 +51,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.78,
       "advancing_ratio": 1.0,
-      "total_value": 3302851.5,
+      "total_value": 3294317.0,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -62,19 +62,8 @@
       "grade": "محايد",
       "avg_change_pct": -0.17,
       "advancing_ratio": 0.33,
-      "total_value": 724276445.3,
+      "total_value": 724186337.9,
       "stocks_count": 3,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
-      "sector": "التأمين",
-      "rotation_score": 34.9,
-      "grade": "ضعيف",
-      "avg_change_pct": -0.21,
-      "advancing_ratio": 0.6,
-      "total_value": 136258954.25,
-      "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -84,8 +73,19 @@
       "grade": "ضعيف",
       "avg_change_pct": 0.22,
       "advancing_ratio": 0.57,
-      "total_value": 58321399.79,
+      "total_value": 57999697.01,
       "stocks_count": 7,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "التأمين",
+      "rotation_score": 34.4,
+      "grade": "ضعيف",
+      "avg_change_pct": -0.21,
+      "advancing_ratio": 0.6,
+      "total_value": 118948619.34,
+      "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -95,7 +95,7 @@
       "grade": "ضعيف",
       "avg_change_pct": 0.25,
       "advancing_ratio": 0.5,
-      "total_value": 78664928.1,
+      "total_value": 78952586.94,
       "stocks_count": 6,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -106,7 +106,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.43,
       "advancing_ratio": 0.0,
-      "total_value": 506319556.4,
+      "total_value": 507320819.2,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -119,7 +119,7 @@
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.01,
       "advancing_ratio": 1.0,
-      "total_value": 110220035.0,
+      "total_value": 110196937.76,
       "stocks_count": 2,
       "signals_count": 1,
       "avg_signal_score": 81.6
@@ -130,7 +130,7 @@
       "grade": "محايد",
       "avg_change_pct": 1.42,
       "advancing_ratio": 0.75,
-      "total_value": 295982021.36,
+      "total_value": 294386552.72,
       "stocks_count": 4,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -141,7 +141,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.67,
       "advancing_ratio": 1.0,
-      "total_value": 74615924.98,
+      "total_value": 74447341.64,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -152,7 +152,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.79,
       "advancing_ratio": 1.0,
-      "total_value": 24422295.75,
+      "total_value": 24469949.01,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -163,7 +163,7 @@
       "grade": "محايد",
       "avg_change_pct": 0.78,
       "advancing_ratio": 1.0,
-      "total_value": 3302851.5,
+      "total_value": 3294317.0,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -174,19 +174,8 @@
       "grade": "محايد",
       "avg_change_pct": -0.17,
       "advancing_ratio": 0.33,
-      "total_value": 724276445.3,
+      "total_value": 724186337.9,
       "stocks_count": 3,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
-      "sector": "التأمين",
-      "rotation_score": 34.9,
-      "grade": "ضعيف",
-      "avg_change_pct": -0.21,
-      "advancing_ratio": 0.6,
-      "total_value": 136258954.25,
-      "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -196,8 +185,19 @@
       "grade": "ضعيف",
       "avg_change_pct": 0.22,
       "advancing_ratio": 0.57,
-      "total_value": 58321399.79,
+      "total_value": 57999697.01,
       "stocks_count": 7,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "التأمين",
+      "rotation_score": 34.4,
+      "grade": "ضعيف",
+      "avg_change_pct": -0.21,
+      "advancing_ratio": 0.6,
+      "total_value": 118948619.34,
+      "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -207,7 +207,7 @@
       "grade": "ضعيف",
       "avg_change_pct": 0.25,
       "advancing_ratio": 0.5,
-      "total_value": 78664928.1,
+      "total_value": 78952586.94,
       "stocks_count": 6,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -218,7 +218,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.43,
       "advancing_ratio": 0.0,
-      "total_value": 506319556.4,
+      "total_value": 507320819.2,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -229,7 +229,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.16,
       "advancing_ratio": 0.25,
-      "total_value": 127967091.04,
+      "total_value": 127967793.16,
       "stocks_count": 4,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -240,7 +240,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.1,
       "advancing_ratio": 0.2,
-      "total_value": 46024451.78,
+      "total_value": 45923941.64,
       "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -251,7 +251,7 @@
       "grade": "ضعيف",
       "avg_change_pct": -0.14,
       "advancing_ratio": 0.0,
-      "total_value": 22527372.62,
+      "total_value": 22226175.5,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
