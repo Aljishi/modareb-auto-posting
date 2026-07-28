@@ -3383,7 +3383,7 @@
       }
     },
     "4030": {
-      "cached_at": "2026-07-27T13:35:40",
+      "cached_at": "2026-07-28T13:40:56",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -3530,7 +3530,7 @@
         },
         "dividends": {
           "symbol": "4030",
-          "current_price": 33.2,
+          "current_price": 33.24,
           "trailing_12m_yield": 3.01,
           "trailing_12m_dividends": 1.0,
           "payments_last_year": 1,
