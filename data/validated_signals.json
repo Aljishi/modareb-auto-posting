@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.8 — سيولة قوية 2.2x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.5% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2091015-4030",
+      "signal_id": "Signal #2026-2091020-4030",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-07-28T10:15:48",
+      "generated_at": "2026-07-28T10:20:51",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,7 +130,7 @@
           "Strong momentum with a score of 96",
           "Healthy RSI at 61.8",
           "Good volume confirmation with a ratio of 2.17",
-          "Clear upward trend with realistic targets"
+          "Clear setup with realistic targets within 7 days"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على السهم 4030 مع زخم صحي وأهداف منطقية.",
@@ -145,11 +145,11 @@
         "Strong momentum with a score of 96",
         "Healthy RSI at 61.8",
         "Good volume confirmation with a ratio of 2.17",
-        "Clear upward trend with realistic targets"
+        "Clear setup with realistic targets within 7 days"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على السهم 4030 مع زخم صحي وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 4030 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-07-28T10:16:11",
+      "ai_reviewed_at": "2026-07-28T10:21:12",
       "post_rejected_reasons": [
         "RASED 80.4 < 84.0",
         "R:R 1.8 < 2.0"
