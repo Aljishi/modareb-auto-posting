@@ -3153,7 +3153,7 @@
       }
     },
     "1322": {
-      "cached_at": "2026-07-29T13:45:51",
+      "cached_at": "2026-07-30T14:10:53",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -3300,15 +3300,15 @@
         },
         "dividends": {
           "symbol": "1322",
-          "current_price": 72.6,
-          "trailing_12m_yield": 1.72,
+          "current_price": 74.4,
+          "trailing_12m_yield": 1.68,
           "trailing_12m_dividends": 1.25,
           "payments_last_year": 1,
           "upcoming": [],
           "history": [
             {
               "value": 1.25,
-              "value_percent": 0.12,
+              "value_percent": 0.125,
               "period": "H1",
               "fiscal_year": "2025",
               "announcement_date": "2025-09-09",
