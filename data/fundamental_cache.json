@@ -3631,7 +3631,7 @@
       }
     },
     "7203": {
-      "cached_at": "2026-07-29T14:01:09",
+      "cached_at": "2026-07-30T14:30:52",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -3778,8 +3778,8 @@
         },
         "dividends": {
           "symbol": "7203",
-          "current_price": 672.0,
-          "trailing_12m_yield": 1.34,
+          "current_price": 676.0,
+          "trailing_12m_yield": 1.33,
           "trailing_12m_dividends": 9.0,
           "payments_last_year": 2,
           "upcoming": [],
