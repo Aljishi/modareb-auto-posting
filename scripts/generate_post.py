@@ -23,7 +23,6 @@ WHITE = "#F4F6F8"
 MUTED = "#AAB2BD"
 LINE = "#263544"
 GOLD = "#D8B64C"
-
 DATA_FILE = Path("data/validated_signals.json")
 OUT_FILE = "output.png"
 
@@ -108,22 +107,26 @@ def center_text(draw, xy, text, f, fill):
 
 def main():
     s = get_signal()
-
     symbol = s.get("stock_symbol") or s.get("symbol") or "----"
     name = s.get("stock_name") or s.get("name") or "السهم"
     entry = float(s.get("entry_point") or s.get("entry") or s.get("current_price") or 0)
     tp1 = float(s.get("target1") or s.get("tp1") or 0)
     tp2 = float(s.get("target2") or s.get("tp2") or 0)
     sl = float(s.get("stop_loss") or s.get("sl") or 0)
-
     score = as_int(s.get("rased_score") or s.get("score") or 88, 88)
-    confidence = as_int(s.get("ai_confidence") or s.get("confidence") or 89, 89)
+    confidence = as_int(
+        s.get("calibrated_confidence")
+        or s.get("historical_confidence")
+        or s.get("ai_confidence")
+        or s.get("confidence")
+        or 75,
+        75,
+    )
     risk = s.get("risk_level_ar") or s.get("ai_risk_level") or "منخفضة"
     holding = s.get("holding_period") or "1 - 7 أيام"
     signal_id = s.get("signal_id") or f"Signal #{datetime.now().strftime('%Y')}-{datetime.now().strftime('%j')}"
     fundamental_bonus = as_int(s.get("fundamental_bonus") or 0, 0)
     fundamental_grade = s.get("fundamental_grade") or "محايد"
-
     tp1_pct = s.get("tp1_pct") or pct(tp1, entry)
     tp2_pct = s.get("tp2_pct") or pct(tp2, entry)
     sl_pct = s.get("sl_pct") or pct(sl, entry)
@@ -138,7 +141,6 @@ def main():
     d.rectangle((83, 115, 96, 138), fill=GREEN)
     d.rectangle((103, 95, 116, 138), fill=GREEN)
     d.rectangle((123, 75, 136, 138), fill=GREEN)
-
     d.text((170, 55), ar("الراصد"), font=F_TITLE, fill=WHITE)
     d.text((172, 137), ar("الراصد الذكي للأسهم السعودية"), font=F_SUB, fill=MUTED)
 
@@ -161,7 +163,6 @@ def main():
         ("◎", "الهدف الثاني", tp2, f"+{float(tp2_pct):.1f}%", GREEN),
         ("🛡", "وقف الخسارة", sl, f"{float(sl_pct):.1f}%", RED),
     ]
-
     y = 350
     for icon, label, value, p, color in rows:
         d.ellipse((85, y-20, 145, y+40), fill="#07131E", outline=color, width=3)
@@ -180,7 +181,6 @@ def main():
     labels = ["RASED SCORE™", "الثقة", "المخاطرة", "المدة المتوقعة"]
     values = [f"{score}/100", f"{confidence}%", risk, holding]
     colors = [GREEN, GREEN, GREEN, WHITE]
-
     for i in range(4):
         if i:
             d.line((cols[i], 625, cols[i], 765), fill=LINE, width=2)
@@ -205,7 +205,6 @@ def main():
     rounded(d, (55, 1050, 1025, 1135), 18, CARD, "#334253", 2)
     d.text((95, 1075), "✈  t.me/RasedSA", font=F_MID, fill=GREEN)
     d.text((655, 1083), "AI + Sahmk Starter Data", font=F_SM, fill=MUTED)
-
     center_text(d, (W/2, 1195), ar("تنبيه: ليست توصية استثمارية."), F_SM, MUTED)
 
     out = sys.argv[2] if len(sys.argv) > 2 else OUT_FILE
