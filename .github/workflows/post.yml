@@ -15,6 +15,7 @@ on:
           - track-results
           - weekly-report
           - market-brief
+          - quality-dashboard
 
       force:
         description: "Force run even if market closed?"
@@ -41,6 +42,7 @@ on:
     # المتابعة والتقارير:
     - cron: "0 11 * * 0-4"         # متابعة الأداء 14:00
     - cron: "45 12 * * 0-4"        # التقرير اليومي 15:45
+    - cron: "0 13 * * 0-4"         # لوحة الجودة اليومية 16:00
     - cron: "0 14 * * 4"           # التقرير الأسبوعي الخميس 17:00
 
 permissions:
@@ -130,7 +132,13 @@ jobs:
           python scripts/self_learning_engine.py \
             || echo "⚠️ Self-learning skipped"
 
-      - name: Generate signals
+      - name: Detect market regime
+        if: >
+          steps.market.outputs.open == 'true' ||
+          github.event.inputs.force == 'true'
+        run: python scripts/market_regime_detector.py
+
+      - name: Generate regime-aware signals
         if: >
           steps.market.outputs.open == 'true' ||
           github.event.inputs.force == 'true'
@@ -138,7 +146,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
         run: |
-          python scripts/generate_signal.py 2>&1 | tee data/generation.log
+          python scripts/run_signal_pipeline.py 2>&1 | tee data/generation.log
 
       - name: Update sector rotation
         if: >
@@ -236,6 +244,22 @@ jobs:
         run: |
           python scripts/ai_signal_reviewer.py \
             || echo "⚠️ OpenAI unavailable — continue with Python gate"
+
+      - name: Calibrate historical confidence
+        if: >
+          (steps.market.outputs.open == 'true' ||
+           github.event.inputs.force == 'true') &&
+          steps.signal_check.outputs.has_signals == 'true'
+        env:
+          CONFIDENCE_MIN_GROUP_SAMPLE: "8"
+          CONFIDENCE_FULL_WEIGHT_SAMPLE: "30"
+          CONFIDENCE_SCORE_BUCKET_SIZE: "5"
+          CONFIDENCE_PRIOR_SUCCESSES: "3"
+          CONFIDENCE_PRIOR_FAILURES: "2"
+          CONFIDENCE_NO_HISTORY_MAX: "75"
+          CONFIDENCE_DISPLAY_MIN: "40"
+          CONFIDENCE_DISPLAY_MAX: "95"
+        run: python scripts/confidence_calibration.py
 
       - name: Validate signal quality
         id: validate
@@ -389,6 +413,12 @@ jobs:
            github.event.inputs.force == 'true') &&
           steps.valid_check.outputs.has_valid == 'true'
         run: python scripts/dashboard_builder.py
+
+      - name: Build quality dashboard
+        if: >
+          steps.market.outputs.open == 'true' ||
+          github.event.inputs.force == 'true'
+        run: python scripts/quality_dashboard.py
 
       - name: Commit auto-post updates
         if: always()
@@ -912,4 +942,56 @@ jobs:
 
           git pull --rebase || true
           git push || true
-        continue-on-error: true 
+        continue-on-error: true
+
+  quality-dashboard:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: rased-quality-dashboard
+      cancel-in-progress: true
+
+    if: >
+      github.event.schedule == '0 13 * * 0-4' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.event.inputs.job == 'quality-dashboard')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Build daily quality dashboard
+        run: python scripts/quality_dashboard.py
+
+      - name: Post daily quality dashboard to Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/post_quality_dashboard.py
+
+      - name: Commit quality dashboard
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "github-actions[bot]@users.noreply.github.com"
+
+          git add data/ docs/ 2>/dev/null || true
+
+          git diff --cached --quiet \
+            || git commit -m \
+              "راصد — لوحة الجودة اليومية $(date +'%H:%M')"
+
+          git pull --rebase || true
+          git push || true
+        continue-on-error: true
