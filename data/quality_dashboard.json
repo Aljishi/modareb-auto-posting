@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "engine": "rased_quality_dashboard_v1",
+  "generated_at": "2026-08-02T17:28:28",
+  "data_timestamp": "2026-08-02T17:14:05",
+  "provider": "sahmk",
+  "system_health": {
+    "fetch_status": "PASS",
+    "data_quality_status": "PASS",
+    "data_quality_score": 100.0,
+    "stocks_received": 47,
+    "valid_stocks": 47
+  },
+  "market": {
+    "regime": "UNKNOWN",
+    "regime_ar": "غير متوفر",
+    "posture": "",
+    "average_change_pct": 0.0,
+    "advance_ratio": 0.0,
+    "dispersion": 0.0,
+    "dynamic_min_score": null,
+    "advancing": 38,
+    "declining": 6,
+    "unchanged": 3
+  },
+  "screening": {
+    "screened": 47,
+    "rejected": 46,
+    "generated": 1,
+    "validated": 1,
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection_count": 37,
+    "categories": {
+      "الاتجاه الفني غير مناسب": 37,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "أسباب فنية أخرى": 3,
+      "ضعف السيولة أو الحجم": 2,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
+    }
+  },
+  "leadership": {
+    "best_sector": "الرعاية الصحية",
+    "best_sector_avg_change_pct": 5.3,
+    "best_sector_members": 5,
+    "best_stock": {
+      "symbol": "4011",
+      "name": "شركة لازوردي للمجوهرات",
+      "change_pct": 9.97,
+      "value": 11573613.44
+    }
+  },
+  "portfolio_exposure": {
+    "active_open_positions": 0,
+    "approved_after_gate": 0,
+    "rejected_by_gate": 0
+  },
+  "confidence_calibration": {
+    "status": "UNKNOWN",
+    "closed_history_sample": 0,
+    "signals_calibrated": 0
+  },
+  "validated_signals": [
+    {
+      "symbol": "1211",
+      "name": "شركة التعدين العربية السعودية",
+      "sector": "المواد الأساسية",
+      "rased_score": 79.2,
+      "confidence": "94%"
+    }
+  ]
+}
