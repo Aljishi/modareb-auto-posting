@@ -11,7 +11,9 @@ DATA = ROOT / "data"
 DAILY_FILE = DATA / "daily.json"
 OUT_FILE = DATA / "data_quality.json"
 
-MIN_STOCKS = 25
+# القائمة الحالية تحتوي عادةً على 18 سهمًا.
+# نستخدم 15 لتوفير هامش مؤقت عند تعذر جلب سهم أو سهمين.
+MIN_STOCKS = 15
 MIN_VALID_RATIO = 0.70
 
 
@@ -19,24 +21,36 @@ def fnum(x, default=0.0):
     try:
         if x is None or x == "":
             return default
+
         if isinstance(x, str):
             x = x.replace(",", "").replace("%", "").strip()
+
         return float(x)
     except Exception:
         return default
 
 
 def main():
-    DATA.mkdir(exist_ok=True)
+    DATA.mkdir(parents=True, exist_ok=True)
+
+    generated_at = datetime.now().isoformat(timespec="seconds")
 
     if not DAILY_FILE.exists():
         out = {
             "status": "FAIL",
             "score": 0,
+            "total_stocks": 0,
+            "valid_stocks": 0,
+            "invalid_stocks": [],
             "reason": "daily.json غير موجود",
-            "generated_at": datetime.now().isoformat(timespec="seconds"),
+            "generated_at": generated_at,
         }
-        OUT_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        OUT_FILE.write_text(
+            json.dumps(out, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
         print("❌ Data quality failed: daily.json missing")
         return 1
 
@@ -46,24 +60,53 @@ def main():
         out = {
             "status": "FAIL",
             "score": 0,
+            "total_stocks": 0,
+            "valid_stocks": 0,
+            "invalid_stocks": [],
             "reason": f"تعذر قراءة daily.json: {e}",
-            "generated_at": datetime.now().isoformat(timespec="seconds"),
+            "generated_at": generated_at,
         }
-        OUT_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+
+        OUT_FILE.write_text(
+            json.dumps(out, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
         print("❌ Data quality failed: invalid JSON")
         return 1
 
     stocks = data.get("stocks", []) if isinstance(data, dict) else []
-    total = len(stocks)
 
+    if not isinstance(stocks, list):
+        stocks = []
+
+    total = len(stocks)
     valid = 0
     issues = []
 
-    for s in stocks:
-        symbol = str(s.get("symbol", "")).strip()
-        price = fnum(s.get("current_price") or s.get("price"))
-        volume = fnum(s.get("volume"))
-        value = fnum(s.get("value") or s.get("turnover")) or price * volume
+    for stock in stocks:
+        if not isinstance(stock, dict):
+            issues.append("INVALID_RECORD")
+            continue
+
+        symbol = str(stock.get("symbol", "")).strip()
+
+        price = fnum(
+            stock.get("current_price")
+            or stock.get("price")
+            or stock.get("close")
+        )
+
+        volume = fnum(stock.get("volume"))
+
+        value = fnum(
+            stock.get("value")
+            or stock.get("turnover")
+            or stock.get("traded_value")
+        )
+
+        if value <= 0 and price > 0 and volume > 0:
+            value = price * volume
 
         if symbol and price > 0 and volume > 0 and value > 0:
             valid += 1
@@ -79,6 +122,7 @@ def main():
     if total < MIN_STOCKS:
         status = "FAIL"
         reason = f"عدد الأسهم المفحوصة قليل: {total}/{MIN_STOCKS}"
+
     elif valid_ratio < MIN_VALID_RATIO:
         status = "FAIL"
         reason = f"نسبة البيانات الصالحة منخفضة: {score}%"
@@ -89,13 +133,24 @@ def main():
         "total_stocks": total,
         "valid_stocks": valid,
         "invalid_stocks": issues[:30],
+        "minimum_required_stocks": MIN_STOCKS,
+        "minimum_valid_ratio": MIN_VALID_RATIO,
         "reason": reason,
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "generated_at": generated_at,
     }
 
-    OUT_FILE.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    OUT_FILE.write_text(
+        json.dumps(out, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
-    print(f"{'✅' if status == 'PASS' else '❌'} Data Quality: {score}% — {reason}")
+    icon = "✅" if status == "PASS" else "❌"
+
+    print(
+        f"{icon} Data Quality: {score}% "
+        f"— صالح {valid}/{total} — {reason}"
+    )
+
     return 0 if status == "PASS" else 1
 
 
