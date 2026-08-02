@@ -7,7 +7,7 @@
   "rate_limited": true,
   "reason": "Sahmk أعاد HTTP 429 أثناء Batch. تم إيقاف الطلبات الإضافية لحماية حد الاشتراك.",
   "errors": [
-    "SAHMK 429: تم تجاوز حد الطلبات. {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 41770 seconds.\"}"
+    "SAHMK 429: تم تجاوز حد الطلبات. {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 41481 seconds.\"}"
   ],
-  "generated_at": "2026-08-02T12:23:49"
+  "generated_at": "2026-08-02T12:28:38"
 }
