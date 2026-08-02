@@ -246,6 +246,20 @@ jobs:
         run: python scripts/should_post.py
         continue-on-error: true
 
+      - name: Apply portfolio exposure gate
+        if: >
+          (steps.market.outputs.open == 'true' ||
+           github.event.inputs.force == 'true') &&
+          steps.signal_check.outputs.has_signals == 'true'
+        env:
+          RASED_MAX_OPEN_POSITIONS: "4"
+          RASED_MAX_OPEN_POSITIONS_PER_SECTOR: "1"
+          RASED_BLOCK_DUPLICATE_SYMBOL: "true"
+          RASED_KEEP_BEST_SIGNAL_PER_SECTOR: "true"
+          RASED_DEFAULT_MAX_HOLDING_DAYS: "7"
+          RASED_MAX_STALE_OPEN_DAYS: "10"
+        run: python scripts/portfolio_exposure_gate.py
+
       - name: Check validated signal count
         id: valid_check
         if: >
