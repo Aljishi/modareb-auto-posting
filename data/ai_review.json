@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-02T14:01:28",
+  "reviewed_at": "2026-08-02T14:06:16",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -14,11 +14,10 @@
       "rased_score": 79.2,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup with a high score of 94",
-        "Risk-to-reward ratio is favorable at 1.8",
-        "RSI is healthy at 54.03",
-        "Volume ratio indicates good liquidity at 1.38",
-        "Targets are realistic within the expected holding period"
+        "Strong momentum setup",
+        "High confidence score",
+        "Acceptable risk level",
+        "Realistic targets within holding period"
       ]
     }
   ]
