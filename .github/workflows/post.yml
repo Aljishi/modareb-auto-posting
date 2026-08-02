@@ -1,7 +1,7 @@
 name: Rased Auto Posting — راصد
 
 on:
-  workflow_dispatch: #
+  workflow_dispatch: 
     inputs:
       job:
         description: "Which job to run?"
@@ -22,7 +22,7 @@ on:
         default: "false"
         type: boolean
 
-  schedule: #
+  schedule: 
     # جميع أوقات GitHub Actions بتوقيت UTC.
     # توقيت السعودية = UTC +3.
 
