@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 54.2 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141410-1211",
+      "signal_id": "Signal #2026-2141415-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T14:10:58",
+      "generated_at": "2026-08-02T14:15:53",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -127,7 +127,7 @@
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum setup with a high score of 94",
-          "Risk is assessed as low with a favorable risk-reward ratio",
+          "Risk is assessed as low with a favorable risk-reward ratio of 1.8",
           "Expected holding days are within the acceptable range of 3 days"
         ],
         "rejection_reason": "",
@@ -141,15 +141,15 @@
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum setup with a high score of 94",
-        "Risk is assessed as low with a favorable risk-reward ratio",
+        "Risk is assessed as low with a favorable risk-reward ratio of 1.8",
         "Expected holding days are within the acceptable range of 3 days"
       ],
       "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستوى مخاطر منخفض.",
       "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-02T14:11:26"
+      "ai_reviewed_at": "2026-08-02T14:16:11"
     }
   ],
-  "generated_at": "2026-08-02T14:11:23",
+  "generated_at": "2026-08-02T14:16:08",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -316,5 +316,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-02T14:11:26"
+  "ai_reviewed_at": "2026-08-02T14:16:11"
 }
