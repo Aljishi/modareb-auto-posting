@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 54.0 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141357-1211",
+      "signal_id": "Signal #2026-2141401-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T13:57:21",
+      "generated_at": "2026-08-02T14:01:09",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -128,14 +128,14 @@
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum setup with a high score of 94",
-          "Risk-to-reward ratio of 1.8 is favorable",
-          "RSI is healthy at 54.03, indicating no overheating",
-          "Volume ratio of 1.38 supports the setup",
+          "Risk-to-reward ratio is favorable at 1.8",
+          "RSI is healthy at 54.03",
+          "Volume ratio indicates good liquidity at 1.38",
           "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة."
+        "arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستوى مخاطر منخفض.",
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -144,14 +144,14 @@
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum setup with a high score of 94",
-        "Risk-to-reward ratio of 1.8 is favorable",
-        "RSI is healthy at 54.03, indicating no overheating",
-        "Volume ratio of 1.38 supports the setup",
+        "Risk-to-reward ratio is favorable at 1.8",
+        "RSI is healthy at 54.03",
+        "Volume ratio indicates good liquidity at 1.38",
         "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-08-02T13:57:44",
+      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستوى مخاطر منخفض.",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم صحي.",
+      "ai_reviewed_at": "2026-08-02T14:01:28",
       "post_rejected_reasons": [
         "RASED 79.2 < 84.0",
         "R:R 1.8 < 2.0"
