@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 54.9 — سيولة مقبولة 1.3x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141301-1211",
+      "signal_id": "Signal #2026-2141305-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T13:01:07",
+      "generated_at": "2026-08-02T13:05:49",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -126,13 +126,15 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum setup with a high score of 94",
-          "Risk is assessed as low with a favorable risk-reward ratio of 1.8",
-          "Expected holding days are within the acceptable range of 3 days"
+          "Strong momentum setup",
+          "Healthy RSI",
+          "Acceptable volume ratio",
+          "Close to breaking important resistance",
+          "Realistic targets within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة قوية للشراء مع زخم صحي وهدف منطقي.",
-        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة."
+        "arabic_summary": "إشارة قوية للشراء مع زخم صحي وقيمة تداول مناسبة.",
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -140,16 +142,18 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum setup with a high score of 94",
-        "Risk is assessed as low with a favorable risk-reward ratio of 1.8",
-        "Expected holding days are within the acceptable range of 3 days"
+        "Strong momentum setup",
+        "Healthy RSI",
+        "Acceptable volume ratio",
+        "Close to breaking important resistance",
+        "Realistic targets within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وهدف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-08-02T13:01:34"
+      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وقيمة تداول مناسبة.",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-02T13:06:10"
     }
   ],
-  "generated_at": "2026-08-02T13:01:31",
+  "generated_at": "2026-08-02T13:06:06",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -316,5 +320,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-02T13:01:34"
+  "ai_reviewed_at": "2026-08-02T13:06:10"
 }
