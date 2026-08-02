@@ -1,5 +1,6 @@
 {
   "signals": [],
+  "validated_signals": [],
   "rejected": [
     {
       "stock_symbol": "1211",
@@ -111,12 +112,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 55.5 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141443-1211",
+      "signal_id": "Signal #2026-2141444-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T14:43:46",
+      "generated_at": "2026-08-02T14:44:53",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -134,7 +135,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -148,15 +149,36 @@
         "Targets achievable within 3 days"
       ],
       "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-02T14:44:08",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
+      "ai_reviewed_at": "2026-08-02T14:45:17",
+      "post_approved": false,
       "post_rejected_reasons": [
-        "RASED 79.2 < 84.0",
-        "R:R 1.8 < 2.0"
-      ]
+        "RASED SCORE 79.2 أقل من 80.0"
+      ],
+      "post_checked_at": "2026-08-02T14:45:17"
     }
   ],
   "total": 0,
+  "total_generated": 1,
+  "total_approved": 0,
+  "total_rejected": 1,
   "status": "NO_VALID_SIGNALS",
-  "source": "should_post.py"
+  "source": "should_post.py",
+  "source_generated_at": "2026-08-02T14:45:14",
+  "generated_at": "2026-08-02T14:45:17",
+  "applied_limits": {
+    "MIN_RASED_SCORE": 80.0,
+    "MIN_SCORE": 80.0,
+    "MIN_RR": 1.8,
+    "MIN_VOLUME_RATIO": 0.85,
+    "MIN_RSI": 38.0,
+    "MAX_RSI": 74.0,
+    "MIN_BACKTEST_WIN_RATE": 40.0,
+    "MIN_BACKTEST_TRADES": 8,
+    "MIN_TP1_PCT_NORMAL": 3.25,
+    "MIN_TP1_PCT_GOLDEN": 6.0,
+    "MIN_TP1_PCT_PLATINUM": 8.0,
+    "MIN_TP2_PCT_PLATINUM": 10.0,
+    "MAX_HOLD_DAYS": 7
+  }
 }
