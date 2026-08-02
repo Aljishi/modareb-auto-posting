@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 55.5 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141441-1211",
+      "signal_id": "Signal #2026-2141443-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T14:41:03",
+      "generated_at": "2026-08-02T14:43:46",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -133,7 +133,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة."
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -147,11 +147,11 @@
         "Targets achievable within 3 days"
       ],
       "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-08-02T14:41:25"
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-02T14:44:08"
     }
   ],
-  "generated_at": "2026-08-02T14:41:22",
+  "generated_at": "2026-08-02T14:44:05",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -318,5 +318,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-02T14:41:25"
+  "ai_reviewed_at": "2026-08-02T14:44:08"
 }
