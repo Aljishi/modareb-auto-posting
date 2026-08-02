@@ -1,13 +1,16 @@
 {
-  "status": "RATE_LIMITED",
+  "status": "PASS",
   "provider": "sahmk",
   "api_url": "https://app.sahmk.sa/api/v1",
   "requested_symbols": 51,
-  "fetched_stocks": 0,
-  "rate_limited": true,
-  "reason": "Sahmk أعاد HTTP 429 أثناء Batch. تم إيقاف الطلبات الإضافية لحماية حد الاشتراك.",
+  "fetched_stocks": 47,
+  "rate_limited": false,
+  "reason": "تم جلب وحفظ 47 سهمًا بنجاح",
   "errors": [
-    "SAHMK 429: تم تجاوز حد الطلبات. {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40885 seconds.\"}"
+    "4010: SAHMK 409: {\"error\":{\"code\":\"PRICE_DATA_TEMPORARILY_UNAVAILABLE\",\"message\":\"Price data for '4010' is temporarily unavailable. Please retry shortly.\"}}",
+    "2085: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2085' not found.\"}}",
+    "2086: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2086' not found.\"}}",
+    "2087: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2087' not found.\"}}"
   ],
-  "generated_at": "2026-08-02T12:38:34"
+  "generated_at": "2026-08-02T12:42:57"
 }

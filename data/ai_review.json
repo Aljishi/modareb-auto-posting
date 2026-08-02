@@ -1,23 +1,24 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-07-28T10:21:12",
+  "reviewed_at": "2026-08-02T12:43:28",
   "approved": 1,
   "total": 1,
   "signals": [
     {
-      "stock_symbol": "4030",
+      "stock_symbol": "1211",
       "decision": "APPROVE",
-      "confidence": 96,
+      "confidence": 94,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 80.4,
+      "rased_score": 79.2,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a score of 96",
-        "Healthy RSI at 61.8",
-        "Good volume confirmation with a ratio of 2.17",
-        "Clear setup with realistic targets within 7 days"
+        "Strong momentum setup with a high score of 94",
+        "Risk-to-reward ratio is favorable at 1.8",
+        "RSI is healthy and not overheated",
+        "Volume ratio indicates acceptable liquidity",
+        "Targets are realistic within the expected holding period"
       ]
     }
   ]

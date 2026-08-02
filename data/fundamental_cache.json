@@ -1869,7 +1869,7 @@
       }
     },
     "1211": {
-      "cached_at": "2026-06-21T10:01:16",
+      "cached_at": "2026-08-02T12:43:06",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1881,48 +1881,48 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 38577730228.0,
               "gross_profit": 4119174204.0,
               "operating_income": 2406342283.0,
-              "net_income": 7347878280.0,
-              "adjusted_net_income": 2753920634.0
+              "net_income": 7347878280.0
             },
             {
               "report_date": "2024-12-31",
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 32546157340.0,
               "gross_profit": 2239855238.0,
               "operating_income": 301941408.0,
-              "net_income": 2871544808.0,
-              "adjusted_net_income": 14345180.0
+              "net_income": 2871544808.0
             },
             {
               "report_date": "2023-12-31",
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 29271927826.0,
-              "gross_profit": null,
-              "operating_income": null,
-              "net_income": 1577326494.0,
-              "adjusted_net_income": null
+              "gross_profit": 11530951164.0,
+              "operating_income": 5755806038.0,
+              "net_income": 1577326494.0
             },
             {
               "report_date": "2022-12-31",
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "total_revenue": 40277122289.0,
               "gross_profit": null,
               "operating_income": null,
-              "net_income": 9319047152.0,
-              "adjusted_net_income": null
+              "net_income": 9319047152.0
             }
           ],
           "balance_sheets": [
@@ -1931,6 +1931,7 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 119757152175.0,
               "total_liabilities": 51942785685.0,
@@ -1942,6 +1943,7 @@
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 115089370018.0,
               "total_liabilities": 54933138491.0,
@@ -1953,6 +1955,7 @@
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 111873624423.0,
               "total_liabilities": 55058359289.0,
@@ -1964,7 +1967,8 @@
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "total_assets": 111586273856.0,
               "total_liabilities": 55546418741.0,
               "stockholders_equity": 56039855115.0,
@@ -1977,6 +1981,7 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 10927067206.0,
               "investing_cash_flow": -10120345838.0,
@@ -1988,6 +1993,7 @@
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 10318622866.0,
               "investing_cash_flow": -3198347250.0,
@@ -1999,6 +2005,7 @@
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 7529235136.0,
               "investing_cash_flow": null,
@@ -2010,17 +2017,22 @@
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "operating_cash_flow": 15935827405.0,
               "investing_cash_flow": null,
               "financing_cash_flow": null,
               "free_cash_flow": null
             }
-          ]
+          ],
+          "reporting": {
+            "reporting_cadence": "quarterly",
+            "quarterly_income_convention": "standalone"
+          }
         },
         "dividends": {
           "symbol": "1211",
-          "current_price": 64.45,
+          "current_price": 58.95,
           "trailing_12m_yield": null,
           "trailing_12m_dividends": null,
           "payments_last_year": 0,
