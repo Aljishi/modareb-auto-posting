@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 55.1 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141420-1211",
+      "signal_id": "Signal #2026-2141425-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T14:20:55",
+      "generated_at": "2026-08-02T14:25:52",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -149,7 +149,7 @@
       ],
       "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-08-02T14:21:15",
+      "ai_reviewed_at": "2026-08-02T14:26:14",
       "post_rejected_reasons": [
         "RASED 79.2 < 84.0",
         "R:R 1.8 < 2.0"
