@@ -1,9 +1,9 @@
 {
-  "status": "PASS",
+  "status": "FAIL",
   "score": 100.0,
-  "total_stocks": 46,
-  "valid_stocks": 46,
+  "total_stocks": 19,
+  "valid_stocks": 19,
   "invalid_stocks": [],
-  "reason": "جودة البيانات مقبولة",
-  "generated_at": "2026-07-30T14:55:36"
+  "reason": "عدد الأسهم المفحوصة قليل: 19/25",
+  "generated_at": "2026-08-02T10:01:17"
 }
