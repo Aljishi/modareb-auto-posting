@@ -1,272 +1,294 @@
 {
   "status": "OK",
-  "generated_at": "2026-07-30T17:54:31",
-  "generated_at_human": "2026-07-30 | 05:54 PM",
+  "generated_at": "2026-08-02T17:14:05",
+  "generated_at_human": "2026-08-02 | 05:14 PM",
   "engine_version": "rased_market_brief_v1_0",
   "provider": "sahmk",
-  "sample_size": 46,
+  "sample_size": 47,
   "market_bias": {
-    "bias": "محايد",
+    "bias": "إيجابي انتقائي",
     "risk": "متوسط",
-    "view": "الصورة العامة متوازنة، والأفضلية للانتظار حتى تتضح قيادة القطاعات.",
-    "advancing": 22,
-    "declining": 23,
-    "unchanged": 1,
-    "breadth_pct": 47.8,
-    "avg_change_pct": -0.37,
-    "total_value": 1865200173.63,
-    "strong_sectors": 7,
-    "weak_sectors": 8
+    "view": "السيولة تميل للأسهم الصاعدة مع أفضلية للقطاعات الأقوى.",
+    "advancing": 38,
+    "declining": 6,
+    "unchanged": 3,
+    "breadth_pct": 80.9,
+    "avg_change_pct": 1.38,
+    "total_value": 1630911292.29,
+    "strong_sectors": 11,
+    "weak_sectors": 4
   },
   "sectors": [
     {
-      "sector": "متعدد",
-      "members": 1,
-      "avg_change_pct": 2.34,
+      "sector": "الرعاية الصحية",
+      "members": 5,
+      "avg_change_pct": 5.3,
       "advance_ratio": 1.0,
-      "advancing": 1,
+      "advancing": 5,
       "declining": 0,
-      "total_value": 13019131.12,
+      "total_value": 72663685.89,
       "tone": "إيجابي قوي",
       "icon": "🟢"
     },
     {
-      "sector": "الأغذية والمشروبات",
+      "sector": "المرافق العامة",
       "members": 1,
-      "avg_change_pct": 1.97,
+      "avg_change_pct": 2.93,
       "advance_ratio": 1.0,
       "advancing": 1,
       "declining": 0,
-      "total_value": 16632528.8,
+      "total_value": 45914159.4,
       "tone": "إيجابي قوي",
       "icon": "🟢"
     },
     {
-      "sector": "الاتصالات",
-      "members": 1,
-      "avg_change_pct": 1.87,
+      "sector": "المواد الأساسية",
+      "members": 9,
+      "avg_change_pct": 2.6,
       "advance_ratio": 1.0,
-      "advancing": 1,
+      "advancing": 9,
       "declining": 0,
-      "total_value": 53018289.0,
+      "total_value": 322616548.18,
+      "tone": "إيجابي قوي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "التأمين",
+      "members": 3,
+      "avg_change_pct": 2.43,
+      "advance_ratio": 1.0,
+      "advancing": 3,
+      "declining": 0,
+      "total_value": 68204891.03,
       "tone": "إيجابي قوي",
       "icon": "🟢"
     },
     {
       "sector": "البنوك",
       "members": 2,
-      "avg_change_pct": 1.73,
+      "avg_change_pct": 1.56,
+      "advance_ratio": 0.5,
+      "advancing": 1,
+      "declining": 0,
+      "total_value": 464256267.3,
+      "tone": "إيجابي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "السلع الرأسمالية",
+      "members": 2,
+      "avg_change_pct": 1.56,
       "advance_ratio": 1.0,
       "advancing": 2,
       "declining": 0,
-      "total_value": 589356143.6,
+      "total_value": 12990151.8,
       "tone": "إيجابي قوي",
       "icon": "🟢"
     },
     {
-      "sector": "الصناعات",
+      "sector": "الطاقة",
+      "members": 3,
+      "avg_change_pct": 0.92,
+      "advance_ratio": 1.0,
+      "advancing": 3,
+      "declining": 0,
+      "total_value": 201067574.3,
+      "tone": "إيجابي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "الخدمات التجارية والمهنية",
+      "members": 2,
+      "avg_change_pct": 0.58,
+      "advance_ratio": 1.0,
+      "advancing": 2,
+      "declining": 0,
+      "total_value": 8110863.37,
+      "tone": "إيجابي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "تجزئة السلع الكمالية",
+      "members": 6,
+      "avg_change_pct": 0.51,
+      "advance_ratio": 0.67,
+      "advancing": 4,
+      "declining": 1,
+      "total_value": 49121657.6,
+      "tone": "إيجابي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "تجزئة وتوزيع السلع الاستهلاكية",
       "members": 1,
-      "avg_change_pct": 0.81,
+      "avg_change_pct": 0.39,
       "advance_ratio": 1.0,
       "advancing": 1,
       "declining": 0,
-      "total_value": 13862653.56,
+      "total_value": 3408489.6,
       "tone": "إيجابي",
       "icon": "🟢"
     },
     {
-      "sector": "الموارد البشرية",
+      "sector": "الصناديق العقارية المتداولة",
       "members": 2,
-      "avg_change_pct": 0.65,
-      "advance_ratio": 0.5,
-      "advancing": 1,
-      "declining": 0,
-      "total_value": 8872838.68,
-      "tone": "إيجابي",
-      "icon": "🟢"
-    },
-    {
-      "sector": "التجزئة",
-      "members": 6,
-      "avg_change_pct": 0.39,
-      "advance_ratio": 0.83,
-      "advancing": 5,
-      "declining": 1,
-      "total_value": 79997401.24,
-      "tone": "إيجابي",
-      "icon": "🟢"
-    },
-    {
-      "sector": "الطاقة",
-      "members": 4,
-      "avg_change_pct": -0.29,
-      "advance_ratio": 0.5,
+      "avg_change_pct": 0.32,
+      "advance_ratio": 1.0,
       "advancing": 2,
-      "declining": 2,
-      "total_value": 322635732.62,
+      "declining": 0,
+      "total_value": 5728307.72,
+      "tone": "إيجابي",
+      "icon": "🟢"
+    },
+    {
+      "sector": "الخدمات الاستهلاكية",
+      "members": 3,
+      "avg_change_pct": 0.09,
+      "advance_ratio": 0.67,
+      "advancing": 2,
+      "declining": 1,
+      "total_value": 28386343.44,
+      "tone": "محايد",
+      "icon": "🟡"
+    },
+    {
+      "sector": "غير محدد",
+      "members": 1,
+      "avg_change_pct": 0.0,
+      "advance_ratio": 0.0,
+      "advancing": 0,
+      "declining": 0,
+      "total_value": 5281329.66,
+      "tone": "محايد",
+      "icon": "🟡"
+    },
+    {
+      "sector": "الاتصالات",
+      "members": 1,
+      "avg_change_pct": -0.77,
+      "advance_ratio": 0.0,
+      "advancing": 0,
+      "declining": 1,
+      "total_value": 11022287.77,
       "tone": "سلبي",
       "icon": "🔴"
     },
     {
-      "sector": "التقنية",
+      "sector": "النقل",
       "members": 2,
-      "avg_change_pct": -0.31,
+      "avg_change_pct": -0.8,
       "advance_ratio": 0.5,
       "advancing": 1,
       "declining": 1,
-      "total_value": 51835249.44,
+      "total_value": 107059791.2,
       "tone": "سلبي",
       "icon": "🔴"
     },
     {
       "sector": "الإعلام والترفيه",
-      "members": 5,
-      "avg_change_pct": -0.54,
-      "advance_ratio": 0.2,
-      "advancing": 1,
-      "declining": 4,
-      "total_value": 43026882.79,
-      "tone": "سلبي",
-      "icon": "🔴"
-    },
-    {
-      "sector": "البتروكيماويات",
-      "members": 3,
-      "avg_change_pct": -0.61,
-      "advance_ratio": 0.33,
-      "advancing": 1,
-      "declining": 2,
-      "total_value": 209587884.91,
-      "tone": "سلبي",
-      "icon": "🔴"
-    },
-    {
-      "sector": "العقارات",
-      "members": 7,
-      "avg_change_pct": -0.64,
-      "advance_ratio": 0.29,
-      "advancing": 2,
-      "declining": 5,
-      "total_value": 47484377.57,
-      "tone": "سلبي",
-      "icon": "🔴"
-    },
-    {
-      "sector": "المواد الأساسية",
-      "members": 4,
-      "avg_change_pct": -0.7,
+      "members": 2,
+      "avg_change_pct": -1.19,
       "advance_ratio": 0.5,
-      "advancing": 2,
-      "declining": 2,
-      "total_value": 81374240.11,
+      "advancing": 1,
+      "declining": 1,
+      "total_value": 30116945.35,
       "tone": "سلبي",
       "icon": "🔴"
     },
     {
-      "sector": "النقل",
+      "sector": "التطبيقات وخدمات التقنية",
       "members": 2,
       "avg_change_pct": -2.42,
-      "advance_ratio": 0.0,
-      "advancing": 0,
-      "declining": 2,
-      "total_value": 110984974.58,
-      "tone": "سلبي قوي",
-      "icon": "🔴"
-    },
-    {
-      "sector": "التأمين",
-      "members": 5,
-      "avg_change_pct": -2.56,
-      "advance_ratio": 0.2,
+      "advance_ratio": 0.5,
       "advancing": 1,
-      "declining": 4,
-      "total_value": 223511845.61,
-      "tone": "سلبي قوي",
+      "declining": 1,
+      "total_value": 194961998.68,
+      "tone": "سلبي",
       "icon": "🔴"
     }
   ],
   "top_gainers": [
     {
-      "symbol": "1180",
-      "name": "البنك الأهلي السعودي",
-      "sector": "البنوك",
-      "change_pct": 2.89,
-      "value": 266065217.6,
-      "price": 39.2
+      "symbol": "4011",
+      "name": "شركة لازوردي للمجوهرات",
+      "sector": "الرعاية الصحية",
+      "change_pct": 9.97,
+      "value": 11573613.44,
+      "price": 11.36
     },
     {
-      "symbol": "2286",
-      "name": "شركة المطاحن الرابعة",
-      "sector": "متعدد",
-      "change_pct": 2.34,
-      "value": 13019131.12,
-      "price": 3.94
+      "symbol": "4005",
+      "name": "الشركة الوطنية للرعاية الطبية",
+      "sector": "الرعاية الصحية",
+      "change_pct": 8.05,
+      "value": 25358460.6,
+      "price": 122.1
     },
-    {
-      "symbol": "4002",
-      "name": "شركة المواساة للخدمات الطبية",
-      "sector": "الأغذية والمشروبات",
-      "change_pct": 1.97,
-      "value": 16632528.8,
-      "price": 62.2
-    },
-    {
-      "symbol": "7030",
-      "name": "شركة الإتصالات المتنقلة السعودية",
-      "sector": "الاتصالات",
-      "change_pct": 1.87,
-      "value": 53018289.0,
-      "price": 10.35
-    },
-    {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "sector": "الطاقة",
-      "change_pct": 1.62,
-      "value": 10032920.8,
-      "price": 37.6
-    }
-  ],
-  "top_losers": [
     {
       "symbol": "8010",
       "name": "الشركة التعاونية للتأمين",
       "sector": "التأمين",
-      "change_pct": -9.99,
-      "value": 153036308.2,
-      "price": 122.6
+      "change_pct": 6.04,
+      "value": 57037890.0,
+      "price": 130.0
     },
     {
-      "symbol": "4007",
-      "name": "شركة الحمادي القابضة",
-      "sector": "العقارات",
-      "change_pct": -3.78,
-      "value": 20410655.54,
-      "price": 25.94
+      "symbol": "4004",
+      "name": "شركة دله للخدمات الصحية",
+      "sector": "الرعاية الصحية",
+      "change_pct": 5.61,
+      "value": 16027841.5,
+      "price": 111.1
+    },
+    {
+      "symbol": "1211",
+      "name": "شركة التعدين العربية السعودية",
+      "sector": "المواد الأساسية",
+      "change_pct": 3.89,
+      "value": 105288044.4,
+      "price": 58.8
+    }
+  ],
+  "top_losers": [
+    {
+      "symbol": "7203",
+      "name": "شركة علم",
+      "sector": "التطبيقات وخدمات التقنية",
+      "change_pct": -7.67,
+      "value": 193300036.0,
+      "price": 626.0
+    },
+    {
+      "symbol": "6004",
+      "name": "شركة كاتريون للتموين القابضة",
+      "sector": "الإعلام والترفيه",
+      "change_pct": -3.8,
+      "value": 24410376.1,
+      "price": 67.1
     },
     {
       "symbol": "4030",
       "name": "الشركة الوطنية السعودية للنقل البحري",
       "sector": "النقل",
-      "change_pct": -3.6,
-      "value": 101402358.6,
-      "price": 31.1
+      "change_pct": -2.7,
+      "value": 100264815.44,
+      "price": 30.26
     },
     {
-      "symbol": "1303",
-      "name": "شركة الصناعات الكهربائية",
-      "sector": "المواد الأساسية",
-      "change_pct": -3.15,
-      "value": 43733914.4,
-      "price": 14.15
+      "symbol": "4260",
+      "name": "الشركة المتحدة الدولية للمواصلات",
+      "sector": "الخدمات الاستهلاكية",
+      "change_pct": -0.94,
+      "value": 17060754.6,
+      "price": 27.54
     },
     {
-      "symbol": "2084",
-      "name": "شركة مياهنا",
-      "sector": "الطاقة",
-      "change_pct": -2.8,
-      "value": 6719071.5,
-      "price": 12.15
+      "symbol": "7030",
+      "name": "شركة الإتصالات المتنقلة السعودية",
+      "sector": "الاتصالات",
+      "change_pct": -0.77,
+      "value": 11022287.77,
+      "price": 10.27
     }
   ],
   "top_value": [
@@ -274,49 +296,200 @@
       "symbol": "1120",
       "name": "مصرف الراجحي",
       "sector": "البنوك",
-      "change_pct": 0.56,
-      "value": 323290926.0,
-      "price": 62.55
+      "change_pct": 3.12,
+      "value": 385015270.5,
+      "price": 64.5
     },
     {
-      "symbol": "1180",
-      "name": "البنك الأهلي السعودي",
-      "sector": "البنوك",
-      "change_pct": 2.89,
-      "value": 266065217.6,
-      "price": 39.2
+      "symbol": "7203",
+      "name": "شركة علم",
+      "sector": "التطبيقات وخدمات التقنية",
+      "change_pct": -7.67,
+      "value": 193300036.0,
+      "price": 626.0
     },
     {
       "symbol": "2222",
       "name": "شركة الزيت العربية السعودية",
       "sector": "الطاقة",
-      "change_pct": 0.76,
-      "value": 255633391.92,
-      "price": 26.48
+      "change_pct": 0.38,
+      "value": 180069585.66,
+      "price": 26.58
     },
     {
-      "symbol": "8010",
-      "name": "الشركة التعاونية للتأمين",
-      "sector": "التأمين",
-      "change_pct": -9.99,
-      "value": 153036308.2,
-      "price": 122.6
+      "symbol": "1211",
+      "name": "شركة التعدين العربية السعودية",
+      "sector": "المواد الأساسية",
+      "change_pct": 3.89,
+      "value": 105288044.4,
+      "price": 58.8
     },
     {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "sector": "البتروكيماويات",
-      "change_pct": 0.47,
-      "value": 122456873.81,
-      "price": 14.87
+      "symbol": "4030",
+      "name": "الشركة الوطنية السعودية للنقل البحري",
+      "sector": "النقل",
+      "change_pct": -2.7,
+      "value": 100264815.44,
+      "price": 30.26
     }
   ],
   "signals": {
-    "count": 0,
-    "status": "NO_SIGNALS",
-    "message": "لا توجد إشارات تحقق شروط راصد اليوم",
-    "top": []
+    "count": 1,
+    "status": "HAS_SIGNALS",
+    "message": "",
+    "top": [
+      {
+        "stock_symbol": "1211",
+        "symbol": "1211",
+        "stock_name": "شركة التعدين العربية السعودية",
+        "name": "شركة التعدين العربية السعودية",
+        "sector": "المواد الأساسية",
+        "sector_name": "المواد الأساسية",
+        "current_price": 59.0,
+        "entry_point": 59.98,
+        "entry": 59.98,
+        "target1": 62.62,
+        "target2": 63.26,
+        "stop_loss": 58.16,
+        "target1_percent": 4.4,
+        "target2_percent": 5.47,
+        "stop_loss_percent": 3.03,
+        "tp1_pct": 4.4,
+        "tp2_pct": 5.47,
+        "sl_pct": -3.03,
+        "rr": 1.8,
+        "rr_ratio": 1.8,
+        "score": 94,
+        "technical_score": 87,
+        "sector_strength_bonus": 7,
+        "sector_strength_grade": "قوي جداً",
+        "sector_strength_raw": {
+          "available": true,
+          "bonus": 7,
+          "grade": "قوي جداً",
+          "avg_change_pct": 2.78,
+          "advance_ratio": 1.0,
+          "members": 9,
+          "total_value": 300258099.61
+        },
+        "backtest_bonus": 0,
+        "backtest_grade": "عينة صغيرة",
+        "backtest_win_rate": 0,
+        "backtest_trades": 2,
+        "backtest_raw": {
+          "available": false,
+          "bonus": 0,
+          "grade": "عينة صغيرة",
+          "win_rate": 0,
+          "trades": 2
+        },
+        "self_learning_bonus": 0,
+        "self_learning_available": false,
+        "self_learning_known_outcomes": 0,
+        "self_learning_notes": [],
+        "fundamental_bonus": 0,
+        "fundamental_grade": "محايد",
+        "fundamental_reading": "أساسيات غير متوفرة | لا توجد قوائم مالية كافية | لا يوجد محفز توزيعات واضح",
+        "fundamental_raw": {
+          "quality": {
+            "bonus": 0,
+            "grade": "غير متوفر",
+            "details": "أساسيات غير متوفرة",
+            "raw": {}
+          },
+          "growth": {
+            "bonus": 0,
+            "grade": "غير متوفر",
+            "details": "لا توجد قوائم مالية كافية",
+            "raw": {}
+          },
+          "dividend": {
+            "bonus": 0,
+            "grade": "محايد",
+            "details": "لا يوجد محفز توزيعات واضح",
+            "raw": {
+              "recent": false,
+              "yield": 0.0,
+              "amount": 0.0
+            }
+          }
+        },
+        "growth_bonus": 0,
+        "dividend_bonus": 0,
+        "rased_score": 79.2,
+        "tier": "Standard",
+        "tier_emoji": "✅",
+        "risk_level": "منخفض",
+        "risk_level_ar": "منخفض",
+        "risk_emoji": "🟢",
+        "confidence": "94%",
+        "rsi": 55.09,
+        "volume_ratio": 1.44,
+        "atr14": 1.4571,
+        "atr_pct": 2.47,
+        "support": 54.9,
+        "resistance": 59.8,
+        "trend": "صاعد",
+        "trend_values": {
+          "sma10": 57.43,
+          "sma20": 57.61
+        },
+        "setup_type": "دخول مشروط فوق المقاومة",
+        "breakout": false,
+        "entry_gap_pct": 1.66,
+        "value": 101411737.0,
+        "expected_holding_period": "1-7 أيام",
+        "holding_period": "1 - 7 أيام",
+        "max_holding_days": 7,
+        "expected_days_to_target1": 3,
+        "expected_days_to_target2": 3,
+        "seven_day_filter_passed": true,
+        "max_reasonable_7d_pct": 13.59,
+        "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 55.1 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+        "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
+        "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
+        "signal_id": "Signal #2026-2141455-1211",
+        "data_source": "sahmk_api_historical_starter_plus",
+        "provider": "sahmk",
+        "historical_bars": 71,
+        "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
+        "generated_at": "2026-08-02T14:55:57",
+        "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
+        "ai_available": true,
+        "ai_review": {
+          "decision": "APPROVE",
+          "confidence": 94,
+          "risk_level": "LOW",
+          "risk_score": 3,
+          "rased_score_adjustment": 0,
+          "expected_holding_days": 3,
+          "main_reasons": [
+            "Strong momentum with a score of 94",
+            "RSI is healthy at 55.09",
+            "Volume ratio indicates good liquidity",
+            "Targets are realistic within the expected holding period"
+          ],
+          "rejection_reason": "",
+          "arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
+          "telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي."
+        },
+        "ai_decision": "APPROVE",
+        "ai_confidence": 94,
+        "ai_risk_level": "LOW",
+        "ai_risk_score": 3,
+        "ai_expected_holding_days": 3,
+        "ai_reasons": [
+          "Strong momentum with a score of 94",
+          "RSI is healthy at 55.09",
+          "Volume ratio indicates good liquidity",
+          "Targets are realistic within the expected holding period"
+        ],
+        "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
+        "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي.",
+        "ai_reviewed_at": "2026-08-02T14:56:16"
+      }
+    ]
   },
   "disclaimer": "محتوى تحليلي وتعليمي آلي وليس توصية استثمارية أو ضماناً للأداء.",
-  "text": "📊 RASED DAILY MARKET BRIEF\nتقرير راصد اليومي للسوق السعودي\n━━━━━━━━━━━━━━\n⏰ 2026-07-30 | 05:54 PM KSA\n\n🇸🇦 ملخص السوق\n• المزاج العام: محايد\n• مستوى المخاطرة: متوسط\n• الأسهم المرتفعة: 22 | المنخفضة: 23 | المستقرة: 1\n• اتساع السوق: 47.8%\n• متوسط حركة العينة: -0.37%\n• السيولة المرصودة: 1.87 مليار ريال\n\n🏭 قيادة القطاعات\n• 🟢 متعدد: إيجابي قوي | متوسط +2.34% | سيولة 13.02 مليون ريال\n• 🟢 الأغذية والمشروبات: إيجابي قوي | متوسط +1.97% | سيولة 16.63 مليون ريال\n• 🟢 الاتصالات: إيجابي قوي | متوسط +1.87% | سيولة 53.02 مليون ريال\n• 🟢 البنوك: إيجابي قوي | متوسط +1.73% | سيولة 589.36 مليون ريال\n• 🟢 الصناعات: إيجابي | متوسط +0.81% | سيولة 13.86 مليون ريال\n• 🟢 الموارد البشرية: إيجابي | متوسط +0.65% | سيولة 8.87 مليون ريال\n\n💰 أعلى الأسهم من حيث السيولة\n• مصرف الراجحي (1120) — +0.56% | البنوك | سيولة 323.29 مليون ريال\n• البنك الأهلي السعودي (1180) — +2.89% | البنوك | سيولة 266.07 مليون ريال\n• شركة الزيت العربية السعودية (2222) — +0.76% | الطاقة | سيولة 255.63 مليون ريال\n• الشركة التعاونية للتأمين (8010) — -9.99% | التأمين | سيولة 153.04 مليون ريال\n• شركة رابغ للتكرير والبتروكيماويات (2380) — +0.47% | البتروكيماويات | سيولة 122.46 مليون ريال\n\n🔥 أقوى الأسهم حركة\n• البنك الأهلي السعودي (1180) — +2.89% | البنوك | سيولة 266.07 مليون ريال\n• شركة المطاحن الرابعة (2286) — +2.34% | متعدد | سيولة 13.02 مليون ريال\n• شركة المواساة للخدمات الطبية (4002) — +1.97% | الأغذية والمشروبات | سيولة 16.63 مليون ريال\n• شركة الإتصالات المتنقلة السعودية (7030) — +1.87% | الاتصالات | سيولة 53.02 مليون ريال\n• شركة مرافق الكهرباء والمياه بالجبيل وينبع (2083) — +1.62% | الطاقة | سيولة 10.03 مليون ريال\n\n⚠️ أضعف الأسهم حركة\n• الشركة التعاونية للتأمين (8010) — -9.99% | التأمين | سيولة 153.04 مليون ريال\n• شركة الحمادي القابضة (4007) — -3.78% | العقارات | سيولة 20.41 مليون ريال\n• الشركة الوطنية السعودية للنقل البحري (4030) — -3.60% | النقل | سيولة 101.40 مليون ريال\n• شركة الصناعات الكهربائية (1303) — -3.15% | المواد الأساسية | سيولة 43.73 مليون ريال\n• شركة مياهنا (2084) — -2.80% | الطاقة | سيولة 6.72 مليون ريال\n\n🎯 إشارات راصد\n• لا توجد إشارات راصد مستوفية للشروط الصارمة اليوم.\n\n🧠 قراءة راصد\n• الصورة العامة متوازنة، والأفضلية للانتظار حتى تتضح قيادة القطاعات.\n• عند غياب الإشارات، فهذا يعني أن الفلاتر لم تجد فرصة بجودة كافية، وليس عطلاً في النظام.\n\n📌 جلسة الغد — ما نراقبه\n• استمرار قيادة القطاعات الخضراء مع تحسن السيولة.\n• تحوّل الأسهم عالية السيولة من التجميع إلى الاختراق.\n• تجنب المطاردة إذا ارتفع الزخم دون دعم من حجم التداول.\n\n⚠️ محتوى تحليلي وتعليمي آلي وليس توصية استثمارية أو ضماناً للأداء.\n#راصد #تاسي #السوق_السعودي"
+  "text": "📊 RASED DAILY MARKET BRIEF\nتقرير راصد اليومي للسوق السعودي\n━━━━━━━━━━━━━━\n⏰ 2026-08-02 | 05:14 PM KSA\n\n🇸🇦 ملخص السوق\n• المزاج العام: إيجابي انتقائي\n• مستوى المخاطرة: متوسط\n• الأسهم المرتفعة: 38 | المنخفضة: 6 | المستقرة: 3\n• اتساع السوق: 80.9%\n• متوسط حركة العينة: +1.38%\n• السيولة المرصودة: 1.63 مليار ريال\n\n🏭 قيادة القطاعات\n• 🟢 الرعاية الصحية: إيجابي قوي | متوسط +5.30% | سيولة 72.66 مليون ريال\n• 🟢 المرافق العامة: إيجابي قوي | متوسط +2.93% | سيولة 45.91 مليون ريال\n• 🟢 المواد الأساسية: إيجابي قوي | متوسط +2.60% | سيولة 322.62 مليون ريال\n• 🟢 التأمين: إيجابي قوي | متوسط +2.43% | سيولة 68.20 مليون ريال\n• 🟢 البنوك: إيجابي | متوسط +1.56% | سيولة 464.26 مليون ريال\n• 🟢 السلع الرأسمالية: إيجابي قوي | متوسط +1.56% | سيولة 12.99 مليون ريال\n\n💰 أعلى الأسهم من حيث السيولة\n• مصرف الراجحي (1120) — +3.12% | البنوك | سيولة 385.02 مليون ريال\n• شركة علم (7203) — -7.67% | التطبيقات وخدمات التقنية | سيولة 193.30 مليون ريال\n• شركة الزيت العربية السعودية (2222) — +0.38% | الطاقة | سيولة 180.07 مليون ريال\n• شركة التعدين العربية السعودية (1211) — +3.89% | المواد الأساسية | سيولة 105.29 مليون ريال\n• الشركة الوطنية السعودية للنقل البحري (4030) — -2.70% | النقل | سيولة 100.26 مليون ريال\n\n🔥 أقوى الأسهم حركة\n• شركة لازوردي للمجوهرات (4011) — +9.97% | الرعاية الصحية | سيولة 11.57 مليون ريال\n• الشركة الوطنية للرعاية الطبية (4005) — +8.05% | الرعاية الصحية | سيولة 25.36 مليون ريال\n• الشركة التعاونية للتأمين (8010) — +6.04% | التأمين | سيولة 57.04 مليون ريال\n• شركة دله للخدمات الصحية (4004) — +5.61% | الرعاية الصحية | سيولة 16.03 مليون ريال\n• شركة التعدين العربية السعودية (1211) — +3.89% | المواد الأساسية | سيولة 105.29 مليون ريال\n\n⚠️ أضعف الأسهم حركة\n• شركة علم (7203) — -7.67% | التطبيقات وخدمات التقنية | سيولة 193.30 مليون ريال\n• شركة كاتريون للتموين القابضة (6004) — -3.80% | الإعلام والترفيه | سيولة 24.41 مليون ريال\n• الشركة الوطنية السعودية للنقل البحري (4030) — -2.70% | النقل | سيولة 100.26 مليون ريال\n• الشركة المتحدة الدولية للمواصلات (4260) — -0.94% | الخدمات الاستهلاكية | سيولة 17.06 مليون ريال\n• شركة الإتصالات المتنقلة السعودية (7030) — -0.77% | الاتصالات | سيولة 11.02 مليون ريال\n\n🎯 إشارات راصد\n• تم توليد 1 إشارة مستوفية لشروط راصد.\n\n🧠 قراءة راصد\n• السيولة تميل للأسهم الصاعدة مع أفضلية للقطاعات الأقوى.\n• عند غياب الإشارات، فهذا يعني أن الفلاتر لم تجد فرصة بجودة كافية، وليس عطلاً في النظام.\n\n📌 جلسة الغد — ما نراقبه\n• استمرار قيادة القطاعات الخضراء مع تحسن السيولة.\n• تحوّل الأسهم عالية السيولة من التجميع إلى الاختراق.\n• تجنب المطاردة إذا ارتفع الزخم دون دعم من حجم التداول.\n\n⚠️ محتوى تحليلي وتعليمي آلي وليس توصية استثمارية أو ضماناً للأداء.\n#راصد #تاسي #السوق_السعودي"
 }
