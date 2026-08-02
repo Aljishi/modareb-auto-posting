@@ -41,7 +41,6 @@ def load_existing_ids():
         for row in csv.DictReader(f):
             if row.get("signal_id"):
                 ids.add(row["signal_id"])
-
     return ids
 
 
@@ -64,7 +63,6 @@ def extract_signals(path):
         return []
 
     data = json.loads(path.read_text(encoding="utf-8"))
-
     if isinstance(data, list):
         return data
 
@@ -100,19 +98,22 @@ def build_row(signal, signal_type, source_file):
         "target1": fnum(signal.get("target1") or signal.get("tp1")),
         "target2": fnum(signal.get("target2") or signal.get("tp2")),
         "stop_loss": fnum(signal.get("stop_loss") or signal.get("sl")),
-
         "target1_percent": fnum(signal.get("target1_percent") or signal.get("tp1_pct")),
         "target2_percent": fnum(signal.get("target2_percent") or signal.get("tp2_pct")),
         "stop_loss_percent": fnum(signal.get("stop_loss_percent") or signal.get("sl_pct")),
-
         "rased_score": fnum(signal.get("rased_score") or signal.get("score")),
-        "confidence": signal.get("ai_confidence") or signal.get("confidence") or "",
+        "confidence": (
+            signal.get("calibrated_confidence")
+            or signal.get("historical_confidence")
+            or signal.get("ai_confidence")
+            or signal.get("confidence")
+            or ""
+        ),
         "risk_level": signal.get("risk_level_ar") or signal.get("risk_level") or "",
         "tier": signal.get("tier") or "",
 
         "expected_holding_period": signal.get("expected_holding_period") or signal.get("holding_period") or "1-7 أيام",
         "max_holding_days": int(fnum(signal.get("max_holding_days"), 7)),
-
         "status": "OPEN",
         "result": "",
         "closed_at": "",
