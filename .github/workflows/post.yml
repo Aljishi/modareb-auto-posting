@@ -912,4 +912,4 @@ jobs:
 
           git pull --rebase || true
           git push || true
-        continue-on-error: true
+        continue-on-error: true 
