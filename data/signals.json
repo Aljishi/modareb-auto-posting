@@ -7,7 +7,7 @@
       "name": "شركة التعدين العربية السعودية",
       "sector": "المواد الأساسية",
       "sector_name": "المواد الأساسية",
-      "current_price": 58.75,
+      "current_price": 58.65,
       "entry_point": 59.98,
       "entry": 59.98,
       "target1": 62.62,
@@ -29,10 +29,10 @@
         "available": true,
         "bonus": 7,
         "grade": "قوي جداً",
-        "avg_change_pct": 2.58,
+        "avg_change_pct": 2.55,
         "advance_ratio": 1.0,
         "members": 9,
-        "total_value": 222604362.08
+        "total_value": 227747466.02
       },
       "backtest_bonus": 0,
       "backtest_grade": "عينة صغيرة",
@@ -85,21 +85,21 @@
       "risk_level_ar": "منخفض",
       "risk_emoji": "🟢",
       "confidence": "94%",
-      "rsi": 54.03,
-      "volume_ratio": 1.34,
+      "rsi": 53.59,
+      "volume_ratio": 1.35,
       "atr14": 1.4571,
       "atr_pct": 2.48,
       "support": 54.9,
       "resistance": 59.8,
       "trend": "صاعد",
       "trend_values": {
-        "sma10": 57.405,
-        "sma20": 57.597
+        "sma10": 57.395,
+        "sma20": 57.593
       },
       "setup_type": "دخول مشروط فوق المقاومة",
       "breakout": false,
-      "entry_gap_pct": 2.09,
-      "value": 93921627.5,
+      "entry_gap_pct": 2.27,
+      "value": 94946080.35,
       "expected_holding_period": "1-7 أيام",
       "holding_period": "1 - 7 أيام",
       "max_holding_days": 7,
@@ -107,47 +107,53 @@
       "expected_days_to_target2": 3,
       "seven_day_filter_passed": true,
       "max_reasonable_7d_pct": 13.64,
-      "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 54.0 — سيولة مقبولة 1.3x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.8% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
+      "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 53.6 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +3.6% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141320-1211",
+      "signal_id": "Signal #2026-2141325-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T13:20:49",
+      "generated_at": "2026-08-02T13:25:47",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
-        "decision": "REJECT",
+        "decision": "APPROVE",
         "confidence": 94,
         "risk_level": "LOW",
         "risk_score": 3,
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "TP2 looks unrealistic within 7 days.",
-          "Setup is not clear."
+          "Strong momentum setup with a high score of 94",
+          "Risk-to-reward ratio is favorable at 1.8",
+          "RSI is healthy at 53.59",
+          "Volume ratio indicates good liquidity at 1.35",
+          "Targets are realistic within the expected holding period"
         ],
-        "rejection_reason": "Target 2 is unrealistic within the expected holding period.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن الإطار الزمني المتوقع.",
-        "telegram_note": "الإشارة غير واضحة، لذا تم رفضها."
+        "rejection_reason": "",
+        "arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستوى مخاطرة منخفض.",
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم إيجابي."
       },
-      "ai_decision": "REJECT",
+      "ai_decision": "APPROVE",
       "ai_confidence": 94,
       "ai_risk_level": "LOW",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "TP2 looks unrealistic within 7 days.",
-        "Setup is not clear."
+        "Strong momentum setup with a high score of 94",
+        "Risk-to-reward ratio is favorable at 1.8",
+        "RSI is healthy at 53.59",
+        "Volume ratio indicates good liquidity at 1.35",
+        "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن الإطار الزمني المتوقع.",
-      "ai_telegram_note": "الإشارة غير واضحة، لذا تم رفضها.",
-      "ai_reviewed_at": "2026-08-02T13:21:07"
+      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي ومستوى مخاطرة منخفض.",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف منطقية وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-02T13:26:05"
     }
   ],
-  "generated_at": "2026-08-02T13:21:04",
+  "generated_at": "2026-08-02T13:26:01",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -157,26 +163,26 @@
     "البنوك": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 1.31,
+      "avg_change_pct": 1.32,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 263943896.84
+      "total_value": 274377761.54
     },
     "المواد الأساسية": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 2.58,
+      "avg_change_pct": 2.55,
       "advance_ratio": 1.0,
       "members": 9,
-      "total_value": 222604362.08
+      "total_value": 227747466.02
     },
     "الطاقة": {
-      "bonus": 5,
-      "grade": "قوي",
-      "avg_change_pct": 1.15,
+      "bonus": 7,
+      "grade": "قوي جداً",
+      "avg_change_pct": 1.24,
       "advance_ratio": 1.0,
       "members": 3,
-      "total_value": 122765605.84
+      "total_value": 124445056.12
     },
     "السلع الرأسمالية": {
       "bonus": 7,
@@ -184,7 +190,7 @@
       "avg_change_pct": 2.05,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 9165181.1
+      "total_value": 9461652.2
     },
     "غير محدد": {
       "bonus": 0,
@@ -192,103 +198,103 @@
       "avg_change_pct": -0.25,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 4184506.8
+      "total_value": 4262513.37
     },
     "النقل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.83,
+      "avg_change_pct": -0.82,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 75307708.12
+      "total_value": 79979514.88
     },
     "تجزئة وتوزيع السلع الاستهلاكية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.19,
+      "avg_change_pct": 0.39,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 1904619.35
+      "total_value": 1941919.56
     },
     "الرعاية الصحية": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 4.88,
+      "avg_change_pct": 4.85,
       "advance_ratio": 1.0,
       "members": 5,
-      "total_value": 56386287.38
+      "total_value": 57798025.97
     },
     "تجزئة السلع الكمالية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.64,
+      "avg_change_pct": 0.58,
       "advance_ratio": 0.5,
       "members": 6,
-      "total_value": 33265939.06
+      "total_value": 33814773.23
     },
     "الخدمات الاستهلاكية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.34,
+      "avg_change_pct": 0.42,
       "advance_ratio": 0.67,
       "members": 3,
-      "total_value": 18956538.58
+      "total_value": 19682117.44
     },
     "الصناديق العقارية المتداولة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.44,
+      "avg_change_pct": 0.47,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 4518712.19
+      "total_value": 4788850.64
     },
     "الإعلام والترفيه": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.11,
+      "avg_change_pct": -0.04,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 22793312.05
+      "total_value": 23063372.37
     },
     "الاتصالات": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.77,
+      "avg_change_pct": -0.87,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 8185569.99
+      "total_value": 8229115.08
     },
     "التطبيقات وخدمات التقنية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -3.27,
+      "avg_change_pct": -3.18,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 133912380.58
+      "total_value": 137469277.1
     },
     "التأمين": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 2.73,
+      "avg_change_pct": 3.09,
       "advance_ratio": 1.0,
       "members": 3,
-      "total_value": 47595158.35
+      "total_value": 53615957.75
     },
     "الخدمات التجارية والمهنية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.46,
+      "avg_change_pct": 0.43,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 5451677.01
+      "total_value": 5505347.07
     },
     "المرافق العامة": {
       "bonus": 7,
       "grade": "قوي جداً",
-      "avg_change_pct": 2.45,
+      "avg_change_pct": 2.29,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 27809994.6
+      "total_value": 28372798.8
     }
   },
   "filters": {
@@ -314,5 +320,5 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-02T13:21:07"
+  "ai_reviewed_at": "2026-08-02T13:26:05"
 }
