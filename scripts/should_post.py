@@ -4,12 +4,12 @@
 """
 راصد — بوابة التحقق النهائية قبل النشر.
 
-الهدف:
-1. توحيد شروط النشر مع شروط generate_signal.py.
-2. منع رفض إشارة اجتازت المحرك بسبب حدود مختلفة.
-3. إبقاء رفض OpenAI الصريح بوابة نهائية.
-4. تسجيل أسباب رفض كل إشارة في validated_signals.json.
-5. عدم اعتبار عدم وجود إشارة خطأ تقنيًا.
+الأهداف:
+1. توحيد شروط النشر مع شروط محرك generate_signal.py.
+2. منع رفض الإشارات الجيدة بسبب فروقات طفيفة في الحدود.
+3. إضافة قبول حدودي آمن لإشارات RASED SCORE بين 78 و80.
+4. الإبقاء على موافقة OpenAI والضوابط الفنية وإدارة المخاطر.
+5. حفظ أسباب الرفض كاملة داخل validated_signals.json.
 """
 
 import json
@@ -32,11 +32,15 @@ VALIDATED_FILE = DATA_DIR / "validated_signals.json"
 
 
 # =========================================================
-# حدود موحدة مع generate_signal.py
+# الحدود الأساسية
 # =========================================================
 
 MIN_RASED_SCORE = float(
     os.getenv("MIN_SIGNAL_SCORE", "80")
+)
+
+BORDERLINE_MIN_RASED_SCORE = float(
+    os.getenv("BORDERLINE_MIN_RASED_SCORE", "78")
 )
 
 MIN_SCORE = float(
@@ -157,7 +161,9 @@ def write_json(
     )
 
 
-def get_signals(payload: Any) -> List[Dict[str, Any]]:
+def get_signals(
+    payload: Any,
+) -> List[Dict[str, Any]]:
     if isinstance(payload, list):
         return [
             item
@@ -190,17 +196,30 @@ def ai_was_reviewed(
     return bool(
         signal.get("ai_reviewed")
         or signal.get("ai_available")
+        or signal.get("ai_review")
     )
 
 
 def ai_decision(
     signal: Dict[str, Any],
 ) -> str:
-    return str(
+    direct = (
         signal.get("ai_decision")
         or signal.get("ai_verdict")
         or ""
-    ).strip().upper()
+    )
+
+    if direct:
+        return str(direct).strip().upper()
+
+    review = signal.get("ai_review")
+
+    if isinstance(review, dict):
+        return str(
+            review.get("decision", "")
+        ).strip().upper()
+
+    return ""
 
 
 def ai_rejected(
@@ -238,12 +257,26 @@ def ai_approved(
 def ai_reason(
     signal: Dict[str, Any],
 ) -> str:
-    return str(
+    direct = (
         signal.get("ai_reason")
         or signal.get("ai_review_reason")
         or signal.get("ai_notes")
         or ""
-    ).strip()
+    )
+
+    if direct:
+        return str(direct).strip()
+
+    review = signal.get("ai_review")
+
+    if isinstance(review, dict):
+        return str(
+            review.get("rejection_reason")
+            or review.get("arabic_summary")
+            or ""
+        ).strip()
+
+    return ""
 
 
 # =========================================================
@@ -259,7 +292,7 @@ def validate_signal(
         signal.get("stock_symbol")
         or signal.get("symbol")
         or "UNKNOWN"
-    )
+    ).strip()
 
     tier = str(
         signal.get("tier")
@@ -273,6 +306,7 @@ def validate_signal(
 
     score = fnum(
         signal.get("score")
+        or signal.get("technical_score")
     )
 
     rr = fnum(
@@ -309,9 +343,8 @@ def validate_signal(
     expected_days = int(
         fnum(
             signal.get("expected_days_to_target2")
-            or signal.get(
-                "ai_expected_holding_days"
-            ),
+            or signal.get("ai_expected_holding_days")
+            or signal.get("max_holding_days"),
             99,
         )
     )
@@ -320,6 +353,11 @@ def validate_signal(
         "seven_day_filter_passed",
         True,
     )
+
+    trend = str(
+        signal.get("trend")
+        or ""
+    ).strip()
 
     # -----------------------------------------------------
     # رفض OpenAI الصريح
@@ -362,14 +400,48 @@ def validate_signal(
         )
 
     # -----------------------------------------------------
-    # الحدود الموحدة مع محرك التوليد
+    # القبول الحدودي لـ RASED SCORE
     # -----------------------------------------------------
 
-    if rased_score < MIN_RASED_SCORE:
+    borderline_rased_pass = (
+        BORDERLINE_MIN_RASED_SCORE
+        <= rased_score
+        < MIN_RASED_SCORE
+        and score >= 90
+        and ai_approved(signal)
+        and rr >= MIN_RR
+        and volume_ratio >= 1.0
+        and MIN_RSI <= rsi <= MAX_RSI
+        and tp1_pct >= MIN_TP1_PCT_NORMAL
+        and expected_days <= MAX_HOLD_DAYS
+        and seven_day_filter is not False
+        and trend not in {
+            "هابط",
+            "هابط بوضوح",
+            "سلبي",
+        }
+    )
+
+    if (
+        rased_score < MIN_RASED_SCORE
+        and not borderline_rased_pass
+    ):
         reasons.append(
             f"RASED SCORE {rased_score} "
             f"أقل من {MIN_RASED_SCORE}"
         )
+
+    elif borderline_rased_pass:
+        print(
+            f"🟡 {symbol}: قبول حدودي — "
+            f"RASED SCORE {rased_score} "
+            f"مع Score {score} "
+            "وموافقة OpenAI واكتمال شروط المخاطر"
+        )
+
+    # -----------------------------------------------------
+    # الحدود الأساسية
+    # -----------------------------------------------------
 
     if score < MIN_SCORE:
         reasons.append(
@@ -484,6 +556,43 @@ def validate_signal(
 
 
 # =========================================================
+# إعداد الحدود المسجلة
+# =========================================================
+
+def applied_limits() -> Dict[str, Any]:
+    return {
+        "MIN_RASED_SCORE": MIN_RASED_SCORE,
+        "BORDERLINE_MIN_RASED_SCORE": (
+            BORDERLINE_MIN_RASED_SCORE
+        ),
+        "MIN_SCORE": MIN_SCORE,
+        "MIN_RR": MIN_RR,
+        "MIN_VOLUME_RATIO": MIN_VOLUME_RATIO,
+        "MIN_RSI": MIN_RSI,
+        "MAX_RSI": MAX_RSI,
+        "MIN_BACKTEST_WIN_RATE": (
+            MIN_BACKTEST_WIN_RATE
+        ),
+        "MIN_BACKTEST_TRADES": (
+            MIN_BACKTEST_TRADES
+        ),
+        "MIN_TP1_PCT_NORMAL": (
+            MIN_TP1_PCT_NORMAL
+        ),
+        "MIN_TP1_PCT_GOLDEN": (
+            MIN_TP1_PCT_GOLDEN
+        ),
+        "MIN_TP1_PCT_PLATINUM": (
+            MIN_TP1_PCT_PLATINUM
+        ),
+        "MIN_TP2_PCT_PLATINUM": (
+            MIN_TP2_PCT_PLATINUM
+        ),
+        "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
+    }
+
+
+# =========================================================
 # التشغيل الرئيسي
 # =========================================================
 
@@ -509,6 +618,7 @@ def main() -> int:
     if not signals:
         output = {
             "signals": [],
+            "validated_signals": [],
             "rejected": [],
             "total": 0,
             "total_generated": 0,
@@ -516,31 +626,14 @@ def main() -> int:
             "total_rejected": 0,
             "status": "NO_SIGNALS",
             "source": "should_post.py",
-            "source_generated_at": source_generated_at,
+            "source_generated_at": (
+                source_generated_at
+            ),
             "generated_at": now_iso(),
             "message": (
                 "لا توجد إشارات مولدة للتحقق منها"
             ),
-            "applied_limits": {
-                "MIN_RASED_SCORE": MIN_RASED_SCORE,
-                "MIN_SCORE": MIN_SCORE,
-                "MIN_RR": MIN_RR,
-                "MIN_VOLUME_RATIO": (
-                    MIN_VOLUME_RATIO
-                ),
-                "MIN_RSI": MIN_RSI,
-                "MAX_RSI": MAX_RSI,
-                "MIN_BACKTEST_WIN_RATE": (
-                    MIN_BACKTEST_WIN_RATE
-                ),
-                "MIN_BACKTEST_TRADES": (
-                    MIN_BACKTEST_TRADES
-                ),
-                "MIN_TP1_PCT_NORMAL": (
-                    MIN_TP1_PCT_NORMAL
-                ),
-                "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
-            },
+            "applied_limits": applied_limits(),
         }
 
         write_json(
@@ -552,7 +645,6 @@ def main() -> int:
             "ℹ️ لا توجد إشارات مولدة للتحقق منها"
         )
 
-        # عدم وجود إشارة ليس خطأ تقنيًا.
         return 0
 
     approved: List[Dict[str, Any]] = []
@@ -580,12 +672,21 @@ def main() -> int:
                 else "python_gate"
             )
 
+            item["borderline_approval"] = (
+                BORDERLINE_MIN_RASED_SCORE
+                <= fnum(item.get("rased_score"))
+                < MIN_RASED_SCORE
+            )
+
             approved.append(item)
 
     approved.sort(
         key=lambda item: (
             fnum(item.get("rased_score")),
-            fnum(item.get("score")),
+            fnum(
+                item.get("score")
+                or item.get("technical_score")
+            ),
             fnum(
                 item.get("rr")
                 or item.get("rr_ratio")
@@ -597,7 +698,10 @@ def main() -> int:
     rejected.sort(
         key=lambda item: (
             fnum(item.get("rased_score")),
-            fnum(item.get("score")),
+            fnum(
+                item.get("score")
+                or item.get("technical_score")
+            ),
         ),
         reverse=True,
     )
@@ -616,35 +720,11 @@ def main() -> int:
             else "NO_VALID_SIGNALS"
         ),
         "source": "should_post.py",
-        "source_generated_at": source_generated_at,
+        "source_generated_at": (
+            source_generated_at
+        ),
         "generated_at": now_iso(),
-        "applied_limits": {
-            "MIN_RASED_SCORE": MIN_RASED_SCORE,
-            "MIN_SCORE": MIN_SCORE,
-            "MIN_RR": MIN_RR,
-            "MIN_VOLUME_RATIO": MIN_VOLUME_RATIO,
-            "MIN_RSI": MIN_RSI,
-            "MAX_RSI": MAX_RSI,
-            "MIN_BACKTEST_WIN_RATE": (
-                MIN_BACKTEST_WIN_RATE
-            ),
-            "MIN_BACKTEST_TRADES": (
-                MIN_BACKTEST_TRADES
-            ),
-            "MIN_TP1_PCT_NORMAL": (
-                MIN_TP1_PCT_NORMAL
-            ),
-            "MIN_TP1_PCT_GOLDEN": (
-                MIN_TP1_PCT_GOLDEN
-            ),
-            "MIN_TP1_PCT_PLATINUM": (
-                MIN_TP1_PCT_PLATINUM
-            ),
-            "MIN_TP2_PCT_PLATINUM": (
-                MIN_TP2_PCT_PLATINUM
-            ),
-            "MAX_HOLD_DAYS": MAX_HOLD_DAYS,
-        },
+        "applied_limits": applied_limits(),
     }
 
     write_json(
@@ -664,8 +744,6 @@ def main() -> int:
             "بوابة النشر النهائية"
         )
 
-        # يبقى الكود 1 متوافقًا مع continue-on-error
-        # الموجود في Workflow، مع حفظ أسباب الرفض.
         return 1
 
     print(
