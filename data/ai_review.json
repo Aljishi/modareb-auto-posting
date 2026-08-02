@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-02T13:16:11",
+  "reviewed_at": "2026-08-02T13:21:07",
   "approved": 0,
   "total": 1,
   "signals": [
@@ -9,13 +9,13 @@
       "stock_symbol": "1211",
       "decision": "REJECT",
       "confidence": 94,
-      "risk_level": "MEDIUM",
+      "risk_level": "LOW",
       "expected_holding_days": 3,
       "rased_score": 79.2,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "Setup is not clear"
+        "TP2 looks unrealistic within 7 days.",
+        "Setup is not clear."
       ]
     }
   ]
