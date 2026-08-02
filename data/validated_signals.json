@@ -111,12 +111,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — زخم صحي RSI 54.9 — سيولة مقبولة 1.3x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2141243-1211",
+      "signal_id": "Signal #2026-2141245-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-02T12:43:06",
+      "generated_at": "2026-08-02T12:45:54",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -128,7 +128,7 @@
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum setup with a high score of 94",
-          "Risk-to-reward ratio is favorable at 1.8",
+          "Risk-to-reward ratio of 1.8 is favorable",
           "RSI is healthy and not overheated",
           "Volume ratio indicates acceptable liquidity",
           "Targets are realistic within the expected holding period"
@@ -144,14 +144,14 @@
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum setup with a high score of 94",
-        "Risk-to-reward ratio is favorable at 1.8",
+        "Risk-to-reward ratio of 1.8 is favorable",
         "RSI is healthy and not overheated",
         "Volume ratio indicates acceptable liquidity",
         "Targets are realistic within the expected holding period"
       ],
       "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف قريبة وموثوقة.",
-      "ai_reviewed_at": "2026-08-02T12:43:27",
+      "ai_reviewed_at": "2026-08-02T12:46:18",
       "post_rejected_reasons": [
         "RASED 79.2 < 84.0",
         "R:R 1.8 < 2.0"
