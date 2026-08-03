@@ -1,0 +1,1 @@
+signal_id,signal_type,symbol,name,published_at,entry,target1,target2,stop_loss,target1_percent,target2_percent,stop_loss_percent,rased_score,confidence,risk_level,tier,expected_holding_period,max_holding_days,status,result,closed_at,days_to_tp1,days_to_tp2,highest_price,lowest_price,source_file
