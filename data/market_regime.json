@@ -4,16 +4,16 @@
   "grade": "شهية مخاطرة مرتفعة",
   "dynamic_min_rased_score": 77.0,
   "sample_size": 47,
-  "average_change_pct": 1.379,
-  "median_change_pct": 1.23,
+  "average_change_pct": 1.376,
+  "median_change_pct": 1.35,
   "advance_ratio": 0.8298,
-  "decline_ratio": 0.1277,
-  "unchanged_ratio": 0.0426,
+  "decline_ratio": 0.1489,
+  "unchanged_ratio": 0.0213,
   "advancing_stocks": 39,
-  "declining_stocks": 6,
-  "unchanged_stocks": 2,
-  "dispersion": 1.711,
-  "reason": "متوسط تغير السوق 1.379% ونسبة الأسهم الصاعدة 83.0%",
+  "declining_stocks": 7,
+  "unchanged_stocks": 1,
+  "dispersion": 1.74,
+  "reason": "متوسط تغير السوق 1.376% ونسبة الأسهم الصاعدة 83.0%",
   "rules": {
     "strong_min_average_change": 0.8,
     "strong_min_advance_ratio": 0.65,
@@ -21,6 +21,6 @@
     "weak_max_advance_ratio": 0.35,
     "high_dispersion_threshold": 3.0
   },
-  "daily_generated_at": "2026-08-03T13:46:01",
-  "generated_at": "2026-08-03T13:46:31"
+  "daily_generated_at": "2026-08-03T13:51:02",
+  "generated_at": "2026-08-03T13:51:33"
 }
