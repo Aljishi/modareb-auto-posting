@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T14:58:42",
+  "generated_at": "2026-08-03T16:35:18",
   "top_sectors": [
     {
       "sector": "الطاقة",
@@ -14,14 +14,14 @@
     },
     {
       "sector": "الرعاية الصحية",
-      "rotation_score": 65.7,
+      "rotation_score": 65.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.62,
       "advancing_ratio": 0.8,
       "total_value": 76887813.5,
       "stocks_count": 5,
       "signals_count": 1,
-      "avg_signal_score": 78.4
+      "avg_signal_score": 76.6
     },
     {
       "sector": "المواد الأساسية",
@@ -126,14 +126,14 @@
     },
     {
       "sector": "الرعاية الصحية",
-      "rotation_score": 65.7,
+      "rotation_score": 65.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.62,
       "advancing_ratio": 0.8,
       "total_value": 76887813.5,
       "stocks_count": 5,
       "signals_count": 1,
-      "avg_signal_score": 78.4
+      "avg_signal_score": 76.6
     },
     {
       "sector": "المواد الأساسية",

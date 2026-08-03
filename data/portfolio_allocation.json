@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-02T14:56:17",
-  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/validated_signals.json",
+  "generated_at": "2026-08-03T16:35:18",
+  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/signals.json",
   "capital_sar": 500000.0,
   "max_position_pct": 35.0,
   "min_cash_pct": 10.0,
   "positions": [
     {
-      "symbol": "1211",
-      "name": "شركة التعدين العربية السعودية",
-      "sector": "المواد الأساسية",
+      "symbol": "4002",
+      "name": "شركة المواساة للخدمات الطبية",
+      "sector": "الرعاية الصحية",
       "tier": "Standard",
-      "rased_score": 79.2,
-      "entry": 59.98,
-      "target1": 62.62,
-      "target2": 63.26,
-      "stop_loss": 58.16,
+      "rased_score": 76.6,
+      "entry": 63.75,
+      "target1": 65.94,
+      "target2": 66.32,
+      "stop_loss": 62.24,
       "weight_pct": 35.0,
       "amount_sar": 175000.0,
-      "position_risk_pct": 3.03,
-      "portfolio_risk_pct": 1.06
+      "position_risk_pct": 2.37,
+      "portfolio_risk_pct": 0.83
     }
   ],
   "cash": {
@@ -26,8 +26,8 @@
     "amount_sar": 325000.0
   },
   "sector_exposure": {
-    "المواد الأساسية": 35.0
+    "الرعاية الصحية": 35.0
   },
-  "total_portfolio_risk_pct": 1.06,
+  "total_portfolio_risk_pct": 0.83,
   "note": "توزيع آلي مبني على جودة الإشارة وليس توصية شخصية. التزم بوقف الخسارة."
 }
