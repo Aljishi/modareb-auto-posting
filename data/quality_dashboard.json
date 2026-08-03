@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T11:11:19",
-  "data_timestamp": "2026-08-03T11:10:58",
+  "generated_at": "2026-08-03T11:16:30",
+  "data_timestamp": "2026-08-03T11:16:04",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.73,
-    "advance_ratio": 0.7872,
-    "dispersion": 1.049,
+    "average_change_pct": 0.699,
+    "advance_ratio": 0.766,
+    "dispersion": 1.047,
     "dynamic_min_score": 80,
-    "advancing": 37,
-    "declining": 6,
+    "advancing": 36,
+    "declining": 7,
     "unchanged": 4
   },
   "screening": {
@@ -32,21 +32,21 @@
     "dominant_rejection_count": 29,
     "categories": {
       "الاتجاه الفني غير مناسب": 29,
-      "ضعف السيولة أو الحجم": 11,
+      "ضعف السيولة أو الحجم": 12,
       "العائد مقابل المخاطرة غير مناسب": 3,
       "أسباب فنية أخرى": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "النقل",
-    "best_sector_avg_change_pct": 1.91,
-    "best_sector_members": 2,
+    "best_sector": "المرافق العامة",
+    "best_sector_avg_change_pct": 2.12,
+    "best_sector_members": 1,
     "best_stock": {
       "symbol": "4007",
       "name": "شركة الحمادي القابضة",
-      "change_pct": 3.25,
-      "value": 1986253.92
+      "change_pct": 3.17,
+      "value": 2017008.5
     }
   },
   "portfolio_exposure": {
