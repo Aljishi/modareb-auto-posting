@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T11:26:15",
-  "data_timestamp": "2026-08-03T11:25:50",
+  "generated_at": "2026-08-03T11:31:27",
+  "data_timestamp": "2026-08-03T11:31:02",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.69,
-    "advance_ratio": 0.7872,
-    "dispersion": 1.117,
+    "average_change_pct": 0.751,
+    "advance_ratio": 0.7234,
+    "dispersion": 1.202,
     "dynamic_min_score": 80,
-    "advancing": 37,
-    "declining": 8,
-    "unchanged": 2
+    "advancing": 34,
+    "declining": 10,
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -34,19 +34,19 @@
       "الاتجاه الفني غير مناسب": 30,
       "ضعف السيولة أو الحجم": 11,
       "العائد مقابل المخاطرة غير مناسب": 3,
-      "أسباب فنية أخرى": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "بعيد عن الاختراق أو قريب من مقاومة": 2,
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.07,
+    "best_sector_avg_change_pct": 2.23,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4007",
-      "name": "شركة الحمادي القابضة",
-      "change_pct": 3.4,
-      "value": 2134186.0
+      "symbol": "8060",
+      "name": "شركة ولاء للتأمين التعاوني",
+      "change_pct": 3.56,
+      "value": 4396985.32
     }
   },
   "portfolio_exposure": {
