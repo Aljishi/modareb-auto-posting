@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T11:51:20",
-  "data_timestamp": "2026-08-03T11:51:04",
+  "generated_at": "2026-08-03T11:56:48",
+  "data_timestamp": "2026-08-03T11:56:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.705,
+    "average_change_pct": 0.668,
     "advance_ratio": 0.7234,
-    "dispersion": 1.166,
+    "dispersion": 1.107,
     "dynamic_min_score": 80,
     "advancing": 34,
-    "declining": 10,
-    "unchanged": 3
+    "declining": 11,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.07,
+    "best_sector_avg_change_pct": 2.23,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4007",
       "name": "شركة الحمادي القابضة",
-      "change_pct": 3.47,
-      "value": 2749677.6
+      "change_pct": 3.32,
+      "value": 2801685.88
     }
   },
   "portfolio_exposure": {
