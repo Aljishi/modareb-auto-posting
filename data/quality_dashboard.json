@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T10:41:14",
-  "data_timestamp": "2026-08-03T10:40:52",
+  "generated_at": "2026-08-03T10:46:27",
+  "data_timestamp": "2026-08-03T10:46:10",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.444,
-    "advance_ratio": 0.6809,
-    "dispersion": 0.974,
+    "average_change_pct": 0.466,
+    "advance_ratio": 0.7021,
+    "dispersion": 1.014,
     "dynamic_min_score": 80,
-    "advancing": 32,
+    "advancing": 33,
     "declining": 13,
-    "unchanged": 2
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -29,10 +29,10 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 25,
+    "dominant_rejection_count": 27,
     "categories": {
-      "الاتجاه الفني غير مناسب": 25,
-      "ضعف السيولة أو الحجم": 17,
+      "الاتجاه الفني غير مناسب": 27,
+      "ضعف السيولة أو الحجم": 15,
       "العائد مقابل المخاطرة غير مناسب": 3,
       "أسباب فنية أخرى": 1,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 1.57,
+    "best_sector_avg_change_pct": 1.82,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "4003",
-      "name": "الشركة المتحدة للإلكترونيات",
-      "change_pct": 2.87,
-      "value": 9444227.0
+      "symbol": "8060",
+      "name": "شركة ولاء للتأمين التعاوني",
+      "change_pct": 3.14,
+      "value": 2324414.64
     }
   },
   "portfolio_exposure": {
