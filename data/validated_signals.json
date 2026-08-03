@@ -114,12 +114,12 @@
       "technical_reading": "اتجاه مقبول قريب من الصعود — RSI مقبول 64.2 — سيولة مقبولة 1.6x — اختراق مقاومة مؤكد — زخم يومي صحي +1.3% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2151351-4002",
+      "signal_id": "Signal #2026-2151355-4002",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-03T13:51:12",
+      "generated_at": "2026-08-03T13:55:51",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -133,11 +133,11 @@
           "Strong momentum setup",
           "Clear breakout confirmed",
           "Healthy daily momentum",
-          "Realistic target within holding period"
+          "Targets achievable within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-        "telegram_note": "إشارة شراء قوية على 4002 مع أهداف منطقية وزخم إيجابي."
+        "arabic_summary": "إشارة شراء قوية على سهم شركة المواساة للخدمات الطبية مع زخم جيد وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على 4002 مع أهداف قريبة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 89,
@@ -148,11 +148,11 @@
         "Strong momentum setup",
         "Clear breakout confirmed",
         "Healthy daily momentum",
-        "Realistic target within holding period"
+        "Targets achievable within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-      "ai_telegram_note": "إشارة شراء قوية على 4002 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-03T13:51:33",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة المواساة للخدمات الطبية مع زخم جيد وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على 4002 مع أهداف قريبة وزخم صحي.",
+      "ai_reviewed_at": "2026-08-03T13:56:07",
       "raw_ai_confidence": 89.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -173,13 +173,13 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-03T13:51:33"
+        "calibrated_at": "2026-08-03T13:56:07"
       },
       "market_regime": "STRONG",
       "market_regime_ar": "قوي",
       "dynamic_min_rased_score": 77.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-03T13:51:33",
+      "post_checked_at": "2026-08-03T13:56:07",
       "post_approved": false,
       "post_rejected_reasons": [
         "RASED SCORE 75.5 أقل من الحد الديناميكي 77.0 لسوق قوي",
@@ -194,8 +194,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-03T13:51:30",
-  "generated_at": "2026-08-03T13:51:33",
+  "source_generated_at": "2026-08-03T13:56:03",
+  "generated_at": "2026-08-03T13:56:07",
   "market_regime": {
     "regime": "STRONG",
     "regime_ar": "قوي",
@@ -219,8 +219,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-03T13:51:02",
-    "generated_at": "2026-08-03T13:51:33"
+    "daily_generated_at": "2026-08-03T13:55:45",
+    "generated_at": "2026-08-03T13:56:07"
   },
   "applied_limits": {
     "dynamic_rased_score": {
