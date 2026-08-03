@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T10:16:18",
-  "data_timestamp": "2026-08-03T10:15:53",
+  "generated_at": "2026-08-03T10:21:26",
+  "data_timestamp": "2026-08-03T10:21:03",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,40 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "STRONG",
-    "regime_ar": "قوي",
-    "posture": "",
-    "average_change_pct": 1.385,
-    "advance_ratio": 0.8085,
-    "dispersion": 2.714,
-    "dynamic_min_score": null,
-    "advancing": 38,
-    "declining": 6,
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.014,
+    "advance_ratio": 0.4468,
+    "dispersion": 0.689,
+    "dynamic_min_score": 81,
+    "advancing": 21,
+    "declining": 23,
     "unchanged": 3
   },
   "screening": {
-    "screened": 47,
-    "rejected": 46,
-    "generated": 1,
+    "screened": 45,
+    "rejected": 45,
+    "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 34,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 34,
-      "أسباب فنية أخرى": 7,
-      "ضعف السيولة أو الحجم": 2,
-      "العائد مقابل المخاطرة غير مناسب": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 24,
+      "الاتجاه الفني غير مناسب": 15,
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
-    "best_sector": "الرعاية الصحية",
-    "best_sector_avg_change_pct": 5.3,
-    "best_sector_members": 5,
+    "best_sector": "التأمين",
+    "best_sector_avg_change_pct": 0.9,
+    "best_sector_members": 3,
     "best_stock": {
-      "symbol": "4011",
-      "name": "شركة لازوردي للمجوهرات",
-      "change_pct": 9.97,
-      "value": 11573613.44
+      "symbol": "4005",
+      "name": "الشركة الوطنية للرعاية الطبية",
+      "change_pct": 2.13,
+      "value": 2560215.7
     }
   },
   "portfolio_exposure": {
