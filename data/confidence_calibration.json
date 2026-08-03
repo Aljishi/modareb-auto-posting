@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_confidence_calibration_v1",
-  "generated_at": "2026-08-03T12:46:17",
+  "generated_at": "2026-08-03T12:51:30",
   "configuration": {
     "minimum_group_sample": 8,
     "full_weight_sample": 30,
@@ -30,8 +30,8 @@
   "signals": [
     {
       "symbol": "4002",
-      "rased_score": 78.4,
-      "raw_ai_confidence": 94.0,
+      "rased_score": 75.5,
+      "raw_ai_confidence": 89.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
       "source": "no_history",

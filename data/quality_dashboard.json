@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T12:46:17",
-  "data_timestamp": "2026-08-03T12:45:52",
+  "generated_at": "2026-08-03T12:51:31",
+  "data_timestamp": "2026-08-03T12:51:01",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "",
-    "average_change_pct": 1.012,
-    "advance_ratio": 0.7447,
-    "dispersion": 1.233,
+    "average_change_pct": 1.094,
+    "advance_ratio": 0.7872,
+    "dispersion": 1.204,
     "dynamic_min_score": null,
-    "advancing": 35,
+    "advancing": 37,
     "declining": 9,
-    "unchanged": 3
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.49,
+    "best_sector_avg_change_pct": 2.54,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 4.15,
-      "value": 68754996.83
+      "symbol": "4007",
+      "name": "شركة الحمادي القابضة",
+      "change_pct": 4.08,
+      "value": 4404029.56
     }
   },
   "portfolio_exposure": {
