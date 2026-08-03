@@ -1,23 +1,24 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-03T14:36:10",
+  "reviewed_at": "2026-08-03T14:41:13",
   "approved": 1,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "4002",
       "decision": "APPROVE",
-      "confidence": 91,
+      "confidence": 89,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 76.6,
+      "rased_score": 75.5,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
+        "Strong momentum with a score of 89",
         "Clear breakout confirmed",
-        "Healthy daily momentum",
-        "Realistic target within holding period"
+        "Healthy daily momentum with a 1.7% increase",
+        "RSI is acceptable at 65.36",
+        "Volume ratio indicates good liquidity"
       ]
     }
   ]
