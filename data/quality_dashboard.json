@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T11:36:11",
-  "data_timestamp": "2026-08-03T11:35:56",
+  "generated_at": "2026-08-03T11:41:47",
+  "data_timestamp": "2026-08-03T11:41:27",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.751,
+    "average_change_pct": 0.679,
     "advance_ratio": 0.7234,
-    "dispersion": 1.202,
+    "dispersion": 1.145,
     "dynamic_min_score": 80,
     "advancing": 34,
-    "declining": 10,
-    "unchanged": 3
+    "declining": 12,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.23,
+    "best_sector_avg_change_pct": 2.28,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "8060",
-      "name": "شركة ولاء للتأمين التعاوني",
-      "change_pct": 3.56,
-      "value": 4396985.32
+      "symbol": "4007",
+      "name": "شركة الحمادي القابضة",
+      "change_pct": 3.47,
+      "value": 2749677.6
     }
   },
   "portfolio_exposure": {
