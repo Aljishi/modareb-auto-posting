@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T10:26:01",
-  "data_timestamp": "2026-08-03T10:25:47",
+  "generated_at": "2026-08-03T10:31:24",
+  "data_timestamp": "2026-08-03T10:31:01",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,40 +12,40 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.014,
-    "advance_ratio": 0.4468,
-    "dispersion": 0.689,
-    "dynamic_min_score": 81,
-    "advancing": 21,
-    "declining": 23,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.054,
+    "advance_ratio": 0.4043,
+    "dispersion": 0.999,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 25,
     "unchanged": 3
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 24,
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection_count": 21,
     "categories": {
-      "ضعف السيولة أو الحجم": 24,
-      "الاتجاه الفني غير مناسب": 15,
+      "الاتجاه الفني غير مناسب": 21,
+      "ضعف السيولة أو الحجم": 20,
       "العائد مقابل المخاطرة غير مناسب": 5,
       "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
-    "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 0.9,
-    "best_sector_members": 3,
+    "best_sector": "الرعاية الصحية",
+    "best_sector_avg_change_pct": 0.98,
+    "best_sector_members": 5,
     "best_stock": {
-      "symbol": "4005",
-      "name": "الشركة الوطنية للرعاية الطبية",
-      "change_pct": 2.13,
-      "value": 2560215.7
+      "symbol": "4007",
+      "name": "شركة الحمادي القابضة",
+      "change_pct": 3.09,
+      "value": 1290268.96
     }
   },
   "portfolio_exposure": {
