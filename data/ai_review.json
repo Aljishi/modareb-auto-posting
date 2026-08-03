@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-03T14:41:13",
+  "reviewed_at": "2026-08-03T14:46:14",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -17,8 +17,7 @@
         "Strong momentum with a score of 89",
         "Clear breakout confirmed",
         "Healthy daily momentum with a 1.7% increase",
-        "RSI is acceptable at 65.36",
-        "Volume ratio indicates good liquidity"
+        "Realistic target within expected holding days"
       ]
     }
   ]
