@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-03T13:16:19",
+  "reviewed_at": "2026-08-03T13:21:18",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -14,9 +14,10 @@
       "rased_score": 75.5,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup with confirmed breakout",
-        "RSI is acceptable and not overheated",
-        "Volume ratio indicates healthy trading activity"
+        "Strong momentum with a score of 89",
+        "Clear breakout confirmed",
+        "Healthy daily momentum with a volume ratio of 1.44",
+        "Targets achievable within the expected holding period"
       ]
     }
   ]
