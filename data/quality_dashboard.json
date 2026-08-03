@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T12:11:35",
-  "data_timestamp": "2026-08-03T12:11:20",
+  "generated_at": "2026-08-03T12:14:28",
+  "data_timestamp": "2026-08-03T12:14:06",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.756,
-    "advance_ratio": 0.7447,
-    "dispersion": 1.129,
-    "dynamic_min_score": 80,
-    "advancing": 35,
+    "regime": "STRONG",
+    "regime_ar": "قوي",
+    "posture": "شهية مخاطرة مرتفعة",
+    "average_change_pct": 0.838,
+    "advance_ratio": 0.7021,
+    "dispersion": 1.126,
+    "dynamic_min_score": 77,
+    "advancing": 33,
     "declining": 10,
-    "unchanged": 2
+    "unchanged": 4
   },
   "screening": {
     "screened": 47,
@@ -32,21 +32,21 @@
     "dominant_rejection_count": 31,
     "categories": {
       "الاتجاه الفني غير مناسب": 31,
-      "ضعف السيولة أو الحجم": 8,
+      "ضعف السيولة أو الحجم": 9,
       "العائد مقابل المخاطرة غير مناسب": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 3,
-      "أسباب فنية أخرى": 2
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.17,
+    "best_sector_avg_change_pct": 2.38,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4007",
       "name": "شركة الحمادي القابضة",
       "change_pct": 3.7,
-      "value": 3239314.92
+      "value": 3379985.04
     }
   },
   "portfolio_exposure": {
