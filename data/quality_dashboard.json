@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T12:26:11",
-  "data_timestamp": "2026-08-03T12:25:53",
+  "generated_at": "2026-08-03T12:32:04",
+  "data_timestamp": "2026-08-03T12:31:36",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -14,39 +14,39 @@
   "market": {
     "regime": "STRONG",
     "regime_ar": "قوي",
-    "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.851,
-    "advance_ratio": 0.7447,
-    "dispersion": 1.146,
-    "dynamic_min_score": 77,
-    "advancing": 35,
-    "declining": 11,
-    "unchanged": 1
+    "posture": "",
+    "average_change_pct": 0.926,
+    "advance_ratio": 0.766,
+    "dispersion": 1.186,
+    "dynamic_min_score": null,
+    "advancing": 36,
+    "declining": 9,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
-    "rejected": 47,
-    "generated": 0,
+    "rejected": 46,
+    "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 31,
     "categories": {
       "الاتجاه الفني غير مناسب": 31,
       "ضعف السيولة أو الحجم": 7,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "أسباب فنية أخرى": 4,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.49,
+    "best_sector_avg_change_pct": 2.43,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4007",
       "name": "شركة الحمادي القابضة",
-      "change_pct": 3.62,
-      "value": 3564829.74
+      "change_pct": 4.15,
+      "value": 4357239.6
     }
   },
   "portfolio_exposure": {
