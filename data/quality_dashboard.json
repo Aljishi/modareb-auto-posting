@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T12:36:18",
-  "data_timestamp": "2026-08-03T12:35:53",
+  "generated_at": "2026-08-03T12:41:24",
+  "data_timestamp": "2026-08-03T12:40:57",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "",
-    "average_change_pct": 0.926,
-    "advance_ratio": 0.766,
-    "dispersion": 1.186,
+    "average_change_pct": 1.012,
+    "advance_ratio": 0.7447,
+    "dispersion": 1.233,
     "dynamic_min_score": null,
-    "advancing": 36,
+    "advancing": 35,
     "declining": 9,
-    "unchanged": 2
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -29,24 +29,24 @@
     "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 31,
+    "dominant_rejection_count": 30,
     "categories": {
-      "الاتجاه الفني غير مناسب": 31,
+      "الاتجاه الفني غير مناسب": 30,
       "ضعف السيولة أو الحجم": 7,
-      "أسباب فنية أخرى": 4,
+      "أسباب فنية أخرى": 5,
       "العائد مقابل المخاطرة غير مناسب": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.43,
+    "best_sector_avg_change_pct": 2.49,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4007",
-      "name": "شركة الحمادي القابضة",
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
       "change_pct": 4.15,
-      "value": 4357239.6
+      "value": 68754996.83
     }
   },
   "portfolio_exposure": {
