@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-02T17:28:28",
-  "data_timestamp": "2026-08-02T17:14:05",
+  "generated_at": "2026-08-03T10:01:33",
+  "data_timestamp": "2026-08-03T10:01:11",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,12 +12,12 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "UNKNOWN",
-    "regime_ar": "غير متوفر",
+    "regime": "STRONG",
+    "regime_ar": "قوي",
     "posture": "",
-    "average_change_pct": 0.0,
-    "advance_ratio": 0.0,
-    "dispersion": 0.0,
+    "average_change_pct": 1.385,
+    "advance_ratio": 0.8085,
+    "dispersion": 2.714,
     "dynamic_min_score": null,
     "advancing": 38,
     "declining": 6,
@@ -27,14 +27,14 @@
     "screened": 47,
     "rejected": 46,
     "generated": 1,
-    "validated": 1,
+    "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 37,
+    "dominant_rejection_count": 34,
     "categories": {
-      "الاتجاه الفني غير مناسب": 37,
-      "العائد مقابل المخاطرة غير مناسب": 3,
-      "أسباب فنية أخرى": 3,
+      "الاتجاه الفني غير مناسب": 34,
+      "أسباب فنية أخرى": 7,
       "ضعف السيولة أو الحجم": 2,
+      "العائد مقابل المخاطرة غير مناسب": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
@@ -55,17 +55,9 @@
     "rejected_by_gate": 0
   },
   "confidence_calibration": {
-    "status": "UNKNOWN",
+    "status": "PASS",
     "closed_history_sample": 0,
-    "signals_calibrated": 0
+    "signals_calibrated": 1
   },
-  "validated_signals": [
-    {
-      "symbol": "1211",
-      "name": "شركة التعدين العربية السعودية",
-      "sector": "المواد الأساسية",
-      "rased_score": 79.2,
-      "confidence": "94%"
-    }
-  ]
+  "validated_signals": []
 }

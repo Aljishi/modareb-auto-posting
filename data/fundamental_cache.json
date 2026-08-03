@@ -3896,6 +3896,270 @@
           ]
         }
       }
+    },
+    "4002": {
+      "cached_at": "2026-08-03T10:01:19",
+      "data": {
+        "fundamentals": null,
+        "financials": {
+          "symbol": "4002",
+          "statement_period": "annual",
+          "income_statements": [
+            {
+              "report_date": "2025-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2025,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_revenue": 3222580029.0,
+              "gross_profit": 334271859.0,
+              "operating_income": 247544597.0,
+              "net_income": 822041282.0
+            },
+            {
+              "report_date": "2024-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2024,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_revenue": 2879372341.0,
+              "gross_profit": 317770859.0,
+              "operating_income": 179696757.0,
+              "net_income": 645759043.0
+            },
+            {
+              "report_date": "2023-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2023,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_revenue": 2705508121.0,
+              "gross_profit": 1476797423.0,
+              "operating_income": 865436795.0,
+              "net_income": 657687906.0
+            },
+            {
+              "report_date": "2022-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2022,
+              "quarters_reported": 2,
+              "quarters_covered": 2,
+              "is_full_year": true,
+              "total_revenue": 2334112284.0,
+              "gross_profit": null,
+              "operating_income": null,
+              "net_income": 599305261.0
+            }
+          ],
+          "balance_sheets": [
+            {
+              "report_date": "2025-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2025,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_assets": 5986267405.0,
+              "total_liabilities": 2065729967.0,
+              "stockholders_equity": 3920537438.0,
+              "total_debt": 989492808.0
+            },
+            {
+              "report_date": "2024-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2024,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_assets": 5402799743.0,
+              "total_liabilities": 1689229730.0,
+              "stockholders_equity": 3713570013.0,
+              "total_debt": 761678933.0
+            },
+            {
+              "report_date": "2023-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2023,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "total_assets": 4964546597.0,
+              "total_liabilities": 1537699881.0,
+              "stockholders_equity": 3426846716.0,
+              "total_debt": 788478938.0
+            },
+            {
+              "report_date": "2022-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2022,
+              "quarters_reported": 2,
+              "quarters_covered": 2,
+              "is_full_year": true,
+              "total_assets": 4661581603.0,
+              "total_liabilities": 1585248398.0,
+              "stockholders_equity": 3076333205.0,
+              "total_debt": 892161373.0
+            }
+          ],
+          "cash_flows": [
+            {
+              "report_date": "2025-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2025,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "operating_cash_flow": 1177717712.0,
+              "investing_cash_flow": -675637765.0,
+              "financing_cash_flow": -431204074.0,
+              "free_cash_flow": 353280706.0
+            },
+            {
+              "report_date": "2024-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2024,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "operating_cash_flow": 1256428579.0,
+              "investing_cash_flow": -467500139.0,
+              "financing_cash_flow": -411403190.0,
+              "free_cash_flow": 306238149.0
+            },
+            {
+              "report_date": "2023-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2023,
+              "quarters_reported": 4,
+              "quarters_covered": 4,
+              "is_full_year": true,
+              "operating_cash_flow": 813783068.0,
+              "investing_cash_flow": null,
+              "financing_cash_flow": null,
+              "free_cash_flow": null
+            },
+            {
+              "report_date": "2022-12-31",
+              "statement_period": "annual",
+              "fiscal_year": 2022,
+              "quarters_reported": 2,
+              "quarters_covered": 2,
+              "is_full_year": true,
+              "operating_cash_flow": 707326773.0,
+              "investing_cash_flow": null,
+              "financing_cash_flow": null,
+              "free_cash_flow": null
+            }
+          ],
+          "reporting": {
+            "reporting_cadence": "quarterly",
+            "quarterly_income_convention": "standalone"
+          }
+        },
+        "dividends": {
+          "symbol": "4002",
+          "current_price": 62.3,
+          "trailing_12m_yield": 3.41,
+          "trailing_12m_dividends": 2.125,
+          "payments_last_year": 2,
+          "upcoming": [],
+          "history": [
+            {
+              "value": 1.125,
+              "value_percent": 0.1125,
+              "period": "H2",
+              "fiscal_year": "2025",
+              "announcement_date": "2026-03-01",
+              "eligibility_date": "2026-05-04",
+              "distribution_date": "2026-05-14"
+            },
+            {
+              "value": 1.0,
+              "value_percent": 0.1,
+              "period": "H1",
+              "fiscal_year": "2025",
+              "announcement_date": "2025-09-01",
+              "eligibility_date": "2025-12-04",
+              "distribution_date": "2025-12-15"
+            },
+            {
+              "value": 2.0,
+              "value_percent": 0.2,
+              "period": "ANNUAL",
+              "fiscal_year": null,
+              "announcement_date": "2024-12-23",
+              "eligibility_date": "2025-05-05",
+              "distribution_date": "2025-05-15"
+            },
+            {
+              "value": 1.75,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2023-12-25",
+              "eligibility_date": "2024-05-27",
+              "distribution_date": "2024-06-06"
+            },
+            {
+              "value": 3.0,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2022-12-22",
+              "eligibility_date": "2023-05-07",
+              "distribution_date": "2023-05-17"
+            },
+            {
+              "value": 2.75,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2022-01-17",
+              "eligibility_date": "2022-05-09",
+              "distribution_date": "2022-05-19"
+            },
+            {
+              "value": 2.5,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2021-02-25",
+              "eligibility_date": "2021-04-29",
+              "distribution_date": "2021-05-09"
+            },
+            {
+              "value": 2.0,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2020-03-16",
+              "eligibility_date": "2020-04-22",
+              "distribution_date": "2020-05-06"
+            },
+            {
+              "value": 1.75,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2019-02-25",
+              "eligibility_date": "2019-04-22",
+              "distribution_date": "2019-05-05"
+            },
+            {
+              "value": 3.0,
+              "value_percent": null,
+              "period": null,
+              "fiscal_year": null,
+              "announcement_date": "2018-01-29",
+              "eligibility_date": "2018-05-02",
+              "distribution_date": "2018-05-14"
+            }
+          ]
+        }
+      }
     }
   }
 }

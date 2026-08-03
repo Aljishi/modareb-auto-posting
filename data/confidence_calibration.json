@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "engine": "rased_confidence_calibration_v1",
+  "generated_at": "2026-08-03T10:01:33",
+  "configuration": {
+    "minimum_group_sample": 8,
+    "full_weight_sample": 30,
+    "score_bucket_size": 5,
+    "prior_successes": 3.0,
+    "prior_failures": 2.0,
+    "no_history_max_confidence": 75.0,
+    "display_min": 40.0,
+    "display_max": 95.0
+  },
+  "closed_history_sample": 0,
+  "statistics": {
+    "global": {
+      "sample": 0,
+      "successes": 0,
+      "failures": 0,
+      "raw_success_rate": 0.0,
+      "bayesian_success_rate": 60.0
+    },
+    "by_score_bucket": {},
+    "by_tier": {},
+    "by_signal_type": {},
+    "by_type_and_score": {},
+    "by_tier_and_score": {}
+  },
+  "signals": [
+    {
+      "symbol": "1211",
+      "rased_score": 78.4,
+      "raw_ai_confidence": 94.0,
+      "historical_confidence": 0.0,
+      "calibrated_confidence": 75.0,
+      "source": "no_history",
+      "sample_size": 0,
+      "label": "تقديري — لا توجد عينة تاريخية مغلقة"
+    }
+  ]
+}
