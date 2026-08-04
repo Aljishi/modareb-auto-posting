@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-04T14:46:30",
-  "data_timestamp": "2026-08-04T14:45:57",
+  "generated_at": "2026-08-04T14:51:27",
+  "data_timestamp": "2026-08-04T14:50:56",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,29 +12,29 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "STRONG",
-    "regime_ar": "قوي",
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": 0.926,
-    "advance_ratio": 0.6809,
-    "dispersion": 2.316,
+    "average_change_pct": 0.893,
+    "advance_ratio": 0.6383,
+    "dispersion": 2.327,
     "dynamic_min_score": null,
-    "advancing": 32,
-    "declining": 11,
-    "unchanged": 4
+    "advancing": 30,
+    "declining": 15,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
-    "rejected": 45,
-    "generated": 2,
+    "rejected": 46,
+    "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 31,
     "categories": {
       "الاتجاه الفني غير مناسب": 31,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 4,
-      "أسباب فنية أخرى": 4,
+      "ضعف السيولة أو الحجم": 5,
+      "أسباب فنية أخرى": 5,
+      "العائد مقابل المخاطرة غير مناسب": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
@@ -52,12 +52,12 @@
   "portfolio_exposure": {
     "active_open_positions": 1,
     "approved_after_gate": 0,
-    "rejected_by_gate": 0
+    "rejected_by_gate": 1
   },
   "confidence_calibration": {
     "status": "PASS",
     "closed_history_sample": 0,
-    "signals_calibrated": 2
+    "signals_calibrated": 1
   },
   "validated_signals": []
 }

@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-04T14:46:24",
+  "generated_at": "2026-08-04T14:51:24",
   "top_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 88.9,
-      "grade": "قيادة قوية",
-      "avg_change_pct": 2.16,
+      "rotation_score": 73.3,
+      "grade": "قوي",
+      "avg_change_pct": 2.15,
       "advancing_ratio": 0.89,
-      "total_value": 662818547.49,
+      "total_value": 664177931.39,
       "stocks_count": 9,
-      "signals_count": 1,
-      "avg_signal_score": 77.9
+      "signals_count": 0,
+      "avg_signal_score": 0.0
     },
     {
       "sector": "السلع الرأسمالية",
@@ -18,32 +18,32 @@
       "grade": "محايد إيجابي",
       "avg_change_pct": 4.95,
       "advancing_ratio": 1.0,
-      "total_value": 57767665.0,
+      "total_value": 58053567.5,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "البنوك",
-      "rotation_score": 60.2,
+      "rotation_score": 60.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.01,
       "advancing_ratio": 1.0,
-      "total_value": 375957563.8,
+      "total_value": 381612549.93,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 60.2,
+      "rotation_score": 60.1,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.65,
+      "avg_change_pct": 0.6,
       "advancing_ratio": 0.33,
-      "total_value": 475932046.46,
+      "total_value": 479652937.1,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 79.4
+      "avg_signal_score": 80.1
     },
     {
       "sector": "التأمين",
@@ -57,46 +57,24 @@
       "avg_signal_score": 0.0
     },
     {
-      "sector": "النقل",
-      "rotation_score": 52.4,
-      "grade": "محايد",
-      "avg_change_pct": 1.07,
-      "advancing_ratio": 1.0,
-      "total_value": 103474422.08,
-      "stocks_count": 2,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
       "sector": "الإعلام والترفيه",
-      "rotation_score": 50.2,
+      "rotation_score": 50.9,
       "grade": "محايد",
-      "avg_change_pct": 1.1,
+      "avg_change_pct": 1.21,
       "advancing_ratio": 1.0,
-      "total_value": 25873151.96,
+      "total_value": 26026964.94,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الخدمات الاستهلاكية",
-      "rotation_score": 48.6,
+      "rotation_score": 49.2,
       "grade": "محايد",
-      "avg_change_pct": 0.68,
+      "avg_change_pct": 0.76,
       "advancing_ratio": 1.0,
-      "total_value": 61887559.39,
+      "total_value": 62363425.76,
       "stocks_count": 3,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
-      "sector": "غير محدد",
-      "rotation_score": 45.8,
-      "grade": "محايد",
-      "avg_change_pct": 0.5,
-      "advancing_ratio": 1.0,
-      "total_value": 4229811.43,
-      "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -106,8 +84,30 @@
       "grade": "محايد",
       "avg_change_pct": 0.19,
       "advancing_ratio": 1.0,
-      "total_value": 20660209.24,
+      "total_value": 20725764.84,
       "stocks_count": 1,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "غير محدد",
+      "rotation_score": 44.2,
+      "grade": "محايد",
+      "avg_change_pct": 0.25,
+      "advancing_ratio": 1.0,
+      "total_value": 4226607.9,
+      "stocks_count": 1,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "النقل",
+      "rotation_score": 39.2,
+      "grade": "ضعيف",
+      "avg_change_pct": 0.97,
+      "advancing_ratio": 0.5,
+      "total_value": 104004596.82,
+      "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     }
@@ -115,14 +115,14 @@
   "all_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 88.9,
-      "grade": "قيادة قوية",
-      "avg_change_pct": 2.16,
+      "rotation_score": 73.3,
+      "grade": "قوي",
+      "avg_change_pct": 2.15,
       "advancing_ratio": 0.89,
-      "total_value": 662818547.49,
+      "total_value": 664177931.39,
       "stocks_count": 9,
-      "signals_count": 1,
-      "avg_signal_score": 77.9
+      "signals_count": 0,
+      "avg_signal_score": 0.0
     },
     {
       "sector": "السلع الرأسمالية",
@@ -130,32 +130,32 @@
       "grade": "محايد إيجابي",
       "avg_change_pct": 4.95,
       "advancing_ratio": 1.0,
-      "total_value": 57767665.0,
+      "total_value": 58053567.5,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "البنوك",
-      "rotation_score": 60.2,
+      "rotation_score": 60.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 1.01,
       "advancing_ratio": 1.0,
-      "total_value": 375957563.8,
+      "total_value": 381612549.93,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 60.2,
+      "rotation_score": 60.1,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.65,
+      "avg_change_pct": 0.6,
       "advancing_ratio": 0.33,
-      "total_value": 475932046.46,
+      "total_value": 479652937.1,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 79.4
+      "avg_signal_score": 80.1
     },
     {
       "sector": "التأمين",
@@ -169,46 +169,24 @@
       "avg_signal_score": 0.0
     },
     {
-      "sector": "النقل",
-      "rotation_score": 52.4,
-      "grade": "محايد",
-      "avg_change_pct": 1.07,
-      "advancing_ratio": 1.0,
-      "total_value": 103474422.08,
-      "stocks_count": 2,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
       "sector": "الإعلام والترفيه",
-      "rotation_score": 50.2,
+      "rotation_score": 50.9,
       "grade": "محايد",
-      "avg_change_pct": 1.1,
+      "avg_change_pct": 1.21,
       "advancing_ratio": 1.0,
-      "total_value": 25873151.96,
+      "total_value": 26026964.94,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الخدمات الاستهلاكية",
-      "rotation_score": 48.6,
+      "rotation_score": 49.2,
       "grade": "محايد",
-      "avg_change_pct": 0.68,
+      "avg_change_pct": 0.76,
       "advancing_ratio": 1.0,
-      "total_value": 61887559.39,
+      "total_value": 62363425.76,
       "stocks_count": 3,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
-      "sector": "غير محدد",
-      "rotation_score": 45.8,
-      "grade": "محايد",
-      "avg_change_pct": 0.5,
-      "advancing_ratio": 1.0,
-      "total_value": 4229811.43,
-      "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
@@ -218,51 +196,62 @@
       "grade": "محايد",
       "avg_change_pct": 0.19,
       "advancing_ratio": 1.0,
-      "total_value": 20660209.24,
+      "total_value": 20725764.84,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
-      "sector": "تجزئة وتوزيع السلع الاستهلاكية",
-      "rotation_score": 43.8,
+      "sector": "غير محدد",
+      "rotation_score": 44.2,
       "grade": "محايد",
-      "avg_change_pct": 0.19,
+      "avg_change_pct": 0.25,
       "advancing_ratio": 1.0,
-      "total_value": 4658195.52,
+      "total_value": 4226607.9,
       "stocks_count": 1,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
-      "sector": "تجزئة السلع الكمالية",
-      "rotation_score": 35.4,
+      "sector": "النقل",
+      "rotation_score": 39.2,
       "grade": "ضعيف",
-      "avg_change_pct": 0.42,
+      "avg_change_pct": 0.97,
       "advancing_ratio": 0.5,
-      "total_value": 93003875.07,
-      "stocks_count": 6,
-      "signals_count": 0,
-      "avg_signal_score": 0.0
-    },
-    {
-      "sector": "التطبيقات وخدمات التقنية",
-      "rotation_score": 35.0,
-      "grade": "ضعيف",
-      "avg_change_pct": 0.29,
-      "advancing_ratio": 0.5,
-      "total_value": 105761727.35,
+      "total_value": 104004596.82,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
-      "sector": "الصناديق العقارية المتداولة",
-      "rotation_score": 33.9,
+      "sector": "التطبيقات وخدمات التقنية",
+      "rotation_score": 35.3,
       "grade": "ضعيف",
-      "avg_change_pct": 0.58,
+      "avg_change_pct": 0.33,
       "advancing_ratio": 0.5,
-      "total_value": 8083130.49,
+      "total_value": 107126622.35,
+      "stocks_count": 2,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "تجزئة السلع الكمالية",
+      "rotation_score": 34.7,
+      "grade": "ضعيف",
+      "avg_change_pct": 0.29,
+      "advancing_ratio": 0.5,
+      "total_value": 96030124.17,
+      "stocks_count": 6,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "الصناديق العقارية المتداولة",
+      "rotation_score": 33.7,
+      "grade": "ضعيف",
+      "avg_change_pct": 0.55,
+      "advancing_ratio": 0.5,
+      "total_value": 8387730.13,
       "stocks_count": 2,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -279,12 +268,23 @@
       "avg_signal_score": 0.0
     },
     {
-      "sector": "الرعاية الصحية",
-      "rotation_score": 15.0,
+      "sector": "تجزئة وتوزيع السلع الاستهلاكية",
+      "rotation_score": 16.5,
       "grade": "ضعيف",
-      "avg_change_pct": -1.7,
+      "avg_change_pct": -0.19,
+      "advancing_ratio": 0.0,
+      "total_value": 4893777.76,
+      "stocks_count": 1,
+      "signals_count": 0,
+      "avg_signal_score": 0.0
+    },
+    {
+      "sector": "الرعاية الصحية",
+      "rotation_score": 14.8,
+      "grade": "ضعيف",
+      "avg_change_pct": -1.74,
       "advancing_ratio": 0.2,
-      "total_value": 106312514.97,
+      "total_value": 108107161.54,
       "stocks_count": 5,
       "signals_count": 0,
       "avg_signal_score": 0.0
