@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-03T18:42:20",
-  "data_timestamp": "2026-08-03T18:31:25",
+  "generated_at": "2026-08-04T10:02:08",
+  "data_timestamp": "2026-08-04T10:01:18",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -14,27 +14,27 @@
   "market": {
     "regime": "STRONG",
     "regime_ar": "قوي",
-    "posture": "",
-    "average_change_pct": 1.453,
+    "posture": "شهية مخاطرة مرتفعة",
+    "average_change_pct": 1.469,
     "advance_ratio": 0.8511,
-    "dispersion": 1.712,
-    "dynamic_min_score": null,
+    "dispersion": 1.742,
+    "dynamic_min_score": 77,
     "advancing": 40,
     "declining": 4,
     "unchanged": 3
   },
   "screening": {
     "screened": 47,
-    "rejected": 46,
-    "generated": 1,
+    "rejected": 47,
+    "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 32,
+    "dominant_rejection_count": 31,
     "categories": {
-      "الاتجاه الفني غير مناسب": 32,
-      "أسباب فنية أخرى": 10,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2,
-      "العائد مقابل المخاطرة غير مناسب": 2
+      "الاتجاه الفني غير مناسب": 31,
+      "أسباب فنية أخرى": 11,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
