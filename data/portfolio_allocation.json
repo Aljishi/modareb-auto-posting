@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-03T16:35:18",
-  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/signals.json",
+  "generated_at": "2026-08-04T11:56:18",
+  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/validated_signals.json",
   "capital_sar": 500000.0,
   "max_position_pct": 35.0,
   "min_cash_pct": 10.0,
   "positions": [
     {
-      "symbol": "4002",
-      "name": "شركة المواساة للخدمات الطبية",
-      "sector": "الرعاية الصحية",
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "sector": "الطاقة",
       "tier": "Standard",
-      "rased_score": 76.6,
-      "entry": 63.75,
-      "target1": 65.94,
-      "target2": 66.32,
-      "stop_loss": 62.24,
+      "rased_score": 79.2,
+      "entry": 39.98,
+      "target1": 41.97,
+      "target2": 42.45,
+      "stop_loss": 38.61,
       "weight_pct": 35.0,
       "amount_sar": 175000.0,
-      "position_risk_pct": 2.37,
-      "portfolio_risk_pct": 0.83
+      "position_risk_pct": 3.43,
+      "portfolio_risk_pct": 1.2
     }
   ],
   "cash": {
@@ -26,8 +26,8 @@
     "amount_sar": 325000.0
   },
   "sector_exposure": {
-    "الرعاية الصحية": 35.0
+    "الطاقة": 35.0
   },
-  "total_portfolio_risk_pct": 0.83,
+  "total_portfolio_risk_pct": 1.2,
   "note": "توزيع آلي مبني على جودة الإشارة وليس توصية شخصية. التزم بوقف الخسارة."
 }

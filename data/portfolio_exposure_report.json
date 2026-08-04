@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-03T14:58:46",
-  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
+  "generated_at": "2026-08-04T11:56:17",
+  "status": "PASS",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -9,12 +9,19 @@
     "default_max_holding_days": 7,
     "max_stale_open_days": 10
   },
-  "input_validated_signals": 0,
-  "approved_signals": 0,
+  "input_validated_signals": 1,
+  "approved_signals": 1,
   "rejected_signals": 0,
   "active_open_positions": 0,
   "current_sector_exposure": {},
   "open_positions": [],
-  "approved": [],
+  "approved": [
+    {
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "sector": "الطاقة",
+      "rased_score": 79.2
+    }
+  ],
   "rejected": []
 }
