@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-04T14:56:21",
+  "generated_at": "2026-08-04T15:55:06",
   "top_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 88.6,
+      "rotation_score": 88.3,
       "grade": "قيادة قوية",
       "avg_change_pct": 2.02,
       "advancing_ratio": 0.89,
       "total_value": 680002459.59,
       "stocks_count": 9,
       "signals_count": 2,
-      "avg_signal_score": 80.6
+      "avg_signal_score": 79.2
     },
     {
       "sector": "السلع الرأسمالية",
@@ -36,14 +36,14 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 58.5,
+      "rotation_score": 58.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.39,
       "advancing_ratio": 0.33,
       "total_value": 483520074.12,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 80.1
+      "avg_signal_score": 78.7
     },
     {
       "sector": "التأمين",
@@ -115,14 +115,14 @@
   "all_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 88.6,
+      "rotation_score": 88.3,
       "grade": "قيادة قوية",
       "avg_change_pct": 2.02,
       "advancing_ratio": 0.89,
       "total_value": 680002459.59,
       "stocks_count": 9,
       "signals_count": 2,
-      "avg_signal_score": 80.6
+      "avg_signal_score": 79.2
     },
     {
       "sector": "السلع الرأسمالية",
@@ -148,14 +148,14 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 58.5,
+      "rotation_score": 58.3,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.39,
       "advancing_ratio": 0.33,
       "total_value": 483520074.12,
       "stocks_count": 3,
       "signals_count": 1,
-      "avg_signal_score": 80.1
+      "avg_signal_score": 78.7
     },
     {
       "sector": "التأمين",
