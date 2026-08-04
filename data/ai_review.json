@@ -1,22 +1,37 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T11:56:16",
+  "reviewed_at": "2026-08-04T13:51:26",
   "approved": 1,
-  "total": 1,
+  "total": 2,
   "signals": [
+    {
+      "stock_symbol": "1211",
+      "decision": "REJECT",
+      "confidence": 90,
+      "risk_level": "MEDIUM",
+      "expected_holding_days": 3,
+      "rased_score": 76.1,
+      "tier": "Standard",
+      "reasons": [
+        "TP2 looks unrealistic within 7 days",
+        "Volume ratio is below 1.0",
+        "Setup is not clear"
+      ]
+    },
     {
       "stock_symbol": "2083",
       "decision": "APPROVE",
-      "confidence": 94,
+      "confidence": 89,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 79.2,
+      "rased_score": 75.5,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with confirmed breakout",
-        "Healthy RSI at 63.3",
-        "Acceptable volume ratio of 1.27",
+        "Strong momentum with a clear upward trend",
+        "Healthy RSI at 61.98",
+        "Volume ratio indicates acceptable liquidity",
+        "Confirmed breakout above resistance",
         "Realistic target within expected holding days"
       ]
     }

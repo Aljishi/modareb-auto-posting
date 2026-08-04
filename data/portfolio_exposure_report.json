@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-04T11:56:17",
-  "status": "PASS",
+  "generated_at": "2026-08-04T13:51:26",
+  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -9,19 +9,25 @@
     "default_max_holding_days": 7,
     "max_stale_open_days": 10
   },
-  "input_validated_signals": 1,
-  "approved_signals": 1,
+  "input_validated_signals": 0,
+  "approved_signals": 0,
   "rejected_signals": 0,
-  "active_open_positions": 0,
-  "current_sector_exposure": {},
-  "open_positions": [],
-  "approved": [
+  "active_open_positions": 1,
+  "current_sector_exposure": {
+    "الطاقة": 1
+  },
+  "open_positions": [
     {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
       "sector": "الطاقة",
-      "rased_score": 79.2
+      "status": "OPEN",
+      "opened_at": "2026-08-04T11:56:18",
+      "max_holding_days": 7,
+      "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/published_signals.csv",
+      "signal_id": "Signal #2026-2161155-2083"
     }
   ],
+  "approved": [],
   "rejected": []
 }

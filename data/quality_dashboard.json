@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-04T13:46:13",
-  "data_timestamp": "2026-08-04T13:45:56",
+  "generated_at": "2026-08-04T13:51:26",
+  "data_timestamp": "2026-08-04T13:50:50",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,61 +12,53 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.738,
-    "advance_ratio": 0.6383,
-    "dispersion": 2.186,
-    "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 16,
+    "regime": "STRONG",
+    "regime_ar": "قوي",
+    "posture": "",
+    "average_change_pct": 0.867,
+    "advance_ratio": 0.6596,
+    "dispersion": 2.236,
+    "dynamic_min_score": null,
+    "advancing": 31,
+    "declining": 15,
     "unchanged": 1
   },
   "screening": {
     "screened": 47,
-    "rejected": 47,
-    "generated": 0,
-    "validated": 1,
+    "rejected": 45,
+    "generated": 2,
+    "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 31,
     "categories": {
       "الاتجاه الفني غير مناسب": 31,
-      "ضعف السيولة أو الحجم": 6,
-      "أسباب فنية أخرى": 5,
-      "العائد مقابل المخاطرة غير مناسب": 3,
+      "ضعف السيولة أو الحجم": 5,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "أسباب فنية أخرى": 3,
       "الزخم غير مناسب": 1,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "السلع الرأسمالية",
-    "best_sector_avg_change_pct": 3.67,
+    "best_sector_avg_change_pct": 4.31,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
       "change_pct": 9.94,
-      "value": 4916151.72
+      "value": 4923620.19
     }
   },
   "portfolio_exposure": {
-    "active_open_positions": 0,
-    "approved_after_gate": 1,
+    "active_open_positions": 1,
+    "approved_after_gate": 0,
     "rejected_by_gate": 0
   },
   "confidence_calibration": {
     "status": "PASS",
     "closed_history_sample": 0,
-    "signals_calibrated": 1
+    "signals_calibrated": 2
   },
-  "validated_signals": [
-    {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "sector": "الطاقة",
-      "rased_score": 79.2,
-      "confidence": 75.0
-    }
-  ]
+  "validated_signals": []
 }
