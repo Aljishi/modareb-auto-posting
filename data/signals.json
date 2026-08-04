@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.3 — سيولة طبيعية 1.0x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.6% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161350-1211",
+      "signal_id": "Signal #2026-2161355-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T13:50:58",
+      "generated_at": "2026-08-04T13:55:54",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,9 +130,9 @@
           "Volume ratio is below 1.0",
           "Setup is not clear"
         ],
-        "rejection_reason": "The setup does not meet the criteria for approval due to unrealistic target within the expected holding period and weak volume confirmation.",
-        "arabic_summary": "الإعداد غير واضح ولا يتماشى مع المعايير المطلوبة.",
-        "telegram_note": "إشارة مرفوضة بسبب عدم وضوح الإعداد."
+        "rejection_reason": "The second target is unrealistic within the expected holding period and volume confirmation is weak.",
+        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وضعف تأكيد السيولة.",
+        "telegram_note": "إشارة مرفوضة: الهدف الثاني غير واقعي."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 90,
@@ -144,9 +144,9 @@
         "Volume ratio is below 1.0",
         "Setup is not clear"
       ],
-      "ai_arabic_summary": "الإعداد غير واضح ولا يتماشى مع المعايير المطلوبة.",
-      "ai_telegram_note": "إشارة مرفوضة بسبب عدم وضوح الإعداد.",
-      "ai_reviewed_at": "2026-08-04T13:51:24",
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني ضمن فترة الاحتفاظ المتوقعة وضعف تأكيد السيولة.",
+      "ai_telegram_note": "إشارة مرفوضة: الهدف الثاني غير واقعي.",
+      "ai_reviewed_at": "2026-08-04T13:56:17",
       "raw_ai_confidence": 90.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -167,7 +167,7 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T13:51:26"
+        "calibrated_at": "2026-08-04T13:56:19"
       }
     },
     {
@@ -282,12 +282,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.0 — سيولة مقبولة 1.8x — اختراق مقاومة مؤكد — زخم يومي صحي +2.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161351-2083",
+      "signal_id": "Signal #2026-2161356-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T13:51:06",
+      "generated_at": "2026-08-04T13:56:00",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -298,15 +298,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with a clear upward trend",
+          "Strong momentum with confirmed breakout",
           "Healthy RSI at 61.98",
-          "Volume ratio indicates acceptable liquidity",
-          "Confirmed breakout above resistance",
-          "Realistic target within expected holding days"
+          "Acceptable volume ratio of 1.76",
+          "Realistic targets within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية مع زخم صاعد واضح وهدف منطقي.",
-        "telegram_note": "إشارة شراء قوية على شركة مرافق، استعد لتحقيق أهدافك في الأيام القليلة القادمة!"
+        "arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف قريبة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 89,
@@ -314,15 +313,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with a clear upward trend",
+        "Strong momentum with confirmed breakout",
         "Healthy RSI at 61.98",
-        "Volume ratio indicates acceptable liquidity",
-        "Confirmed breakout above resistance",
-        "Realistic target within expected holding days"
+        "Acceptable volume ratio of 1.76",
+        "Realistic targets within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد واضح وهدف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة مرافق، استعد لتحقيق أهدافك في الأيام القليلة القادمة!",
-      "ai_reviewed_at": "2026-08-04T13:51:26",
+      "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف قريبة وزخم صحي.",
+      "ai_reviewed_at": "2026-08-04T13:56:18",
       "raw_ai_confidence": 89.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -343,11 +341,11 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T13:51:26"
+        "calibrated_at": "2026-08-04T13:56:19"
       }
     }
   ],
-  "generated_at": "2026-08-04T13:51:20",
+  "generated_at": "2026-08-04T13:56:13",
   "total": 2,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -514,8 +512,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-04T13:51:26",
+  "ai_reviewed_at": "2026-08-04T13:56:18",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-04T13:51:26",
+  "confidence_calibrated_at": "2026-08-04T13:56:19",
   "confidence_closed_history_sample": 0
 }
