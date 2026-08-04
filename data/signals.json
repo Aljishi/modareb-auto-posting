@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.5 — سيولة مقبولة 1.6x — اختراق مقاومة مؤكد — هدوء سعري قبل اختراق محتمل — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161421-2380",
+      "signal_id": "Signal #2026-2161425-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:21:09",
+      "generated_at": "2026-08-04T14:25:58",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -150,7 +150,7 @@
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة خلال 3 أيام.",
-      "ai_reviewed_at": "2026-08-04T14:21:33",
+      "ai_reviewed_at": "2026-08-04T14:26:20",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -171,7 +171,7 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:21:37"
+        "calibrated_at": "2026-08-04T14:26:24"
       }
     },
     {
@@ -284,12 +284,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.2 — سيولة طبيعية 1.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161421-1211",
+      "signal_id": "Signal #2026-2161426-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:21:12",
+      "generated_at": "2026-08-04T14:26:01",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -303,9 +303,9 @@
           "TP2 looks unrealistic within 7 days.",
           "Setup is not clear."
         ],
-        "rejection_reason": "The second target is unrealistic within the expected holding period.",
-        "arabic_summary": "الإعداد غير واضح والهدف الثاني غير واقعي ضمن الإطار الزمني المحدد.",
-        "telegram_note": "إشارة مرفوضة بسبب عدم وضوح الإعداد."
+        "rejection_reason": "TP2 looks unrealistic within 7 days.",
+        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام.",
+        "telegram_note": "الإشارة غير واضحة، تم رفضها."
       },
       "ai_decision": "REJECT",
       "ai_confidence": 90,
@@ -316,9 +316,9 @@
         "TP2 looks unrealistic within 7 days.",
         "Setup is not clear."
       ],
-      "ai_arabic_summary": "الإعداد غير واضح والهدف الثاني غير واقعي ضمن الإطار الزمني المحدد.",
-      "ai_telegram_note": "إشارة مرفوضة بسبب عدم وضوح الإعداد.",
-      "ai_reviewed_at": "2026-08-04T14:21:35",
+      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام.",
+      "ai_telegram_note": "الإشارة غير واضحة، تم رفضها.",
+      "ai_reviewed_at": "2026-08-04T14:26:22",
       "raw_ai_confidence": 90.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -339,7 +339,7 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:21:37"
+        "calibrated_at": "2026-08-04T14:26:24"
       }
     },
     {
@@ -454,12 +454,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.0 — سيولة مقبولة 1.8x — اختراق مقاومة مؤكد — زخم يومي صحي +2.1% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161421-2083",
+      "signal_id": "Signal #2026-2161426-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:21:19",
+      "generated_at": "2026-08-04T14:26:07",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -477,7 +477,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-        "telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف منطقية وزخم إيجابي."
+        "telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 41.61 خلال 3 أيام."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 89,
@@ -491,8 +491,8 @@
         "Realistic target within expected holding days"
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
-      "ai_telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف منطقية وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-04T14:21:37",
+      "ai_telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 41.61 خلال 3 أيام.",
+      "ai_reviewed_at": "2026-08-04T14:26:24",
       "raw_ai_confidence": 89.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -513,11 +513,11 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:21:37"
+        "calibrated_at": "2026-08-04T14:26:24"
       }
     }
   ],
-  "generated_at": "2026-08-04T14:21:30",
+  "generated_at": "2026-08-04T14:26:17",
   "total": 3,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -684,8 +684,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-04T14:21:37",
+  "ai_reviewed_at": "2026-08-04T14:26:24",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-04T14:21:37",
+  "confidence_calibrated_at": "2026-08-04T14:26:24",
   "confidence_closed_history_sample": 0
 }
