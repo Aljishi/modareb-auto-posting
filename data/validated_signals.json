@@ -114,12 +114,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 73.3 — سيولة مقبولة 1.6x — اختراق مقاومة مؤكد — هدوء سعري قبل اختراق محتمل — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161437-2380",
+      "signal_id": "Signal #2026-2161441-2380",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:37:43",
+      "generated_at": "2026-08-04T14:41:01",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,14 +130,15 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with confirmed breakout",
+          "Strong momentum with a high score of 94",
+          "Clear breakout confirmed",
           "Acceptable RSI level",
-          "Good volume confirmation",
+          "Good volume ratio of 1.64",
           "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة خلال 3 أيام."
+        "arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات، استهدف 18.75 خلال 2-3 أيام."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -145,14 +146,15 @@
       "ai_risk_score": 6,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with confirmed breakout",
+        "Strong momentum with a high score of 94",
+        "Clear breakout confirmed",
         "Acceptable RSI level",
-        "Good volume confirmation",
+        "Good volume ratio of 1.64",
         "Realistic target within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2380 مع أهداف واضحة خلال 3 أيام.",
-      "ai_reviewed_at": "2026-08-04T14:38:06",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم 2380 مع زخم صاعد واضح وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على شركة رابغ للتكرير والبتروكيماويات، استهدف 18.75 خلال 2-3 أيام.",
+      "ai_reviewed_at": "2026-08-04T14:41:30",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -173,13 +175,13 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:38:10"
+        "calibrated_at": "2026-08-04T14:41:34"
       },
       "market_regime": "STRONG",
       "market_regime_ar": "قوي",
       "dynamic_min_rased_score": 77.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-04T14:38:11",
+      "post_checked_at": "2026-08-04T14:41:34",
       "post_approved": false,
       "post_rejected_reasons": [
         "R:R 1.7 أقل من 1.8"
@@ -297,12 +299,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.3 — سيولة قوية 2.1x — اختراق مقاومة مؤكد — زخم يومي صحي +2.3% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161437-2083",
+      "signal_id": "Signal #2026-2161441-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:37:51",
+      "generated_at": "2026-08-04T14:41:12",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -313,15 +315,15 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with a score of 93",
-          "Clear breakout confirmed",
-          "Healthy RSI at 62.26",
-          "Strong volume ratio of 2.06",
-          "Realistic targets within expected holding days"
+          "Strong momentum setup",
+          "High confidence score",
+          "Clear breakout",
+          "Healthy RSI",
+          "Strong volume confirmation"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم شركة مرافق الكهرباء والمياه بالجبيل وينبع مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية مع أهداف واضحة وزخم إيجابي."
+        "arabic_summary": "إشارة شراء قوية على سهم شركة مرافق الكهرباء والمياه بالجبيل وينبع مع زخم صحي وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 2083 مع أهداف واضحة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 93,
@@ -329,15 +331,15 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with a score of 93",
-        "Clear breakout confirmed",
-        "Healthy RSI at 62.26",
-        "Strong volume ratio of 2.06",
-        "Realistic targets within expected holding days"
+        "Strong momentum setup",
+        "High confidence score",
+        "Clear breakout",
+        "Healthy RSI",
+        "Strong volume confirmation"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة مرافق الكهرباء والمياه بالجبيل وينبع مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية مع أهداف واضحة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-04T14:38:08",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة مرافق الكهرباء والمياه بالجبيل وينبع مع زخم صحي وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 2083 مع أهداف واضحة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-04T14:41:32",
       "raw_ai_confidence": 93.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -358,13 +360,13 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:38:10"
+        "calibrated_at": "2026-08-04T14:41:34"
       },
       "market_regime": "STRONG",
       "market_regime_ar": "قوي",
       "dynamic_min_rased_score": 77.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-04T14:38:11",
+      "post_checked_at": "2026-08-04T14:41:34",
       "post_approved": false,
       "post_rejected_reasons": [
         "R:R 1.7 أقل من 1.8"
@@ -480,12 +482,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.1 — سيولة طبيعية 1.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +1.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2161437-1211",
+      "signal_id": "Signal #2026-2161441-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-04T14:37:47",
+      "generated_at": "2026-08-04T14:41:06",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -496,14 +498,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum setup",
-          "Healthy RSI at 61.06",
-          "Volume ratio indicates normal liquidity",
-          "Targets achievable within expected holding days"
+          "Strong momentum setup with a high score of 90",
+          "RSI is healthy at 61.06",
+          "Volume ratio is adequate at 1.1",
+          "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على شركة التعدين العربية السعودية (1211) مع أهداف قريبة وزخم إيجابي."
+        "arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 90,
@@ -511,14 +513,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum setup",
-        "Healthy RSI at 61.06",
-        "Volume ratio indicates normal liquidity",
-        "Targets achievable within expected holding days"
+        "Strong momentum setup with a high score of 90",
+        "RSI is healthy at 61.06",
+        "Volume ratio is adequate at 1.1",
+        "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة التعدين العربية السعودية (1211) مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-04T14:38:10",
+      "ai_arabic_summary": "إشارة قوية للشراء مع زخم صحي وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-04T14:41:34",
       "raw_ai_confidence": 90.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -539,13 +541,13 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-04T14:38:10"
+        "calibrated_at": "2026-08-04T14:41:34"
       },
       "market_regime": "STRONG",
       "market_regime_ar": "قوي",
       "dynamic_min_rased_score": 77.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-04T14:38:11",
+      "post_checked_at": "2026-08-04T14:41:34",
       "post_approved": false,
       "post_rejected_reasons": [
         "RASED SCORE 76.1 أقل من الحد الديناميكي 77.0 لسوق قوي",
@@ -560,8 +562,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-04T14:38:02",
-  "generated_at": "2026-08-04T14:38:11",
+  "source_generated_at": "2026-08-04T14:41:27",
+  "generated_at": "2026-08-04T14:41:34",
   "market_regime": {
     "regime": "STRONG",
     "regime_ar": "قوي",
@@ -585,8 +587,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-04T14:37:40",
-    "generated_at": "2026-08-04T14:38:10"
+    "daily_generated_at": "2026-08-04T14:40:59",
+    "generated_at": "2026-08-04T14:41:34"
   },
   "applied_limits": {
     "dynamic_rased_score": {

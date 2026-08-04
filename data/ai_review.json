@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T14:38:10",
+  "reviewed_at": "2026-08-04T14:41:34",
   "approved": 3,
   "total": 3,
   "signals": [
@@ -14,9 +14,10 @@
       "rased_score": 78.4,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with confirmed breakout",
+        "Strong momentum with a high score of 94",
+        "Clear breakout confirmed",
         "Acceptable RSI level",
-        "Good volume confirmation",
+        "Good volume ratio of 1.64",
         "Realistic target within expected holding days"
       ]
     },
@@ -29,11 +30,11 @@
       "rased_score": 77.8,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a score of 93",
-        "Clear breakout confirmed",
-        "Healthy RSI at 62.26",
-        "Strong volume ratio of 2.06",
-        "Realistic targets within expected holding days"
+        "Strong momentum setup",
+        "High confidence score",
+        "Clear breakout",
+        "Healthy RSI",
+        "Strong volume confirmation"
       ]
     },
     {
@@ -45,10 +46,10 @@
       "rased_score": 76.1,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "Healthy RSI at 61.06",
-        "Volume ratio indicates normal liquidity",
-        "Targets achievable within expected holding days"
+        "Strong momentum setup with a high score of 90",
+        "RSI is healthy at 61.06",
+        "Volume ratio is adequate at 1.1",
+        "Targets are realistic within the expected holding period"
       ]
     }
   ]
