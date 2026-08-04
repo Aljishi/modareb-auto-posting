@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-04T13:56:19",
-  "data_timestamp": "2026-08-04T13:55:48",
+  "generated_at": "2026-08-04T14:01:47",
+  "data_timestamp": "2026-08-04T14:01:04",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,39 +15,38 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "",
-    "average_change_pct": 0.867,
-    "advance_ratio": 0.6596,
+    "average_change_pct": 0.917,
+    "advance_ratio": 0.6809,
     "dispersion": 2.236,
     "dynamic_min_score": null,
-    "advancing": 31,
-    "declining": 15,
-    "unchanged": 1
+    "advancing": 32,
+    "declining": 13,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
-    "rejected": 45,
-    "generated": 2,
+    "rejected": 44,
+    "generated": 3,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 31,
     "categories": {
       "الاتجاه الفني غير مناسب": 31,
-      "ضعف السيولة أو الحجم": 5,
       "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 3,
-      "الزخم غير مناسب": 1,
+      "ضعف السيولة أو الحجم": 4,
+      "أسباب فنية أخرى": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "السلع الرأسمالية",
-    "best_sector_avg_change_pct": 4.31,
+    "best_sector_avg_change_pct": 4.19,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
       "change_pct": 9.94,
-      "value": 4923620.19
+      "value": 4923835.11
     }
   },
   "portfolio_exposure": {
@@ -58,7 +57,7 @@
   "confidence_calibration": {
     "status": "PASS",
     "closed_history_sample": 0,
-    "signals_calibrated": 2
+    "signals_calibrated": 3
   },
   "validated_signals": []
 }
