@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T14:11:30",
+  "reviewed_at": "2026-08-04T14:16:28",
   "approved": 3,
   "total": 3,
   "signals": [
@@ -9,7 +9,7 @@
       "stock_symbol": "2380",
       "decision": "APPROVE",
       "confidence": 94,
-      "risk_level": "MEDIUM",
+      "risk_level": "LOW",
       "expected_holding_days": 3,
       "rased_score": 78.4,
       "tier": "Standard",
@@ -17,7 +17,7 @@
         "Strong momentum with confirmed breakout",
         "Acceptable RSI level",
         "Good volume confirmation",
-        "Realistic targets within holding period"
+        "Realistic target within expected holding days"
       ]
     },
     {
@@ -29,10 +29,10 @@
       "rased_score": 76.1,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a high score of 90",
-        "RSI is healthy at 62.15",
-        "Volume ratio is adequate at 1.01",
-        "Targets are realistic within the expected holding period"
+        "Strong momentum setup",
+        "Healthy RSI",
+        "Volume confirmation is adequate",
+        "Targets achievable within expected holding days"
       ]
     },
     {
@@ -45,8 +45,8 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum with confirmed breakout",
-        "Healthy RSI at 62.1",
-        "Acceptable volume ratio of 1.78",
+        "Healthy RSI at 62.05",
+        "Acceptable volume ratio of 1.8",
         "Realistic target within expected holding days"
       ]
     }
