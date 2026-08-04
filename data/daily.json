@@ -2,7 +2,7 @@
   "provider": "sahmk",
   "data_source": "api",
   "engine": "rased_market_intelligence_sahmk_v2",
-  "generated_at": "2026-08-04T11:11:00",
+  "generated_at": "2026-08-04T11:15:51",
   "api_url": "https://app.sahmk.sa/api/v1",
   "requested_symbols": 51,
   "market_summary": {
