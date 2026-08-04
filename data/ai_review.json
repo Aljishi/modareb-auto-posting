@@ -1,36 +1,39 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T14:26:24",
-  "approved": 2,
+  "reviewed_at": "2026-08-04T14:31:29",
+  "approved": 3,
   "total": 3,
   "signals": [
     {
       "stock_symbol": "2380",
       "decision": "APPROVE",
-      "confidence": 94,
+      "confidence": 99,
       "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 78.4,
+      "rased_score": 81.2,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with confirmed breakout",
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "Healthy daily momentum",
         "Acceptable RSI level",
-        "Good volume confirmation",
-        "Realistic target within expected holding days"
+        "Realistic target within holding period"
       ]
     },
     {
       "stock_symbol": "1211",
-      "decision": "REJECT",
+      "decision": "APPROVE",
       "confidence": 90,
-      "risk_level": "MEDIUM",
+      "risk_level": "LOW",
       "expected_holding_days": 3,
       "rased_score": 76.1,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days.",
-        "Setup is not clear."
+        "Strong momentum setup",
+        "Healthy RSI",
+        "Volume confirmation present",
+        "Clear breakout potential"
       ]
     },
     {
@@ -43,8 +46,8 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum with confirmed breakout",
-        "Healthy RSI at 62.05",
-        "Acceptable volume ratio of 1.8",
+        "Healthy RSI at 62.26",
+        "Acceptable volume ratio of 1.87",
         "Realistic target within expected holding days"
       ]
     }
