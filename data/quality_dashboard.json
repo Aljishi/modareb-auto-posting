@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-04T10:16:18",
-  "data_timestamp": "2026-08-04T10:15:53",
+  "generated_at": "2026-08-04T10:21:27",
+  "data_timestamp": "2026-08-04T10:20:54",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,40 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "STRONG",
-    "regime_ar": "قوي",
-    "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 1.469,
-    "advance_ratio": 0.8511,
-    "dispersion": 1.742,
-    "dynamic_min_score": 77,
-    "advancing": 40,
-    "declining": 4,
-    "unchanged": 3
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.123,
+    "advance_ratio": 0.5532,
+    "dispersion": 1.59,
+    "dynamic_min_score": 81,
+    "advancing": 26,
+    "declining": 16,
+    "unchanged": 5
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 31,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 22,
     "categories": {
-      "الاتجاه الفني غير مناسب": 31,
-      "أسباب فنية أخرى": 11,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 22,
+      "الاتجاه الفني غير مناسب": 17,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "الزخم غير مناسب": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.64,
-    "best_sector_members": 1,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.29,
+    "best_sector_members": 9,
     "best_stock": {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 9.98,
-      "value": 298478542.0
+      "symbol": "1301",
+      "name": "شركة إتحاد مصانع الأسلاك",
+      "change_pct": 8.04,
+      "value": 1277161.6
     }
   },
   "portfolio_exposure": {
