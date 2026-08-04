@@ -1,21 +1,39 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T14:36:22",
-  "approved": 2,
+  "reviewed_at": "2026-08-04T14:38:10",
+  "approved": 3,
   "total": 3,
   "signals": [
     {
       "stock_symbol": "2380",
-      "decision": "REJECT",
-      "confidence": 99,
-      "risk_level": "MEDIUM",
+      "decision": "APPROVE",
+      "confidence": 94,
+      "risk_level": "LOW",
       "expected_holding_days": 3,
-      "rased_score": 81.2,
+      "rased_score": 78.4,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days",
-        "RSI is overheated"
+        "Strong momentum with confirmed breakout",
+        "Acceptable RSI level",
+        "Good volume confirmation",
+        "Realistic target within expected holding days"
+      ]
+    },
+    {
+      "stock_symbol": "2083",
+      "decision": "APPROVE",
+      "confidence": 93,
+      "risk_level": "LOW",
+      "expected_holding_days": 3,
+      "rased_score": 77.8,
+      "tier": "Standard",
+      "reasons": [
+        "Strong momentum with a score of 93",
+        "Clear breakout confirmed",
+        "Healthy RSI at 62.26",
+        "Strong volume ratio of 2.06",
+        "Realistic targets within expected holding days"
       ]
     },
     {
@@ -28,25 +46,9 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum setup",
-        "Healthy RSI at 61.43",
-        "Volume ratio above 1",
-        "Clear upward trend",
-        "Realistic targets within 7 days"
-      ]
-    },
-    {
-      "stock_symbol": "2083",
-      "decision": "APPROVE",
-      "confidence": 89,
-      "risk_level": "LOW",
-      "expected_holding_days": 3,
-      "rased_score": 75.5,
-      "tier": "Standard",
-      "reasons": [
-        "Strong momentum with confirmed breakout",
-        "Healthy RSI level",
-        "Acceptable volume ratio",
-        "Realistic target within expected holding days"
+        "Healthy RSI at 61.06",
+        "Volume ratio indicates normal liquidity",
+        "Targets achievable within expected holding days"
       ]
     }
   ]
