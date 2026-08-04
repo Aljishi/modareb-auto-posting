@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-04T11:41:07",
-  "data_timestamp": "2026-08-04T11:40:50",
+  "generated_at": "2026-08-04T11:46:26",
+  "data_timestamp": "2026-08-04T11:46:01",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.709,
+    "average_change_pct": 0.671,
     "advance_ratio": 0.6383,
-    "dispersion": 2.02,
+    "dispersion": 2.008,
     "dynamic_min_score": 80,
     "advancing": 30,
     "declining": 14,
@@ -29,10 +29,10 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 30,
+    "dominant_rejection_count": 31,
     "categories": {
-      "الاتجاه الفني غير مناسب": 30,
-      "ضعف السيولة أو الحجم": 10,
+      "الاتجاه الفني غير مناسب": 31,
+      "ضعف السيولة أو الحجم": 9,
       "العائد مقابل المخاطرة غير مناسب": 3,
       "أسباب فنية أخرى": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "السلع الرأسمالية",
-    "best_sector_avg_change_pct": 2.71,
+    "best_sector_avg_change_pct": 2.59,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
       "change_pct": 9.94,
-      "value": 4665071.43
+      "value": 4675083.12
     }
   },
   "portfolio_exposure": {
