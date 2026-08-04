@@ -1,8 +1,8 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-04T14:16:28",
-  "approved": 3,
+  "reviewed_at": "2026-08-04T14:21:37",
+  "approved": 2,
   "total": 3,
   "signals": [
     {
@@ -22,17 +22,15 @@
     },
     {
       "stock_symbol": "1211",
-      "decision": "APPROVE",
+      "decision": "REJECT",
       "confidence": 90,
-      "risk_level": "LOW",
+      "risk_level": "MEDIUM",
       "expected_holding_days": 3,
       "rased_score": 76.1,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "Healthy RSI",
-        "Volume confirmation is adequate",
-        "Targets achievable within expected holding days"
+        "TP2 looks unrealistic within 7 days.",
+        "Setup is not clear."
       ]
     },
     {
