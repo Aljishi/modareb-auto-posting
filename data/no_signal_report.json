@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T12:56:13",
+  "generated_at": "2026-08-04T13:01:25",
   "total_rejected": 47,
   "total_generated": 0,
   "total_validated": 1,
@@ -19,7 +19,7 @@
     },
     {
       "symbol": "2380",
-      "reason": "RSI 75.36 خارج النطاق 38.0-74.0",
+      "reason": "RSI 75.5 خارج النطاق 38.0-74.0",
       "category": "الزخم غير مناسب"
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "symbol": "1211",
-      "reason": "Volume 0.79x أقل من 0.85x",
+      "reason": "Volume 0.83x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "symbol": "2082",
-      "reason": "Volume 0.81x أقل من 0.85x",
+      "reason": "Volume 0.82x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
@@ -64,7 +64,7 @@
     },
     {
       "symbol": "1303",
-      "reason": "Volume 0.51x أقل من 0.85x",
+      "reason": "Volume 0.52x أقل من 0.85x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
