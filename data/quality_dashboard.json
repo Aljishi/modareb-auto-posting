@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-05T10:56:13",
-  "data_timestamp": "2026-08-05T10:55:54",
+  "generated_at": "2026-08-05T11:01:31",
+  "data_timestamp": "2026-08-05T11:01:05",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.039,
-    "advance_ratio": 0.4894,
-    "dispersion": 2.1,
+    "average_change_pct": 0.035,
+    "advance_ratio": 0.5319,
+    "dispersion": 2.028,
     "dynamic_min_score": 81,
-    "advancing": 23,
-    "declining": 18,
+    "advancing": 25,
+    "declining": 16,
     "unchanged": 6
   },
   "screening": {
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 1.83,
+    "best_sector_avg_change_pct": 1.63,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 7.26,
-      "value": 10623110.79
+      "change_pct": 6.37,
+      "value": 11238890.4
     }
   },
   "portfolio_exposure": {
