@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T11:46:25",
+  "generated_at": "2026-08-05T11:51:05",
   "top_sectors": [
     {
       "sector": "المرافق العامة",
@@ -16,9 +16,9 @@
       "sector": "المواد الأساسية",
       "rotation_score": 61.3,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 1.26,
+      "avg_change_pct": 1.21,
       "advancing_ratio": 0.78,
-      "total_value": 158280680.49,
+      "total_value": 161327954.18,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -128,9 +128,9 @@
       "sector": "المواد الأساسية",
       "rotation_score": 61.3,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 1.26,
+      "avg_change_pct": 1.21,
       "advancing_ratio": 0.78,
-      "total_value": 158280680.49,
+      "total_value": 161327954.18,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
