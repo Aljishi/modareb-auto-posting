@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.9 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +0.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2171005-1211",
+      "signal_id": "Signal #2026-2171010-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-05T10:05:52",
+      "generated_at": "2026-08-05T10:10:57",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -128,14 +128,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with a score of 94",
+          "Strong momentum with a high score of 94",
           "RSI is healthy at 61.88",
-          "Volume ratio is acceptable at 1.42",
+          "Volume ratio indicates acceptable liquidity",
           "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 1211 مع زخم إيجابي وأهداف قريبة."
+        "telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -143,14 +143,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with a score of 94",
+        "Strong momentum with a high score of 94",
         "RSI is healthy at 61.88",
-        "Volume ratio is acceptable at 1.42",
+        "Volume ratio indicates acceptable liquidity",
         "Targets are realistic within the expected holding period"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211 مع زخم إيجابي وأهداف قريبة.",
-      "ai_reviewed_at": "2026-08-05T10:06:29",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع أهداف واضحة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-05T10:11:15",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -171,13 +171,13 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-05T10:06:30"
+        "calibrated_at": "2026-08-05T10:11:15"
       },
       "market_regime": "NORMAL",
       "market_regime_ar": "طبيعي",
       "dynamic_min_rased_score": 80.0,
       "borderline_approval": true,
-      "post_checked_at": "2026-08-05T10:06:30",
+      "post_checked_at": "2026-08-05T10:11:15",
       "post_approved": true,
       "post_rejected_reasons": [],
       "post_approval_source": "openai_and_dynamic_python",
@@ -186,7 +186,7 @@
         "التعرض لقطاع المواد الأساسية بلغ الحد 1"
       ],
       "portfolio_exposure_decision": {
-        "checked_at": "2026-08-05T10:06:30",
+        "checked_at": "2026-08-05T10:11:15",
         "symbol": "1211",
         "name": "شركة التعدين العربية السعودية",
         "sector": "المواد الأساسية",
@@ -204,8 +204,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-05T10:06:21",
-  "generated_at": "2026-08-05T10:06:30",
+  "source_generated_at": "2026-08-05T10:11:11",
+  "generated_at": "2026-08-05T10:11:15",
   "market_regime": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
@@ -229,8 +229,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-05T10:05:48",
-    "generated_at": "2026-08-05T10:06:30"
+    "daily_generated_at": "2026-08-05T10:10:53",
+    "generated_at": "2026-08-05T10:11:15"
   },
   "applied_limits": {
     "dynamic_rased_score": {
@@ -266,7 +266,7 @@
     }
   },
   "portfolio_exposure_checked": true,
-  "portfolio_exposure_checked_at": "2026-08-05T10:06:30",
+  "portfolio_exposure_checked_at": "2026-08-05T10:11:15",
   "portfolio_exposure": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
