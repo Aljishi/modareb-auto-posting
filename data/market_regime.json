@@ -4,19 +4,19 @@
   "regime": "NORMAL",
   "regime_ar": "طبيعي",
   "posture": "انتقائي",
-  "reason": "متوسط السوق -0.19% ونسبة الصعود 38.3%",
+  "reason": "متوسط السوق -0.15% ونسبة الصعود 40.4%",
   "sample_size": 47,
   "minimum_sample": 15,
-  "average_change_pct": -0.187,
-  "median_change_pct": -0.14,
-  "index_change_pct": 0.09,
-  "advance_ratio": 0.383,
-  "decline_ratio": 0.5532,
+  "average_change_pct": -0.15,
+  "median_change_pct": -0.12,
+  "index_change_pct": 0.07,
+  "advance_ratio": 0.4043,
+  "decline_ratio": 0.5319,
   "unchanged_ratio": 0.0638,
-  "dispersion": 2.292,
+  "dispersion": 2.259,
   "extreme_move_ratio": 0.0426,
-  "advancing_stocks": 18,
-  "declining_stocks": 26,
+  "advancing_stocks": 19,
+  "declining_stocks": 25,
   "unchanged_stocks": 3,
   "filter_profile": {
     "MIN_SIGNAL_SCORE": 80,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 3.25,
     "MAX_CANDIDATES": 50
   },
-  "daily_generated_at": "2026-08-05T13:25:47",
-  "generated_at": "2026-08-05T13:25:47"
+  "daily_generated_at": "2026-08-05T13:30:56",
+  "generated_at": "2026-08-05T13:30:56"
 }
