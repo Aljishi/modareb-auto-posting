@@ -613,7 +613,7 @@
       }
     },
     "4005": {
-      "cached_at": "2026-08-04T10:01:43",
+      "cached_at": "2026-08-05T10:06:13",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -776,8 +776,8 @@
         },
         "dividends": {
           "symbol": "4005",
-          "current_price": 126.6,
-          "trailing_12m_yield": 2.37,
+          "current_price": 125.7,
+          "trailing_12m_yield": 2.39,
           "trailing_12m_dividends": 3.0,
           "payments_last_year": 1,
           "upcoming": [],
@@ -2321,7 +2321,7 @@
       }
     },
     "2083": {
-      "cached_at": "2026-08-04T10:01:52",
+      "cached_at": "2026-08-05T10:06:03",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -2484,8 +2484,8 @@
         },
         "dividends": {
           "symbol": "2083",
-          "current_price": 38.76,
-          "trailing_12m_yield": 4.64,
+          "current_price": 35.88,
+          "trailing_12m_yield": 5.02,
           "trailing_12m_dividends": 1.8,
           "payments_last_year": 1,
           "upcoming": [],
@@ -3961,7 +3961,7 @@
       }
     },
     "4002": {
-      "cached_at": "2026-08-04T10:01:35",
+      "cached_at": "2026-08-05T10:06:00",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -4124,8 +4124,8 @@
         },
         "dividends": {
           "symbol": "4002",
-          "current_price": 63.8,
-          "trailing_12m_yield": 3.33,
+          "current_price": 63.95,
+          "trailing_12m_yield": 3.32,
           "trailing_12m_dividends": 2.125,
           "payments_last_year": 2,
           "upcoming": [],

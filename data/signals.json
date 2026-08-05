@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 61.9 — سيولة مقبولة 1.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +0.9% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2171001-1211",
+      "signal_id": "Signal #2026-2171005-1211",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-05T10:01:06",
+      "generated_at": "2026-08-05T10:05:52",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -129,11 +129,11 @@
           "Strong momentum with a score of 94",
           "RSI is healthy at 61.88",
           "Volume ratio is acceptable at 1.42",
-          "Clear bullish trend with a confirmed upward direction"
+          "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وهدف منطقي.",
-        "telegram_note": "إشارة شراء قوية على 1211، استعد لتحقيق أهدافك في 3 أيام!"
+        "arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
+        "telegram_note": "إشارة شراء قوية على 1211 مع زخم إيجابي وأهداف قريبة."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -144,11 +144,11 @@
         "Strong momentum with a score of 94",
         "RSI is healthy at 61.88",
         "Volume ratio is acceptable at 1.42",
-        "Clear bullish trend with a confirmed upward direction"
+        "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وهدف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على 1211، استعد لتحقيق أهدافك في 3 أيام!",
-      "ai_reviewed_at": "2026-08-05T10:01:28",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم 1211 مع زخم صحي وأهداف منطقية.",
+      "ai_telegram_note": "إشارة شراء قوية على 1211 مع زخم إيجابي وأهداف قريبة.",
+      "ai_reviewed_at": "2026-08-05T10:06:29",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 0.0,
       "calibrated_confidence": 75.0,
@@ -169,11 +169,11 @@
         "historical_weight": 0.0,
         "calibrated_confidence": 75.0,
         "label": "تقديري — لا توجد عينة تاريخية مغلقة",
-        "calibrated_at": "2026-08-05T10:01:28"
+        "calibrated_at": "2026-08-05T10:06:30"
       }
     }
   ],
-  "generated_at": "2026-08-05T10:01:23",
+  "generated_at": "2026-08-05T10:06:21",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -340,8 +340,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-05T10:01:28",
+  "ai_reviewed_at": "2026-08-05T10:06:29",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-05T10:01:28",
+  "confidence_calibrated_at": "2026-08-05T10:06:30",
   "confidence_closed_history_sample": 0
 }
