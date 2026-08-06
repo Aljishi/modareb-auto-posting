@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-06T10:16:15",
-  "data_timestamp": "2026-08-06T10:15:51",
+  "generated_at": "2026-08-06T10:21:32",
+  "data_timestamp": "2026-08-06T10:21:11",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.23,
-    "advance_ratio": 0.3617,
-    "dispersion": 2.329,
-    "dynamic_min_score": 80,
-    "advancing": 17,
-    "declining": 25,
-    "unchanged": 5
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.321,
+    "advance_ratio": 0.3191,
+    "dispersion": 1.217,
+    "dynamic_min_score": 83,
+    "advancing": 15,
+    "declining": 26,
+    "unchanged": 6
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 29,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 18,
     "categories": {
-      "الاتجاه الفني غير مناسب": 29,
-      "أسباب فنية أخرى": 7,
+      "ضعف السيولة أو الحجم": 18,
+      "الاتجاه الفني غير مناسب": 13,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 1,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "أسباب فنية أخرى": 3,
+      "الزخم غير مناسب": 1
     }
   },
   "leadership": {
-    "best_sector": "المرافق العامة",
-    "best_sector_avg_change_pct": 2.6,
-    "best_sector_members": 1,
+    "best_sector": "التأمين",
+    "best_sector_avg_change_pct": 0.44,
+    "best_sector_members": 3,
     "best_stock": {
-      "symbol": "1301",
-      "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 5.19,
-      "value": 20804861.28
+      "symbol": "8010",
+      "name": "الشركة التعاونية للتأمين",
+      "change_pct": 1.68,
+      "value": 1573699.5
     }
   },
   "portfolio_exposure": {
