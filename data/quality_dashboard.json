@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-06T10:26:11",
-  "data_timestamp": "2026-08-06T10:25:47",
+  "generated_at": "2026-08-06T10:31:24",
+  "data_timestamp": "2026-08-06T10:31:03",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,38 +15,39 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.321,
-    "advance_ratio": 0.3191,
-    "dispersion": 1.217,
+    "average_change_pct": -0.2,
+    "advance_ratio": 0.3404,
+    "dispersion": 1.439,
     "dynamic_min_score": 83,
-    "advancing": 15,
+    "advancing": 16,
     "declining": 26,
-    "unchanged": 6
+    "unchanged": 5
   },
   "screening": {
     "screened": 40,
     "rejected": 40,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 18,
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection_count": 20,
     "categories": {
-      "ضعف السيولة أو الحجم": 18,
-      "الاتجاه الفني غير مناسب": 13,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "أسباب فنية أخرى": 3,
-      "الزخم غير مناسب": 1
+      "الاتجاه الفني غير مناسب": 20,
+      "ضعف السيولة أو الحجم": 7,
+      "العائد مقابل المخاطرة غير مناسب": 6,
+      "أسباب فنية أخرى": 4,
+      "الزخم غير مناسب": 2,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 0.44,
+    "best_sector_avg_change_pct": 0.83,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "8010",
-      "name": "الشركة التعاونية للتأمين",
-      "change_pct": 1.68,
-      "value": 1573699.5
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 4.33,
+      "value": 12731196.75
     }
   },
   "portfolio_exposure": {
