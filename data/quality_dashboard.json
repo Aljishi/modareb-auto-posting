@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-06T12:26:16",
-  "data_timestamp": "2026-08-06T12:25:55",
+  "generated_at": "2026-08-06T12:31:15",
+  "data_timestamp": "2026-08-06T12:30:58",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.523,
-    "advance_ratio": 0.234,
-    "dispersion": 1.736,
+    "average_change_pct": -0.604,
+    "advance_ratio": 0.2128,
+    "dispersion": 1.731,
     "dynamic_min_score": 83,
-    "advancing": 11,
-    "declining": 36,
-    "unchanged": 0
+    "advancing": 10,
+    "declining": 35,
+    "unchanged": 2
   },
   "screening": {
     "screened": 40,
@@ -29,25 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 23,
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 23,
+      "الاتجاه الفني غير مناسب": 24,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "أسباب فنية أخرى": 4,
+      "ضعف السيولة أو الحجم": 4,
+      "أسباب فنية أخرى": 3,
       "الزخم غير مناسب": 3,
-      "ضعف السيولة أو الحجم": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.93,
+    "best_sector_avg_change_pct": 0.62,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 4.63,
-      "value": 46003543.16
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 4.2,
+      "value": 31194901.05
     }
   },
   "portfolio_exposure": {
