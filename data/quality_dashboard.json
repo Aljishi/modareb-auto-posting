@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-06T14:56:15",
-  "data_timestamp": "2026-08-06T14:55:57",
+  "generated_at": "2026-08-06T18:13:05",
+  "data_timestamp": "2026-08-06T17:59:51",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,9 +19,9 @@
     "advance_ratio": 0.2128,
     "dispersion": 1.858,
     "dynamic_min_score": 83,
-    "advancing": 10,
+    "advancing": 9,
     "declining": 37,
-    "unchanged": 0
+    "unchanged": 1
   },
   "screening": {
     "screened": 40,
@@ -39,14 +39,14 @@
     }
   },
   "leadership": {
-    "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.85,
+    "best_sector": "التأمين",
+    "best_sector_avg_change_pct": 0.51,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 4.52,
-      "value": 61441425.0
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 4.4,
+      "value": 43735326.3
     }
   },
   "portfolio_exposure": {
