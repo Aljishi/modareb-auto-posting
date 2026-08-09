@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-09T11:01:31",
+  "generated_at": "2026-08-09T11:06:07",
   "top_sectors": [
     {
       "sector": "الخدمات الاستهلاكية",
-      "rotation_score": 63.9,
+      "rotation_score": 63.7,
       "grade": "محايد إيجابي",
       "avg_change_pct": 2.09,
       "advancing_ratio": 1.0,
@@ -14,7 +14,7 @@
     },
     {
       "sector": "البنوك",
-      "rotation_score": 62.3,
+      "rotation_score": 61.8,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.62,
       "advancing_ratio": 1.0,
@@ -25,18 +25,18 @@
     },
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 61.0,
+      "rotation_score": 60.7,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.65,
+      "avg_change_pct": 0.6,
       "advancing_ratio": 0.78,
-      "total_value": 72801656.54,
+      "total_value": 75282713.52,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الإعلام والترفيه",
-      "rotation_score": 53.4,
+      "rotation_score": 53.3,
       "grade": "محايد",
       "avg_change_pct": 1.58,
       "advancing_ratio": 1.0,
@@ -47,7 +47,7 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 52.1,
+      "rotation_score": 51.8,
       "grade": "محايد",
       "avg_change_pct": 1.3,
       "advancing_ratio": 0.67,
@@ -69,7 +69,7 @@
     },
     {
       "sector": "تجزئة السلع الكمالية",
-      "rotation_score": 45.7,
+      "rotation_score": 45.6,
       "grade": "محايد",
       "avg_change_pct": 0.63,
       "advancing_ratio": 0.83,
@@ -102,7 +102,7 @@
     },
     {
       "sector": "التطبيقات وخدمات التقنية",
-      "rotation_score": 34.1,
+      "rotation_score": 34.0,
       "grade": "ضعيف",
       "avg_change_pct": 0.23,
       "advancing_ratio": 0.5,
@@ -115,7 +115,7 @@
   "all_sectors": [
     {
       "sector": "الخدمات الاستهلاكية",
-      "rotation_score": 63.9,
+      "rotation_score": 63.7,
       "grade": "محايد إيجابي",
       "avg_change_pct": 2.09,
       "advancing_ratio": 1.0,
@@ -126,7 +126,7 @@
     },
     {
       "sector": "البنوك",
-      "rotation_score": 62.3,
+      "rotation_score": 61.8,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.62,
       "advancing_ratio": 1.0,
@@ -137,18 +137,18 @@
     },
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 61.0,
+      "rotation_score": 60.7,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.65,
+      "avg_change_pct": 0.6,
       "advancing_ratio": 0.78,
-      "total_value": 72801656.54,
+      "total_value": 75282713.52,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
     },
     {
       "sector": "الإعلام والترفيه",
-      "rotation_score": 53.4,
+      "rotation_score": 53.3,
       "grade": "محايد",
       "avg_change_pct": 1.58,
       "advancing_ratio": 1.0,
@@ -159,7 +159,7 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 52.1,
+      "rotation_score": 51.8,
       "grade": "محايد",
       "avg_change_pct": 1.3,
       "advancing_ratio": 0.67,
@@ -181,7 +181,7 @@
     },
     {
       "sector": "تجزئة السلع الكمالية",
-      "rotation_score": 45.7,
+      "rotation_score": 45.6,
       "grade": "محايد",
       "avg_change_pct": 0.63,
       "advancing_ratio": 0.83,
@@ -214,7 +214,7 @@
     },
     {
       "sector": "التطبيقات وخدمات التقنية",
-      "rotation_score": 34.1,
+      "rotation_score": 34.0,
       "grade": "ضعيف",
       "avg_change_pct": 0.23,
       "advancing_ratio": 0.5,
@@ -225,7 +225,7 @@
     },
     {
       "sector": "النقل",
-      "rotation_score": 33.9,
+      "rotation_score": 33.8,
       "grade": "ضعيف",
       "avg_change_pct": 0.13,
       "advancing_ratio": 0.5,
@@ -247,7 +247,7 @@
     },
     {
       "sector": "الرعاية الصحية",
-      "rotation_score": 30.6,
+      "rotation_score": 30.5,
       "grade": "ضعيف",
       "avg_change_pct": -0.0,
       "advancing_ratio": 0.4,
@@ -291,7 +291,7 @@
     },
     {
       "sector": "المرافق العامة",
-      "rotation_score": 12.2,
+      "rotation_score": 11.9,
       "grade": "ضعيف",
       "avg_change_pct": -2.23,
       "advancing_ratio": 0.0,
