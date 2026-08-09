@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T11:56:43",
-  "data_timestamp": "2026-08-09T11:56:20",
+  "generated_at": "2026-08-09T12:01:39",
+  "data_timestamp": "2026-08-09T12:01:10",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.419,
-    "advance_ratio": 0.5957,
-    "dispersion": 1.511,
+    "average_change_pct": 0.439,
+    "advance_ratio": 0.6383,
+    "dispersion": 1.51,
     "dynamic_min_score": 80,
-    "advancing": 28,
+    "advancing": 30,
     "declining": 17,
-    "unchanged": 2
+    "unchanged": 0
   },
   "screening": {
     "screened": 47,
@@ -32,22 +32,22 @@
     "dominant_rejection_count": 28,
     "categories": {
       "الاتجاه الفني غير مناسب": 28,
-      "ضعف السيولة أو الحجم": 9,
+      "ضعف السيولة أو الحجم": 10,
       "العائد مقابل المخاطرة غير مناسب": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 2,
       "الزخم غير مناسب": 2,
-      "أسباب فنية أخرى": 2
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
     "best_sector": "الخدمات الاستهلاكية",
-    "best_sector_avg_change_pct": 2.35,
+    "best_sector_avg_change_pct": 2.19,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
       "change_pct": 5.64,
-      "value": 30593106.24
+      "value": 31582992.18
     }
   },
   "portfolio_exposure": {
