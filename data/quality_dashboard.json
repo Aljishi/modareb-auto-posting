@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T14:21:16",
-  "data_timestamp": "2026-08-09T14:20:49",
+  "generated_at": "2026-08-09T14:26:44",
+  "data_timestamp": "2026-08-09T14:25:48",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.009,
-    "advance_ratio": 0.4681,
-    "dispersion": 1.587,
+    "average_change_pct": -0.064,
+    "advance_ratio": 0.4255,
+    "dispersion": 1.697,
     "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 23,
-    "unchanged": 2
+    "advancing": 20,
+    "declining": 26,
+    "unchanged": 1
   },
   "screening": {
     "screened": 45,
@@ -32,22 +32,22 @@
     "dominant_rejection_count": 30,
     "categories": {
       "الاتجاه الفني غير مناسب": 30,
-      "الزخم غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 4,
       "أسباب فنية أخرى": 4,
       "العائد مقابل المخاطرة غير مناسب": 3,
-      "ضعف السيولة أو الحجم": 3,
+      "الزخم غير مناسب": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الإعلام والترفيه",
-    "best_sector_avg_change_pct": 1.34,
+    "best_sector_avg_change_pct": 1.27,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 4.05,
-      "value": 22393140.0
+      "symbol": "4260",
+      "name": "الشركة المتحدة الدولية للمواصلات",
+      "change_pct": 4.12,
+      "value": 39848774.4
     }
   },
   "portfolio_exposure": {

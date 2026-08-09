@@ -2164,7 +2164,7 @@
       }
     },
     "2083": {
-      "cached_at": "2026-08-05T10:06:03",
+      "cached_at": "2026-08-09T14:26:19",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -2180,7 +2180,7 @@
               "is_full_year": true,
               "total_revenue": 6945620000.0,
               "gross_profit": 817478000.0,
-              "operating_income": 755291000.0,
+              "operating_income": 1757697000.0,
               "net_income": 449428000.0
             },
             {
@@ -2192,7 +2192,7 @@
               "is_full_year": true,
               "total_revenue": 6883210000.0,
               "gross_profit": 2448765000.0,
-              "operating_income": 231320000.0,
+              "operating_income": 896148000.0,
               "net_income": 17152000.0
             },
             {
@@ -2203,8 +2203,8 @@
               "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 6389334000.0,
-              "gross_profit": 3507258000.0,
-              "operating_income": 2413910000.0,
+              "gross_profit": 1712142000.0,
+              "operating_income": 1594632000.0,
               "net_income": 525798000.0
             },
             {
@@ -2215,8 +2215,8 @@
               "quarters_covered": 2,
               "is_full_year": true,
               "total_revenue": 6505093000.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 1148195000.0,
+              "operating_income": 1094226000.0,
               "net_income": 845650000.0
             }
           ],
@@ -2327,8 +2327,8 @@
         },
         "dividends": {
           "symbol": "2083",
-          "current_price": 35.88,
-          "trailing_12m_yield": 5.02,
+          "current_price": 39.0,
+          "trailing_12m_yield": 4.62,
           "trailing_12m_dividends": 1.8,
           "payments_last_year": 1,
           "upcoming": [],
