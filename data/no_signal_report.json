@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-08-09T10:04:24",
+  "generated_at": "2026-08-09T10:10:45",
   "total_rejected": 40,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "الاتجاه الفني غير مناسب": 26,
+    "الاتجاه الفني غير مناسب": 23,
     "العائد مقابل المخاطرة غير مناسب": 5,
+    "بيانات تاريخية غير كافية": 5,
     "أسباب فنية أخرى": 4,
-    "بيانات تاريخية غير كافية": 2,
-    "الزخم غير مناسب": 2,
-    "بعيد عن الاختراق أو قريب من مقاومة": 1
+    "بعيد عن الاختراق أو قريب من مقاومة": 2,
+    "الزخم غير مناسب": 1
   },
   "sample_rejections": [
     {
@@ -29,13 +29,13 @@
     },
     {
       "symbol": "1211",
-      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
-      "category": "بيانات تاريخية غير كافية"
+      "reason": "RASED SCORE 78.0 أقل من 83",
+      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "2380",
-      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
-      "category": "بيانات تاريخية غير كافية"
+      "reason": "بعيد عن المقاومة: 10.05%",
+      "category": "بعيد عن الاختراق أو قريب من مقاومة"
     },
     {
       "symbol": "4260",
@@ -54,8 +54,8 @@
     },
     {
       "symbol": "4030",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2082",
