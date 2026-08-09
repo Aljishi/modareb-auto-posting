@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T10:22:08",
-  "data_timestamp": "2026-08-09T10:20:19",
+  "generated_at": "2026-08-09T10:28:06",
+  "data_timestamp": "2026-08-09T10:25:57",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,43 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.031,
-    "advance_ratio": 0.5745,
-    "dispersion": 1.333,
-    "dynamic_min_score": 81,
-    "advancing": 27,
-    "declining": 18,
-    "unchanged": 2
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.083,
+    "advance_ratio": 0.617,
+    "dispersion": 1.15,
+    "dynamic_min_score": 80,
+    "advancing": 29,
+    "declining": 17,
+    "unchanged": 1
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 24,
+    "dominant_rejection_count": 23,
     "categories": {
-      "ضعف السيولة أو الحجم": 24,
-      "الاتجاه الفني غير مناسب": 14,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 23,
+      "الاتجاه الفني غير مناسب": 15,
+      "بيانات تاريخية غير كافية": 3,
+      "العائد مقابل المخاطرة غير مناسب": 2,
+      "الزخم غير مناسب": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1,
-      "أسباب فنية أخرى": 1,
-      "الزخم غير مناسب": 1
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
     "best_sector": "الخدمات الاستهلاكية",
-    "best_sector_avg_change_pct": 1.71,
+    "best_sector_avg_change_pct": 1.21,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 4.48,
-      "value": 4381442.3
+      "change_pct": 3.04,
+      "value": 9751332.0
     }
   },
   "portfolio_exposure": {
