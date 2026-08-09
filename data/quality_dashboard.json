@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T14:26:44",
-  "data_timestamp": "2026-08-09T14:25:48",
+  "generated_at": "2026-08-09T14:33:00",
+  "data_timestamp": "2026-08-09T14:32:00",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.064,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.697,
-    "dynamic_min_score": 81,
-    "advancing": 20,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": -0.082,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.699,
+    "dynamic_min_score": 80,
+    "advancing": 19,
     "declining": 26,
-    "unchanged": 1
+    "unchanged": 2
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 30,
+    "dominant_rejection_count": 31,
     "categories": {
-      "الاتجاه الفني غير مناسب": 30,
-      "ضعف السيولة أو الحجم": 4,
+      "الاتجاه الفني غير مناسب": 31,
+      "ضعف السيولة أو الحجم": 6,
       "أسباب فنية أخرى": 4,
       "العائد مقابل المخاطرة غير مناسب": 3,
-      "الزخم غير مناسب": 3,
+      "الزخم غير مناسب": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الإعلام والترفيه",
-    "best_sector_avg_change_pct": 1.27,
+    "best_sector_avg_change_pct": 1.3,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 4.12,
-      "value": 39848774.4
+      "change_pct": 4.48,
+      "value": 40618805.5
     }
   },
   "portfolio_exposure": {
