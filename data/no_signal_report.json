@@ -1,24 +1,25 @@
 {
-  "generated_at": "2026-08-06T14:56:15",
+  "generated_at": "2026-08-09T10:04:24",
   "total_rejected": 40,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "الاتجاه الفني غير مناسب": 25,
-    "أسباب فنية أخرى": 7,
+    "الاتجاه الفني غير مناسب": 26,
     "العائد مقابل المخاطرة غير مناسب": 5,
-    "بعيد عن الاختراق أو قريب من مقاومة": 2,
-    "الزخم غير مناسب": 1
+    "أسباب فنية أخرى": 4,
+    "بيانات تاريخية غير كافية": 2,
+    "الزخم غير مناسب": 2,
+    "بعيد عن الاختراق أو قريب من مقاومة": 1
   },
   "sample_rejections": [
     {
       "symbol": "1120",
-      "reason": "TP1% 2.73% أقل من الحد الأدنى للإشارة العادية 4.0%",
+      "reason": "TP1% 2.71% أقل من الحد الأدنى للإشارة العادية 4.0%",
       "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
       "symbol": "1180",
-      "reason": "TP1% 3.62% أقل من الحد الأدنى للإشارة العادية 4.0%",
+      "reason": "TP1% 3.68% أقل من الحد الأدنى للإشارة العادية 4.0%",
       "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
@@ -28,13 +29,13 @@
     },
     {
       "symbol": "1211",
-      "reason": "RASED SCORE 79.0 أقل من 83",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2380",
-      "reason": "بعيد عن المقاومة: 10.05%",
-      "category": "بعيد عن الاختراق أو قريب من مقاومة"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "4260",
@@ -48,8 +49,8 @@
     },
     {
       "symbol": "2083",
-      "reason": "فجوة الدخول 7.31% أكبر من 4.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
     },
     {
       "symbol": "4030",
@@ -58,11 +59,16 @@
     },
     {
       "symbol": "2082",
-      "reason": "فجوة الدخول 4.22% أكبر من 4.0%",
+      "reason": "فجوة الدخول 5.08% أكبر من 4.0%",
       "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "7203",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "8010",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -73,23 +79,13 @@
     },
     {
       "symbol": "1322",
-      "reason": "RASED SCORE 82.0 أقل من 83",
-      "category": "أسباب فنية أخرى"
-    },
-    {
-      "symbol": "8010",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "RSI 72.88 خارج النطاق 45.0-68.0",
+      "category": "الزخم غير مناسب"
     },
     {
       "symbol": "4261",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "1303",
-      "reason": "فجوة الدخول 4.45% أكبر من 4.0%",
-      "category": "أسباب فنية أخرى"
     },
     {
       "symbol": "4031",
@@ -102,12 +98,17 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
+      "symbol": "1303",
+      "reason": "فجوة الدخول 4.03% أكبر من 4.0%",
+      "category": "أسباب فنية أخرى"
+    },
+    {
       "symbol": "4003",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "6004",
+      "symbol": "2382",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
