@@ -35,11 +35,14 @@
 — 1211: لا يطابق فلاتر راصد
 ⚠️ 2380: بعيد عن المقاومة: 11.29%
 — 2380: لا يطابق فلاتر راصد
-⚠️ 7203: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
-⚠️ 2010: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
+⚠️ 7203: الترند غير مناسب
+— 7203: لا يطابق فلاتر راصد
+⚠️ 2010: الترند غير مناسب
+— 2010: لا يطابق فلاتر راصد
 ⚠️ 1303: R:R 1.89 أقل من 1.9
 — 1303: لا يطابق فلاتر راصد
-⚠️ 2083: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
+⚠️ 2083: فجوة الدخول 4.9% أكبر من 4.5%
+— 2083: لا يطابق فلاتر راصد
 ⚠️ 2200: الترند غير مناسب
 — 2200: لا يطابق فلاتر راصد
 ⚠️ 4030: الترند غير مناسب
@@ -56,8 +59,7 @@
 — 4261: لا يطابق فلاتر راصد
 ⚠️ 4003: الترند غير مناسب
 — 4003: لا يطابق فلاتر راصد
-⚠️ 4007: الترند غير مناسب
-— 4007: لا يطابق فلاتر راصد
+⚠️ 4007: historical failed: SAHMK 504: {"type":"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/","title":"Error 504: Gateway time-out","status":504,"detail":"The origin web server did not respond to Cloudflare within the allowed
 ⚠️ 4002: TP1% 3.48% أقل من الحد الأدنى للإشارة العادية 3.5%
 — 4002: لا يطابق فلاتر راصد
 ⚠️ 4031: الترند غير مناسب
