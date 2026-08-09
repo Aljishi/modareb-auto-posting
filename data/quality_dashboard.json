@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T12:21:09",
-  "data_timestamp": "2026-08-09T12:20:54",
+  "generated_at": "2026-08-09T12:26:16",
+  "data_timestamp": "2026-08-09T12:25:54",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.33,
-    "advance_ratio": 0.5745,
-    "dispersion": 1.422,
-    "dynamic_min_score": 80,
-    "advancing": 27,
-    "declining": 18,
-    "unchanged": 2
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.211,
+    "advance_ratio": 0.5106,
+    "dispersion": 1.467,
+    "dynamic_min_score": 81,
+    "advancing": 24,
+    "declining": 22,
+    "unchanged": 1
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 28,
     "categories": {
       "الاتجاه الفني غير مناسب": 28,
-      "ضعف السيولة أو الحجم": 10,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "الزخم غير مناسب": 5,
+      "أسباب فنية أخرى": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 2,
-      "الزخم غير مناسب": 2,
-      "أسباب فنية أخرى": 1
+      "ضعف السيولة أو الحجم": 2
     }
   },
   "leadership": {
     "best_sector": "الخدمات الاستهلاكية",
-    "best_sector_avg_change_pct": 2.03,
+    "best_sector_avg_change_pct": 1.9,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 5.13,
-      "value": 32224682.12
+      "change_pct": 4.77,
+      "value": 32571752.22
     }
   },
   "portfolio_exposure": {
