@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T11:26:14",
-  "data_timestamp": "2026-08-09T11:25:49",
+  "generated_at": "2026-08-09T11:31:32",
+  "data_timestamp": "2026-08-09T11:31:05",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.54,
-    "advance_ratio": 0.6596,
-    "dispersion": 1.485,
+    "average_change_pct": 0.511,
+    "advance_ratio": 0.6809,
+    "dispersion": 1.456,
     "dynamic_min_score": 80,
-    "advancing": 31,
-    "declining": 14,
+    "advancing": 32,
+    "declining": 13,
     "unchanged": 2
   },
   "screening": {
@@ -29,13 +29,14 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 28,
+    "dominant_rejection_count": 29,
     "categories": {
-      "الاتجاه الفني غير مناسب": 28,
-      "ضعف السيولة أو الحجم": 11,
+      "الاتجاه الفني غير مناسب": 29,
+      "ضعف السيولة أو الحجم": 9,
       "العائد مقابل المخاطرة غير مناسب": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 2,
-      "الزخم غير مناسب": 2
+      "الزخم غير مناسب": 2,
+      "أسباب فنية أخرى": 1
     }
   },
   "leadership": {
@@ -45,8 +46,8 @@
     "best_stock": {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 5.35,
-      "value": 28219933.64
+      "change_pct": 5.42,
+      "value": 28599632.28
     }
   },
   "portfolio_exposure": {
