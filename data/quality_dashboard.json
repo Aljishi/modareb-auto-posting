@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-09T13:51:23",
-  "data_timestamp": "2026-08-09T13:50:54",
+  "generated_at": "2026-08-09T13:56:22",
+  "data_timestamp": "2026-08-09T13:55:51",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -17,11 +17,11 @@
     "posture": "اختراقات مؤكدة فقط",
     "average_change_pct": -0.08,
     "advance_ratio": 0.4468,
-    "dispersion": 1.471,
+    "dispersion": 1.46,
     "dynamic_min_score": 81,
     "advancing": 21,
-    "declining": 24,
-    "unchanged": 2
+    "declining": 23,
+    "unchanged": 3
   },
   "screening": {
     "screened": 45,
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "الإعلام والترفيه",
-    "best_sector_avg_change_pct": 1.2,
+    "best_sector_avg_change_pct": 1.27,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "4260",
-      "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 3.83,
-      "value": 37277124.0
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "change_pct": 3.41,
+      "value": 20037641.98
     }
   },
   "portfolio_exposure": {
