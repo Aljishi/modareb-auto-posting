@@ -3,14 +3,23 @@
   "provider": "sahmk",
   "api_url": "https://app.sahmk.sa/api/v1",
   "requested_symbols": 51,
-  "fetched_stocks": 47,
+  "fetched_stocks": 42,
   "rate_limited": false,
-  "reason": "تم جلب وحفظ 47 سهمًا بنجاح",
+  "reason": "تم جلب وحفظ 42 سهمًا بنجاح",
   "errors": [
+    "Batch 1: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "Batch 2: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "Batch 3: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "Batch 4: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "1120: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "1180: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "2010: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "2222: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
+    "2200: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed time. This typically means the origin is overloaded or a backend process is taking too long.\",\"inst",
     "4010: SAHMK 409: {\"error\":{\"code\":\"PRICE_DATA_TEMPORARILY_UNAVAILABLE\",\"message\":\"Price data for '4010' is temporarily unavailable. Please retry shortly.\"}}",
     "2085: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2085' not found.\"}}",
     "2086: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2086' not found.\"}}",
     "2087: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2087' not found.\"}}"
   ],
-  "generated_at": "2026-08-09T10:36:27"
+  "generated_at": "2026-08-09T10:54:14"
 }
