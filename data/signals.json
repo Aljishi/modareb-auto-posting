@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-09T11:16:07",
+  "generated_at": "2026-08-09T11:19:35",
   "total": 0,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -18,10 +18,10 @@
     "المواد الأساسية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.77,
+      "avg_change_pct": 0.72,
       "advance_ratio": 0.67,
       "members": 9,
-      "total_value": 88481285.23
+      "total_value": 89885327.1
     },
     "الطاقة": {
       "bonus": 5,
