@@ -1,30 +1,19 @@
 {
-  "generated_at": "2026-08-09T10:28:06",
-  "total_rejected": 47,
+  "generated_at": "2026-08-09T10:33:52",
+  "total_rejected": 45,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "ضعف السيولة أو الحجم": 23,
-    "الاتجاه الفني غير مناسب": 15,
+    "الاتجاه الفني غير مناسب": 18,
+    "ضعف السيولة أو الحجم": 16,
+    "العائد مقابل المخاطرة غير مناسب": 5,
     "بيانات تاريخية غير كافية": 3,
-    "العائد مقابل المخاطرة غير مناسب": 2,
     "الزخم غير مناسب": 2,
-    "بعيد عن الاختراق أو قريب من مقاومة": 1,
-    "أسباب فنية أخرى": 1
+    "بعيد عن الاختراق أو قريب من مقاومة": 1
   },
   "sample_rejections": [
     {
       "symbol": "2082",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "1120",
-      "reason": "TP1% 2.67% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
-    },
-    {
-      "symbol": "2222",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -34,37 +23,52 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
+      "symbol": "1120",
+      "reason": "TP1% 2.67% أقل من الحد الأدنى للإشارة العادية 3.5%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
+      "symbol": "2222",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
       "symbol": "1180",
-      "reason": "Volume 0.05x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "TP1% 3.48% أقل من الحد الأدنى للإشارة العادية 3.5%",
+      "category": "العائد مقابل المخاطرة غير مناسب"
     },
     {
       "symbol": "1211",
-      "reason": "Volume 0.11x أقل من 0.85x",
+      "reason": "Volume 0.12x أقل من 0.95x",
       "category": "ضعف السيولة أو الحجم"
     },
     {
       "symbol": "2380",
-      "reason": "بعيد عن المقاومة: 10.60%",
+      "reason": "بعيد عن المقاومة: 11.29%",
       "category": "بعيد عن الاختراق أو قريب من مقاومة"
     },
     {
       "symbol": "7203",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "2083",
-      "reason": "فجوة الدخول 5.67% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
-    },
-    {
-      "symbol": "2200",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2010",
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "1303",
+      "reason": "R:R 1.89 أقل من 1.9",
+      "category": "العائد مقابل المخاطرة غير مناسب"
+    },
+    {
+      "symbol": "2083",
+      "reason": "historical failed: SAHMK 504: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-504/\",\"title\":\"Error 504: Gateway time-out\",\"status\":504,\"detail\":\"The origin web server did not respond to Cloudflare within the allowed",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "2200",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -80,11 +84,21 @@
     },
     {
       "symbol": "1322",
-      "reason": "RSI 74.4 خارج النطاق 38.0-74.0",
+      "reason": "RSI 74.47 خارج النطاق 42.0-70.0",
       "category": "الزخم غير مناسب"
     },
     {
+      "symbol": "1832",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
       "symbol": "2084",
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
+    },
+    {
+      "symbol": "4261",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     },
@@ -94,22 +108,7 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "1832",
-      "reason": "Volume 0.26x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
-    },
-    {
-      "symbol": "1303",
-      "reason": "Volume 0.02x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
-    },
-    {
-      "symbol": "4002",
-      "reason": "Volume 0.04x أقل من 0.85x",
-      "category": "ضعف السيولة أو الحجم"
-    },
-    {
-      "symbol": "4031",
+      "symbol": "4007",
       "reason": "الترند غير مناسب",
       "category": "الاتجاه الفني غير مناسب"
     }
