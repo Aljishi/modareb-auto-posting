@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T13:41:26",
-  "data_timestamp": "2026-08-10T13:40:55",
+  "generated_at": "2026-08-10T13:46:11",
+  "data_timestamp": "2026-08-10T13:45:55",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -14,39 +14,39 @@
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
-    "posture": "",
-    "average_change_pct": 0.484,
-    "advance_ratio": 0.4894,
-    "dispersion": 2.161,
-    "dynamic_min_score": null,
-    "advancing": 23,
-    "declining": 23,
-    "unchanged": 1
+    "posture": "انتقائي",
+    "average_change_pct": 0.53,
+    "advance_ratio": 0.5319,
+    "dispersion": 2.146,
+    "dynamic_min_score": 80,
+    "advancing": 25,
+    "declining": 20,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
-    "rejected": 46,
-    "generated": 1,
+    "rejected": 47,
+    "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 29,
+    "dominant_rejection_count": 30,
     "categories": {
-      "الاتجاه الفني غير مناسب": 29,
+      "الاتجاه الفني غير مناسب": 30,
       "ضعف السيولة أو الحجم": 6,
       "الزخم غير مناسب": 4,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 3
+      "أسباب فنية أخرى": 4,
+      "العائد مقابل المخاطرة غير مناسب": 3
     }
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 3.84,
+    "best_sector_avg_change_pct": 3.99,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 9.94,
-      "value": 10988882.44
+      "value": 11097116.2
     }
   },
   "portfolio_exposure": {
