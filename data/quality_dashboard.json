@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T14:16:23",
-  "data_timestamp": "2026-08-10T14:15:57",
+  "generated_at": "2026-08-10T14:21:29",
+  "data_timestamp": "2026-08-10T14:20:57",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.691,
-    "advance_ratio": 0.5532,
-    "dispersion": 2.207,
+    "average_change_pct": 0.747,
+    "advance_ratio": 0.5957,
+    "dispersion": 2.23,
     "dynamic_min_score": 80,
-    "advancing": 26,
+    "advancing": 28,
     "declining": 17,
-    "unchanged": 4
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -32,21 +32,21 @@
     "dominant_rejection_count": 29,
     "categories": {
       "الاتجاه الفني غير مناسب": 29,
-      "ضعف السيولة أو الحجم": 6,
+      "أسباب فنية أخرى": 5,
+      "ضعف السيولة أو الحجم": 5,
       "الزخم غير مناسب": 4,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 4
+      "العائد مقابل المخاطرة غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 3.99,
+    "best_sector_avg_change_pct": 3.69,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 9.94,
-      "value": 11790129.88
+      "value": 11874817.3
     }
   },
   "portfolio_exposure": {
