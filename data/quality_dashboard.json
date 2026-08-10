@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T11:26:15",
-  "data_timestamp": "2026-08-10T11:25:50",
+  "generated_at": "2026-08-10T11:31:13",
+  "data_timestamp": "2026-08-10T11:30:56",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.362,
-    "advance_ratio": 0.5106,
-    "dispersion": 1.441,
-    "dynamic_min_score": 80,
-    "advancing": 24,
-    "declining": 19,
-    "unchanged": 4
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.199,
+    "advance_ratio": 0.4468,
+    "dispersion": 1.458,
+    "dynamic_min_score": 81,
+    "advancing": 21,
+    "declining": 23,
+    "unchanged": 3
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 30,
+    "dominant_rejection_count": 29,
     "categories": {
-      "الاتجاه الفني غير مناسب": 30,
-      "ضعف السيولة أو الحجم": 6,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 3,
-      "الزخم غير مناسب": 3,
+      "الاتجاه الفني غير مناسب": 29,
+      "العائد مقابل المخاطرة غير مناسب": 6,
+      "الزخم غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 3,
+      "أسباب فنية أخرى": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الخدمات التجارية والمهنية",
-    "best_sector_avg_change_pct": 2.21,
+    "best_sector_avg_change_pct": 2.1,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 4.63,
-      "value": 51214657.19
+      "change_pct": 4.5,
+      "value": 54160762.5
     }
   },
   "portfolio_exposure": {
