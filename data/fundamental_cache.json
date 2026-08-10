@@ -2321,7 +2321,7 @@
       }
     },
     "2083": {
-      "cached_at": "2026-08-09T14:26:19",
+      "cached_at": "2026-08-10T14:31:14",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -2484,8 +2484,8 @@
         },
         "dividends": {
           "symbol": "2083",
-          "current_price": 39.0,
-          "trailing_12m_yield": 4.62,
+          "current_price": 40.64,
+          "trailing_12m_yield": 4.43,
           "trailing_12m_dividends": 1.8,
           "payments_last_year": 1,
           "upcoming": [],
