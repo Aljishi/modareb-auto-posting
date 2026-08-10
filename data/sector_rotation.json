@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-10T14:01:21",
+  "generated_at": "2026-08-10T14:06:19",
   "top_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 64.6,
+      "rotation_score": 65.3,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 1.66,
+      "avg_change_pct": 1.77,
       "advancing_ratio": 0.67,
-      "total_value": 468809113.95,
+      "total_value": 474841308.63,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -58,7 +58,7 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 49.1,
+      "rotation_score": 49.0,
       "grade": "محايد",
       "avg_change_pct": 1.07,
       "advancing_ratio": 0.67,
@@ -80,7 +80,7 @@
     },
     {
       "sector": "البنوك",
-      "rotation_score": 41.2,
+      "rotation_score": 41.0,
       "grade": "محايد",
       "avg_change_pct": -0.18,
       "advancing_ratio": 0.5,
@@ -102,7 +102,7 @@
     },
     {
       "sector": "الرعاية الصحية",
-      "rotation_score": 27.5,
+      "rotation_score": 27.4,
       "grade": "ضعيف",
       "avg_change_pct": -0.29,
       "advancing_ratio": 0.4,
@@ -115,11 +115,11 @@
   "all_sectors": [
     {
       "sector": "المواد الأساسية",
-      "rotation_score": 64.6,
+      "rotation_score": 65.3,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 1.66,
+      "avg_change_pct": 1.77,
       "advancing_ratio": 0.67,
-      "total_value": 468809113.95,
+      "total_value": 474841308.63,
       "stocks_count": 9,
       "signals_count": 0,
       "avg_signal_score": 0.0
@@ -170,7 +170,7 @@
     },
     {
       "sector": "الطاقة",
-      "rotation_score": 49.1,
+      "rotation_score": 49.0,
       "grade": "محايد",
       "avg_change_pct": 1.07,
       "advancing_ratio": 0.67,
@@ -192,7 +192,7 @@
     },
     {
       "sector": "البنوك",
-      "rotation_score": 41.2,
+      "rotation_score": 41.0,
       "grade": "محايد",
       "avg_change_pct": -0.18,
       "advancing_ratio": 0.5,
@@ -214,7 +214,7 @@
     },
     {
       "sector": "الرعاية الصحية",
-      "rotation_score": 27.5,
+      "rotation_score": 27.4,
       "grade": "ضعيف",
       "avg_change_pct": -0.29,
       "advancing_ratio": 0.4,
