@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T14:51:11",
+  "generated_at": "2026-08-10T14:56:26",
   "total_rejected": 47,
   "total_generated": 0,
   "total_validated": 0,
@@ -14,7 +14,7 @@
   "sample_rejections": [
     {
       "symbol": "1211",
-      "reason": "RSI 77.36 خارج النطاق 38.0-74.0",
+      "reason": "RSI 77.81 خارج النطاق 38.0-74.0",
       "category": "الزخم غير مناسب"
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "symbol": "2380",
-      "reason": "فجوة الدخول 8.67% أكبر من 5.0%",
+      "reason": "فجوة الدخول 8.61% أكبر من 5.0%",
       "category": "أسباب فنية أخرى"
     },
     {
@@ -53,13 +53,13 @@
       "category": "الاتجاه الفني غير مناسب"
     },
     {
-      "symbol": "2083",
-      "reason": "RASED SCORE 78.1 أقل من 80",
+      "symbol": "1303",
+      "reason": "RASED SCORE 74.2 أقل من 80",
       "category": "أسباب فنية أخرى"
     },
     {
-      "symbol": "1303",
-      "reason": "RASED SCORE 74.2 أقل من 80",
+      "symbol": "2083",
+      "reason": "RASED SCORE 78.1 أقل من 80",
       "category": "أسباب فنية أخرى"
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       "symbol": "1322",
-      "reason": "بعيد عن المقاومة: -0.12%",
+      "reason": "بعيد عن المقاومة: -0.06%",
       "category": "بعيد عن الاختراق أو قريب من مقاومة"
     },
     {
