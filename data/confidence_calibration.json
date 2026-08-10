@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_confidence_calibration_v1",
-  "generated_at": "2026-08-05T10:21:11",
+  "generated_at": "2026-08-10T13:21:21",
   "configuration": {
     "minimum_group_sample": 8,
     "full_weight_sample": 30,
@@ -12,31 +12,71 @@
     "display_min": 40.0,
     "display_max": 95.0
   },
-  "closed_history_sample": 0,
+  "closed_history_sample": 1,
   "statistics": {
     "global": {
-      "sample": 0,
+      "sample": 1,
       "successes": 0,
-      "failures": 0,
+      "failures": 1,
       "raw_success_rate": 0.0,
-      "bayesian_success_rate": 60.0
+      "bayesian_success_rate": 50.0
     },
-    "by_score_bucket": {},
-    "by_tier": {},
-    "by_signal_type": {},
-    "by_type_and_score": {},
-    "by_tier_and_score": {}
+    "by_score_bucket": {
+      "75-79": {
+        "sample": 1,
+        "successes": 0,
+        "failures": 1,
+        "raw_success_rate": 0.0,
+        "bayesian_success_rate": 50.0
+      }
+    },
+    "by_tier": {
+      "STANDARD": {
+        "sample": 1,
+        "successes": 0,
+        "failures": 1,
+        "raw_success_rate": 0.0,
+        "bayesian_success_rate": 50.0
+      }
+    },
+    "by_signal_type": {
+      "NORMAL": {
+        "sample": 1,
+        "successes": 0,
+        "failures": 1,
+        "raw_success_rate": 0.0,
+        "bayesian_success_rate": 50.0
+      }
+    },
+    "by_type_and_score": {
+      "NORMAL|75-79": {
+        "sample": 1,
+        "successes": 0,
+        "failures": 1,
+        "raw_success_rate": 0.0,
+        "bayesian_success_rate": 50.0
+      }
+    },
+    "by_tier_and_score": {
+      "STANDARD|75-79": {
+        "sample": 1,
+        "successes": 0,
+        "failures": 1,
+        "raw_success_rate": 0.0,
+        "bayesian_success_rate": 50.0
+      }
+    }
   },
   "signals": [
     {
-      "symbol": "1211",
+      "symbol": "2083",
       "rased_score": 79.2,
       "raw_ai_confidence": 94.0,
-      "historical_confidence": 0.0,
-      "calibrated_confidence": 75.0,
-      "source": "no_history",
-      "sample_size": 0,
-      "label": "تقديري — لا توجد عينة تاريخية مغلقة"
+      "historical_confidence": 50.0,
+      "calibrated_confidence": 93.2,
+      "source": "signal_type_and_score",
+      "sample_size": 1,
+      "label": "معايرة أولية — عينة 1"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-05T10:21:11",
+  "reviewed_at": "2026-08-10T13:21:21",
   "approved": 1,
   "total": 1,
   "signals": [
     {
-      "stock_symbol": "1211",
+      "stock_symbol": "2083",
       "decision": "APPROVE",
       "confidence": 94,
       "risk_level": "LOW",
@@ -14,10 +14,9 @@
       "rased_score": 79.2,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a score of 94",
-        "RSI is healthy at 61.88",
-        "Volume ratio indicates acceptable liquidity",
-        "Targets are realistic within the expected holding period"
+        "Strong momentum with confirmed breakout",
+        "Healthy RSI and acceptable volume",
+        "Realistic targets within expected holding days"
       ]
     }
   ]

@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T13:16:21",
-  "data_timestamp": "2026-08-10T13:15:59",
+  "generated_at": "2026-08-10T13:21:22",
+  "data_timestamp": "2026-08-10T13:20:54",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -14,20 +14,20 @@
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.496,
-    "advance_ratio": 0.5745,
-    "dispersion": 2.023,
-    "dynamic_min_score": 80,
-    "advancing": 27,
-    "declining": 19,
-    "unchanged": 1
+    "posture": "",
+    "average_change_pct": 0.492,
+    "advance_ratio": 0.5106,
+    "dispersion": 2.008,
+    "dynamic_min_score": null,
+    "advancing": 24,
+    "declining": 20,
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
     "rejected": 47,
-    "generated": 0,
-    "validated": 0,
+    "generated": 1,
+    "validated": 1,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 29,
     "categories": {
@@ -40,24 +40,32 @@
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 3.16,
+    "best_sector_avg_change_pct": 3.21,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 7.24,
-      "value": 7008097.5
+      "change_pct": 7.67,
+      "value": 7480052.32
     }
   },
   "portfolio_exposure": {
-    "active_open_positions": 2,
-    "approved_after_gate": 0,
-    "rejected_by_gate": 1
+    "active_open_positions": 1,
+    "approved_after_gate": 1,
+    "rejected_by_gate": 0
   },
   "confidence_calibration": {
     "status": "PASS",
-    "closed_history_sample": 0,
+    "closed_history_sample": 1,
     "signals_calibrated": 1
   },
-  "validated_signals": []
+  "validated_signals": [
+    {
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "sector": "الطاقة",
+      "rased_score": 79.2,
+      "confidence": 93.2
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-05T10:21:11",
-  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
+  "generated_at": "2026-08-10T13:21:21",
+  "status": "PASS",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -10,24 +10,13 @@
     "max_stale_open_days": 10
   },
   "input_validated_signals": 1,
-  "approved_signals": 0,
-  "rejected_signals": 1,
-  "active_open_positions": 2,
+  "approved_signals": 1,
+  "rejected_signals": 0,
+  "active_open_positions": 1,
   "current_sector_exposure": {
-    "الطاقة": 1,
     "المواد الأساسية": 1
   },
   "open_positions": [
-    {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "sector": "الطاقة",
-      "status": "OPEN",
-      "opened_at": "2026-08-04T11:56:18",
-      "max_holding_days": 7,
-      "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/published_signals.csv",
-      "signal_id": "Signal #2026-2161155-2083"
-    },
     {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
@@ -39,16 +28,13 @@
       "signal_id": "Signal #2026-2161456-2380"
     }
   ],
-  "approved": [],
-  "rejected": [
+  "approved": [
     {
-      "symbol": "1211",
-      "name": "شركة التعدين العربية السعودية",
-      "sector": "المواد الأساسية",
-      "rased_score": 79.2,
-      "reasons": [
-        "التعرض لقطاع المواد الأساسية بلغ الحد 1"
-      ]
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "sector": "الطاقة",
+      "rased_score": 79.2
     }
-  ]
+  ],
+  "rejected": []
 }
