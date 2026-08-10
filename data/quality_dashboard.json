@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T10:16:13",
-  "data_timestamp": "2026-08-10T10:15:51",
+  "generated_at": "2026-08-10T10:21:10",
+  "data_timestamp": "2026-08-10T10:20:52",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.185,
-    "advance_ratio": 0.4681,
-    "dispersion": 1.841,
-    "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 25,
-    "unchanged": 0
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.062,
+    "advance_ratio": 0.2766,
+    "dispersion": 1.015,
+    "dynamic_min_score": 83,
+    "advancing": 13,
+    "declining": 28,
+    "unchanged": 6
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 30,
+    "dominant_rejection_count": 20,
     "categories": {
-      "الاتجاه الفني غير مناسب": 30,
-      "الزخم غير مناسب": 6,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "أسباب فنية أخرى": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1,
-      "ضعف السيولة أو الحجم": 1
+      "الاتجاه الفني غير مناسب": 20,
+      "ضعف السيولة أو الحجم": 12,
+      "الزخم غير مناسب": 4,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "الإعلام والترفيه",
-    "best_sector_avg_change_pct": 1.52,
+    "best_sector": "الخدمات التجارية والمهنية",
+    "best_sector_avg_change_pct": 1.88,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 3.78,
-      "value": 31151961.6
+      "symbol": "1810",
+      "name": "مجموعة سيرا القابضة",
+      "change_pct": 3.76,
+      "value": 6780186.16
     }
   },
   "portfolio_exposure": {
