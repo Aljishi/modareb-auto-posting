@@ -114,12 +114,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.9 — سيولة مقبولة 1.7x — اختراق مقاومة مؤكد — زخم يومي صحي +5.0% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2221331-2083",
+      "signal_id": "Signal #2026-2221335-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-10T13:31:15",
+      "generated_at": "2026-08-10T13:35:57",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -130,14 +130,13 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with confirmed breakout",
-          "Healthy RSI level",
-          "Acceptable volume ratio",
-          "Realistic target within expected holding days"
+          "Strong momentum setup",
+          "Clear breakout confirmed",
+          "Healthy RSI and volume ratio"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 43.36 و44.08 خلال 3 أيام."
+        "arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
+        "telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 43.36 خلال 3 أيام."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -145,14 +144,13 @@
       "ai_risk_score": 5,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with confirmed breakout",
-        "Healthy RSI level",
-        "Acceptable volume ratio",
-        "Realistic target within expected holding days"
+        "Strong momentum setup",
+        "Clear breakout confirmed",
+        "Healthy RSI and volume ratio"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 43.36 و44.08 خلال 3 أيام.",
-      "ai_reviewed_at": "2026-08-10T13:31:35",
+      "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي واختراق مؤكد.",
+      "ai_telegram_note": "إشارة شراء قوية على شركة مرافق، استهداف 43.36 خلال 3 أيام.",
+      "ai_reviewed_at": "2026-08-10T13:36:13",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 50.0,
       "calibrated_confidence": 93.2,
@@ -173,13 +171,13 @@
         "historical_weight": 0.0187,
         "calibrated_confidence": 93.2,
         "label": "معايرة أولية — عينة 1",
-        "calibrated_at": "2026-08-10T13:31:36"
+        "calibrated_at": "2026-08-10T13:36:13"
       },
       "market_regime": "NORMAL",
       "market_regime_ar": "طبيعي",
       "dynamic_min_rased_score": 80.0,
       "borderline_approval": true,
-      "post_checked_at": "2026-08-10T13:31:36",
+      "post_checked_at": "2026-08-10T13:36:13",
       "post_approved": true,
       "post_rejected_reasons": [],
       "post_approval_source": "openai_and_dynamic_python",
@@ -189,7 +187,7 @@
         "التعرض لقطاع الطاقة بلغ الحد 1"
       ],
       "portfolio_exposure_decision": {
-        "checked_at": "2026-08-10T13:31:36",
+        "checked_at": "2026-08-10T13:36:13",
         "symbol": "2083",
         "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
         "sector": "الطاقة",
@@ -207,8 +205,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-10T13:31:31",
-  "generated_at": "2026-08-10T13:31:36",
+  "source_generated_at": "2026-08-10T13:36:08",
+  "generated_at": "2026-08-10T13:36:13",
   "market_regime": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
@@ -232,8 +230,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-10T13:31:05",
-    "generated_at": "2026-08-10T13:31:36"
+    "daily_generated_at": "2026-08-10T13:35:53",
+    "generated_at": "2026-08-10T13:36:13"
   },
   "applied_limits": {
     "dynamic_rased_score": {
@@ -269,7 +267,7 @@
     }
   },
   "portfolio_exposure_checked": true,
-  "portfolio_exposure_checked_at": "2026-08-10T13:31:36",
+  "portfolio_exposure_checked_at": "2026-08-10T13:36:13",
   "portfolio_exposure": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
