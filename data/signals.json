@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 64.0 — سيولة مقبولة 1.6x — اختراق مقاومة مؤكد — زخم يومي صحي +5.2% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2221321-2083",
+      "signal_id": "Signal #2026-2221325-2083",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-10T13:21:01",
+      "generated_at": "2026-08-10T13:25:51",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -134,7 +134,7 @@
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2083 مع أهداف واضحة خلال 3 أيام."
+        "telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف واضحة وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 94,
@@ -147,8 +147,8 @@
         "Realistic targets within expected holding days"
       ],
       "ai_arabic_summary": "إشارة شراء قوية مع زخم صاعد مؤكد وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2083 مع أهداف واضحة خلال 3 أيام.",
-      "ai_reviewed_at": "2026-08-10T13:21:21",
+      "ai_telegram_note": "إشارة شراء قوية على سهم 2083 مع أهداف واضحة وزخم صحي.",
+      "ai_reviewed_at": "2026-08-10T13:26:08",
       "raw_ai_confidence": 94.0,
       "historical_confidence": 50.0,
       "calibrated_confidence": 93.2,
@@ -169,11 +169,11 @@
         "historical_weight": 0.0187,
         "calibrated_confidence": 93.2,
         "label": "معايرة أولية — عينة 1",
-        "calibrated_at": "2026-08-10T13:21:21"
+        "calibrated_at": "2026-08-10T13:26:08"
       }
     }
   ],
-  "generated_at": "2026-08-10T13:21:16",
+  "generated_at": "2026-08-10T13:26:05",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -340,8 +340,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-10T13:21:21",
+  "ai_reviewed_at": "2026-08-10T13:26:08",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-10T13:21:21",
+  "confidence_calibrated_at": "2026-08-10T13:26:08",
   "confidence_closed_history_sample": 1
 }

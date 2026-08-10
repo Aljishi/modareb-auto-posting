@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-10T13:21:21",
-  "status": "PASS",
+  "generated_at": "2026-08-10T13:26:08",
+  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -10,11 +10,12 @@
     "max_stale_open_days": 10
   },
   "input_validated_signals": 1,
-  "approved_signals": 1,
-  "rejected_signals": 0,
-  "active_open_positions": 1,
+  "approved_signals": 0,
+  "rejected_signals": 1,
+  "active_open_positions": 2,
   "current_sector_exposure": {
-    "المواد الأساسية": 1
+    "المواد الأساسية": 1,
+    "الطاقة": 1
   },
   "open_positions": [
     {
@@ -26,15 +27,29 @@
       "max_holding_days": 7,
       "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/published_signals.csv",
       "signal_id": "Signal #2026-2161456-2380"
-    }
-  ],
-  "approved": [
+    },
     {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
       "sector": "الطاقة",
-      "rased_score": 79.2
+      "status": "OPEN",
+      "opened_at": "2026-08-10T13:21:22",
+      "max_holding_days": 7,
+      "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/published_signals.csv",
+      "signal_id": "Signal #2026-2221321-2083"
     }
   ],
-  "rejected": []
+  "approved": [],
+  "rejected": [
+    {
+      "symbol": "2083",
+      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+      "sector": "الطاقة",
+      "rased_score": 79.2,
+      "reasons": [
+        "توجد إشارة مفتوحة بالفعل على السهم 2083",
+        "التعرض لقطاع الطاقة بلغ الحد 1"
+      ]
+    }
+  ]
 }
