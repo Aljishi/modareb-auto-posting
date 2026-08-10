@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-10T12:46:06",
-  "data_timestamp": "2026-08-10T12:45:51",
+  "generated_at": "2026-08-10T12:51:24",
+  "data_timestamp": "2026-08-10T12:51:00",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.421,
-    "advance_ratio": 0.5319,
-    "dispersion": 1.911,
+    "average_change_pct": 0.402,
+    "advance_ratio": 0.5106,
+    "dispersion": 1.976,
     "dynamic_min_score": 80,
-    "advancing": 25,
-    "declining": 20,
+    "advancing": 24,
+    "declining": 21,
     "unchanged": 2
   },
   "screening": {
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 2.11,
+    "best_sector_avg_change_pct": 2.55,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 6.26,
-      "value": 3686457.6
+      "change_pct": 7.34,
+      "value": 5311568.22
     }
   },
   "portfolio_exposure": {
