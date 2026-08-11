@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T12:11:16",
-  "data_timestamp": "2026-08-11T12:10:50",
+  "generated_at": "2026-08-11T12:16:21",
+  "data_timestamp": "2026-08-11T12:15:52",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,58 +15,49 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": -0.04,
-    "advance_ratio": 0.383,
-    "dispersion": 1.564,
+    "average_change_pct": -0.092,
+    "advance_ratio": 0.3617,
+    "dispersion": 1.547,
     "dynamic_min_score": null,
-    "advancing": 18,
-    "declining": 27,
+    "advancing": 17,
+    "declining": 28,
     "unchanged": 2
   },
   "screening": {
     "screened": 47,
-    "rejected": 40,
+    "rejected": 46,
     "generated": 1,
-    "validated": 1,
+    "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 23,
+    "dominant_rejection_count": 28,
     "categories": {
-      "الاتجاه الفني غير مناسب": 23,
-      "العائد مقابل المخاطرة غير مناسب": 5,
+      "الاتجاه الفني غير مناسب": 28,
+      "ضعف السيولة أو الحجم": 7,
       "أسباب فنية أخرى": 5,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 2
     }
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 2.64,
+    "best_sector_avg_change_pct": 2.51,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 6.88,
-      "value": 26327630.72
+      "value": 26354536.96
     }
   },
   "portfolio_exposure": {
-    "active_open_positions": 1,
-    "approved_after_gate": 1,
-    "rejected_by_gate": 0
+    "active_open_positions": 2,
+    "approved_after_gate": 0,
+    "rejected_by_gate": 1
   },
   "confidence_calibration": {
     "status": "PASS",
     "closed_history_sample": 2,
     "signals_calibrated": 1
   },
-  "validated_signals": [
-    {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "sector": "التأمين",
-      "rased_score": 79.0,
-      "confidence": 90.2
-    }
-  ]
+  "validated_signals": []
 }
