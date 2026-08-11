@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T14:20:53",
-  "data_timestamp": "2026-08-11T14:20:52",
+  "generated_at": "2026-08-11T14:22:58",
+  "data_timestamp": "2026-08-11T14:22:57",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.133,
-    "advance_ratio": 0.4468,
-    "dispersion": 1.549,
-    "dynamic_min_score": 81,
-    "advancing": 21,
-    "declining": 24,
-    "unchanged": 2
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.096,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.539,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 27,
+    "unchanged": 1
   },
   "screening": {
     "screened": 45,
@@ -33,14 +33,14 @@
     "categories": {}
   },
   "leadership": {
-    "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 1.61,
-    "best_sector_members": 3,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.45,
+    "best_sector_members": 9,
     "best_stock": {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 4.13,
-      "value": 31294857.0
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
+      "change_pct": 4.33,
+      "value": 181308664.5
     }
   },
   "portfolio_exposure": {
