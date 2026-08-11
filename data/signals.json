@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-11T10:11:19",
+  "generated_at": "2026-08-11T10:16:20",
   "total": 0,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -45,7 +45,7 @@
       "avg_change_pct": 0.25,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 3353773.68
+      "total_value": 3345472.26
     },
     "النقل": {
       "bonus": 7,
@@ -74,26 +74,26 @@
     "تجزئة السلع الكمالية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.01,
+      "avg_change_pct": 0.02,
       "advance_ratio": 0.5,
       "members": 6,
-      "total_value": 89381197.46
+      "total_value": 87164913.95
     },
     "الخدمات الاستهلاكية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.88,
-      "advance_ratio": 0.33,
+      "avg_change_pct": -0.7,
+      "advance_ratio": 0.67,
       "members": 3,
-      "total_value": 69007069.42
+      "total_value": 41575702.4
     },
     "الصناديق العقارية المتداولة": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.51,
-      "advance_ratio": 0.0,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.06,
+      "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 9597290.26
+      "total_value": 5761602.6
     },
     "الإعلام والترفيه": {
       "bonus": 2,
