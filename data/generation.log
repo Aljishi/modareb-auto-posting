@@ -1,22 +1,22 @@
 ====================================================================
 راصد — Market Regime Detector
 ====================================================================
-📊 الحالة: طبيعي (NORMAL)
-📈 متوسط التغير: 0.096%
-🟢 نسبة الصعود: 40.4%
-⚡ التشتت: 1.539
-🎯 MIN_SIGNAL_SCORE: 80
-📝 السبب: متوسط السوق 0.10% ونسبة الصعود 40.4%
+📊 الحالة: عرضي (SIDEWAYS)
+📈 متوسط التغير: 0.133%
+🟢 نسبة الصعود: 44.7%
+⚡ التشتت: 1.491
+🎯 MIN_SIGNAL_SCORE: 81
+📝 السبب: متوسط قريب من الصفر 0.13% واتساع متوازن 44.7%
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.json
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.env
 ========================================================================
 راصد — Regime-Aware Signal Pipeline v10
 ========================================================================
-📊 MARKET_REGIME=NORMAL
-🎯 MIN_SIGNAL_SCORE=80.0
+📊 MARKET_REGIME=SIDEWAYS
+🎯 MIN_SIGNAL_SCORE=81.0
 ⚖️ MIN_RR=2.0
 💧 MIN_VOLUME_RATIO=1.0
-📉 RSI=38..72
+📉 RSI=42..70.0
 🔥 MAX_OVERBOUGHT_RSI=70
 🧪 BACKTEST=35% / 4 trades
 🛡 QUALITY_MIN_RASED_SCORE=82
@@ -27,5 +27,5 @@ Traceback (most recent call last):
   File "/home/runner/work/modareb-auto-posting/modareb-auto-posting/scripts/generate_signal.py", line 62, in <module>
     MIN_SIGNAL_SCORE = int(os.getenv("MIN_SIGNAL_SCORE", "80"))
                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: invalid literal for int() with base 10: '80.0'
+ValueError: invalid literal for int() with base 10: '81.0'
 ❌ فشل توليد الإشارات
