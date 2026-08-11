@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T10:46:06",
-  "data_timestamp": "2026-08-11T10:45:49",
+  "generated_at": "2026-08-11T10:51:06",
+  "data_timestamp": "2026-08-11T10:50:51",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.259,
+    "average_change_pct": -0.26,
     "advance_ratio": 0.2766,
-    "dispersion": 1.63,
+    "dispersion": 1.383,
     "dynamic_min_score": 83,
     "advancing": 13,
     "declining": 30,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 2.31,
+    "best_sector_avg_change_pct": 1.01,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 7.47,
-      "value": 13897432.08
+      "symbol": "2382",
+      "name": "شركة أديس القابضة",
+      "change_pct": 3.81,
+      "value": 14193182.4
     }
   },
   "portfolio_exposure": {

@@ -7,14 +7,14 @@
   "reason": "متوسط السوق -0.26% ونسبة الصعود 27.7%",
   "sample_size": 47,
   "minimum_sample": 15,
-  "average_change_pct": -0.259,
+  "average_change_pct": -0.26,
   "median_change_pct": -0.32,
-  "index_change_pct": -0.16,
+  "index_change_pct": -0.11,
   "advance_ratio": 0.2766,
   "decline_ratio": 0.6383,
   "unchanged_ratio": 0.0851,
-  "dispersion": 1.63,
-  "extreme_move_ratio": 0.0426,
+  "dispersion": 1.383,
+  "extreme_move_ratio": 0.0213,
   "advancing_stocks": 13,
   "declining_stocks": 30,
   "unchanged_stocks": 4,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 4.0,
     "MAX_CANDIDATES": 40
   },
-  "daily_generated_at": "2026-08-11T10:45:49",
-  "generated_at": "2026-08-11T10:45:49"
+  "daily_generated_at": "2026-08-11T10:50:51",
+  "generated_at": "2026-08-11T10:50:51"
 }
