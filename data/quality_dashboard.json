@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T14:40:52",
-  "data_timestamp": "2026-08-11T14:40:51",
+  "generated_at": "2026-08-11T14:46:09",
+  "data_timestamp": "2026-08-11T14:46:08",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.103,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.528,
-    "dynamic_min_score": 81,
-    "advancing": 20,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.101,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.529,
+    "dynamic_min_score": 80,
+    "advancing": 19,
     "declining": 27,
-    "unchanged": 0
+    "unchanged": 1
   },
   "screening": {
     "screened": 45,
@@ -34,13 +34,13 @@
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.54,
+    "best_sector_avg_change_pct": 1.56,
     "best_sector_members": 9,
     "best_stock": {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 4.46,
-      "value": 195282829.14
+      "symbol": "2382",
+      "name": "شركة أديس القابضة",
+      "change_pct": 3.76,
+      "value": 37492820.65
     }
   },
   "portfolio_exposure": {
