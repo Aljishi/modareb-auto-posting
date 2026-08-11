@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T10:51:06",
-  "data_timestamp": "2026-08-11T10:50:51",
+  "generated_at": "2026-08-11T10:56:11",
+  "data_timestamp": "2026-08-11T10:55:48",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.26,
-    "advance_ratio": 0.2766,
-    "dispersion": 1.383,
+    "average_change_pct": -0.182,
+    "advance_ratio": 0.2979,
+    "dispersion": 1.546,
     "dynamic_min_score": 83,
-    "advancing": 13,
-    "declining": 30,
-    "unchanged": 4
+    "advancing": 14,
+    "declining": 31,
+    "unchanged": 2
   },
   "screening": {
     "screened": 40,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
-      "الزخم غير مناسب": 5,
+      "الاتجاه الفني غير مناسب": 24,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "ضعف السيولة أو الحجم": 5,
-      "أسباب فنية أخرى": 3
+      "الزخم غير مناسب": 4,
+      "أسباب فنية أخرى": 4,
+      "ضعف السيولة أو الحجم": 3
     }
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 1.01,
+    "best_sector_avg_change_pct": 1.91,
     "best_sector_members": 3,
     "best_stock": {
-      "symbol": "2382",
-      "name": "شركة أديس القابضة",
-      "change_pct": 3.81,
-      "value": 14193182.4
+      "symbol": "8311",
+      "name": "شركة عناية السعودية للتأمين التعاوني",
+      "change_pct": 5.89,
+      "value": 17709976.9
     }
   },
   "portfolio_exposure": {
