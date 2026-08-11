@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_confidence_calibration_v1",
-  "generated_at": "2026-08-10T13:41:25",
+  "generated_at": "2026-08-11T12:11:14",
   "configuration": {
     "minimum_group_sample": 8,
     "full_weight_sample": 30,
@@ -12,71 +12,71 @@
     "display_min": 40.0,
     "display_max": 95.0
   },
-  "closed_history_sample": 1,
+  "closed_history_sample": 2,
   "statistics": {
     "global": {
-      "sample": 1,
+      "sample": 2,
       "successes": 0,
-      "failures": 1,
+      "failures": 2,
       "raw_success_rate": 0.0,
-      "bayesian_success_rate": 50.0
+      "bayesian_success_rate": 42.86
     },
     "by_score_bucket": {
       "75-79": {
-        "sample": 1,
+        "sample": 2,
         "successes": 0,
-        "failures": 1,
+        "failures": 2,
         "raw_success_rate": 0.0,
-        "bayesian_success_rate": 50.0
+        "bayesian_success_rate": 42.86
       }
     },
     "by_tier": {
       "STANDARD": {
-        "sample": 1,
+        "sample": 2,
         "successes": 0,
-        "failures": 1,
+        "failures": 2,
         "raw_success_rate": 0.0,
-        "bayesian_success_rate": 50.0
+        "bayesian_success_rate": 42.86
       }
     },
     "by_signal_type": {
       "NORMAL": {
-        "sample": 1,
+        "sample": 2,
         "successes": 0,
-        "failures": 1,
+        "failures": 2,
         "raw_success_rate": 0.0,
-        "bayesian_success_rate": 50.0
+        "bayesian_success_rate": 42.86
       }
     },
     "by_type_and_score": {
       "NORMAL|75-79": {
-        "sample": 1,
+        "sample": 2,
         "successes": 0,
-        "failures": 1,
+        "failures": 2,
         "raw_success_rate": 0.0,
-        "bayesian_success_rate": 50.0
+        "bayesian_success_rate": 42.86
       }
     },
     "by_tier_and_score": {
       "STANDARD|75-79": {
-        "sample": 1,
+        "sample": 2,
         "successes": 0,
-        "failures": 1,
+        "failures": 2,
         "raw_success_rate": 0.0,
-        "bayesian_success_rate": 50.0
+        "bayesian_success_rate": 42.86
       }
     }
   },
   "signals": [
     {
-      "symbol": "2083",
-      "rased_score": 79.2,
-      "raw_ai_confidence": 94.0,
-      "historical_confidence": 50.0,
-      "calibrated_confidence": 93.2,
+      "symbol": "8311",
+      "rased_score": 79.0,
+      "raw_ai_confidence": 92.0,
+      "historical_confidence": 42.9,
+      "calibrated_confidence": 90.2,
       "source": "signal_type_and_score",
-      "sample_size": 1,
-      "label": "معايرة أولية — عينة 1"
+      "sample_size": 2,
+      "label": "معايرة أولية — عينة 2"
     }
   ]
 }

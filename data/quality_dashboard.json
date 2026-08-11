@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-11T12:06:17",
-  "data_timestamp": "2026-08-11T12:05:54",
+  "generated_at": "2026-08-11T12:11:16",
+  "data_timestamp": "2026-08-11T12:10:50",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,22 +12,22 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "WEAK",
-    "regime_ar": "ضعيف",
-    "posture": "حماية رأس المال",
-    "average_change_pct": -0.158,
-    "advance_ratio": 0.3404,
-    "dispersion": 1.548,
-    "dynamic_min_score": 83,
-    "advancing": 16,
-    "declining": 25,
-    "unchanged": 6
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "",
+    "average_change_pct": -0.04,
+    "advance_ratio": 0.383,
+    "dispersion": 1.564,
+    "dynamic_min_score": null,
+    "advancing": 18,
+    "declining": 27,
+    "unchanged": 2
   },
   "screening": {
-    "screened": 40,
+    "screened": 47,
     "rejected": 40,
-    "generated": 0,
-    "validated": 0,
+    "generated": 1,
+    "validated": 1,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 23,
     "categories": {
@@ -41,24 +41,32 @@
   },
   "leadership": {
     "best_sector": "التأمين",
-    "best_sector_avg_change_pct": 2.35,
+    "best_sector_avg_change_pct": 2.64,
     "best_sector_members": 3,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 6.58,
-      "value": 25919977.3
+      "change_pct": 6.88,
+      "value": 26327630.72
     }
   },
   "portfolio_exposure": {
-    "active_open_positions": 2,
-    "approved_after_gate": 0,
-    "rejected_by_gate": 1
+    "active_open_positions": 1,
+    "approved_after_gate": 1,
+    "rejected_by_gate": 0
   },
   "confidence_calibration": {
     "status": "PASS",
-    "closed_history_sample": 1,
+    "closed_history_sample": 2,
     "signals_calibrated": 1
   },
-  "validated_signals": []
+  "validated_signals": [
+    {
+      "symbol": "8311",
+      "name": "شركة عناية السعودية للتأمين التعاوني",
+      "sector": "التأمين",
+      "rased_score": 79.0,
+      "confidence": 90.2
+    }
+  ]
 }

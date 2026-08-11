@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-10T13:41:25",
-  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
+  "generated_at": "2026-08-11T12:11:14",
+  "status": "PASS",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -10,24 +10,13 @@
     "max_stale_open_days": 10
   },
   "input_validated_signals": 1,
-  "approved_signals": 0,
-  "rejected_signals": 1,
-  "active_open_positions": 2,
+  "approved_signals": 1,
+  "rejected_signals": 0,
+  "active_open_positions": 1,
   "current_sector_exposure": {
-    "المواد الأساسية": 1,
     "الطاقة": 1
   },
   "open_positions": [
-    {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "sector": "المواد الأساسية",
-      "status": "OPEN",
-      "opened_at": "2026-08-04T14:56:28",
-      "max_holding_days": 7,
-      "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/published_signals.csv",
-      "signal_id": "Signal #2026-2161456-2380"
-    },
     {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
@@ -39,17 +28,13 @@
       "signal_id": "Signal #2026-2221321-2083"
     }
   ],
-  "approved": [],
-  "rejected": [
+  "approved": [
     {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "sector": "الطاقة",
-      "rased_score": 79.2,
-      "reasons": [
-        "توجد إشارة مفتوحة بالفعل على السهم 2083",
-        "التعرض لقطاع الطاقة بلغ الحد 1"
-      ]
+      "symbol": "8311",
+      "name": "شركة عناية السعودية للتأمين التعاوني",
+      "sector": "التأمين",
+      "rased_score": 79.0
     }
-  ]
+  ],
+  "rejected": []
 }
