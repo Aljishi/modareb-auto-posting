@@ -114,12 +114,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — RSI مقبول 72.5 — سيولة قوية جداً 3.3x — اختراق مقاومة مؤكد — زخم مرتفع — مراقبة عدم المطاردة — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2231221-8311",
+      "signal_id": "Signal #2026-2231226-8311",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-11T12:21:14",
+      "generated_at": "2026-08-11T12:26:01",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "ai_available": true,
       "ai_review": {
@@ -133,11 +133,11 @@
           "Strong momentum setup",
           "High confidence score",
           "Low risk level",
-          "Clear breakout confirmation"
+          "Clear technical indicators"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم شركة عناية السعودية للتأمين التعاوني مع زخم مرتفع واستهداف منطقي.",
-        "telegram_note": "إشارة شراء قوية على 8311 مع أهداف قريبة وزخم إيجابي."
+        "arabic_summary": "إشارة شراء قوية على سهم شركة عناية السعودية للتأمين التعاوني مع زخم مرتفع ومؤشرات فنية واضحة.",
+        "telegram_note": "إشارة شراء قوية على 8311 مع أهداف منطقية وزخم مرتفع. استعد لتحقيق الأرباح خلال يومين!"
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 92,
@@ -148,11 +148,11 @@
         "Strong momentum setup",
         "High confidence score",
         "Low risk level",
-        "Clear breakout confirmation"
+        "Clear technical indicators"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة عناية السعودية للتأمين التعاوني مع زخم مرتفع واستهداف منطقي.",
-      "ai_telegram_note": "إشارة شراء قوية على 8311 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-11T12:21:34",
+      "ai_arabic_summary": "إشارة شراء قوية على سهم شركة عناية السعودية للتأمين التعاوني مع زخم مرتفع ومؤشرات فنية واضحة.",
+      "ai_telegram_note": "إشارة شراء قوية على 8311 مع أهداف منطقية وزخم مرتفع. استعد لتحقيق الأرباح خلال يومين!",
+      "ai_reviewed_at": "2026-08-11T12:26:20",
       "raw_ai_confidence": 92.0,
       "historical_confidence": 42.9,
       "calibrated_confidence": 90.2,
@@ -173,13 +173,13 @@
         "historical_weight": 0.0375,
         "calibrated_confidence": 90.2,
         "label": "معايرة أولية — عينة 2",
-        "calibrated_at": "2026-08-11T12:21:34"
+        "calibrated_at": "2026-08-11T12:26:20"
       },
       "market_regime": "NORMAL",
       "market_regime_ar": "طبيعي",
       "dynamic_min_rased_score": 80.0,
       "borderline_approval": true,
-      "post_checked_at": "2026-08-11T12:21:34",
+      "post_checked_at": "2026-08-11T12:26:20",
       "post_approved": true,
       "post_rejected_reasons": [],
       "post_approval_source": "openai_and_dynamic_python",
@@ -189,7 +189,7 @@
         "التعرض لقطاع التأمين بلغ الحد 1"
       ],
       "portfolio_exposure_decision": {
-        "checked_at": "2026-08-11T12:21:34",
+        "checked_at": "2026-08-11T12:26:20",
         "symbol": "8311",
         "name": "شركة عناية السعودية للتأمين التعاوني",
         "sector": "التأمين",
@@ -207,8 +207,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-11T12:21:30",
-  "generated_at": "2026-08-11T12:21:34",
+  "source_generated_at": "2026-08-11T12:26:16",
+  "generated_at": "2026-08-11T12:26:20",
   "market_regime": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
@@ -232,8 +232,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-11T12:21:06",
-    "generated_at": "2026-08-11T12:21:34"
+    "daily_generated_at": "2026-08-11T12:25:54",
+    "generated_at": "2026-08-11T12:26:20"
   },
   "applied_limits": {
     "dynamic_rased_score": {
@@ -269,7 +269,7 @@
     }
   },
   "portfolio_exposure_checked": true,
-  "portfolio_exposure_checked_at": "2026-08-11T12:21:34",
+  "portfolio_exposure_checked_at": "2026-08-11T12:26:20",
   "portfolio_exposure": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
