@@ -1,230 +1,993 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""نشر إشارة راصد إلى تيليغرام مع عرض إضافات Starter Plus."""
+"""
+RASED Telegram Publisher v10
+============================
+
+التحسينات:
+- الثقة التاريخية المعايرة لها الأولوية على AI confidence.
+- لا نعرض ثقة مرتفعة بشكل مضلل عندما تكون العينة التاريخية صغيرة.
+- عرض نتيجة الباك تست بوضوح.
+- عرض تحذير المطاردة.
+- استخدام مستوى المخاطرة المصحح من Quality Gate.
+"""
+
+from __future__ import annotations
 
 import json
 import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import requests
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-VALIDATED_FILE = DATA_DIR / "validated_signals.json"
-SIGNALS_FILE = DATA_DIR / "signals.json"
 
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
-CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "").strip()
+BOT_TOKEN = os.environ.get(
+    "TELEGRAM_BOT_TOKEN"
+)
+
+CHAT_ID = os.environ.get(
+    "TELEGRAM_CHAT_ID"
+)
+
+DATA_DIR = (
+    Path(__file__).resolve().parent.parent
+    / "data"
+)
+
+IMAGE_FILE = Path(
+    "output.png"
+)
 
 
-def fnum(x: Any, default: float = 0.0) -> float:
+def escape(
+    text: Any,
+) -> str:
+    return (
+        str(text)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+
+
+def fnum(
+    value: Any,
+    default: float = 0.0,
+) -> float:
     try:
-        if x is None or x == "":
+        if value is None or value == "":
             return default
-        if isinstance(x, str):
-            x = x.replace("%", "").replace(",", "").strip()
-        return float(x)
+
+        if isinstance(value, str):
+            value = (
+                value
+                .replace("%", "")
+                .replace(",", "")
+                .strip()
+            )
+
+        return float(value)
+
     except Exception:
         return default
 
 
-def load_json(path: Path, default: Any) -> Any:
+def fint(
+    value: Any,
+    default: int = 0,
+) -> int:
     try:
-        if path.exists():
-            return json.loads(path.read_text(encoding="utf-8"))
+        return int(
+            fnum(value, default)
+        )
+    except Exception:
+        return default
+
+
+def clamp(
+    value: float,
+    minimum: float,
+    maximum: float,
+) -> float:
+    return max(
+        minimum,
+        min(value, maximum),
+    )
+
+
+def load_signal() -> Optional[Dict[str, Any]]:
+    for filename in (
+        "validated_signals.json",
+        "signals.json",
+    ):
+        path = DATA_DIR / filename
+
+        if not path.exists():
+            continue
+
+        try:
+            raw = json.loads(
+                path.read_text(
+                    encoding="utf-8"
+                )
+            )
+
+        except Exception as exc:
+            print(
+                f"⚠️ تعذر قراءة {filename}: {exc}"
+            )
+            continue
+
+        if isinstance(raw, list):
+            signals = raw
+
+        elif isinstance(raw, dict):
+            signals = raw.get(
+                "validated_signals",
+                raw.get("signals", []),
+            )
+
+        else:
+            signals = []
+
+        if (
+            isinstance(signals, list)
+            and signals
+            and isinstance(signals[0], dict)
+        ):
+            return signals[0]
+
+    return None
+
+
+def fmt_price(
+    value: Any,
+) -> str:
+    return f"{fnum(value):.2f}"
+
+
+def fmt_days(
+    value: Any,
+) -> str:
+    try:
+        days = int(
+            float(value)
+        )
+
+        return str(
+            max(1, days)
+        )
+
+    except Exception:
+        return "1–7"
+
+
+def risk_emoji_for(
+    risk: str,
+) -> str:
+    text = str(risk).strip()
+
+    if "منخفض" in text:
+        return "🟢"
+
+    if "متوسط" in text:
+        return "🟡"
+
+    if "مرتفع" in text:
+        return "🔴"
+
+    return "⚪"
+
+
+# ============================================================
+# Confidence
+# ============================================================
+
+def displayed_confidence(
+    signal: Dict[str, Any],
+    rased_score: float,
+) -> int:
+    """
+    ترتيب الثقة:
+
+    1. calibrated_confidence
+    2. confidence إذا كانت معايرة
+    3. AI confidence
+    4. RASED score
+
+    ثم نطبق سقفاً إذا كانت العينة التاريخية صغيرة.
+    """
+
+    calibrated = fnum(
+        signal.get(
+            "calibrated_confidence"
+        ),
+        0,
+    )
+
+    if calibrated > 0:
+        confidence = calibrated
+
+    else:
+        confidence_is_calibrated = bool(
+            signal.get(
+                "confidence_calibrated"
+            )
+        )
+
+        normal_confidence = fnum(
+            signal.get("confidence"),
+            0,
+        )
+
+        if (
+            confidence_is_calibrated
+            and normal_confidence > 0
+        ):
+            confidence = normal_confidence
+
+        else:
+            ai_available = (
+                signal.get("ai_available")
+                is True
+            )
+
+            ai_decision = str(
+                signal.get(
+                    "ai_decision",
+                    "",
+                )
+            ).upper()
+
+            ai_confidence = fnum(
+                signal.get(
+                    "ai_confidence"
+                ),
+                0,
+            )
+
+            if (
+                ai_available
+                and ai_decision == "APPROVE"
+                and ai_confidence > 0
+            ):
+                confidence = ai_confidence
+            else:
+                confidence = rased_score
+
+    # --------------------------------------------------------
+    # Historical sample safeguards
+    # --------------------------------------------------------
+
+    sample = fint(
+        signal.get(
+            "confidence_sample_size"
+        )
+        or signal.get(
+            "backtest_trades"
+        )
+    )
+
+    bt_win = fnum(
+        signal.get(
+            "backtest_win_rate"
+        )
+    )
+
+    # لا توجد عينة كافية = لا نعرض 90+ وكأنها حقيقة
+    if sample <= 0:
+        confidence = min(
+            confidence,
+            75,
+        )
+
+    elif sample <= 3:
+        confidence = min(
+            confidence,
+            80,
+        )
+
+    elif sample <= 7:
+        if bt_win < 50:
+            confidence = min(
+                confidence,
+                82,
+            )
+        else:
+            confidence = min(
+                confidence,
+                88,
+            )
+
+    confidence = clamp(
+        confidence,
+        40,
+        95,
+    )
+
+    return int(
+        round(confidence)
+    )
+
+
+def confidence_label(
+    signal: Dict[str, Any],
+) -> str:
+    label = str(
+        signal.get(
+            "confidence_label",
+            "",
+        )
+    ).strip()
+
+    if label:
+        return label
+
+    sample = fint(
+        signal.get(
+            "confidence_sample_size"
+        )
+    )
+
+    if sample > 0:
+        return (
+            f"ثقة معايرة — عينة {sample}"
+        )
+
+    return (
+        "ثقة تقديرية — عينة تاريخية محدودة"
+    )
+
+
+# ============================================================
+# Backtest
+# ============================================================
+
+def backtest_text(
+    signal: Dict[str, Any],
+) -> str:
+    trades = fint(
+        signal.get(
+            "backtest_trades"
+        )
+    )
+
+    win_rate = fnum(
+        signal.get(
+            "backtest_win_rate"
+        )
+    )
+
+    grade = str(
+        signal.get(
+            "backtest_grade",
+            "",
+        )
+    ).strip()
+
+    if trades <= 0:
+        return (
+            "غير متوفر | "
+            "لا توجد عينة مشابهة كافية"
+        )
+
+    grade_text = (
+        f"{escape(grade)} | "
+        if grade
+        else ""
+    )
+
+    return (
+        f"{grade_text}"
+        f"نجاح تاريخي: "
+        f"{win_rate:.1f}% | "
+        f"الحالات المشابهة: {trades}"
+    )
+
+
+# ============================================================
+# Momentum text
+# ============================================================
+
+def momentum_text(
+    signal: Dict[str, Any],
+) -> str:
+    rsi = fnum(
+        signal.get("rsi")
+    )
+
+    if rsi >= 70:
+        return (
+            f"مرتفع جداً ({rsi:.1f}) "
+            "— احتمال مطاردة"
+        )
+
+    if rsi >= 68:
+        return (
+            f"مرتفع ({rsi:.1f}) "
+            "— يحتاج تأكيد"
+        )
+
+    if 52 <= rsi <= 65:
+        return (
+            f"صحي ({rsi:.1f})"
+        )
+
+    return (
+        f"مقبول ({rsi:.1f})"
+    )
+
+
+# ============================================================
+# Caption
+# ============================================================
+
+def build_caption(
+    signal: Dict[str, Any],
+) -> str:
+    name = escape(
+        signal.get(
+            "stock_name",
+            signal.get(
+                "name",
+                "",
+            ),
+        )
+    )
+
+    symbol = escape(
+        signal.get(
+            "stock_symbol",
+            signal.get(
+                "symbol",
+                "",
+            ),
+        )
+    )
+
+    tier = escape(
+        signal.get(
+            "tier",
+            "Standard",
+        )
+    )
+
+    tier_emoji = str(
+        signal.get(
+            "tier_emoji",
+            "✅",
+        )
+    )
+
+    rased_score = fnum(
+        signal.get(
+            "rased_score"
+        ),
+        fnum(
+            signal.get(
+                "score"
+            ),
+            0,
+        ),
+    )
+
+    confidence = displayed_confidence(
+        signal,
+        rased_score,
+    )
+
+    conf_label = escape(
+        confidence_label(signal)
+    )
+
+    risk = escape(
+        signal.get(
+            "risk_level_ar"
+        )
+        or signal.get(
+            "risk_level"
+        )
+        or "متوسط"
+    )
+
+    risk_emoji = (
+        signal.get("risk_emoji")
+        or risk_emoji_for(risk)
+    )
+
+    ai_reviewed = (
+        signal.get("ai_available")
+        is True
+        and str(
+            signal.get(
+                "ai_decision",
+                "",
+            )
+        ).upper()
+        == "APPROVE"
+    )
+
+    if ai_reviewed:
+        review_line = (
+            "اجتازت فلاتر راصد، "
+            "بوابة الجودة، "
+            "والمراجعة بالذكاء الاصطناعي."
+        )
+
+        summary = escape(
+            signal.get(
+                "ai_arabic_summary"
+            )
+            or signal.get(
+                "signal_reason"
+            )
+            or (
+                "إشارة اجتازت مراحل "
+                "التحقق الآلية."
+            )
+        )
+
+        note = escape(
+            signal.get(
+                "ai_telegram_note"
+            )
+            or signal.get(
+                "key_insight"
+            )
+            or (
+                "الالتزام بوقف الخسارة "
+                "شرط أساسي."
+            )
+        )
+
+    else:
+        review_line = (
+            "اجتازت فلاتر راصد "
+            "وبوابة الجودة الآلية. "
+            "لم تتوفر مراجعة AI "
+            "لهذا التشغيل."
+        )
+
+        summary = escape(
+            signal.get(
+                "signal_reason"
+            )
+            or (
+                "إشارة فنية اجتازت "
+                "فلاتر الجودة."
+            )
+        )
+
+        note = escape(
+            signal.get(
+                "key_insight"
+            )
+            or (
+                "إدارة رأس المال "
+                "ووقف الخسارة أساسيان."
+            )
+        )
+
+    expected_days = fmt_days(
+        signal.get(
+            "ai_expected_holding_days"
+        )
+        if ai_reviewed
+        else signal.get(
+            "expected_days_to_target2"
+        )
+    )
+
+    rsi = fnum(
+        signal.get("rsi")
+    )
+
+    volume_ratio = fnum(
+        signal.get(
+            "volume_ratio"
+        )
+    )
+
+    rr = fnum(
+        signal.get(
+            "rr",
+            signal.get(
+                "rr_ratio"
+            ),
+        )
+    )
+
+    atr_pct = fnum(
+        signal.get(
+            "atr_pct"
+        )
+    )
+
+    fundamental_grade = escape(
+        signal.get(
+            "fundamental_grade",
+            "غير متوفر",
+        )
+    )
+
+    fundamental_bonus = fint(
+        signal.get(
+            "fundamental_bonus"
+        ),
+        0,
+    )
+
+    fundamental_text = (
+        f"{fundamental_grade} "
+        f"({fundamental_bonus:+d})"
+    )
+
+    sector = escape(
+        signal.get(
+            "sector",
+            "غير متوفر",
+        )
+    )
+
+    sector_bonus = fint(
+        signal.get(
+            "sector_strength_bonus"
+        ),
+        0,
+    )
+
+    sector_grade = escape(
+        signal.get(
+            "sector_strength_grade",
+            "",
+        )
+    )
+
+    bt_text = backtest_text(
+        signal
+    )
+
+    chase_warning = bool(
+        signal.get(
+            "chase_warning"
+        )
+        or rsi >= 68
+    )
+
+    chase_line = ""
+
+    if chase_warning:
+        chase_line = (
+            "\n⚠️ <b>تنبيه الزخم:</b> "
+            "الزخم مرتفع؛ تجنب مطاردة "
+            "السعر بعيداً عن نقطة الدخول.\n"
+        )
+
+    now = (
+        datetime.now()
+        .strftime(
+            "%Y-%m-%d | %I:%M %p KSA"
+        )
+        .replace("AM", "ص")
+        .replace("PM", "م")
+    )
+
+    caption = (
+        f"{tier_emoji} "
+        f"<b>RASED {tier.upper()} SIGNAL</b>\n\n"
+
+        f"📈 <b>{name} ({symbol})</b>\n\n"
+
+        f"💰 <b>نقطة الدخول</b>\n"
+        f"<code>"
+        f"{fmt_price(signal.get('entry_point') or signal.get('entry'))}"
+        f"</code> ريال\n\n"
+
+        f"🎯 <b>الهدف الأول</b>\n"
+        f"<code>{fmt_price(signal.get('target1'))}</code> "
+        f"ريال "
+        f"(+{fnum(signal.get('target1_percent') or signal.get('tp1_pct')):.2f}%)\n\n"
+
+        f"🎯 <b>الهدف الثاني</b>\n"
+        f"<code>{fmt_price(signal.get('target2'))}</code> "
+        f"ريال "
+        f"(+{fnum(signal.get('target2_percent') or signal.get('tp2_pct')):.2f}%)\n\n"
+
+        f"🛑 <b>وقف الخسارة</b>\n"
+        f"<code>{fmt_price(signal.get('stop_loss'))}</code> "
+        f"ريال "
+        f"(-{abs(fnum(signal.get('stop_loss_percent') or signal.get('sl_pct'))):.2f}%)\n\n"
+
+        f"━━━━━━━━━━━━━━\n\n"
+
+        f"⭐ <b>RASED SCORE™</b>\n"
+        f"{rased_score:.1f} / 100\n\n"
+
+        f"🤖 <b>الثقة المعايرة</b>\n"
+        f"{confidence}%\n"
+        f"<i>{conf_label}</i>\n\n"
+
+        f"{risk_emoji} <b>مستوى المخاطرة</b>\n"
+        f"{risk}\n\n"
+
+        f"⏳ <b>مدة الصفقة المتوقعة</b>\n"
+        f"{expected_days} أيام أو أقل\n\n"
+
+        f"━━━━━━━━━━━━━━\n\n"
+
+        f"📊 <b>مؤشرات راصد</b>\n"
+        f"الزخم: {escape(momentum_text(signal))}\n"
+        f"السيولة: {volume_ratio:.2f}x\n"
+        f"R:R: {rr:.2f}\n"
+        f"ATR: {atr_pct:.2f}%\n"
+        f"الأساسيات: {fundamental_text}\n\n"
+
+        f"🏭 <b>القطاع</b>\n"
+        f"{sector}"
+        f" | {sector_grade}"
+        f" ({sector_bonus:+d})\n\n"
+
+        f"🧪 <b>الاختبار التاريخي</b>\n"
+        f"{escape(bt_text)}\n"
+
+        f"{chase_line}\n"
+
+        f"━━━━━━━━━━━━━━\n\n"
+
+        f"🏆 <b>الحالة</b>\n"
+        f"{escape(review_line)}\n\n"
+
+        f"📌 <b>ملخص سريع</b>\n"
+        f"{summary}\n\n"
+
+        f"💡 {note}\n\n"
+
+        f"⏰ {escape(now)}\n\n"
+
+        f"⚠️ محتوى تحليلي وتعليمي آلي "
+        f"وليس توصية استثمارية أو ضماناً للأداء.\n"
+        f"الالتزام بوقف الخسارة وإدارة رأس المال "
+        f"مسؤولية المتداول.\n\n"
+
+        f"#راصد #تاسي #السوق_السعودي"
+    )
+
+    return caption
+
+
+# ============================================================
+# Open signal tracking
+# ============================================================
+
+def load_open_signals() -> List[Dict[str, Any]]:
+    path = DATA_DIR / "open_signals.json"
+
+    if not path.exists():
+        return []
+
+    try:
+        payload = json.loads(
+            path.read_text(
+                encoding="utf-8"
+            )
+        )
+
+        if isinstance(payload, list):
+            return payload
+
     except Exception:
         pass
-    return default
+
+    return []
 
 
-def get_signals() -> List[Dict[str, Any]]:
-    data = load_json(VALIDATED_FILE, {})
-    signals = data.get("signals", []) if isinstance(data, dict) else []
-    if signals:
-        return signals
-    data = load_json(SIGNALS_FILE, {})
-    return data.get("signals", []) if isinstance(data, dict) else []
+def save_open_signal(
+    signal: Dict[str, Any],
+) -> None:
+    path = DATA_DIR / "open_signals.json"
+
+    signals = load_open_signals()
+
+    today = datetime.now().strftime(
+        "%Y-%m-%d"
+    )
+
+    symbol = str(
+        signal.get(
+            "stock_symbol",
+            signal.get(
+                "symbol",
+                "",
+            ),
+        )
+    )
+
+    already_exists = any(
+        item.get("date") == today
+        and str(
+            item.get(
+                "signal",
+                {},
+            ).get(
+                "stock_symbol",
+                item.get(
+                    "signal",
+                    {},
+                ).get(
+                    "symbol",
+                    "",
+                ),
+            )
+        )
+        == symbol
+        for item in signals
+    )
+
+    if already_exists:
+        print(
+            f"ℹ️ {symbol}: الإشارة موجودة "
+            "مسبقاً في open_signals.json"
+        )
+        return
+
+    signals.append(
+        {
+            "signal": signal,
+            "date": today,
+            "posted_at": (
+                datetime.now()
+                .isoformat(
+                    timespec="seconds"
+                )
+            ),
+            "target1_hit": False,
+            "target1_hit_at": None,
+            "target2_hit": False,
+            "target2_hit_at": None,
+            "stop_hit": False,
+            "stop_hit_at": None,
+            "max_holding_days": fint(
+                signal.get(
+                    "max_holding_days"
+                ),
+                7,
+            ),
+            "expires_at_days": fint(
+                signal.get(
+                    "max_holding_days"
+                ),
+                7,
+            ),
+            "status": "open",
+        }
+    )
+
+    path.write_text(
+        json.dumps(
+            signals,
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+    print(
+        "✅ الإشارة محفوظة في "
+        "open_signals.json للمتابعة"
+    )
 
 
-def ar_time() -> str:
-    return datetime.now().strftime("%Y-%m-%d | %I:%M %p KSA").replace("AM", "ص").replace("PM", "م")
+# ============================================================
+# Telegram
+# ============================================================
 
-
-def ai_status(signal: Dict[str, Any]) -> str:
-    reviewed = bool(signal.get("ai_reviewed") or signal.get("ai_available"))
-    decision = str(signal.get("ai_decision") or "").upper()
-    confidence = int(fnum(signal.get("ai_confidence"), 0))
-    if reviewed and decision in {"APPROVE", "APPROVED", "PASS", "YES"}:
-        return f"إشارة معتمدة بعد اجتياز فلاتر راصد الآلية ومراجعة الذكاء الاصطناعي. ثقة AI: {confidence}%"
-    if reviewed and decision:
-        return f"إشارة اجتازت فلاتر راصد، مع نتيجة مراجعة AI: {decision}."
-    return "إشارة معتمدة بعد اجتياز فلاتر راصد الآلية. لم تُستخدم مراجعة الذكاء الاصطناعي في هذا التشغيل."
-
-
-def rsi_reading(rsi: float) -> str:
-    if rsi <= 0:
-        return "غير متوفر"
-    if rsi < 45:
-        return f"هادئ ({rsi:.1f})"
-    if rsi <= 60:
-        return f"صحي ({rsi:.1f})"
-    if rsi <= 68:
-        return f"قوي ({rsi:.1f})"
-    if rsi <= 72:
-        return f"مرتفع بحذر ({rsi:.1f})"
-    return f"مرتفع جداً — غالباً مطاردة ({rsi:.1f})"
-
-
-def rr_reading(rr: float) -> str:
-    if rr >= 2.5:
-        return f"ممتاز ({rr:.2f})"
-    if rr >= 2.0:
-        return f"مقبول ({rr:.2f})"
-    return f"ضعيف ({rr:.2f})"
-
-
-def volume_reading(vol: float) -> str:
-    if vol >= 3:
-        return f"سيولة قوية جداً ({vol:.2f}x)"
-    if vol >= 2:
-        return f"سيولة قوية ({vol:.2f}x)"
-    if vol >= 1.15:
-        return f"سيولة جيدة ({vol:.2f}x)"
-    return f"سيولة عادية ({vol:.2f}x)"
-
-
-def backtest_reading(grade: str, win: float, trades: int) -> str:
-    if trades <= 0:
-        return "لا توجد حالات تاريخية كافية للمقارنة"
-    return f"{grade} | نجاح تاريخي: {win:.1f}% | الحالات المشابهة: {trades}"
-
-
-def clean_sector_name(signal: Dict[str, Any]) -> str:
-    sector = str(signal.get("sector_name") or signal.get("sector") or "").strip()
-    return sector if sector else "غير متوفر من مزود البيانات"
-
-
-def format_signal(signal: Dict[str, Any]) -> str:
-    symbol = signal.get("stock_symbol") or signal.get("symbol") or ""
-    name = signal.get("stock_name") or signal.get("name") or symbol
-    tier = str(signal.get("tier") or "Premium").upper()
-    tier_emoji = signal.get("tier_emoji") or "⭐"
-
-    entry = fnum(signal.get("entry_point") or signal.get("entry"))
-    target1 = fnum(signal.get("target1"))
-    target2 = fnum(signal.get("target2"))
-    stop = fnum(signal.get("stop_loss"))
-    tp1 = fnum(signal.get("target1_percent") or signal.get("tp1_pct"))
-    tp2 = fnum(signal.get("target2_percent") or signal.get("tp2_pct"))
-    sl = abs(fnum(signal.get("stop_loss_percent") or signal.get("sl_pct")))
-    rased = fnum(signal.get("rased_score") or signal.get("score"))
-    confidence = int(round(fnum(signal.get("ai_confidence") or signal.get("rased_score") or signal.get("score"))))
-    risk = signal.get("risk_level_ar") or signal.get("risk_level") or "متوسط"
-    risk_emoji = signal.get("risk_emoji") or "🟡"
-    days = int(fnum(signal.get("expected_days_to_target2"), 3))
-
-    rsi = fnum(signal.get("rsi"))
-    vol = fnum(signal.get("volume_ratio"))
-    rr = fnum(signal.get("rr") or signal.get("rr_ratio"))
-    atr = fnum(signal.get("atr_pct"))
-    fundamental = signal.get("fundamental_grade") or "غير متوفر"
-    fundamental_bonus = int(fnum(signal.get("fundamental_bonus")))
-    sector_name = clean_sector_name(signal)
-    sector_grade = signal.get("sector_strength_grade") or "غير متوفر"
-    sector_bonus = int(fnum(signal.get("sector_strength_bonus")))
-    growth_bonus = int(fnum(signal.get("growth_bonus")))
-    dividend_bonus = int(fnum(signal.get("dividend_bonus")))
-    backtest_grade = signal.get("backtest_grade") or "غير متوفر"
-    backtest_win = fnum(signal.get("backtest_win_rate"))
-    backtest_trades = int(fnum(signal.get("backtest_trades")))
-
-    return f"""{tier_emoji} RASED {tier} SIGNAL
-
-📈 {name} ({symbol})
-
-💰 نقطة الدخول
-{entry:.2f} ريال
-
-🎯 الهدف الأول
-{target1:.2f} ريال  (+{tp1:.2f}%)
-
-🎯 الهدف الثاني
-{target2:.2f} ريال  (+{tp2:.2f}%)
-
-🛑 وقف الخسارة
-{stop:.2f} ريال  (-{sl:.2f}%)
-
-━━━━━━━━━━━━━━
-
-⭐ RASED SCORE™
-{rased:.1f} / 100
-
-🤖 الثقة
-{confidence}%
-
-{risk_emoji} مستوى المخاطرة
-{risk}
-
-⏳ مدة الصفقة المتوقعة
-{days} أيام أو أقل
-
-━━━━━━━━━━━━━━
-
-📊 مؤشرات راصد المبسطة
-مؤشر الزخم: {rsi_reading(rsi)}
-السيولة: {volume_reading(vol)}
-العائد مقابل المخاطرة: {rr_reading(rr)}
-تذبذب السهم اليومي: {atr:.2f}%
-التحليل الأساسي: {fundamental} ({fundamental_bonus:+d})
-
-🏭 القطاع
-{sector_name} | القوة: {sector_grade} ({sector_bonus:+d})
-
-📈 النمو والتوزيعات
-النمو المالي: {growth_bonus:+d} | محفز التوزيعات: {dividend_bonus:+d}
-
-🧪 الاختبار التاريخي
-{backtest_reading(backtest_grade, backtest_win, backtest_trades)}
-ملاحظة: الحالات المشابهة تعني عدد مرات ظهور ظروف قريبة تاريخياً على نفس السهم/النمط.
-
-━━━━━━━━━━━━━━
-
-🏆 الحالة
-{ai_status(signal)}
-
-📌 ملخص سريع
-{signal.get('signal_reason') or 'اجتازت فلاتر راصد الآلية.'}
-
-💡 {signal.get('key_insight') or 'الإشارة مرشحة لمضاربة قصيرة المدى بشرط الالتزام بوقف الخسارة.'}
-
-⏰ {ar_time()}
-
-⚠️ محتوى تعليمي آلي وليس توصية استثمارية أو ضماناً لتحقيق الأهداف. الالتزام بوقف الخسارة وإدارة رأس المال مسؤولية المتداول.
-
-#راصد #تاسي #السوق_السعودي"""
-
-
-def send_message(text: str) -> None:
+def send_photo(
+    caption: str,
+) -> bool:
     if not BOT_TOKEN or not CHAT_ID:
-        raise RuntimeError("TELEGRAM_BOT_TOKEN أو TELEGRAM_CHAT_ID غير موجود")
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    r = requests.post(url, data={"chat_id": CHAT_ID, "text": text, "disable_web_page_preview": True}, timeout=30)
-    if r.status_code >= 400:
-        raise RuntimeError(f"Telegram {r.status_code}: {r.text[:300]}")
+        print(
+            "❌ TELEGRAM_BOT_TOKEN أو "
+            "TELEGRAM_CHAT_ID غير موجود"
+        )
+        return False
+
+    if not IMAGE_FILE.exists():
+        print(
+            "❌ output.png غير موجود"
+        )
+        return False
+
+    url = (
+        f"https://api.telegram.org/"
+        f"bot{BOT_TOKEN}/sendPhoto"
+    )
+
+    try:
+        with IMAGE_FILE.open(
+            "rb"
+        ) as photo:
+            response = requests.post(
+                url,
+                data={
+                    "chat_id": CHAT_ID,
+                    "caption": caption,
+                    "parse_mode": "HTML",
+                },
+                files={
+                    "photo": photo,
+                },
+                timeout=30,
+            )
+
+    except Exception as exc:
+        print(
+            f"❌ Telegram request failed: {exc}"
+        )
+        return False
+
+    if response.status_code != 200:
+        print(
+            f"❌ Telegram error "
+            f"{response.status_code}: "
+            f"{response.text[:500]}"
+        )
+        return False
+
+    print(
+        "✅ تم نشر الإشارة في تيليغرام"
+    )
+
+    return True
 
 
 def main() -> int:
-    signals = get_signals()
-    if not signals:
-        print("ℹ️ No signal to post")
-        return 0
-    signal = signals[0]
-    text = format_signal(signal)
-    send_message(text)
-    print("✅ Posted signal to Telegram")
+    signal = load_signal()
+
+    if not signal:
+        print(
+            "❌ لا توجد إشارة صالحة للنشر"
+        )
+        return 1
+
+    if (
+        signal.get(
+            "quality_gate_passed"
+        )
+        is False
+    ):
+        print(
+            "❌ الإشارة لم تجتز "
+            "RASED Quality Gate"
+        )
+        return 1
+
+    caption = build_caption(
+        signal
+    )
+
+    if not send_photo(
+        caption
+    ):
+        return 1
+
+    save_open_signal(
+        signal
+    )
+
+    (
+        DATA_DIR
+        / "last_post_date.txt"
+    ).write_text(
+        datetime.now().strftime(
+            "%Y-%m-%d"
+        ),
+        encoding="utf-8",
+    )
+
     return 0
 
 
