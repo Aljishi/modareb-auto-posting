@@ -132,13 +132,8 @@ jobs:
           python scripts/self_learning_engine.py \
             || echo "⚠️ Self-learning skipped"
 
-      - name: Detect market regime
-        if: >
-          steps.market.outputs.open == 'true' ||
-          github.event.inputs.force == 'true'
-        run: python scripts/market_regime_detector.py
 
-      - name: Generate regime-aware signals
+      - name: Generate + quality-gate regime-aware signals
         if: >
           steps.market.outputs.open == 'true' ||
           github.event.inputs.force == 'true'
@@ -917,6 +912,11 @@ jobs:
         run: |
           python scripts/market_intelligence.py \
             || echo "⚠️ تعذر تحديث البيانات؛ ستُستخدم آخر بيانات محفوظة"
+
+      - name: Update sector rotation for daily brief
+        run: |
+          python scripts/sector_rotation.py \
+            || echo "⚠️ Sector rotation skipped; brief will use conservative fallback"
 
       - name: Generate daily market brief
         run: python scripts/generate_market_brief.py
