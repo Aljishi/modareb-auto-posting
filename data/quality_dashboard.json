@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-12T13:50:55",
-  "data_timestamp": "2026-08-12T13:50:54",
+  "generated_at": "2026-08-12T13:56:00",
+  "data_timestamp": "2026-08-12T13:55:59",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.137,
-    "advance_ratio": 0.4043,
-    "dispersion": 1.426,
-    "dynamic_min_score": 80,
-    "advancing": 19,
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.153,
+    "advance_ratio": 0.4468,
+    "dispersion": 1.447,
+    "dynamic_min_score": 81,
+    "advancing": 21,
     "declining": 24,
-    "unchanged": 4
+    "unchanged": 2
   },
   "screening": {
     "screened": 45,
@@ -34,13 +34,13 @@
   },
   "leadership": {
     "best_sector": "التطبيقات وخدمات التقنية",
-    "best_sector_avg_change_pct": 3.11,
+    "best_sector_avg_change_pct": 2.96,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "7204",
       "name": "شركة العرض المتقن للخدمات التجارية",
-      "change_pct": 4.71,
-      "value": 8540308.02
+      "change_pct": 4.4,
+      "value": 8788766.35
     }
   },
   "portfolio_exposure": {
