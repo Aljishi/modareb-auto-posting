@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-12T10:35:46",
-  "data_timestamp": "2026-08-12T10:35:45",
+  "generated_at": "2026-08-12T10:40:54",
+  "data_timestamp": "2026-08-12T10:40:53",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.263,
-    "advance_ratio": 0.617,
-    "dispersion": 0.894,
+    "average_change_pct": 0.292,
+    "advance_ratio": 0.5532,
+    "dispersion": 0.94,
     "dynamic_min_score": 80,
-    "advancing": 29,
-    "declining": 12,
-    "unchanged": 6
+    "advancing": 26,
+    "declining": 16,
+    "unchanged": 5
   },
   "screening": {
     "screened": 45,
@@ -33,14 +33,14 @@
     "categories": {}
   },
   "leadership": {
-    "best_sector": "التطبيقات وخدمات التقنية",
-    "best_sector_avg_change_pct": 0.86,
-    "best_sector_members": 2,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.15,
+    "best_sector_members": 9,
     "best_stock": {
-      "symbol": "1322",
-      "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 2.55,
-      "value": 10364807.6
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
+      "change_pct": 3.22,
+      "value": 31955565.6
     }
   },
   "portfolio_exposure": {
