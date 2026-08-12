@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-12T10:25:50",
-  "data_timestamp": "2026-08-12T10:25:49",
+  "generated_at": "2026-08-12T10:31:03",
+  "data_timestamp": "2026-08-12T10:31:03",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.2,
-    "advance_ratio": 0.6383,
-    "dispersion": 0.904,
+    "average_change_pct": 0.263,
+    "advance_ratio": 0.617,
+    "dispersion": 0.894,
     "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 14,
-    "unchanged": 3
+    "advancing": 29,
+    "declining": 12,
+    "unchanged": 6
   },
   "screening": {
     "screened": 45,
@@ -33,14 +33,14 @@
     "categories": {}
   },
   "leadership": {
-    "best_sector": "النقل",
-    "best_sector_avg_change_pct": 0.92,
+    "best_sector": "التطبيقات وخدمات التقنية",
+    "best_sector_avg_change_pct": 0.86,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "2382",
-      "name": "شركة أديس القابضة",
-      "change_pct": 2.31,
-      "value": 6849115.2
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 2.55,
+      "value": 10364807.6
     }
   },
   "portfolio_exposure": {
