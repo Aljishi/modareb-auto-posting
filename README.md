@@ -1,33 +1,24 @@
-# 👁️ راصد | Rased
+RASED Patch v10.1
 
-> **عينك على الفرص**
+READY-TO-REPLACE / CREATE FILES
 
-منصة ذكية لتوليد إشارات تداول احترافية تلقائياً للسوق السعودي (تاسي)
+CREATE:
+- scripts/sector_master.py
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![GitHub Actions](https://github.com/Aljishi/modareb-auto-posting/workflows/TASI%20AI%20—%20مضارب/badge.svg)](https://github.com/Aljishi/modareb-auto-posting/actions)
+REPLACE:
+- scripts/market_intelligence.py
+- scripts/run_signal_pipeline.py
+- scripts/sector_rotation.py
+- .github/workflows/post.yml
 
----
+NO CHANGE REQUIRED:
+- scripts/generate_market_brief.py (main already has Investor Daily Brief v2.0)
+- scripts/weekly_report.py (main already has Investor Weekly Review v2.0)
+- scripts/signal_quality_gate.py (v10 already exists)
 
-## ✨ لماذا راصد؟
-
-- 🎯 **دقة عالية**: تحليل فني مدعوم بمؤشرات متعددة وذكاء اصطناعي
-- ⚡ **سرعة فائقة**: توليد ونشر الإشارات في ثوانٍ
-- 🔐 **موثوقية**: شفافية كاملة مع تحذيرات مخاطر واضحة
-- 🇸🇦 **محلي**: مصمم خصيصاً لفهم خصوصية السوق السعودي
-- 🤖 **أتمتة كاملة**: يعمل 24/7 عبر GitHub Actions
-
-## 🎨 هوية راصد
-
-<div align="center">
-  <img src="https://img.shields.io/badge/اللون_الأساسي-0F1A3C?style=for-the-badge&logoColor=white" alt="كحلي">
-  <img src="https://img.shields.io/badge/لون_التميز-D4AF37?style=for-the-badge&logoColor=black" alt="ذهبي">
-</div>
-
-- **اللون الأساسي**: كحلي راصد `#0F1A3C`
-- **لون التميز**: ذهبي `#D4AF37`
-- **الخط العربي**: [Tajawal](https://fonts.google.com/specimen/Tajawal)
-- **الشعار**: عين + رسم بياني صاعد
-
-## 📁 هيكل المشروع
+Main fixes:
+1) prevents MIN_SIGNAL_SCORE='81.0' integer parsing crash
+2) actually runs signal_quality_gate.py from the signal pipeline
+3) corrects/normalizes sector mapping, including 4011 Lazurde
+4) updates sector rotation before the daily investor brief
+5) removes redundant standalone regime detection in auto-post
