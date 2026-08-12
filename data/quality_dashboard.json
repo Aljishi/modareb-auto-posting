@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-12T10:16:18",
-  "data_timestamp": "2026-08-12T10:16:18",
+  "generated_at": "2026-08-12T10:21:03",
+  "data_timestamp": "2026-08-12T10:21:02",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.217,
-    "advance_ratio": 0.3617,
-    "dispersion": 1.402,
-    "dynamic_min_score": 80,
-    "advancing": 17,
-    "declining": 28,
-    "unchanged": 2
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": -0.02,
+    "advance_ratio": 0.5319,
+    "dispersion": 1.162,
+    "dynamic_min_score": 81,
+    "advancing": 25,
+    "declining": 19,
+    "unchanged": 3
   },
   "screening": {
     "screened": 45,
@@ -33,8 +33,8 @@
     "categories": {}
   },
   "leadership": {
-    "best_sector": "الإعلام والترفيه",
-    "best_sector_avg_change_pct": 1.43,
+    "best_sector": "النقل",
+    "best_sector_avg_change_pct": 0.92,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "1322",
