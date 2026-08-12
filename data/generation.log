@@ -2,11 +2,11 @@
 راصد — Market Regime Detector
 ====================================================================
 📊 الحالة: طبيعي (NORMAL)
-📈 متوسط التغير: 0.399%
-🟢 نسبة الصعود: 57.5%
-⚡ التشتت: 1.179
+📈 متوسط التغير: 0.255%
+🟢 نسبة الصعود: 48.9%
+⚡ التشتت: 1.158
 🎯 MIN_SIGNAL_SCORE: 80
-📝 السبب: متوسط السوق 0.40% ونسبة الصعود 57.4%
+📝 السبب: متوسط السوق 0.26% ونسبة الصعود 48.9%
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.json
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.env
 ========================================================================
