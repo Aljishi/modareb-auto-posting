@@ -1,0 +1,9 @@
+{
+  "status": "NO_SIGNALS",
+  "engine": "rased_quality_gate_v10",
+  "generated_at": "2026-08-12T19:41:58",
+  "input_count": 0,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "message": "لا توجد إشارات لفحص الجودة"
+}

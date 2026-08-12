@@ -1,8 +1,8 @@
 {
   "provider": "sahmk",
   "data_source": "api",
-  "engine": "rased_market_intelligence_sahmk_v2",
-  "generated_at": "2026-08-12T17:06:03",
+  "engine": "rased_market_intelligence_sahmk_v2_1",
+  "generated_at": "2026-08-12T19:41:36",
   "api_url": "https://app.sahmk.sa/api/v1",
   "requested_symbols": 51,
   "market_summary": {
@@ -40,7 +40,10 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "البنوك",
+      "sector_source": "symbol_override"
     },
     {
       "symbol": "1180",
@@ -63,7 +66,10 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "البنوك",
+      "sector_source": "symbol_override"
     },
     {
       "symbol": "2010",
@@ -86,7 +92,10 @@
       "updated_at": "2026-08-12T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "المواد الأساسية",
+      "sector_source": "symbol_override"
     },
     {
       "symbol": "2222",
@@ -109,13 +118,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "الطاقة",
+      "sector_source": "symbol_override"
     },
     {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
       "name_en": "Arabian Pipes Co.",
-      "sector": "السلع الرأسمالية",
+      "sector": "غير مصنف",
       "current_price": 6.28,
       "price": 6.28,
       "change": 0.08,
@@ -132,13 +144,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2286",
       "name": "شركة المطاحن الرابعة",
       "name_en": "FOURTH MILLING",
-      "sector": "غير محدد",
+      "sector": "غير مصنف",
       "current_price": 4.02,
       "price": 4.02,
       "change": 0.01,
@@ -155,13 +170,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4030",
       "name": "الشركة الوطنية السعودية للنقل البحري",
       "name_en": "National Shipping Company of Sa",
-      "sector": "النقل",
+      "sector": "غير مصنف",
       "current_price": 30.74,
       "price": 30.74,
       "change": -0.36,
@@ -178,13 +196,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4031",
       "name": "الشركة السعودية للخدمات الأرضية",
       "name_en": "Saudi Ground Services Co.",
-      "sector": "النقل",
+      "sector": "غير مصنف",
       "current_price": 26.52,
       "price": 26.52,
       "change": 0.4,
@@ -201,13 +222,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4001",
       "name": "شركة أسواق عبدالله العثيم",
       "name_en": "Abdullah Al Othaim Markets Co.",
-      "sector": "تجزئة وتوزيع السلع الاستهلاكية",
+      "sector": "غير مصنف",
       "current_price": 4.9,
       "price": 4.9,
       "change": -0.2,
@@ -224,13 +248,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4002",
       "name": "شركة المواساة للخدمات الطبية",
       "name_en": "Mouwasat Medical Services Co.",
-      "sector": "الرعاية الصحية",
+      "sector": "غير مصنف",
       "current_price": 63.9,
       "price": 63.9,
       "change": -0.05,
@@ -247,13 +274,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4003",
       "name": "الشركة المتحدة للإلكترونيات",
       "name_en": "United Electronics Company JSC",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 63.2,
       "price": 63.2,
       "change": -2.2,
@@ -270,13 +300,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4004",
       "name": "شركة دله للخدمات الصحية",
       "name_en": "Dallah Healthcare Company SJSC",
-      "sector": "الرعاية الصحية",
+      "sector": "غير مصنف",
       "current_price": 100.1,
       "price": 100.1,
       "change": -0.5,
@@ -293,13 +326,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4005",
       "name": "الشركة الوطنية للرعاية الطبية",
       "name_en": "National Medical Care Company JSC",
-      "sector": "الرعاية الصحية",
+      "sector": "غير مصنف",
       "current_price": 122.3,
       "price": 122.3,
       "change": 0.5,
@@ -316,13 +352,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4007",
       "name": "شركة الحمادي القابضة",
       "name_en": "Al Hammadi Holding Co",
-      "sector": "الرعاية الصحية",
+      "sector": "غير مصنف",
       "current_price": 25.16,
       "price": 25.16,
       "change": -0.42,
@@ -339,13 +378,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4011",
       "name": "شركة لازوردي للمجوهرات",
       "name_en": "L'azurde Company for Jewelry SJSC",
-      "sector": "الرعاية الصحية",
+      "sector": "السلع طويلة الاجل",
       "current_price": 10.43,
       "price": 10.43,
       "change": -0.47,
@@ -362,13 +404,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "السلع طويلة الاجل",
+      "sector_source": "symbol_override"
     },
     {
       "symbol": "4164",
       "name": "شركة النهدي الطبية",
       "name_en": "NAHDI",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 96.25,
       "price": 96.25,
       "change": 0.0,
@@ -385,13 +430,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4190",
       "name": "شركة جرير للتسويق",
       "name_en": "Jarir Marketing Company SJSC",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 17.34,
       "price": 17.34,
       "change": 0.08,
@@ -408,13 +456,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4191",
       "name": "أبو معطي",
       "name_en": "Abdullah Saad Mhmd Abo Mot fr Bkstres Co",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 40.02,
       "price": 40.02,
       "change": 0.72,
@@ -431,13 +482,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4192",
       "name": "شركة متاجر السيف للتنمية والاستثمار",
       "name_en": "ALSAIF GALLERY",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 6.54,
       "price": 6.54,
       "change": 0.0,
@@ -454,13 +508,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4194",
       "name": "شركة مجموعة منزل التسويق للتجارة",
       "name_en": "BUILD STATION",
-      "sector": "تجزئة السلع الكمالية",
+      "sector": "غير مصنف",
       "current_price": 41.0,
       "price": 41.0,
       "change": -0.04,
@@ -477,13 +534,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4260",
       "name": "الشركة المتحدة الدولية للمواصلات",
       "name_en": "United International Transportation Co",
-      "sector": "الخدمات الاستهلاكية",
+      "sector": "غير مصنف",
       "current_price": 28.88,
       "price": 28.88,
       "change": 0.18,
@@ -500,13 +560,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4261",
       "name": "شركة ذيب لتأجير السيارات",
       "name_en": "THEEB",
-      "sector": "الخدمات الاستهلاكية",
+      "sector": "غير مصنف",
       "current_price": 20.33,
       "price": 20.33,
       "change": -0.08,
@@ -523,13 +586,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4262",
       "name": "شركة لومي للتأجير",
       "name_en": "LUMI",
-      "sector": "الخدمات الاستهلاكية",
+      "sector": "غير مصنف",
       "current_price": 27.12,
       "price": 27.12,
       "change": 0.1,
@@ -546,13 +612,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4321",
       "name": "شركة المراكز العربية",
       "name_en": "Arabian Centres Company SJSC",
-      "sector": "الصناديق العقارية المتداولة",
+      "sector": "غير مصنف",
       "current_price": 16.13,
       "price": 16.13,
       "change": 0.06,
@@ -569,13 +638,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "4349",
       "name": "صندوق الإنماء ريت الفندقي",
       "name_en": "ALINMA HOSPITALITY REIT",
-      "sector": "الصناديق العقارية المتداولة",
+      "sector": "غير مصنف",
       "current_price": 7.95,
       "price": 7.95,
       "change": -0.01,
@@ -592,13 +664,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "6004",
       "name": "شركة كاتريون للتموين القابضة",
       "name_en": "Saudi Airlines Catering Co.",
-      "sector": "الإعلام والترفيه",
+      "sector": "غير مصنف",
       "current_price": 74.2,
       "price": 74.2,
       "change": 1.25,
@@ -615,13 +690,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "6010",
       "name": "الشركة الوطنية للتنمية الزراعية",
       "name_en": "National Agricultural Develp Compny SJSC",
-      "sector": "الإعلام والترفيه",
+      "sector": "غير مصنف",
       "current_price": 14.34,
       "price": 14.34,
       "change": -0.16,
@@ -638,13 +716,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "7030",
       "name": "شركة الإتصالات المتنقلة السعودية",
       "name_en": "Mobile Telecommunications Co Su Arb SJSC",
-      "sector": "الاتصالات",
+      "sector": "غير مصنف",
       "current_price": 10.3,
       "price": 10.3,
       "change": 0.02,
@@ -661,13 +742,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "7203",
       "name": "شركة علم",
       "name_en": "ELM",
-      "sector": "التطبيقات وخدمات التقنية",
+      "sector": "غير مصنف",
       "current_price": 606.0,
       "price": 606.0,
       "change": 9.5,
@@ -684,13 +768,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "7204",
       "name": "شركة العرض المتقن للخدمات التجارية",
       "name_en": "2P",
-      "sector": "التطبيقات وخدمات التقنية",
+      "sector": "غير مصنف",
       "current_price": 6.5,
       "price": 6.5,
       "change": 0.13,
@@ -707,13 +794,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "8010",
       "name": "الشركة التعاونية للتأمين",
       "name_en": "The Company for Coopetative Ins",
-      "sector": "التأمين",
+      "sector": "غير مصنف",
       "current_price": 140.1,
       "price": 140.1,
       "change": 3.3,
@@ -730,13 +820,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "8060",
       "name": "شركة ولاء للتأمين التعاوني",
       "name_en": "Walaa Cooperative Insurance Company SJSC",
-      "sector": "التأمين",
+      "sector": "غير مصنف",
       "current_price": 11.26,
       "price": 11.26,
       "change": 0.08,
@@ -753,13 +846,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "name_en": "Saudi Enaya Cooperative Insuran",
-      "sector": "التأمين",
+      "sector": "غير مصنف",
       "current_price": 10.22,
       "price": 10.22,
       "change": -0.11,
@@ -776,13 +872,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1211",
       "name": "شركة التعدين العربية السعودية",
       "name_en": "Saudi Arabian Mining Co.",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 65.1,
       "price": 65.1,
       "change": 0.95,
@@ -799,13 +898,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1212",
       "name": "مجموعة أسترا الصناعية",
       "name_en": "Astra Industrial Group Company SJSC",
-      "sector": "السلع الرأسمالية",
+      "sector": "غير مصنف",
       "current_price": 138.1,
       "price": 138.1,
       "change": 0.0,
@@ -822,13 +924,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
       "name_en": "United Wire Factories Co.",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 17.72,
       "price": 17.72,
       "change": -0.31,
@@ -845,13 +950,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1302",
       "name": "شركة بوان",
       "name_en": "Bawan Company",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 33.66,
       "price": 33.66,
       "change": 0.42,
@@ -868,13 +976,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1303",
       "name": "شركة الصناعات الكهربائية",
       "name_en": "Electrical Industries Company",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 15.6,
       "price": 15.6,
       "change": 0.1,
@@ -891,13 +1002,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1322",
       "name": "شركة المصانع الكبرى للتعدين",
       "name_en": "AMAK",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 86.35,
       "price": 86.35,
       "change": 1.9,
@@ -914,13 +1028,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
       "name_en": "Seera Holding Group SJSC",
-      "sector": "الخدمات التجارية والمهنية",
+      "sector": "غير مصنف",
       "current_price": 20.2,
       "price": 20.2,
       "change": 0.16,
@@ -937,13 +1054,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "1832",
       "name": "شركة صدر للخدمات اللوجستية",
       "name_en": "Sadr Logistics Co",
-      "sector": "الخدمات التجارية والمهنية",
+      "sector": "غير مصنف",
       "current_price": 2.51,
       "price": 2.51,
       "change": 0.01,
@@ -960,13 +1080,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2082",
       "name": "شركة أكوا باور",
       "name_en": "ACWA",
-      "sector": "المرافق العامة",
+      "sector": "غير مصنف",
       "current_price": 185.8,
       "price": 185.8,
       "change": 1.8,
@@ -983,13 +1106,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
       "name_en": "MARAFIQ",
-      "sector": "الطاقة",
+      "sector": "غير مصنف",
       "current_price": 38.72,
       "price": 38.72,
       "change": -0.76,
@@ -1006,13 +1132,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2084",
       "name": "شركة مياهنا",
       "name_en": "MIAHONA",
-      "sector": "الطاقة",
+      "sector": "غير مصنف",
       "current_price": 11.42,
       "price": 11.42,
       "change": -0.19,
@@ -1029,13 +1158,16 @@
       "updated_at": "2026-08-12T12:20:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
       "name_en": "Rabigh Refining and Petrochemic",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 17.6,
       "price": 17.6,
       "change": 0.51,
@@ -1052,13 +1184,16 @@
       "updated_at": "2026-08-12T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2381",
       "name": "شركة الحفر العربية",
       "name_en": "ARABIAN DRILLING",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 89.25,
       "price": 89.25,
       "change": 0.35,
@@ -1075,13 +1210,16 @@
       "updated_at": "2026-08-12T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     },
     {
       "symbol": "2382",
       "name": "شركة أديس القابضة",
       "name_en": "ADES",
-      "sector": "المواد الأساسية",
+      "sector": "غير مصنف",
       "current_price": 18.25,
       "price": 18.25,
       "change": 0.07,
@@ -1098,15 +1236,16 @@
       "updated_at": "2026-08-12T13:00:00+00:00",
       "is_delayed": true,
       "provider": "sahmk",
-      "data_source": "api"
+      "data_source": "api",
+      "sector_provider_raw": "",
+      "sector_name": "غير مصنف",
+      "sector_source": "provider_normalized"
     }
   ],
   "count": 47,
-  "fetch_errors": [
-    "4010: SAHMK 409: {\"error\":{\"code\":\"PRICE_DATA_TEMPORARILY_UNAVAILABLE\",\"message\":\"Price data for '4010' is temporarily unavailable. Please retry shortly.\"}}",
-    "2085: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2085' not found.\"}}",
-    "2086: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2086' not found.\"}}",
-    "2087: SAHMK 404: {\"error\":{\"code\":\"INVALID_SYMBOL\",\"message\":\"Stock symbol '2087' not found.\"}}"
-  ],
-  "note": "Real Sahmk API quotes only. No fallback or mock prices."
+  "sector_normalization": {
+    "enabled": true,
+    "overrides": 5
+  },
+  "note": "Real Sahmk API quotes. No fallback/mock stock prices. Sector names normalized by RASED Sector Master."
 }
