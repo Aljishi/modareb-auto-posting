@@ -2,11 +2,11 @@
 راصد — Market Regime Detector
 ====================================================================
 📊 الحالة: عرضي (SIDEWAYS)
-📈 متوسط التغير: 0.029%
-🟢 نسبة الصعود: 46.8%
-⚡ التشتت: 1.34
+📈 متوسط التغير: 0.092%
+🟢 نسبة الصعود: 51.1%
+⚡ التشتت: 1.373
 🎯 MIN_SIGNAL_SCORE: 81
-📝 السبب: متوسط قريب من الصفر 0.03% واتساع متوازن 46.8%
+📝 السبب: متوسط قريب من الصفر 0.09% واتساع متوازن 51.1%
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.json
 ✅ Saved: /home/runner/work/modareb-auto-posting/modareb-auto-posting/data/market_regime.env
 ========================================================================
