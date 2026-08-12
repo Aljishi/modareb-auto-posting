@@ -2,35 +2,36 @@
 # -*- coding: utf-8 -*-
 
 """
-راصد — Regime-Aware Signal Pipeline v10
+RASED Regime-Aware Signal Pipeline v10.1
+========================================
 
 الترتيب:
-1. تحديد حالة السوق.
-2. تحميل الفلاتر الديناميكية.
-3. فرض حدود دنيا للجودة لا يستطيع Market Regime تخفيفها.
-4. توليد الإشارات.
-5. تشغيل RASED Quality Gate v10.
+1) تحديد حالة السوق.
+2) قراءة filter_profile الديناميكي.
+3) فرض حدود دنيا ثابتة للجودة مع الحفاظ على أنواع env الصحيحة.
+4) توليد الإشارات.
+5) تشغيل RASED Signal Quality Gate v10.
 
-الهدف:
-تظل الفلاتر ديناميكية حسب السوق،
-لكن لا يُسمح لأي وضع سوق بخفض جودة راصد
-إلى مستويات تناقض سياسة إدارة المخاطر.
+أهم إصلاح:
+MIN_SIGNAL_SCORE يجب أن يمر إلى generate_signal.py كعدد صحيح
+مثل "81" وليس "81.0"، لأن generate_signal.py يستخدم int(...).
 """
 
 from __future__ import annotations
 
 import json
+import math
 import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Mapping
 
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data"
+DATA_DIR = ROOT / "data"
 
-REGIME_FILE = DATA / "market_regime.json"
+REGIME_FILE = DATA_DIR / "market_regime.json"
 
 DETECTOR = (
     ROOT
@@ -51,51 +52,60 @@ QUALITY_GATE = (
 )
 
 
-# ============================================================
-# Hard quality floors
-# ============================================================
+# ------------------------------------------------------------
+# Environment variable types expected by downstream scripts
+# ------------------------------------------------------------
 
-QUALITY_FLOORS = {
-    # المحرك الفني
-    "MIN_SIGNAL_SCORE": "80",
+INT_ENV_KEYS = {
+    "MIN_SIGNAL_SCORE",
+    "MIN_BACKTEST_TRADES",
+    "MIN_BACKTEST_TRADES_FOR_HARD_REJECT",
+    "QUALITY_MAX_SIGNALS",
+    "QUALITY_BACKTEST_ZERO_REJECT_MIN_TRADES",
+    "QUALITY_BACKTEST_HARD_MIN_TRADES",
+}
 
-    # لا نسمح لـ Market Regime بخفض R:R عن 2
-    "MIN_RR": "2.00",
+BOOL_ENV_KEYS = set()
 
-    # الحد الأدنى المقبول للسيولة
-    "MIN_VOLUME_RATIO": "1.00",
 
-    # حماية من المطاردة
-    "MAX_RSI": "72",
-    "MAX_OVERBOUGHT_RSI": "70",
+# ------------------------------------------------------------
+# Permanent floors / ceilings
+# ------------------------------------------------------------
 
-    # الباك تست
-    "MIN_BACKTEST_WIN_RATE": "35",
-    "MIN_BACKTEST_TRADES_FOR_HARD_REJECT": "4",
+QUALITY_DEFAULTS: Dict[str, object] = {
+    # Technical engine floors
+    "MIN_SIGNAL_SCORE": 80,
+    "MIN_RR": 2.00,
+    "MIN_VOLUME_RATIO": 1.00,
+    "MAX_RSI": 72,
+    "MAX_OVERBOUGHT_RSI": 70,
+    "MIN_BACKTEST_WIN_RATE": 35,
+    "MIN_BACKTEST_TRADES_FOR_HARD_REJECT": 4,
 
-    # Quality Gate
-    "QUALITY_MIN_RASED_SCORE": "82",
-    "QUALITY_MIN_TECHNICAL_SCORE": "80",
-    "QUALITY_MIN_RR": "2.00",
-    "QUALITY_MIN_VOLUME_RATIO": "1.15",
-    "QUALITY_MAX_RSI": "70",
-    "QUALITY_MAX_ATR_PCT": "8.0",
-    "QUALITY_MIN_TP1_PCT": "4.0",
-    "QUALITY_MIN_TP2_PCT": "6.0",
+    # Independent Quality Gate
+    "QUALITY_MIN_RASED_SCORE": 82,
+    "QUALITY_MIN_TECHNICAL_SCORE": 80,
+    "QUALITY_MIN_RR": 2.00,
+    "QUALITY_MIN_VOLUME_RATIO": 1.15,
+    "QUALITY_MAX_RSI": 70,
+    "QUALITY_MAX_ATR_PCT": 8.0,
+    "QUALITY_MIN_TP1_PCT": 4.0,
+    "QUALITY_MIN_TP2_PCT": 6.0,
+    "QUALITY_MAX_ENTRY_GAP_PCT": 3.0,
 
     # Backtest quality
-    "QUALITY_BACKTEST_ZERO_REJECT_MIN_TRADES": "3",
-    "QUALITY_BACKTEST_HARD_MIN_TRADES": "4",
-    "QUALITY_BACKTEST_MIN_WIN_RATE": "35",
+    "QUALITY_BACKTEST_ZERO_REJECT_MIN_TRADES": 3,
+    "QUALITY_BACKTEST_HARD_MIN_TRADES": 4,
+    "QUALITY_BACKTEST_MIN_WIN_RATE": 35,
 
     # Chase protection
-    "QUALITY_CHASE_RSI": "68",
-    "QUALITY_CHASE_DAILY_CHANGE_PCT": "5.5",
-    "QUALITY_CHASE_MIN_RR": "2.40",
-    "QUALITY_CHASE_MIN_VOLUME_RATIO": "2.0",
+    "QUALITY_CHASE_RSI": 68,
+    "QUALITY_CHASE_DAILY_CHANGE_PCT": 5.5,
+    "QUALITY_CHASE_MIN_RR": 2.40,
+    "QUALITY_CHASE_MIN_VOLUME_RATIO": 2.0,
 
-    # لا نحتاج كمية كبيرة من الإشارات
-    "QUALITY_MAX_SIGNALS": "3",
+    # Publish only the best few
+    "QUALITY_MAX_SIGNALS": 3,
 }
 
 
@@ -104,15 +114,60 @@ def fnum(
     default: float = 0.0,
 ) -> float:
     try:
+        if value is None or value == "":
+            return default
+
         return float(value)
+
     except Exception:
         return default
 
 
-def load_profile() -> Dict[str, str]:
+def format_env_value(
+    key: str,
+    value: object,
+) -> str:
+    """
+    Preserve downstream type contracts.
+    """
+    if key in INT_ENV_KEYS:
+        return str(
+            int(round(fnum(value)))
+        )
+
+    if key in BOOL_ENV_KEYS:
+        return (
+            "true"
+            if bool(value)
+            else "false"
+        )
+
+    if isinstance(value, bool):
+        return (
+            "true"
+            if value
+            else "false"
+        )
+
+    if isinstance(value, int):
+        return str(value)
+
+    if isinstance(value, float):
+        if math.isfinite(value):
+            return (
+                f"{value:.10f}"
+                .rstrip("0")
+                .rstrip(".")
+            )
+        return str(value)
+
+    return str(value)
+
+
+def load_regime_payload() -> Dict[str, object]:
     if not REGIME_FILE.exists():
         raise RuntimeError(
-            "market_regime.json غير موجود"
+            "market_regime.json غير موجود بعد تشغيل detector"
         )
 
     payload = json.loads(
@@ -121,6 +176,17 @@ def load_profile() -> Dict[str, str]:
         )
     )
 
+    if not isinstance(payload, dict):
+        raise RuntimeError(
+            "market_regime.json ليس JSON object صالحًا"
+        )
+
+    return payload
+
+
+def load_profile() -> Dict[str, str]:
+    payload = load_regime_payload()
+
     profile = payload.get(
         "filter_profile",
         {},
@@ -128,14 +194,16 @@ def load_profile() -> Dict[str, str]:
 
     if not isinstance(profile, dict):
         raise RuntimeError(
-            "filter_profile غير موجود "
-            "في market_regime.json"
+            "filter_profile غير موجود في market_regime.json"
         )
 
     env: Dict[str, str] = {}
 
     for key, value in profile.items():
-        env[str(key)] = str(value)
+        env[str(key)] = format_env_value(
+            str(key),
+            value,
+        )
 
     env["MARKET_REGIME"] = str(
         payload.get(
@@ -154,7 +222,7 @@ def load_profile() -> Dict[str, str]:
     return env
 
 
-def enforce_minimum(
+def set_minimum(
     env: Dict[str, str],
     key: str,
     minimum: float,
@@ -164,12 +232,13 @@ def enforce_minimum(
         minimum,
     )
 
-    env[key] = str(
-        max(current, minimum)
+    env[key] = format_env_value(
+        key,
+        max(current, minimum),
     )
 
 
-def enforce_maximum(
+def set_maximum(
     env: Dict[str, str],
     key: str,
     maximum: float,
@@ -179,80 +248,88 @@ def enforce_maximum(
         maximum,
     )
 
-    env[key] = str(
-        min(current, maximum)
+    env[key] = format_env_value(
+        key,
+        min(current, maximum),
     )
 
 
-def apply_quality_floors(
-    profile: Dict[str, str],
+def apply_quality_contract(
+    profile: Mapping[str, str],
 ) -> Dict[str, str]:
     env = dict(profile)
 
-    # --------------------------------------------------------
-    # Dynamic filters may become stricter,
-    # but never weaker than these floors.
-    # --------------------------------------------------------
-
-    enforce_minimum(
+    # Dynamic market regime may become stricter, never weaker.
+    set_minimum(
         env,
         "MIN_SIGNAL_SCORE",
-        80,
+        fnum(QUALITY_DEFAULTS["MIN_SIGNAL_SCORE"]),
     )
 
-    enforce_minimum(
+    set_minimum(
         env,
         "MIN_RR",
-        2.00,
+        fnum(QUALITY_DEFAULTS["MIN_RR"]),
     )
 
-    enforce_minimum(
+    set_minimum(
         env,
         "MIN_VOLUME_RATIO",
-        1.00,
+        fnum(QUALITY_DEFAULTS["MIN_VOLUME_RATIO"]),
     )
 
-    enforce_maximum(
+    set_maximum(
         env,
         "MAX_RSI",
-        72,
+        fnum(QUALITY_DEFAULTS["MAX_RSI"]),
     )
 
-    enforce_maximum(
+    set_maximum(
         env,
         "MAX_OVERBOUGHT_RSI",
-        70,
+        fnum(QUALITY_DEFAULTS["MAX_OVERBOUGHT_RSI"]),
     )
 
-    enforce_minimum(
+    set_minimum(
         env,
         "MIN_BACKTEST_WIN_RATE",
-        35,
+        fnum(
+            QUALITY_DEFAULTS[
+                "MIN_BACKTEST_WIN_RATE"
+            ]
+        ),
     )
 
-    # هنا نريد 4 تحديداً إذا كان النظام أكثر تساهلاً
-    existing_bt_trades = int(
-        fnum(
-            env.get(
-                "MIN_BACKTEST_TRADES_FOR_HARD_REJECT"
-            ),
-            4,
-        )
+    # A hard-reject threshold above 4 would make the engine more
+    # permissive. Cap it at 4.
+    current_hard_reject = fnum(
+        env.get(
+            "MIN_BACKTEST_TRADES_FOR_HARD_REJECT"
+        ),
+        4,
     )
 
     env[
         "MIN_BACKTEST_TRADES_FOR_HARD_REJECT"
-    ] = str(
-        min(existing_bt_trades, 4)
+    ] = format_env_value(
+        "MIN_BACKTEST_TRADES_FOR_HARD_REJECT",
+        min(current_hard_reject, 4),
     )
 
-    # --------------------------------------------------------
-    # Independent Quality Gate settings
-    # --------------------------------------------------------
-
-    for key, value in QUALITY_FLOORS.items():
+    # Independent gate defaults.
+    for key, value in QUALITY_DEFAULTS.items():
         if key not in env:
-            env[key] = value
+            env[key] = format_env_value(
+                key,
+                value,
+            )
+
+    # Final normalization prevents "81.0" for integer variables.
+    for key in list(env):
+        env[key] = format_env_value(
+            key,
+            env[key],
+        )
 
     return env
 
@@ -273,12 +350,37 @@ def run(
     )
 
 
+def run_step(
+    title: str,
+    command: list[str],
+    env: Dict[str, str] | None = None,
+) -> int:
+    print()
+    print("=" * 72)
+    print(title)
+    print("=" * 72)
+
+    code = run(
+        command,
+        env=env,
+    )
+
+    if code != 0:
+        print(
+            f"❌ Failed: {title} "
+            f"(exit={code})"
+        )
+
+    return code
+
+
 def print_profile(
     profile: Dict[str, str],
 ) -> None:
+    print()
     print("=" * 72)
     print(
-        "راصد — Regime-Aware Signal Pipeline v10"
+        "RASED — Regime-Aware Signal Pipeline v10.1"
     )
     print("=" * 72)
 
@@ -315,9 +417,9 @@ def print_profile(
     )
 
     print(
-        f"🧪 BACKTEST="
+        f"🧪 BACKTEST HARD REJECT="
         f"{profile.get('MIN_BACKTEST_WIN_RATE')}% "
-        f"/ "
+        f"at "
         f"{profile.get('MIN_BACKTEST_TRADES_FOR_HARD_REJECT')} "
         f"trades"
     )
@@ -337,46 +439,50 @@ def print_profile(
         f"{profile.get('QUALITY_MAX_RSI')}"
     )
 
+    print(
+        f"🛡 QUALITY_MAX_SIGNALS="
+        f"{profile.get('QUALITY_MAX_SIGNALS')}"
+    )
+
     print("=" * 72)
 
 
 def main() -> int:
-    DATA.mkdir(
+    DATA_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
 
     # --------------------------------------------------------
-    # 1. Detect market regime
+    # 1) Detect market regime
     # --------------------------------------------------------
 
-    detector_code = run(
+    code = run_step(
+        "1/3 Detect market regime",
         [
             sys.executable,
             str(DETECTOR),
-        ]
+        ],
     )
 
-    if detector_code != 0:
-        print(
-            "❌ فشل تحديد حالة السوق"
+    if code != 0:
+        return code
+
+    # --------------------------------------------------------
+    # 2) Load + enforce profile
+    # --------------------------------------------------------
+
+    try:
+        profile = load_profile()
+        profile = apply_quality_contract(
+            profile
         )
 
-        return detector_code
-
-    # --------------------------------------------------------
-    # 2. Load dynamic profile
-    # --------------------------------------------------------
-
-    profile = load_profile()
-
-    # --------------------------------------------------------
-    # 3. Apply permanent RASED quality floors
-    # --------------------------------------------------------
-
-    profile = apply_quality_floors(
-        profile
-    )
+    except Exception as exc:
+        print(
+            f"❌ Unable to build regime profile: {exc}"
+        )
+        return 1
 
     process_env = os.environ.copy()
     process_env.update(profile)
@@ -386,10 +492,11 @@ def main() -> int:
     )
 
     # --------------------------------------------------------
-    # 4. Generate signals
+    # 3) Generate signals
     # --------------------------------------------------------
 
-    generator_code = run(
+    code = run_step(
+        "2/3 Generate signals",
         [
             sys.executable,
             str(GENERATOR),
@@ -397,18 +504,21 @@ def main() -> int:
         env=process_env,
     )
 
-    if generator_code != 0:
+    if code != 0:
+        return code
+
+    # --------------------------------------------------------
+    # 4) Independent Quality Gate
+    # --------------------------------------------------------
+
+    if not QUALITY_GATE.exists():
         print(
-            "❌ فشل توليد الإشارات"
+            f"❌ Missing quality gate: {QUALITY_GATE}"
         )
+        return 1
 
-        return generator_code
-
-    # --------------------------------------------------------
-    # 5. Independent quality gate
-    # --------------------------------------------------------
-
-    quality_code = run(
+    code = run_step(
+        "3/3 Apply RASED Quality Gate v10",
         [
             sys.executable,
             str(QUALITY_GATE),
@@ -416,16 +526,13 @@ def main() -> int:
         env=process_env,
     )
 
-    if quality_code != 0:
-        print(
-            "❌ فشلت بوابة جودة الإشارات"
-        )
+    if code != 0:
+        return code
 
-        return quality_code
-
+    print()
     print("=" * 72)
     print(
-        "✅ اكتمل توليد وفحص إشارات راصد V10"
+        "✅ RASED signal pipeline completed successfully"
     )
     print("=" * 72)
 
