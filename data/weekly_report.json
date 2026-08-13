@@ -1,47 +1,193 @@
 {
-  "week_start": "2026-07-23",
-  "week_end": "2026-07-30",
-  "generated_at": "2026-07-30T18:44:21",
-  "total_published": 33,
-  "total_this_week": 0,
-  "closed_signals": 33,
-  "open_signals": 0,
-  "tp1_hits": 0,
-  "tp2_hits": 0,
-  "stop_losses": 0,
-  "expired": 33,
-  "tp1_success_rate_closed": 0.0,
-  "tp2_success_rate_closed": 0.0,
-  "stop_loss_rate_closed": 0.0,
-  "this_week": {
-    "published": 0,
-    "closed": 0,
-    "open": 0,
-    "tp1_hits": 0,
+  "engine_version": "rased_investor_weekly_review_v2_0",
+  "week_start": "2026-08-07",
+  "week_end": "2026-08-13",
+  "generated_at": "2026-08-13T17:48:43",
+  "all_time": {
+    "published": 4,
+    "closed": 3,
+    "open": 1,
+    "wins": 0,
+    "tp1_or_better": 0,
     "tp2_hits": 0,
-    "stop_losses": 0,
-    "tp1_success_rate_closed": 0.0,
-    "tp2_success_rate_closed": 0.0
+    "stop_losses": 3,
+    "expired": 0,
+    "win_rate_closed": 0.0,
+    "tp2_rate_closed": 0.0,
+    "stop_rate_closed": 100.0,
+    "evaluated_return_count": 3,
+    "expectancy_pct": -5.43,
+    "gross_profit_pct_points": 0,
+    "gross_loss_pct_points": 16.29,
+    "profit_factor": 0.0,
+    "avg_win_pct": 0.0,
+    "avg_loss_pct": 5.43,
+    "payoff_ratio": 0.0,
+    "avg_days_to_tp1": 0.0,
+    "avg_days_to_tp2": 0.0,
+    "reliability": "غير كافية للحكم"
   },
-  "avg_days_to_tp1": 0.0,
-  "avg_days_to_tp2": 0.0,
-  "best_recent": [],
-  "minimum_sample_warning": false,
-  "note": "الإحصائيات مبنية على الإشارات المنشورة فعلياً فقط. الأداء السابق لا يضمن النتائج المستقبلية.",
+  "this_week": {
+    "published_count": 2,
+    "closed_count": 2,
+    "published_cohort": {
+      "published": 2,
+      "closed": 1,
+      "open": 1,
+      "wins": 0,
+      "tp1_or_better": 0,
+      "tp2_hits": 0,
+      "stop_losses": 1,
+      "expired": 0,
+      "win_rate_closed": 0.0,
+      "tp2_rate_closed": 0.0,
+      "stop_rate_closed": 100.0,
+      "evaluated_return_count": 1,
+      "expectancy_pct": -5.88,
+      "gross_profit_pct_points": 0,
+      "gross_loss_pct_points": 5.88,
+      "profit_factor": 0.0,
+      "avg_win_pct": 0.0,
+      "avg_loss_pct": 5.88,
+      "payoff_ratio": 0.0,
+      "avg_days_to_tp1": 0.0,
+      "avg_days_to_tp2": 0.0,
+      "reliability": "غير كافية للحكم"
+    },
+    "closed_during_week": {
+      "published": 2,
+      "closed": 2,
+      "open": 0,
+      "wins": 0,
+      "tp1_or_better": 0,
+      "tp2_hits": 0,
+      "stop_losses": 2,
+      "expired": 0,
+      "win_rate_closed": 0.0,
+      "tp2_rate_closed": 0.0,
+      "stop_rate_closed": 100.0,
+      "evaluated_return_count": 2,
+      "expectancy_pct": -6.43,
+      "gross_profit_pct_points": 0,
+      "gross_loss_pct_points": 12.86,
+      "profit_factor": 0.0,
+      "avg_win_pct": 0.0,
+      "avg_loss_pct": 6.43,
+      "payoff_ratio": 0.0,
+      "avg_days_to_tp1": 0.0,
+      "avg_days_to_tp2": 0.0,
+      "reliability": "غير كافية للحكم"
+    }
+  },
+  "risk_statistics": {
+    "max_consecutive_stop_losses": 3
+  },
+  "best_all_time": {
+    "symbol": "2083",
+    "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
+    "status": "SL",
+    "return_pct": -3.43,
+    "published_at": "2026-08-04T11:56:18",
+    "closed_at": "2026-08-05"
+  },
+  "worst_all_time": {
+    "symbol": "2380",
+    "name": "شركة رابغ للتكرير والبتروكيماويات",
+    "status": "SL",
+    "return_pct": -6.98,
+    "published_at": "2026-08-04T14:56:28",
+    "closed_at": "2026-08-09"
+  },
+  "best_this_week": {
+    "symbol": "8311",
+    "name": "شركة عناية السعودية للتأمين التعاوني",
+    "status": "SL",
+    "return_pct": -5.88,
+    "published_at": "2026-08-11T12:11:15",
+    "closed_at": "2026-08-12"
+  },
+  "worst_this_week": {
+    "symbol": "2380",
+    "name": "شركة رابغ للتكرير والبتروكيماويات",
+    "status": "SL",
+    "return_pct": -6.98,
+    "published_at": "2026-08-04T14:56:28",
+    "closed_at": "2026-08-09"
+  },
+  "by_tier": [
+    {
+      "group": "Standard",
+      "published": 4,
+      "closed": 3,
+      "win_rate_closed": 0.0,
+      "expectancy_pct": -5.43,
+      "profit_factor": 0.0
+    }
+  ],
+  "by_signal_type": [
+    {
+      "group": "NORMAL",
+      "published": 4,
+      "closed": 3,
+      "win_rate_closed": 0.0,
+      "expectancy_pct": -5.43,
+      "profit_factor": 0.0
+    }
+  ],
+  "market_context": {
+    "market_score": 37.4,
+    "market_label": "محايد مائل للسلبية",
+    "market_risk": "متوسط مرتفع",
+    "index_value": 10823.6,
+    "index_change_pct": -0.19,
+    "breadth_pct": 38.1,
+    "regime": "ضعيف",
+    "posture": "حماية رأس المال",
+    "top_sectors": [
+      {
+        "sector": "السلع طويلة الاجل",
+        "rotation_score": 62.4,
+        "grade": "محايد إيجابي",
+        "avg_change_pct": 2.01,
+        "advancing_ratio": 1.0
+      },
+      {
+        "sector": "البنوك",
+        "rotation_score": 61.2,
+        "grade": "محايد إيجابي",
+        "avg_change_pct": 0.36,
+        "advancing_ratio": 0.5
+      },
+      {
+        "sector": "الطاقة",
+        "rotation_score": 34.5,
+        "grade": "ضعيف",
+        "avg_change_pct": -0.45,
+        "advancing_ratio": 0.0
+      }
+    ],
+    "data_quality_score": 100.0
+  },
+  "sample_quality": {
+    "closed_sample": 3,
+    "reliability": "غير كافية للحكم",
+    "warning": "العينة شديدة الصغر؛ لا تستخدم نسب النجاح لاتخاذ قرار مستقل."
+  },
   "raw_summary": {
-    "updated_at": "2026-07-30T18:44:20",
-    "total_published": 33,
-    "closed_signals": 33,
-    "open_signals": 0,
+    "updated_at": "2026-08-13T17:48:42",
+    "total_published": 4,
+    "closed_signals": 3,
+    "open_signals": 1,
     "tp1_hits": 0,
     "tp2_hits": 0,
-    "stop_losses": 0,
-    "expired": 33,
+    "stop_losses": 3,
+    "expired": 0,
     "tp1_success_rate_closed": 0.0,
     "tp2_success_rate_closed": 0.0,
-    "stop_loss_rate_closed": 0.0,
+    "stop_loss_rate_closed": 100.0,
     "avg_days_to_tp1": 0,
     "avg_days_to_tp2": 0,
     "note": "الإحصائيات مبنية فقط على الإشارات المنشورة فعلياً في القناة."
-  }
+  },
+  "note": "العائد المحقق تقديري وفق حالة الإغلاق المسجلة: TP1=نسبة الهدف الأول، TP2=نسبة الهدف الثاني، SL=-نسبة وقف الخسارة. EXPIRED لا يدخل في حساب العائد ما لم يتوفر عائد فعلي."
 }
