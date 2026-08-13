@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T13:17:47",
-  "data_timestamp": "2026-08-13T13:17:27",
+  "generated_at": "2026-08-13T13:22:39",
+  "data_timestamp": "2026-08-13T13:22:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.43,
-    "advance_ratio": 0.2979,
-    "dispersion": 1.278,
+    "average_change_pct": -0.402,
+    "advance_ratio": 0.2766,
+    "dispersion": 1.262,
     "dynamic_min_score": 83,
-    "advancing": 14,
+    "advancing": 13,
     "declining": 31,
-    "unchanged": 2
+    "unchanged": 3
   },
   "screening": {
     "screened": 40,
@@ -41,7 +41,7 @@
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 1.44,
+    "best_sector_avg_change_pct": 1.34,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
