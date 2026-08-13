@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T10:37:36",
-  "data_timestamp": "2026-08-13T10:37:20",
+  "generated_at": "2026-08-13T10:42:44",
+  "data_timestamp": "2026-08-13T10:42:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "WEAK",
-    "regime_ar": "ضعيف",
-    "posture": "حماية رأس المال",
-    "average_change_pct": -0.007,
-    "advance_ratio": 0.3404,
-    "dispersion": 0.938,
-    "dynamic_min_score": 83,
-    "advancing": 16,
-    "declining": 28,
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.097,
+    "advance_ratio": 0.4894,
+    "dispersion": 0.915,
+    "dynamic_min_score": 81,
+    "advancing": 23,
+    "declining": 21,
     "unchanged": 3
   },
   "screening": {
-    "screened": 40,
-    "rejected": 40,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 21,
     "categories": {
       "الاتجاه الفني غير مناسب": 21,
-      "ضعف السيولة أو الحجم": 6,
-      "أسباب فنية أخرى": 5,
+      "ضعف السيولة أو الحجم": 12,
+      "أسباب فنية أخرى": 4,
       "الزخم غير مناسب": 4,
-      "العائد مقابل المخاطرة غير مناسب": 4
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 3.55,
+    "best_sector_avg_change_pct": 3.07,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4011",
       "name": "شركة لازوردي للمجوهرات",
-      "change_pct": 3.55,
-      "value": 975672.0
+      "change_pct": 3.07,
+      "value": 1417247.75
     }
   },
   "portfolio_exposure": {
