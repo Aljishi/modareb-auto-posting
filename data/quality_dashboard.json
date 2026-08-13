@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T12:17:38",
-  "data_timestamp": "2026-08-13T12:17:21",
+  "generated_at": "2026-08-13T12:22:50",
+  "data_timestamp": "2026-08-13T12:22:29",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.311,
+    "average_change_pct": -0.26,
     "advance_ratio": 0.3191,
-    "dispersion": 1.272,
+    "dispersion": 1.383,
     "dynamic_min_score": 83,
     "advancing": 15,
-    "declining": 30,
-    "unchanged": 2
+    "declining": 29,
+    "unchanged": 3
   },
   "screening": {
     "screened": 40,
@@ -32,22 +32,21 @@
     "dominant_rejection_count": 24,
     "categories": {
       "الاتجاه الفني غير مناسب": 24,
-      "أسباب فنية أخرى": 6,
-      "ضعف السيولة أو الحجم": 4,
+      "أسباب فنية أخرى": 8,
       "العائد مقابل المخاطرة غير مناسب": 3,
-      "الزخم غير مناسب": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الزخم غير مناسب": 3,
+      "ضعف السيولة أو الحجم": 2
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 1.15,
+    "best_sector_avg_change_pct": 1.44,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 4.8,
-      "value": 23418068.72
+      "change_pct": 5.84,
+      "value": 29255826.9
     }
   },
   "portfolio_exposure": {
