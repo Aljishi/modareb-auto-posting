@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T12:37:34",
-  "data_timestamp": "2026-08-13T12:37:16",
+  "generated_at": "2026-08-13T12:43:22",
+  "data_timestamp": "2026-08-13T12:42:55",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.274,
-    "advance_ratio": 0.3191,
-    "dispersion": 1.443,
+    "average_change_pct": -0.346,
+    "advance_ratio": 0.2979,
+    "dispersion": 1.361,
     "dynamic_min_score": 83,
-    "advancing": 15,
-    "declining": 31,
-    "unchanged": 1
+    "advancing": 14,
+    "declining": 30,
+    "unchanged": 3
   },
   "screening": {
     "screened": 40,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 1.73,
+    "best_sector_avg_change_pct": 1.82,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 5.94,
-      "value": 34608245.84
+      "change_pct": 4.65,
+      "value": 35945535.12
     }
   },
   "portfolio_exposure": {
