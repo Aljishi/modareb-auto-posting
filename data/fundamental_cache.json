@@ -1377,7 +1377,7 @@
       }
     },
     "1303": {
-      "cached_at": "2026-08-10T14:41:09",
+      "cached_at": "2026-08-13T10:02:49",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1540,8 +1540,8 @@
         },
         "dividends": {
           "symbol": "1303",
-          "current_price": 15.16,
-          "trailing_12m_yield": 3.3,
+          "current_price": 15.57,
+          "trailing_12m_yield": 3.21,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 3,
           "upcoming": [],
