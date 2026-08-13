@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T10:52:43",
-  "data_timestamp": "2026-08-13T10:52:22",
+  "generated_at": "2026-08-13T10:57:40",
+  "data_timestamp": "2026-08-13T10:57:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.003,
-    "advance_ratio": 0.4043,
-    "dispersion": 0.856,
-    "dynamic_min_score": 80,
-    "advancing": 19,
-    "declining": 25,
-    "unchanged": 3
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.093,
+    "advance_ratio": 0.3404,
+    "dispersion": 0.822,
+    "dynamic_min_score": 83,
+    "advancing": 16,
+    "declining": 27,
+    "unchanged": 4
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 22,
     "categories": {
       "الاتجاه الفني غير مناسب": 22,
-      "ضعف السيولة أو الحجم": 14,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "أسباب فنية أخرى": 7,
       "الزخم غير مناسب": 4,
-      "أسباب فنية أخرى": 3
+      "ضعف السيولة أو الحجم": 4,
+      "العائد مقابل المخاطرة غير مناسب": 3
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 2.88,
+    "best_sector_avg_change_pct": 2.01,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4011",
-      "name": "شركة لازوردي للمجوهرات",
-      "change_pct": 2.88,
-      "value": 1448303.21
+      "symbol": "4191",
+      "name": "أبو معطي",
+      "change_pct": 2.2,
+      "value": 6108946.7
     }
   },
   "portfolio_exposure": {
