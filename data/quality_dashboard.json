@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-13T14:17:48",
-  "data_timestamp": "2026-08-13T14:17:24",
+  "generated_at": "2026-08-13T14:22:50",
+  "data_timestamp": "2026-08-13T14:22:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,30 +12,31 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "WEAK",
-    "regime_ar": "ضعيف",
-    "posture": "حماية رأس المال",
-    "average_change_pct": -0.214,
-    "advance_ratio": 0.3191,
-    "dispersion": 1.284,
-    "dynamic_min_score": 83,
-    "advancing": 15,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": -0.236,
+    "advance_ratio": 0.383,
+    "dispersion": 1.313,
+    "dynamic_min_score": 80,
+    "advancing": 18,
     "declining": 29,
-    "unchanged": 3
+    "unchanged": 0
   },
   "screening": {
-    "screened": 40,
-    "rejected": 40,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 24,
+    "dominant_rejection_count": 26,
     "categories": {
-      "الاتجاه الفني غير مناسب": 24,
+      "الاتجاه الفني غير مناسب": 26,
       "أسباب فنية أخرى": 7,
-      "ضعف السيولة أو الحجم": 3,
-      "العائد مقابل المخاطرة غير مناسب": 3,
-      "الزخم غير مناسب": 3
+      "ضعف السيولة أو الحجم": 5,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
@@ -45,8 +46,8 @@
     "best_stock": {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 3.72,
-      "value": 49104274.56
+      "change_pct": 3.46,
+      "value": 50576390.96
     }
   },
   "portfolio_exposure": {
