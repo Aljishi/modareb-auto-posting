@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T11:47:42",
-  "data_timestamp": "2026-08-16T11:47:20",
+  "generated_at": "2026-08-16T11:52:46",
+  "data_timestamp": "2026-08-16T11:52:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.514,
+    "average_change_pct": 0.516,
     "advance_ratio": 0.766,
-    "dispersion": 1.309,
+    "dispersion": 1.342,
     "dynamic_min_score": 80,
     "advancing": 36,
     "declining": 9,
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.73,
+    "best_sector_avg_change_pct": 1.63,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 3.7,
-      "value": 12922767.84
+      "symbol": "8060",
+      "name": "شركة ولاء للتأمين التعاوني",
+      "change_pct": 3.66,
+      "value": 4991528.64
     }
   },
   "portfolio_exposure": {
