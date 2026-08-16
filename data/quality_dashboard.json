@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T11:12:44",
-  "data_timestamp": "2026-08-16T11:12:21",
+  "generated_at": "2026-08-16T11:17:46",
+  "data_timestamp": "2026-08-16T11:17:22",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.621,
+    "average_change_pct": 0.61,
     "advance_ratio": 0.8085,
-    "dispersion": 1.085,
+    "dispersion": 1.092,
     "dynamic_min_score": 80,
     "advancing": 38,
     "declining": 8,

@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-16T11:12:44",
+  "generated_at": "2026-08-16T11:17:46",
   "total": 0,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -34,10 +34,10 @@
     "غير مصنف": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.57,
+      "avg_change_pct": 0.55,
       "advance_ratio": 0.81,
       "members": 42,
-      "total_value": 203549196.37
+      "total_value": 206026996.24
     },
     "السلع طويلة الاجل": {
       "bonus": 7,
