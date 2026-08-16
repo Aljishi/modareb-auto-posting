@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T10:37:38",
-  "data_timestamp": "2026-08-16T10:37:19",
+  "generated_at": "2026-08-16T10:41:47",
+  "data_timestamp": "2026-08-16T10:41:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.751,
-    "advance_ratio": 0.8298,
-    "dispersion": 0.922,
-    "dynamic_min_score": 80,
-    "advancing": 39,
-    "declining": 8,
-    "unchanged": 0
+    "regime": "STRONG",
+    "regime_ar": "قوي",
+    "posture": "شهية مخاطرة مرتفعة",
+    "average_change_pct": 0.946,
+    "advance_ratio": 0.8723,
+    "dispersion": 1.049,
+    "dynamic_min_score": 77,
+    "advancing": 41,
+    "declining": 5,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -29,25 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 20,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
-      "ضعف السيولة أو الحجم": 17,
-      "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 3,
-      "أسباب فنية أخرى": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الاتجاه الفني غير مناسب": 20,
+      "ضعف السيولة أو الحجم": 14,
+      "العائد مقابل المخاطرة غير مناسب": 7,
+      "الزخم غير مناسب": 4,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
-    "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 2.03,
+    "best_sector": "السلع طويلة الاجل",
+    "best_sector_avg_change_pct": 2.26,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 3.65,
-      "value": 4383645.0
+      "change_pct": 4.05,
+      "value": 5867227.76
     }
   },
   "portfolio_exposure": {
