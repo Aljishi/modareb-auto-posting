@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T10:41:47",
-  "data_timestamp": "2026-08-16T10:41:26",
+  "generated_at": "2026-08-16T10:47:40",
+  "data_timestamp": "2026-08-16T10:47:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.946,
+    "average_change_pct": 0.876,
     "advance_ratio": 0.8723,
-    "dispersion": 1.049,
+    "dispersion": 0.998,
     "dynamic_min_score": 77,
     "advancing": 41,
-    "declining": 5,
-    "unchanged": 1
+    "declining": 6,
+    "unchanged": 0
   },
   "screening": {
     "screened": 47,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 20,
+    "dominant_rejection_count": 21,
     "categories": {
-      "الاتجاه الفني غير مناسب": 20,
-      "ضعف السيولة أو الحجم": 14,
+      "الاتجاه الفني غير مناسب": 21,
+      "ضعف السيولة أو الحجم": 13,
       "العائد مقابل المخاطرة غير مناسب": 7,
       "الزخم غير مناسب": 4,
       "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 2.26,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.83,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
       "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
       "change_pct": 4.05,
-      "value": 5867227.76
+      "value": 6483712.44
     }
   },
   "portfolio_exposure": {
