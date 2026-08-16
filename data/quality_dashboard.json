@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T12:07:31",
-  "data_timestamp": "2026-08-16T12:07:16",
+  "generated_at": "2026-08-16T12:12:41",
+  "data_timestamp": "2026-08-16T12:12:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.427,
-    "advance_ratio": 0.7872,
-    "dispersion": 1.557,
+    "average_change_pct": 0.349,
+    "advance_ratio": 0.766,
+    "dispersion": 1.765,
     "dynamic_min_score": 80,
-    "advancing": 37,
+    "advancing": 36,
     "declining": 10,
-    "unchanged": 0
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 24,
+    "dominant_rejection_count": 25,
     "categories": {
-      "الاتجاه الفني غير مناسب": 24,
-      "ضعف السيولة أو الحجم": 11,
+      "الاتجاه الفني غير مناسب": 25,
+      "ضعف السيولة أو الحجم": 9,
       "العائد مقابل المخاطرة غير مناسب": 6,
       "الزخم غير مناسب": 4,
-      "أسباب فنية أخرى": 2
+      "أسباب فنية أخرى": 3
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.63,
+    "best_sector_avg_change_pct": 1.73,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "8060",
       "name": "شركة ولاء للتأمين التعاوني",
-      "change_pct": 3.92,
-      "value": 7255723.08
+      "change_pct": 4.09,
+      "value": 7457394.88
     }
   },
   "portfolio_exposure": {
