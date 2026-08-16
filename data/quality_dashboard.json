@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T13:52:36",
-  "data_timestamp": "2026-08-16T13:52:18",
+  "generated_at": "2026-08-16T13:57:46",
+  "data_timestamp": "2026-08-16T13:57:25",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.554,
+    "average_change_pct": 0.526,
     "advance_ratio": 0.766,
-    "dispersion": 1.449,
+    "dispersion": 1.481,
     "dynamic_min_score": 80,
     "advancing": 36,
     "declining": 9,
@@ -33,21 +33,21 @@
     "categories": {
       "الاتجاه الفني غير مناسب": 23,
       "ضعف السيولة أو الحجم": 9,
-      "العائد مقابل المخاطرة غير مناسب": 6,
+      "العائد مقابل المخاطرة غير مناسب": 5,
       "الزخم غير مناسب": 4,
       "أسباب فنية أخرى": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 2.35,
+    "best_sector_avg_change_pct": 1.97,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "8060",
       "name": "شركة ولاء للتأمين التعاوني",
       "change_pct": 3.48,
-      "value": 10136213.11
+      "value": 10240381.4
     }
   },
   "portfolio_exposure": {
