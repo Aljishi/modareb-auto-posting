@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-16T13:12:41",
-  "data_timestamp": "2026-08-16T13:12:22",
+  "generated_at": "2026-08-16T13:17:45",
+  "data_timestamp": "2026-08-16T13:17:22",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.54,
+    "average_change_pct": 0.553,
     "advance_ratio": 0.766,
-    "dispersion": 1.436,
+    "dispersion": 1.44,
     "dynamic_min_score": 80,
     "advancing": 36,
     "declining": 9,
@@ -33,15 +33,15 @@
     "categories": {
       "الاتجاه الفني غير مناسب": 22,
       "ضعف السيولة أو الحجم": 9,
-      "العائد مقابل المخاطرة غير مناسب": 6,
+      "العائد مقابل المخاطرة غير مناسب": 5,
       "أسباب فنية أخرى": 5,
       "الزخم غير مناسب": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.73,
+    "best_sector_avg_change_pct": 1.83,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "2083",
