@@ -1,6 +1,6 @@
 {
   "engine_version": "rased_sector_rotation_v2_0",
-  "generated_at": "2026-08-17T12:22:41",
+  "generated_at": "2026-08-17T12:27:43",
   "stocks_used": 47,
   "sectors_count": 4,
   "top_sectors": [
@@ -12,20 +12,20 @@
       "unchanged": 0,
       "advancing_ratio": 0.0,
       "advance_ratio": 0.0,
-      "avg_change_pct": -0.41,
-      "median_change_pct": -0.41,
-      "liquidity_weighted_change_pct": -0.49,
-      "total_value": 180202880.1,
-      "liquidity_share_pct": 64.93,
+      "avg_change_pct": -0.44,
+      "median_change_pct": -0.44,
+      "liquidity_weighted_change_pct": -0.51,
+      "total_value": 182189442.04,
+      "liquidity_share_pct": 64.09,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 44.1,
+        "momentum": 43.9,
         "breadth": 0.0,
         "relative_liquidity": 100.0,
         "signals": 40.0
       },
-      "rotation_score": 42.8,
+      "rotation_score": 42.7,
       "grade": "محايد"
     },
     {
@@ -39,41 +39,17 @@
       "avg_change_pct": -0.6,
       "median_change_pct": -0.6,
       "liquidity_weighted_change_pct": -0.6,
-      "total_value": 80946545.94,
-      "liquidity_share_pct": 29.17,
+      "total_value": 83490331.68,
+      "liquidity_share_pct": 29.37,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 42.8,
         "breadth": 0.0,
-        "relative_liquidity": 44.9,
+        "relative_liquidity": 45.8,
         "signals": 40.0
       },
-      "rotation_score": 30.1,
-      "grade": "ضعيف"
-    },
-    {
-      "sector": "السلع طويلة الاجل",
-      "members": 1,
-      "advancing": 0,
-      "declining": 1,
-      "unchanged": 0,
-      "advancing_ratio": 0.0,
-      "advance_ratio": 0.0,
-      "avg_change_pct": -0.28,
-      "median_change_pct": -0.28,
-      "liquidity_weighted_change_pct": -0.28,
-      "total_value": 331945.74,
-      "liquidity_share_pct": 0.12,
-      "signal_count": 0,
-      "avg_signal_score": 0.0,
-      "components": {
-        "momentum": 46.6,
-        "breadth": 0.0,
-        "relative_liquidity": 0.2,
-        "signals": 40.0
-      },
-      "rotation_score": 21.8,
+      "rotation_score": 30.3,
       "grade": "ضعيف"
     },
     {
@@ -87,17 +63,41 @@
       "avg_change_pct": -0.8,
       "median_change_pct": -0.8,
       "liquidity_weighted_change_pct": -0.8,
-      "total_value": 16053478.2,
-      "liquidity_share_pct": 5.78,
+      "total_value": 18224658.6,
+      "liquidity_share_pct": 6.41,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 40.4,
         "breadth": 0.0,
-        "relative_liquidity": 8.9,
+        "relative_liquidity": 10.0,
         "signals": 40.0
       },
-      "rotation_score": 21.3,
+      "rotation_score": 21.6,
+      "grade": "ضعيف"
+    },
+    {
+      "sector": "السلع طويلة الاجل",
+      "members": 1,
+      "advancing": 0,
+      "declining": 1,
+      "unchanged": 0,
+      "advancing_ratio": 0.0,
+      "advance_ratio": 0.0,
+      "avg_change_pct": -0.65,
+      "median_change_pct": -0.65,
+      "liquidity_weighted_change_pct": -0.65,
+      "total_value": 353507.77,
+      "liquidity_share_pct": 0.12,
+      "signal_count": 0,
+      "avg_signal_score": 0.0,
+      "components": {
+        "momentum": 42.2,
+        "breadth": 0.0,
+        "relative_liquidity": 0.2,
+        "signals": 40.0
+      },
+      "rotation_score": 20.1,
       "grade": "ضعيف"
     }
   ],
@@ -110,20 +110,20 @@
       "unchanged": 0,
       "advancing_ratio": 0.0,
       "advance_ratio": 0.0,
-      "avg_change_pct": -0.41,
-      "median_change_pct": -0.41,
-      "liquidity_weighted_change_pct": -0.49,
-      "total_value": 180202880.1,
-      "liquidity_share_pct": 64.93,
+      "avg_change_pct": -0.44,
+      "median_change_pct": -0.44,
+      "liquidity_weighted_change_pct": -0.51,
+      "total_value": 182189442.04,
+      "liquidity_share_pct": 64.09,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 44.1,
+        "momentum": 43.9,
         "breadth": 0.0,
         "relative_liquidity": 100.0,
         "signals": 40.0
       },
-      "rotation_score": 42.8,
+      "rotation_score": 42.7,
       "grade": "محايد"
     },
     {
@@ -137,41 +137,17 @@
       "avg_change_pct": -0.6,
       "median_change_pct": -0.6,
       "liquidity_weighted_change_pct": -0.6,
-      "total_value": 80946545.94,
-      "liquidity_share_pct": 29.17,
+      "total_value": 83490331.68,
+      "liquidity_share_pct": 29.37,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 42.8,
         "breadth": 0.0,
-        "relative_liquidity": 44.9,
+        "relative_liquidity": 45.8,
         "signals": 40.0
       },
-      "rotation_score": 30.1,
-      "grade": "ضعيف"
-    },
-    {
-      "sector": "السلع طويلة الاجل",
-      "members": 1,
-      "advancing": 0,
-      "declining": 1,
-      "unchanged": 0,
-      "advancing_ratio": 0.0,
-      "advance_ratio": 0.0,
-      "avg_change_pct": -0.28,
-      "median_change_pct": -0.28,
-      "liquidity_weighted_change_pct": -0.28,
-      "total_value": 331945.74,
-      "liquidity_share_pct": 0.12,
-      "signal_count": 0,
-      "avg_signal_score": 0.0,
-      "components": {
-        "momentum": 46.6,
-        "breadth": 0.0,
-        "relative_liquidity": 0.2,
-        "signals": 40.0
-      },
-      "rotation_score": 21.8,
+      "rotation_score": 30.3,
       "grade": "ضعيف"
     },
     {
@@ -185,17 +161,41 @@
       "avg_change_pct": -0.8,
       "median_change_pct": -0.8,
       "liquidity_weighted_change_pct": -0.8,
-      "total_value": 16053478.2,
-      "liquidity_share_pct": 5.78,
+      "total_value": 18224658.6,
+      "liquidity_share_pct": 6.41,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 40.4,
         "breadth": 0.0,
-        "relative_liquidity": 8.9,
+        "relative_liquidity": 10.0,
         "signals": 40.0
       },
-      "rotation_score": 21.3,
+      "rotation_score": 21.6,
+      "grade": "ضعيف"
+    },
+    {
+      "sector": "السلع طويلة الاجل",
+      "members": 1,
+      "advancing": 0,
+      "declining": 1,
+      "unchanged": 0,
+      "advancing_ratio": 0.0,
+      "advance_ratio": 0.0,
+      "avg_change_pct": -0.65,
+      "median_change_pct": -0.65,
+      "liquidity_weighted_change_pct": -0.65,
+      "total_value": 353507.77,
+      "liquidity_share_pct": 0.12,
+      "signal_count": 0,
+      "avg_signal_score": 0.0,
+      "components": {
+        "momentum": 42.2,
+        "breadth": 0.0,
+        "relative_liquidity": 0.2,
+        "signals": 40.0
+      },
+      "rotation_score": 20.1,
       "grade": "ضعيف"
     }
   ],
