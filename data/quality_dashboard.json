@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-17T14:57:36",
-  "data_timestamp": "2026-08-17T14:57:16",
+  "generated_at": "2026-08-17T16:38:16",
+  "data_timestamp": "2026-08-17T16:27:59",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -20,8 +20,8 @@
     "dispersion": 1.718,
     "dynamic_min_score": 81,
     "advancing": 24,
-    "declining": 18,
-    "unchanged": 5
+    "declining": 21,
+    "unchanged": 2
   },
   "screening": {
     "screened": 45,
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.23,
+    "best_sector_avg_change_pct": 0.16,
     "best_sector_members": 42,
     "best_stock": {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 5.75,
-      "value": 182826440.04
+      "change_pct": 5.63,
+      "value": 206224782.4
     }
   },
   "portfolio_exposure": {
