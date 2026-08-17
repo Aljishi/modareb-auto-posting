@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-17T11:22:32",
+  "generated_at": "2026-08-17T11:27:33",
   "total": 0,
   "total_screened": 45,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -34,10 +34,10 @@
     "غير مصنف": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.3,
+      "avg_change_pct": 0.31,
       "advance_ratio": 0.57,
       "members": 42,
-      "total_value": 259832847.5
+      "total_value": 288967594.6
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
@@ -45,7 +45,7 @@
       "avg_change_pct": -0.28,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 171938.34
+      "total_value": 187842.69
     }
   },
   "filters": {
