@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-17T10:17:44",
-  "data_timestamp": "2026-08-17T10:17:24",
+  "generated_at": "2026-08-17T10:22:31",
+  "data_timestamp": "2026-08-17T10:22:18",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.437,
-    "advance_ratio": 0.6809,
-    "dispersion": 1.796,
-    "dynamic_min_score": 80,
-    "advancing": 32,
-    "declining": 14,
-    "unchanged": 1
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": 0.009,
+    "advance_ratio": 0.3191,
+    "dispersion": 0.927,
+    "dynamic_min_score": 83,
+    "advancing": 15,
+    "declining": 27,
+    "unchanged": 5
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 24,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 20,
     "categories": {
-      "الاتجاه الفني غير مناسب": 24,
-      "العائد مقابل المخاطرة غير مناسب": 7,
-      "الزخم غير مناسب": 6,
-      "أسباب فنية أخرى": 5,
-      "ضعف السيولة أو الحجم": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 20,
+      "الاتجاه الفني غير مناسب": 11,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "بعيد عن الاختراق أو قريب من مقاومة": 2,
+      "الزخم غير مناسب": 2,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
-    "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 2.03,
-    "best_sector_members": 1,
+    "best_sector": "غير مصنف",
+    "best_sector_avg_change_pct": 0.05,
+    "best_sector_members": 42,
     "best_stock": {
-      "symbol": "2083",
-      "name": "شركة مرافق الكهرباء والمياه بالجبيل وينبع",
-      "change_pct": 4.3,
-      "value": 43970315.04
+      "symbol": "2084",
+      "name": "شركة مياهنا",
+      "change_pct": 3.99,
+      "value": 3902427.96
     }
   },
   "portfolio_exposure": {
