@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-17T10:27:35",
-  "data_timestamp": "2026-08-17T10:27:18",
+  "generated_at": "2026-08-17T10:32:57",
+  "data_timestamp": "2026-08-17T10:32:34",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,28 +15,28 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": 0.009,
-    "advance_ratio": 0.3191,
-    "dispersion": 0.927,
+    "average_change_pct": -0.011,
+    "advance_ratio": 0.3404,
+    "dispersion": 1.005,
     "dynamic_min_score": 83,
-    "advancing": 15,
+    "advancing": 16,
     "declining": 27,
-    "unchanged": 5
+    "unchanged": 4
   },
   "screening": {
     "screened": 40,
     "rejected": 40,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 20,
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection_count": 18,
     "categories": {
-      "ضعف السيولة أو الحجم": 20,
-      "الاتجاه الفني غير مناسب": 11,
-      "العائد مقابل المخاطرة غير مناسب": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2,
-      "الزخم غير مناسب": 2,
-      "أسباب فنية أخرى": 2
+      "الاتجاه الفني غير مناسب": 18,
+      "ضعف السيولة أو الحجم": 12,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 3,
+      "أسباب فنية أخرى": 2,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
@@ -46,8 +46,8 @@
     "best_stock": {
       "symbol": "2084",
       "name": "شركة مياهنا",
-      "change_pct": 3.99,
-      "value": 3902427.96
+      "change_pct": 3.45,
+      "value": 12140886.0
     }
   },
   "portfolio_exposure": {
