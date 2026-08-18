@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T10:57:33",
-  "data_timestamp": "2026-08-18T10:57:14",
+  "generated_at": "2026-08-18T11:03:03",
+  "data_timestamp": "2026-08-18T11:02:40",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.071,
+    "average_change_pct": 0.078,
     "advance_ratio": 0.4894,
-    "dispersion": 1.153,
+    "dispersion": 1.086,
     "dynamic_min_score": 81,
     "advancing": 23,
     "declining": 21,
@@ -40,13 +40,13 @@
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.97,
+    "best_sector_avg_change_pct": 0.77,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1301",
-      "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 2.88,
-      "value": 3591893.36
+      "symbol": "4001",
+      "name": "شركة أسواق عبدالله العثيم",
+      "change_pct": 2.24,
+      "value": 5591276.0
     }
   },
   "portfolio_exposure": {
