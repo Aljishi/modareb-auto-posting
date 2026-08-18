@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T10:12:49",
-  "data_timestamp": "2026-08-18T10:12:34",
+  "generated_at": "2026-08-18T10:22:48",
+  "data_timestamp": "2026-08-18T10:22:18",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,37 +15,38 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.071,
-    "advance_ratio": 0.5106,
-    "dispersion": 1.789,
+    "average_change_pct": 0.012,
+    "advance_ratio": 0.4894,
+    "dispersion": 0.744,
     "dynamic_min_score": 81,
-    "advancing": 24,
-    "declining": 21,
-    "unchanged": 2
+    "advancing": 23,
+    "declining": 20,
+    "unchanged": 4
   },
   "screening": {
     "screened": 45,
     "rejected": 45,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 25,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 21,
     "categories": {
-      "الاتجاه الفني غير مناسب": 25,
-      "أسباب فنية أخرى": 10,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 5
+      "ضعف السيولة أو الحجم": 21,
+      "الاتجاه الفني غير مناسب": 14,
+      "الزخم غير مناسب": 4,
+      "أسباب فنية أخرى": 4,
+      "العائد مقابل المخاطرة غير مناسب": 2
     }
   },
   "leadership": {
-    "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.16,
-    "best_sector_members": 42,
+    "best_sector": "السلع طويلة الاجل",
+    "best_sector_avg_change_pct": 0.57,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 5.63,
-      "value": 206224782.4
+      "symbol": "1301",
+      "name": "شركة إتحاد مصانع الأسلاك",
+      "change_pct": 2.54,
+      "value": 1352920.03
     }
   },
   "portfolio_exposure": {
