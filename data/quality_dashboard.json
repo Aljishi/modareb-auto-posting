@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T12:53:31",
-  "data_timestamp": "2026-08-18T12:52:38",
+  "generated_at": "2026-08-18T12:57:44",
+  "data_timestamp": "2026-08-18T12:57:19",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -29,14 +29,13 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 21,
+    "dominant_rejection_count": 22,
     "categories": {
-      "الاتجاه الفني غير مناسب": 21,
+      "الاتجاه الفني غير مناسب": 22,
       "أسباب فنية أخرى": 9,
       "العائد مقابل المخاطرة غير مناسب": 6,
       "الزخم غير مناسب": 5,
       "ضعف السيولة أو الحجم": 2,
-      "بيانات تاريخية غير كافية": 1,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },

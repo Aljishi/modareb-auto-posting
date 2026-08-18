@@ -1,15 +1,14 @@
 {
-  "generated_at": "2026-08-18T12:53:31",
+  "generated_at": "2026-08-18T12:57:44",
   "total_rejected": 45,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "الاتجاه الفني غير مناسب": 21,
+    "الاتجاه الفني غير مناسب": 22,
     "أسباب فنية أخرى": 9,
     "العائد مقابل المخاطرة غير مناسب": 6,
     "الزخم غير مناسب": 5,
     "ضعف السيولة أو الحجم": 2,
-    "بيانات تاريخية غير كافية": 1,
     "بعيد عن الاختراق أو قريب من مقاومة": 1
   },
   "sample_rejections": [
@@ -65,8 +64,8 @@
     },
     {
       "symbol": "7203",
-      "reason": "historical failed: HTTPSConnectionPool(host='app.sahmk.sa', port=443): Read timed out. (read timeout=20)",
-      "category": "بيانات تاريخية غير كافية"
+      "reason": "الترند غير مناسب",
+      "category": "الاتجاه الفني غير مناسب"
     },
     {
       "symbol": "1303",

@@ -57,7 +57,8 @@ RASED — Regime-Aware Signal Pipeline v10.1
 — 4190: لا يطابق فلاتر راصد
 ⚠️ 4260: Volume 0.84x أقل من 1.0x
 — 4260: لا يطابق فلاتر راصد
-⚠️ 7203: historical failed: HTTPSConnectionPool(host='app.sahmk.sa', port=443): Read timed out. (read timeout=20)
+⚠️ 7203: الترند غير مناسب
+— 7203: لا يطابق فلاتر راصد
 ⚠️ 1303: فجوة الدخول 5.94% أكبر من 4.5%
 — 1303: لا يطابق فلاتر راصد
 ⚠️ 8010: فجوة الدخول 4.88% أكبر من 4.5%
