@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T10:27:48",
-  "data_timestamp": "2026-08-18T10:27:26",
+  "generated_at": "2026-08-18T10:33:01",
+  "data_timestamp": "2026-08-18T10:32:35",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.058,
-    "advance_ratio": 0.4681,
-    "dispersion": 0.854,
-    "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 20,
-    "unchanged": 5
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.027,
+    "advance_ratio": 0.4043,
+    "dispersion": 0.935,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 19,
+    "unchanged": 9
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 18,
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection_count": 19,
     "categories": {
-      "ضعف السيولة أو الحجم": 18,
-      "الاتجاه الفني غير مناسب": 13,
-      "الزخم غير مناسب": 5,
+      "الاتجاه الفني غير مناسب": 19,
+      "ضعف السيولة أو الحجم": 12,
+      "الزخم غير مناسب": 6,
       "أسباب فنية أخرى": 5,
-      "العائد مقابل المخاطرة غير مناسب": 4
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.85,
+    "best_sector_avg_change_pct": 0.66,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2381",
-      "name": "شركة الحفر العربية",
-      "change_pct": 1.89,
-      "value": 1348750.35
+      "symbol": "1301",
+      "name": "شركة إتحاد مصانع الأسلاك",
+      "change_pct": 2.82,
+      "value": 2177308.22
     }
   },
   "portfolio_exposure": {
