@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T14:37:45",
-  "data_timestamp": "2026-08-18T14:37:24",
+  "generated_at": "2026-08-18T14:43:02",
+  "data_timestamp": "2026-08-18T14:42:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.057,
-    "advance_ratio": 0.5106,
-    "dispersion": 1.265,
+    "average_change_pct": 0.002,
+    "advance_ratio": 0.4468,
+    "dispersion": 1.236,
     "dynamic_min_score": 81,
-    "advancing": 24,
-    "declining": 19,
-    "unchanged": 4
+    "advancing": 21,
+    "declining": 20,
+    "unchanged": 6
   },
   "screening": {
     "screened": 45,
@@ -29,24 +29,23 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 23,
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 23,
+      "الاتجاه الفني غير مناسب": 24,
       "أسباب فنية أخرى": 11,
       "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 1
+      "الزخم غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.47,
+    "best_sector_avg_change_pct": 0.57,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4001",
-      "name": "شركة أسواق عبدالله العثيم",
-      "change_pct": 2.65,
-      "value": 18186013.44
+      "symbol": "2382",
+      "name": "شركة أديس القابضة",
+      "change_pct": 2.32,
+      "value": 32256341.4
     }
   },
   "portfolio_exposure": {
