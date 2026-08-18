@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T12:47:39",
-  "data_timestamp": "2026-08-18T12:47:20",
+  "generated_at": "2026-08-18T12:53:31",
+  "data_timestamp": "2026-08-18T12:52:38",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.032,
-    "advance_ratio": 0.4681,
-    "dispersion": 1.133,
+    "average_change_pct": -0.024,
+    "advance_ratio": 0.4894,
+    "dispersion": 1.094,
     "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 21,
-    "unchanged": 4
+    "advancing": 23,
+    "declining": 19,
+    "unchanged": 5
   },
   "screening": {
     "screened": 45,
@@ -29,25 +29,26 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 21,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
+      "الاتجاه الفني غير مناسب": 21,
       "أسباب فنية أخرى": 9,
       "العائد مقابل المخاطرة غير مناسب": 6,
       "الزخم غير مناسب": 5,
       "ضعف السيولة أو الحجم": 2,
+      "بيانات تاريخية غير كافية": 1,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.47,
+    "best_sector": "الطاقة",
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4001",
       "name": "شركة أسواق عبدالله العثيم",
-      "change_pct": 3.26,
-      "value": 13433674.8
+      "change_pct": 2.85,
+      "value": 13648089.6
     }
   },
   "portfolio_exposure": {
