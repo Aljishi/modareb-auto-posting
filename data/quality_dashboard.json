@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-17T16:38:16",
-  "data_timestamp": "2026-08-17T16:27:59",
+  "generated_at": "2026-08-18T10:02:48",
+  "data_timestamp": "2026-08-18T10:02:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.149,
+    "average_change_pct": 0.071,
     "advance_ratio": 0.5106,
-    "dispersion": 1.718,
+    "dispersion": 1.789,
     "dynamic_min_score": 81,
     "advancing": 24,
     "declining": 21,
@@ -29,14 +29,12 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 25,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
-      "أسباب فنية أخرى": 9,
-      "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الاتجاه الفني غير مناسب": 25,
+      "أسباب فنية أخرى": 10,
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "الزخم غير مناسب": 5
     }
   },
   "leadership": {
