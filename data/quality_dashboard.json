@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T10:33:01",
-  "data_timestamp": "2026-08-18T10:32:35",
+  "generated_at": "2026-08-18T10:38:07",
+  "data_timestamp": "2026-08-18T10:37:45",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.027,
-    "advance_ratio": 0.4043,
-    "dispersion": 0.935,
-    "dynamic_min_score": 80,
-    "advancing": 19,
-    "declining": 19,
-    "unchanged": 9
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.028,
+    "advance_ratio": 0.2979,
+    "dispersion": 0.973,
+    "dynamic_min_score": 83,
+    "advancing": 14,
+    "declining": 23,
+    "unchanged": 10
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 17,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 12,
-      "الزخم غير مناسب": 6,
-      "أسباب فنية أخرى": 5,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الاتجاه الفني غير مناسب": 17,
+      "ضعف السيولة أو الحجم": 7,
+      "أسباب فنية أخرى": 7,
+      "الزخم غير مناسب": 5,
+      "العائد مقابل المخاطرة غير مناسب": 4
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.66,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 0.97,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 2.82,
-      "value": 2177308.22
+      "change_pct": 3.22,
+      "value": 2499438.24
     }
   },
   "portfolio_exposure": {
