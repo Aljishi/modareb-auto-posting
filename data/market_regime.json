@@ -4,19 +4,19 @@
   "regime": "SIDEWAYS",
   "regime_ar": "عرضي",
   "posture": "اختراقات مؤكدة فقط",
-  "reason": "متوسط قريب من الصفر 0.09% واتساع متوازن 48.9%",
+  "reason": "متوسط قريب من الصفر 0.10% واتساع متوازن 51.1%",
   "sample_size": 47,
   "minimum_sample": 15,
-  "average_change_pct": 0.087,
-  "median_change_pct": 0.0,
-  "index_change_pct": 0.12,
-  "advance_ratio": 0.4894,
-  "decline_ratio": 0.4255,
+  "average_change_pct": 0.096,
+  "median_change_pct": 0.08,
+  "index_change_pct": 0.13,
+  "advance_ratio": 0.5106,
+  "decline_ratio": 0.4043,
   "unchanged_ratio": 0.0851,
-  "dispersion": 1.212,
+  "dispersion": 1.219,
   "extreme_move_ratio": 0.0,
-  "advancing_stocks": 23,
-  "declining_stocks": 20,
+  "advancing_stocks": 24,
+  "declining_stocks": 19,
   "unchanged_stocks": 4,
   "filter_profile": {
     "MIN_SIGNAL_SCORE": 81,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 3.5,
     "MAX_CANDIDATES": 45
   },
-  "daily_generated_at": "2026-08-18T14:07:19",
-  "generated_at": "2026-08-18T14:07:20"
+  "daily_generated_at": "2026-08-18T14:12:21",
+  "generated_at": "2026-08-18T14:12:21"
 }

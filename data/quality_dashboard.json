@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T14:07:40",
-  "data_timestamp": "2026-08-18T14:07:19",
+  "generated_at": "2026-08-18T14:12:37",
+  "data_timestamp": "2026-08-18T14:12:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.087,
-    "advance_ratio": 0.4894,
-    "dispersion": 1.212,
+    "average_change_pct": 0.096,
+    "advance_ratio": 0.5106,
+    "dispersion": 1.219,
     "dynamic_min_score": 81,
-    "advancing": 23,
-    "declining": 20,
+    "advancing": 24,
+    "declining": 19,
     "unchanged": 4
   },
   "screening": {
@@ -32,22 +32,22 @@
     "dominant_rejection_count": 23,
     "categories": {
       "الاتجاه الفني غير مناسب": 23,
-      "أسباب فنية أخرى": 10,
+      "أسباب فنية أخرى": 9,
       "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 1,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الزخم غير مناسب": 5,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1,
+      "ضعف السيولة أو الحجم": 1
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.28,
+    "best_sector": "الطاقة",
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4001",
       "name": "شركة أسواق عبدالله العثيم",
       "change_pct": 2.65,
-      "value": 16280530.56
+      "value": 17869269.6
     }
   },
   "portfolio_exposure": {
