@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T11:57:43",
-  "data_timestamp": "2026-08-18T11:57:26",
+  "generated_at": "2026-08-18T12:03:04",
+  "data_timestamp": "2026-08-18T12:02:42",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.143,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.171,
-    "dynamic_min_score": 81,
-    "advancing": 20,
-    "declining": 21,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": -0.187,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.173,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 22,
     "unchanged": 6
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 23,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
-      "أسباب فنية أخرى": 9,
+      "الاتجاه الفني غير مناسب": 23,
+      "أسباب فنية أخرى": 8,
       "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 4,
-      "ضعف السيولة أو الحجم": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 6,
+      "الزخم غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.38,
+    "best_sector_avg_change_pct": 0.28,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4001",
       "name": "شركة أسواق عبدالله العثيم",
       "change_pct": 3.06,
-      "value": 12326746.96
+      "value": 12365445.84
     }
   },
   "portfolio_exposure": {
