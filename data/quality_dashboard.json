@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T13:47:46",
-  "data_timestamp": "2026-08-18T13:47:25",
+  "generated_at": "2026-08-18T13:52:43",
+  "data_timestamp": "2026-08-18T13:52:24",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.04,
-    "advance_ratio": 0.5319,
-    "dispersion": 1.194,
+    "average_change_pct": 0.08,
+    "advance_ratio": 0.5532,
+    "dispersion": 1.172,
     "dynamic_min_score": 81,
-    "advancing": 25,
+    "advancing": 26,
     "declining": 18,
-    "unchanged": 4
+    "unchanged": 3
   },
   "screening": {
     "screened": 45,
@@ -39,14 +39,14 @@
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.28,
+    "best_sector": "الطاقة",
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "4001",
       "name": "شركة أسواق عبدالله العثيم",
       "change_pct": 2.65,
-      "value": 14573966.4
+      "value": 14597084.88
     }
   },
   "portfolio_exposure": {
