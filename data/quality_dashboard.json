@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T14:47:38",
-  "data_timestamp": "2026-08-18T14:47:20",
+  "generated_at": "2026-08-18T14:52:43",
+  "data_timestamp": "2026-08-18T14:52:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.002,
-    "advance_ratio": 0.4468,
-    "dispersion": 1.236,
+    "average_change_pct": -0.01,
+    "advance_ratio": 0.4681,
+    "dispersion": 1.242,
     "dynamic_min_score": 81,
-    "advancing": 21,
+    "advancing": 22,
     "declining": 20,
-    "unchanged": 6
+    "unchanged": 5
   },
   "screening": {
     "screened": 45,
@@ -44,8 +44,8 @@
     "best_stock": {
       "symbol": "2382",
       "name": "شركة أديس القابضة",
-      "change_pct": 2.32,
-      "value": 32256341.4
+      "change_pct": 2.76,
+      "value": 42535312.23
     }
   },
   "portfolio_exposure": {
