@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T14:58:11",
-  "data_timestamp": "2026-08-18T14:57:44",
+  "generated_at": "2026-08-18T16:40:37",
+  "data_timestamp": "2026-08-18T16:30:50",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,9 +19,9 @@
     "advance_ratio": 0.4681,
     "dispersion": 1.244,
     "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 21,
-    "unchanged": 4
+    "advancing": 20,
+    "declining": 22,
+    "unchanged": 5
   },
   "screening": {
     "screened": 45,
@@ -39,13 +39,13 @@
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.57,
+    "best_sector_avg_change_pct": 0.47,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2382",
-      "name": "شركة أديس القابضة",
-      "change_pct": 2.38,
-      "value": 43641074.5
+      "symbol": "4002",
+      "name": "شركة المواساة للخدمات الطبية",
+      "change_pct": 3.5,
+      "value": 37078856.5
     }
   },
   "portfolio_exposure": {
