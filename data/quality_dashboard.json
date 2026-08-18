@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-18T10:22:48",
-  "data_timestamp": "2026-08-18T10:22:18",
+  "generated_at": "2026-08-18T10:27:48",
+  "data_timestamp": "2026-08-18T10:27:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.012,
-    "advance_ratio": 0.4894,
-    "dispersion": 0.744,
+    "average_change_pct": 0.058,
+    "advance_ratio": 0.4681,
+    "dispersion": 0.854,
     "dynamic_min_score": 81,
-    "advancing": 23,
+    "advancing": 22,
     "declining": 20,
-    "unchanged": 4
+    "unchanged": 5
   },
   "screening": {
     "screened": 45,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 21,
+    "dominant_rejection_count": 18,
     "categories": {
-      "ضعف السيولة أو الحجم": 21,
-      "الاتجاه الفني غير مناسب": 14,
-      "الزخم غير مناسب": 4,
-      "أسباب فنية أخرى": 4,
-      "العائد مقابل المخاطرة غير مناسب": 2
+      "ضعف السيولة أو الحجم": 18,
+      "الاتجاه الفني غير مناسب": 13,
+      "الزخم غير مناسب": 5,
+      "أسباب فنية أخرى": 5,
+      "العائد مقابل المخاطرة غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.57,
+    "best_sector_avg_change_pct": 0.85,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1301",
-      "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 2.54,
-      "value": 1352920.03
+      "symbol": "2381",
+      "name": "شركة الحفر العربية",
+      "change_pct": 1.89,
+      "value": 1348750.35
     }
   },
   "portfolio_exposure": {
