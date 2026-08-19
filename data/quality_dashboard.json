@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T14:52:43",
-  "data_timestamp": "2026-08-19T14:52:22",
+  "generated_at": "2026-08-19T14:58:15",
+  "data_timestamp": "2026-08-19T14:57:50",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.253,
+    "average_change_pct": 0.251,
     "advance_ratio": 0.5532,
-    "dispersion": 1.488,
+    "dispersion": 1.478,
     "dynamic_min_score": 80,
     "advancing": 26,
-    "declining": 18,
-    "unchanged": 3
+    "declining": 19,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -35,8 +35,8 @@
       "الزخم غير مناسب": 7,
       "العائد مقابل المخاطرة غير مناسب": 6,
       "أسباب فنية أخرى": 6,
-      "ضعف السيولة أو الحجم": 3,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "ضعف السيولة أو الحجم": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
@@ -44,10 +44,10 @@
     "best_sector_avg_change_pct": 0.38,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1810",
-      "name": "مجموعة سيرا القابضة",
-      "change_pct": 4.16,
-      "value": 85977347.0
+      "symbol": "4004",
+      "name": "شركة دله للخدمات الصحية",
+      "change_pct": 4.22,
+      "value": 18756417.1
     }
   },
   "portfolio_exposure": {
