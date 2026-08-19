@@ -1,51 +1,53 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T10:42:43",
-  "data_timestamp": "2026-08-19T10:42:22",
+  "generated_at": "2026-08-19T10:57:34",
+  "data_timestamp": "2026-08-19T10:57:17",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 46,
-    "valid_stocks": 46
+    "stocks_received": 47,
+    "valid_stocks": 47
   },
   "market": {
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.04,
-    "advance_ratio": 0.4348,
-    "dispersion": 1.315,
+    "average_change_pct": 0.032,
+    "advance_ratio": 0.5106,
+    "dispersion": 0.476,
     "dynamic_min_score": 81,
-    "advancing": 20,
-    "declining": 21,
-    "unchanged": 5
+    "advancing": 24,
+    "declining": 16,
+    "unchanged": 7
   },
   "screening": {
     "screened": 45,
     "rejected": 45,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
+    "dominant_rejection": "ضعف السيولة أو الحجم",
     "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 24,
-      "أسباب فنية أخرى": 11,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 5
+      "ضعف السيولة أو الحجم": 24,
+      "الاتجاه الفني غير مناسب": 10,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 3,
+      "أسباب فنية أخرى": 3,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.47,
+    "best_sector": "الطاقة",
+    "best_sector_avg_change_pct": 0.23,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4002",
-      "name": "شركة المواساة للخدمات الطبية",
-      "change_pct": 3.5,
-      "value": 37078856.5
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
+      "change_pct": 0.77,
+      "value": 6952669.15
     }
   },
   "portfolio_exposure": {
