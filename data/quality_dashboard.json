@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T12:37:41",
-  "data_timestamp": "2026-08-19T12:37:20",
+  "generated_at": "2026-08-19T12:42:38",
+  "data_timestamp": "2026-08-19T12:42:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,30 +12,30 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.06,
-    "advance_ratio": 0.4043,
-    "dispersion": 1.184,
-    "dynamic_min_score": 80,
-    "advancing": 19,
-    "declining": 25,
-    "unchanged": 3
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.068,
+    "advance_ratio": 0.4468,
+    "dispersion": 1.233,
+    "dynamic_min_score": 81,
+    "advancing": 21,
+    "declining": 22,
+    "unchanged": 4
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 24,
+    "dominant_rejection_count": 23,
     "categories": {
-      "الاتجاه الفني غير مناسب": 24,
-      "أسباب فنية أخرى": 7,
+      "الاتجاه الفني غير مناسب": 23,
+      "أسباب فنية أخرى": 8,
       "الزخم غير مناسب": 6,
-      "ضعف السيولة أو الحجم": 5,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "ضعف السيولة أو الحجم": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
@@ -44,10 +44,10 @@
     "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4004",
-      "name": "شركة دله للخدمات الصحية",
-      "change_pct": 3.49,
-      "value": 12622118.75
+      "symbol": "1810",
+      "name": "مجموعة سيرا القابضة",
+      "change_pct": 4.06,
+      "value": 77737785.84
     }
   },
   "portfolio_exposure": {
