@@ -1,6 +1,6 @@
 {
   "engine_version": "rased_sector_rotation_v2_0",
-  "generated_at": "2026-08-19T13:37:35",
+  "generated_at": "2026-08-19T13:42:41",
   "stocks_used": 47,
   "sectors_count": 4,
   "top_sectors": [
@@ -15,32 +15,32 @@
       "avg_change_pct": 0.3,
       "median_change_pct": 0.3,
       "liquidity_weighted_change_pct": 0.3,
-      "total_value": 84686583.06,
-      "liquidity_share_pct": 29.92,
+      "total_value": 87473619.46,
+      "liquidity_share_pct": 29.74,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 53.6,
         "breadth": 100.0,
-        "relative_liquidity": 49.2,
+        "relative_liquidity": 48.7,
         "signals": 40.0
       },
-      "rotation_score": 65.2,
+      "rotation_score": 65.1,
       "grade": "محايد إيجابي"
     },
     {
       "sector": "البنوك",
       "members": 2,
       "advancing": 1,
-      "declining": 0,
-      "unchanged": 1,
+      "declining": 1,
+      "unchanged": 0,
       "advancing_ratio": 0.5,
       "advance_ratio": 0.5,
-      "avg_change_pct": 0.03,
-      "median_change_pct": 0.03,
+      "avg_change_pct": -0.06,
+      "median_change_pct": -0.06,
       "liquidity_weighted_change_pct": 0.01,
-      "total_value": 172268666.9,
-      "liquidity_share_pct": 60.86,
+      "total_value": 179770650.3,
+      "liquidity_share_pct": 61.11,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
@@ -50,6 +50,30 @@
         "signals": 40.0
       },
       "rotation_score": 60.1,
+      "grade": "محايد إيجابي"
+    },
+    {
+      "sector": "المواد الأساسية",
+      "members": 1,
+      "advancing": 1,
+      "declining": 0,
+      "unchanged": 0,
+      "advancing_ratio": 1.0,
+      "advance_ratio": 1.0,
+      "avg_change_pct": 0.12,
+      "median_change_pct": 0.12,
+      "liquidity_weighted_change_pct": 0.12,
+      "total_value": 26524200.56,
+      "liquidity_share_pct": 9.02,
+      "signal_count": 0,
+      "avg_signal_score": 0.0,
+      "components": {
+        "momentum": 51.4,
+        "breadth": 100.0,
+        "relative_liquidity": 14.8,
+        "signals": 40.0
+      },
+      "rotation_score": 56.8,
       "grade": "محايد إيجابي"
     },
     {
@@ -63,7 +87,7 @@
       "avg_change_pct": 0.09,
       "median_change_pct": 0.09,
       "liquidity_weighted_change_pct": 0.09,
-      "total_value": 390294.58,
+      "total_value": 401455.6,
       "liquidity_share_pct": 0.14,
       "signal_count": 0,
       "avg_signal_score": 0.0,
@@ -75,30 +99,6 @@
       },
       "rotation_score": 53.5,
       "grade": "محايد"
-    },
-    {
-      "sector": "المواد الأساسية",
-      "members": 1,
-      "advancing": 0,
-      "declining": 1,
-      "unchanged": 0,
-      "advancing_ratio": 0.0,
-      "advance_ratio": 0.0,
-      "avg_change_pct": -0.04,
-      "median_change_pct": -0.04,
-      "liquidity_weighted_change_pct": -0.04,
-      "total_value": 25705544.28,
-      "liquidity_share_pct": 9.08,
-      "signal_count": 0,
-      "avg_signal_score": 0.0,
-      "components": {
-        "momentum": 49.5,
-        "breadth": 0.0,
-        "relative_liquidity": 14.9,
-        "signals": 40.0
-      },
-      "rotation_score": 26.1,
-      "grade": "ضعيف"
     }
   ],
   "all_sectors": [
@@ -113,32 +113,32 @@
       "avg_change_pct": 0.3,
       "median_change_pct": 0.3,
       "liquidity_weighted_change_pct": 0.3,
-      "total_value": 84686583.06,
-      "liquidity_share_pct": 29.92,
+      "total_value": 87473619.46,
+      "liquidity_share_pct": 29.74,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 53.6,
         "breadth": 100.0,
-        "relative_liquidity": 49.2,
+        "relative_liquidity": 48.7,
         "signals": 40.0
       },
-      "rotation_score": 65.2,
+      "rotation_score": 65.1,
       "grade": "محايد إيجابي"
     },
     {
       "sector": "البنوك",
       "members": 2,
       "advancing": 1,
-      "declining": 0,
-      "unchanged": 1,
+      "declining": 1,
+      "unchanged": 0,
       "advancing_ratio": 0.5,
       "advance_ratio": 0.5,
-      "avg_change_pct": 0.03,
-      "median_change_pct": 0.03,
+      "avg_change_pct": -0.06,
+      "median_change_pct": -0.06,
       "liquidity_weighted_change_pct": 0.01,
-      "total_value": 172268666.9,
-      "liquidity_share_pct": 60.86,
+      "total_value": 179770650.3,
+      "liquidity_share_pct": 61.11,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
@@ -148,6 +148,30 @@
         "signals": 40.0
       },
       "rotation_score": 60.1,
+      "grade": "محايد إيجابي"
+    },
+    {
+      "sector": "المواد الأساسية",
+      "members": 1,
+      "advancing": 1,
+      "declining": 0,
+      "unchanged": 0,
+      "advancing_ratio": 1.0,
+      "advance_ratio": 1.0,
+      "avg_change_pct": 0.12,
+      "median_change_pct": 0.12,
+      "liquidity_weighted_change_pct": 0.12,
+      "total_value": 26524200.56,
+      "liquidity_share_pct": 9.02,
+      "signal_count": 0,
+      "avg_signal_score": 0.0,
+      "components": {
+        "momentum": 51.4,
+        "breadth": 100.0,
+        "relative_liquidity": 14.8,
+        "signals": 40.0
+      },
+      "rotation_score": 56.8,
       "grade": "محايد إيجابي"
     },
     {
@@ -161,7 +185,7 @@
       "avg_change_pct": 0.09,
       "median_change_pct": 0.09,
       "liquidity_weighted_change_pct": 0.09,
-      "total_value": 390294.58,
+      "total_value": 401455.6,
       "liquidity_share_pct": 0.14,
       "signal_count": 0,
       "avg_signal_score": 0.0,
@@ -173,30 +197,6 @@
       },
       "rotation_score": 53.5,
       "grade": "محايد"
-    },
-    {
-      "sector": "المواد الأساسية",
-      "members": 1,
-      "advancing": 0,
-      "declining": 1,
-      "unchanged": 0,
-      "advancing_ratio": 0.0,
-      "advance_ratio": 0.0,
-      "avg_change_pct": -0.04,
-      "median_change_pct": -0.04,
-      "liquidity_weighted_change_pct": -0.04,
-      "total_value": 25705544.28,
-      "liquidity_share_pct": 9.08,
-      "signal_count": 0,
-      "avg_signal_score": 0.0,
-      "components": {
-        "momentum": 49.5,
-        "breadth": 0.0,
-        "relative_liquidity": 14.9,
-        "signals": 40.0
-      },
-      "rotation_score": 26.1,
-      "grade": "ضعيف"
     }
   ],
   "methodology": {
