@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T13:07:44",
-  "data_timestamp": "2026-08-19T13:07:22",
+  "generated_at": "2026-08-19T13:12:43",
+  "data_timestamp": "2026-08-19T13:12:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.151,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.344,
-    "dynamic_min_score": 81,
-    "advancing": 20,
-    "declining": 24,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.158,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.359,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 25,
     "unchanged": 3
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 23,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
-      "أسباب فنية أخرى": 8,
+      "الاتجاه الفني غير مناسب": 23,
       "العائد مقابل المخاطرة غير مناسب": 6,
       "الزخم غير مناسب": 6,
-      "ضعف السيولة أو الحجم": 2,
+      "أسباب فنية أخرى": 6,
+      "ضعف السيولة أو الحجم": 5,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.3,
+    "best_sector_avg_change_pct": 0.23,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
-      "change_pct": 4.54,
-      "value": 80493084.84
+      "change_pct": 4.44,
+      "value": 80650568.18
     }
   },
   "portfolio_exposure": {
