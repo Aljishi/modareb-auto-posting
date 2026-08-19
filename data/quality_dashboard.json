@@ -1,26 +1,26 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T10:37:32",
-  "data_timestamp": "2026-08-19T10:37:15",
+  "generated_at": "2026-08-19T10:42:43",
+  "data_timestamp": "2026-08-19T10:42:22",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 47,
-    "valid_stocks": 47
+    "stocks_received": 46,
+    "valid_stocks": 46
   },
   "market": {
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.036,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.301,
+    "average_change_pct": 0.04,
+    "advance_ratio": 0.4348,
+    "dispersion": 1.315,
     "dynamic_min_score": 81,
     "advancing": 20,
-    "declining": 22,
+    "declining": 21,
     "unchanged": 5
   },
   "screening": {
@@ -29,10 +29,10 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 23,
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 23,
-      "أسباب فنية أخرى": 12,
+      "الاتجاه الفني غير مناسب": 24,
+      "أسباب فنية أخرى": 11,
       "العائد مقابل المخاطرة غير مناسب": 5,
       "الزخم غير مناسب": 5
     }
