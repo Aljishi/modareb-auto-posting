@@ -1,43 +1,43 @@
 {
   "signals": [],
-  "generated_at": "2026-08-19T10:57:33",
+  "generated_at": "2026-08-19T11:02:51",
   "total": 0,
-  "total_screened": 45,
+  "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
   "sector_strength": {
     "البنوك": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.05,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -0.01,
       "advance_ratio": 0.5,
       "members": 2,
-      "total_value": 16869184.08
+      "total_value": 28868057.42
     },
     "المواد الأساسية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.2,
+      "avg_change_pct": -0.32,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 4856791.5
+      "total_value": 8066432.64
     },
     "الطاقة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.23,
+      "avg_change_pct": 0.38,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 7838233.92
+      "total_value": 9630119.32
     },
     "غير مصنف": {
-      "bonus": 2,
-      "grade": "محايد إيجابي",
-      "avg_change_pct": 0.03,
-      "advance_ratio": 0.52,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": 0.01,
+      "advance_ratio": 0.4,
       "members": 42,
-      "total_value": 40574642.46
+      "total_value": 83405079.2
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
@@ -45,18 +45,18 @@
       "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 7540.2
+      "total_value": 8221.8
     }
   },
   "filters": {
-    "MIN_SIGNAL_SCORE": 81,
+    "MIN_SIGNAL_SCORE": 80,
     "MIN_RR": 2.0,
     "MIN_VOLUME_RATIO": 1.0,
-    "MIN_VALUE_SAR": 400000.0,
-    "MIN_RSI": 42.0,
-    "MAX_RSI": 70.0,
+    "MIN_VALUE_SAR": 300000.0,
+    "MIN_RSI": 38.0,
+    "MAX_RSI": 72.0,
     "MAX_HOLD_DAYS": 7,
-    "MIN_TP1_PCT_NORMAL": 3.5,
+    "MIN_TP1_PCT_NORMAL": 3.25,
     "MIN_TP1_PCT_GOLDEN": 6.0,
     "MIN_TP1_PCT_PLATINUM": 8.0,
     "MIN_TP2_PCT_PLATINUM": 10.0,
