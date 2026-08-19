@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T12:07:37",
-  "data_timestamp": "2026-08-19T12:07:19",
+  "generated_at": "2026-08-19T12:12:47",
+  "data_timestamp": "2026-08-19T12:12:29",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.136,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.164,
-    "dynamic_min_score": 81,
-    "advancing": 20,
-    "declining": 19,
-    "unchanged": 8
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": 0.075,
+    "advance_ratio": 0.3404,
+    "dispersion": 1.206,
+    "dynamic_min_score": 83,
+    "advancing": 16,
+    "declining": 26,
+    "unchanged": 5
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 23,
+    "dominant_rejection_count": 19,
     "categories": {
-      "الاتجاه الفني غير مناسب": 23,
-      "العائد مقابل المخاطرة غير مناسب": 6,
+      "الاتجاه الفني غير مناسب": 19,
+      "العائد مقابل المخاطرة غير مناسب": 7,
       "الزخم غير مناسب": 6,
       "أسباب فنية أخرى": 6,
-      "ضعف السيولة أو الحجم": 3,
+      "ضعف السيولة أو الحجم": 1,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.45,
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
-      "change_pct": 4.35,
-      "value": 64301546.4
+      "change_pct": 4.83,
+      "value": 65530370.06
     }
   },
   "portfolio_exposure": {
