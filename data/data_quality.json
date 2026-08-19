@@ -1,11 +1,27 @@
 {
-  "status": "PASS",
-  "score": 100.0,
-  "total_stocks": 46,
-  "valid_stocks": 46,
-  "invalid_stocks": [],
+  "status": "FAIL",
+  "score": 62.5,
+  "total_stocks": 40,
+  "valid_stocks": 25,
+  "invalid_stocks": [
+    "2222",
+    "2286",
+    "4005",
+    "4164",
+    "4191",
+    "4192",
+    "4194",
+    "4262",
+    "1301",
+    "1302",
+    "1322",
+    "1810",
+    "1832",
+    "2083",
+    "2382"
+  ],
   "minimum_required_stocks": 15,
   "minimum_valid_ratio": 0.7,
-  "reason": "جودة البيانات مقبولة",
-  "generated_at": "2026-08-19T10:42:22"
+  "reason": "نسبة البيانات الصالحة منخفضة: 62.5%",
+  "generated_at": "2026-08-19T10:47:47"
 }
