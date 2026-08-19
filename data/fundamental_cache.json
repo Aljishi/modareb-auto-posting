@@ -4643,7 +4643,7 @@
       }
     },
     "4260": {
-      "cached_at": "2026-08-18T10:02:39",
+      "cached_at": "2026-08-19T10:02:42",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -4801,13 +4801,13 @@
           ],
           "reporting": {
             "reporting_cadence": "quarterly",
-            "quarterly_income_convention": "standalone"
+            "quarterly_income_convention": "mixed"
           }
         },
         "dividends": {
           "symbol": "4260",
-          "current_price": 29.36,
-          "trailing_12m_yield": 4.26,
+          "current_price": 29.78,
+          "trailing_12m_yield": 4.2,
           "trailing_12m_dividends": 1.25,
           "payments_last_year": 2,
           "upcoming": [],
