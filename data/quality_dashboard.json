@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-19T11:57:38",
-  "data_timestamp": "2026-08-19T11:57:22",
+  "generated_at": "2026-08-19T12:02:50",
+  "data_timestamp": "2026-08-19T12:02:32",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.086,
-    "advance_ratio": 0.4894,
-    "dispersion": 1.009,
+    "average_change_pct": 0.136,
+    "advance_ratio": 0.4255,
+    "dispersion": 1.164,
     "dynamic_min_score": 81,
-    "advancing": 23,
-    "declining": 20,
-    "unchanged": 4
+    "advancing": 20,
+    "declining": 19,
+    "unchanged": 8
   },
   "screening": {
     "screened": 45,
@@ -32,22 +32,22 @@
     "dominant_rejection_count": 23,
     "categories": {
       "الاتجاه الفني غير مناسب": 23,
+      "العائد مقابل المخاطرة غير مناسب": 6,
       "الزخم غير مناسب": 6,
       "أسباب فنية أخرى": 6,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "ضعف السيولة أو الحجم": 4,
+      "ضعف السيولة أو الحجم": 3,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.38,
+    "best_sector_avg_change_pct": 0.45,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
-      "change_pct": 3.68,
-      "value": 60243106.0
+      "change_pct": 4.35,
+      "value": 64301546.4
     }
   },
   "portfolio_exposure": {
