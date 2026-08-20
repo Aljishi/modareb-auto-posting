@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-20T10:12:41",
-  "data_timestamp": "2026-08-20T10:12:20",
+  "generated_at": "2026-08-20T10:17:39",
+  "data_timestamp": "2026-08-20T10:17:19",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
