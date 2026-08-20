@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-20T11:27:42",
-  "data_timestamp": "2026-08-20T11:27:20",
+  "generated_at": "2026-08-20T11:32:52",
+  "data_timestamp": "2026-08-20T11:32:32",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.694,
-    "advance_ratio": 0.8085,
-    "dispersion": 1.169,
+    "average_change_pct": 0.698,
+    "advance_ratio": 0.766,
+    "dispersion": 1.21,
     "dynamic_min_score": 80,
-    "advancing": 38,
-    "declining": 7,
+    "advancing": 36,
+    "declining": 9,
     "unchanged": 2
   },
   "screening": {
@@ -32,21 +32,22 @@
     "dominant_rejection_count": 18,
     "categories": {
       "الاتجاه الفني غير مناسب": 18,
-      "ضعف السيولة أو الحجم": 10,
-      "أسباب فنية أخرى": 8,
+      "ضعف السيولة أو الحجم": 11,
+      "أسباب فنية أخرى": 7,
       "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 5
+      "الزخم غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.79,
+    "best_sector_avg_change_pct": 0.8,
     "best_sector_members": 42,
     "best_stock": {
       "symbol": "1322",
       "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 5.29,
-      "value": 27619610.3
+      "change_pct": 5.79,
+      "value": 29372991.6
     }
   },
   "portfolio_exposure": {
