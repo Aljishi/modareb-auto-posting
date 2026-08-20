@@ -613,7 +613,7 @@
       }
     },
     "4005": {
-      "cached_at": "2026-08-05T10:06:13",
+      "cached_at": "2026-08-20T10:02:57",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -629,7 +629,7 @@
               "is_full_year": true,
               "total_revenue": 1600361606.0,
               "gross_profit": 588901659.0,
-              "operating_income": 81520444.0,
+              "operating_income": 354099677.0,
               "net_income": 318469575.0
             },
             {
@@ -641,7 +641,7 @@
               "is_full_year": true,
               "total_revenue": 1293685328.0,
               "gross_profit": 492847159.0,
-              "operating_income": 45869753.0,
+              "operating_income": 254494497.0,
               "net_income": 298163666.0
             },
             {
@@ -664,8 +664,8 @@
               "quarters_covered": 2,
               "is_full_year": true,
               "total_revenue": 917934901.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 331581349.0,
+              "operating_income": 198501813.0,
               "net_income": 170074845.0
             }
           ],
@@ -771,13 +771,13 @@
           ],
           "reporting": {
             "reporting_cadence": "quarterly",
-            "quarterly_income_convention": "standalone"
+            "quarterly_income_convention": "mixed"
           }
         },
         "dividends": {
           "symbol": "4005",
-          "current_price": 125.7,
-          "trailing_12m_yield": 2.39,
+          "current_price": 126.0,
+          "trailing_12m_yield": 2.38,
           "trailing_12m_dividends": 3.0,
           "payments_last_year": 1,
           "upcoming": [],
@@ -795,79 +795,79 @@
               "value": 2.0,
               "value_percent": 0.2,
               "period": "ANNUAL",
-              "fiscal_year": null,
+              "fiscal_year": "2024",
               "announcement_date": "2025-04-14",
               "eligibility_date": "2025-05-19",
               "distribution_date": "2025-06-02"
             },
             {
               "value": 2.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.2,
+              "period": "ANNUAL",
+              "fiscal_year": "2023",
               "announcement_date": "2024-04-22",
               "eligibility_date": "2024-05-22",
               "distribution_date": "2024-06-12"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2022",
               "announcement_date": "2023-03-21",
               "eligibility_date": "2023-06-19",
               "distribution_date": "2023-07-10"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2021",
               "announcement_date": "2022-04-19",
               "eligibility_date": "2022-05-17",
               "distribution_date": "2022-05-31"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2020",
               "announcement_date": "2021-03-28",
               "eligibility_date": "2021-05-27",
               "distribution_date": "2021-06-16"
             },
             {
               "value": 2.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.2,
+              "period": "ANNUAL",
+              "fiscal_year": "2019",
               "announcement_date": "2020-01-26",
               "eligibility_date": "2020-04-15",
               "distribution_date": "2020-04-23"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2018",
               "announcement_date": "2019-03-24",
               "eligibility_date": "2019-04-23",
               "distribution_date": "2019-05-09"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2017",
               "announcement_date": "2018-02-18",
               "eligibility_date": "2018-04-15",
               "distribution_date": "2018-04-22"
             },
             {
               "value": 0.75,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.075,
+              "period": "ANNUAL",
+              "fiscal_year": "2015",
               "announcement_date": "2016-03-30",
               "eligibility_date": "2016-04-27",
               "distribution_date": "2016-06-06"
