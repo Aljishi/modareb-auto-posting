@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-20T10:17:39",
-  "data_timestamp": "2026-08-20T10:17:19",
+  "generated_at": "2026-08-20T10:22:47",
+  "data_timestamp": "2026-08-20T10:22:24",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.2,
-    "advance_ratio": 0.4468,
-    "dispersion": 1.549,
-    "dynamic_min_score": 81,
-    "advancing": 21,
-    "declining": 21,
-    "unchanged": 5
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.382,
+    "advance_ratio": 0.617,
+    "dispersion": 1.062,
+    "dynamic_min_score": 80,
+    "advancing": 29,
+    "declining": 12,
+    "unchanged": 6
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 21,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 26,
     "categories": {
-      "الاتجاه الفني غير مناسب": 21,
-      "أسباب فنية أخرى": 10,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "ضعف السيولة أو الحجم": 4,
-      "الزخم غير مناسب": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 26,
+      "الاتجاه الفني غير مناسب": 11,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 3,
+      "أسباب فنية أخرى": 3
     }
   },
   "leadership": {
-    "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.23,
+    "best_sector": "السلع طويلة الاجل",
+    "best_sector_avg_change_pct": 0.56,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4005",
-      "name": "الشركة الوطنية للرعاية الطبية",
-      "change_pct": 4.43,
-      "value": 14939433.6
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 5.92,
+      "value": 10238489.1
     }
   },
   "portfolio_exposure": {
