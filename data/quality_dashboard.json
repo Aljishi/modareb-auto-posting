@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-20T12:57:33",
-  "data_timestamp": "2026-08-20T12:57:18",
+  "generated_at": "2026-08-20T13:00:24",
+  "data_timestamp": "2026-08-20T12:59:56",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.391,
-    "advance_ratio": 0.6596,
-    "dispersion": 0.994,
+    "average_change_pct": 0.46,
+    "advance_ratio": 0.6809,
+    "dispersion": 0.968,
     "dynamic_min_score": 80,
-    "advancing": 31,
-    "declining": 14,
+    "advancing": 32,
+    "declining": 13,
     "unchanged": 2
   },
   "screening": {
@@ -39,14 +39,14 @@
     }
   },
   "leadership": {
-    "best_sector": "السلع طويلة الاجل",
-    "best_sector_avg_change_pct": 0.47,
-    "best_sector_members": 1,
+    "best_sector": "غير مصنف",
+    "best_sector_avg_change_pct": 0.54,
+    "best_sector_members": 42,
     "best_stock": {
       "symbol": "1322",
       "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 3.74,
-      "value": 33296426.1
+      "change_pct": 3.49,
+      "value": 33393485.7
     }
   },
   "portfolio_exposure": {
