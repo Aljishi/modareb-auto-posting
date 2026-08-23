@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T10:42:45",
-  "data_timestamp": "2026-08-23T10:42:23",
+  "generated_at": "2026-08-23T10:47:38",
+  "data_timestamp": "2026-08-23T10:47:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.93,
-    "advance_ratio": 0.8723,
-    "dispersion": 1.152,
+    "average_change_pct": 0.944,
+    "advance_ratio": 0.8511,
+    "dispersion": 1.255,
     "dynamic_min_score": 77,
-    "advancing": 41,
-    "declining": 5,
+    "advancing": 40,
+    "declining": 6,
     "unchanged": 1
   },
   "screening": {
@@ -43,10 +43,10 @@
     "best_sector_avg_change_pct": 1.03,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1322",
-      "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 4.87,
-      "value": 18074320.0
+      "symbol": "4030",
+      "name": "الشركة الوطنية السعودية للنقل البحري",
+      "change_pct": 5.81,
+      "value": 87008092.2
     }
   },
   "portfolio_exposure": {
