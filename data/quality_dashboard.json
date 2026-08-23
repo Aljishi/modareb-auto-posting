@@ -1,52 +1,53 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T10:23:48",
-  "data_timestamp": "2026-08-23T10:23:36",
+  "generated_at": "2026-08-23T10:27:24",
+  "data_timestamp": "2026-08-23T10:27:10",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 33,
-    "valid_stocks": 33
+    "stocks_received": 47,
+    "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.761,
-    "advance_ratio": 0.9091,
-    "dispersion": 0.796,
-    "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 3,
-    "unchanged": 0
+    "regime": "STRONG",
+    "regime_ar": "قوي",
+    "posture": "شهية مخاطرة مرتفعة",
+    "average_change_pct": 0.833,
+    "advance_ratio": 0.8723,
+    "dispersion": 0.993,
+    "dynamic_min_score": 77,
+    "advancing": 41,
+    "declining": 4,
+    "unchanged": 2
   },
   "screening": {
-    "screened": 33,
-    "rejected": 33,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
     "dominant_rejection_count": 17,
     "categories": {
+      "الاتجاه الفني غير مناسب": 17,
       "ضعف السيولة أو الحجم": 17,
-      "الاتجاه الفني غير مناسب": 8,
-      "الزخم غير مناسب": 3,
-      "أسباب فنية أخرى": 3,
-      "العائد مقابل المخاطرة غير مناسب": 2
+      "الزخم غير مناسب": 6,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "أسباب فنية أخرى": 2,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.8,
-    "best_sector_members": 31,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 0.97,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1322",
-      "name": "أماك",
-      "change_pct": 3.82,
-      "value": 6247437.5
+      "symbol": "4030",
+      "name": "الشركة الوطنية السعودية للنقل البحري",
+      "change_pct": 4.34,
+      "value": 33410433.56
     }
   },
   "portfolio_exposure": {
