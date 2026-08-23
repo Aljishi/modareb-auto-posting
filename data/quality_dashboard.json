@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T11:27:32",
-  "data_timestamp": "2026-08-23T11:27:15",
+  "generated_at": "2026-08-23T11:32:51",
+  "data_timestamp": "2026-08-23T11:32:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.887,
-    "advance_ratio": 0.8511,
-    "dispersion": 1.226,
+    "average_change_pct": 0.83,
+    "advance_ratio": 0.8085,
+    "dispersion": 1.144,
     "dynamic_min_score": 77,
-    "advancing": 40,
-    "declining": 4,
-    "unchanged": 3
+    "advancing": 38,
+    "declining": 8,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 20,
+    "dominant_rejection_count": 18,
     "categories": {
-      "الاتجاه الفني غير مناسب": 20,
+      "الاتجاه الفني غير مناسب": 18,
       "ضعف السيولة أو الحجم": 13,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 5,
+      "العائد مقابل المخاطرة غير مناسب": 6,
+      "الزخم غير مناسب": 6,
       "أسباب فنية أخرى": 4
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.01,
+    "best_sector_avg_change_pct": 0.97,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1322",
-      "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 5.46,
-      "value": 23431334.4
+      "symbol": "4030",
+      "name": "الشركة الوطنية السعودية للنقل البحري",
+      "change_pct": 4.58,
+      "value": 140622360.12
     }
   },
   "portfolio_exposure": {
