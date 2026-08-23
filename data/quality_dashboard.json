@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T14:57:41",
-  "data_timestamp": "2026-08-23T14:57:20",
+  "generated_at": "2026-08-23T16:31:29",
+  "data_timestamp": "2026-08-23T16:21:22",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,9 +19,9 @@
     "advance_ratio": 0.8085,
     "dispersion": 1.847,
     "dynamic_min_score": 77,
-    "advancing": 38,
-    "declining": 8,
-    "unchanged": 1
+    "advancing": 35,
+    "declining": 9,
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.81,
+    "best_sector_avg_change_pct": 1.93,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "4030",
       "name": "الشركة الوطنية السعودية للنقل البحري",
-      "change_pct": 9.98,
-      "value": 346491618.36
+      "change_pct": 9.45,
+      "value": 425497810.4
     }
   },
   "portfolio_exposure": {
