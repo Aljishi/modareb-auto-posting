@@ -1,52 +1,51 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T10:07:39",
-  "data_timestamp": "2026-08-23T10:07:16",
+  "generated_at": "2026-08-23T10:18:48",
+  "data_timestamp": "2026-08-23T10:18:34",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 47,
-    "valid_stocks": 47
+    "stocks_received": 32,
+    "valid_stocks": 32
   },
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.626,
-    "advance_ratio": 0.6596,
-    "dispersion": 1.436,
+    "average_change_pct": 0.57,
+    "advance_ratio": 0.8438,
+    "dispersion": 0.786,
     "dynamic_min_score": 80,
-    "advancing": 31,
-    "declining": 13,
-    "unchanged": 3
+    "advancing": 27,
+    "declining": 4,
+    "unchanged": 1
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 32,
+    "rejected": 32,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 22,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 21,
     "categories": {
-      "الاتجاه الفني غير مناسب": 22,
-      "أسباب فنية أخرى": 12,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "ضعف السيولة أو الحجم": 4,
-      "الزخم غير مناسب": 4
+      "ضعف السيولة أو الحجم": 21,
+      "الاتجاه الفني غير مناسب": 7,
+      "الزخم غير مناسب": 2,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.71,
-    "best_sector_members": 42,
+    "best_sector_avg_change_pct": 0.63,
+    "best_sector_members": 30,
     "best_stock": {
       "symbol": "1322",
-      "name": "شركة المصانع الكبرى للتعدين",
-      "change_pct": 6.04,
-      "value": 48030645.65
+      "name": "أماك",
+      "change_pct": 3.35,
+      "value": 2881226.0
     }
   },
   "portfolio_exposure": {
