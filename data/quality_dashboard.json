@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T13:07:48",
-  "data_timestamp": "2026-08-23T13:07:23",
+  "generated_at": "2026-08-23T13:12:35",
+  "data_timestamp": "2026-08-23T13:12:18",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.827,
-    "advance_ratio": 0.8085,
-    "dispersion": 1.206,
+    "average_change_pct": 0.851,
+    "advance_ratio": 0.766,
+    "dispersion": 1.305,
     "dynamic_min_score": 77,
-    "advancing": 38,
-    "declining": 8,
-    "unchanged": 1
+    "advancing": 36,
+    "declining": 9,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -32,22 +32,22 @@
     "dominant_rejection_count": 19,
     "categories": {
       "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 12,
-      "الزخم غير مناسب": 6,
+      "ضعف السيولة أو الحجم": 13,
+      "العائد مقابل المخاطرة غير مناسب": 5,
       "أسباب فنية أخرى": 5,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.36,
+    "best_sector_avg_change_pct": 1.68,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "4030",
       "name": "الشركة الوطنية السعودية للنقل البحري",
-      "change_pct": 5.4,
-      "value": 204730063.04
+      "change_pct": 5.93,
+      "value": 210099039.8
     }
   },
   "portfolio_exposure": {
