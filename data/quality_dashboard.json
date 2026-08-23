@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T12:17:35",
-  "data_timestamp": "2026-08-23T12:17:17",
+  "generated_at": "2026-08-23T12:22:37",
+  "data_timestamp": "2026-08-23T12:22:19",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,16 +12,16 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.785,
+    "regime": "STRONG",
+    "regime_ar": "قوي",
+    "posture": "شهية مخاطرة مرتفعة",
+    "average_change_pct": 0.821,
     "advance_ratio": 0.8298,
-    "dispersion": 1.231,
-    "dynamic_min_score": 80,
+    "dispersion": 1.285,
+    "dynamic_min_score": 77,
     "advancing": 39,
-    "declining": 8,
-    "unchanged": 0
+    "declining": 7,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -29,25 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 20,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 12,
-      "أسباب فنية أخرى": 7,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 3,
+      "الاتجاه الفني غير مناسب": 20,
+      "ضعف السيولة أو الحجم": 13,
+      "أسباب فنية أخرى": 5,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.81,
-    "best_sector_members": 1,
+    "best_sector": "البنوك",
+    "best_sector_avg_change_pct": 0.87,
+    "best_sector_members": 2,
     "best_stock": {
       "symbol": "4030",
       "name": "الشركة الوطنية السعودية للنقل البحري",
-      "change_pct": 5.34,
-      "value": 163334086.4
+      "change_pct": 6.16,
+      "value": 183999395.88
     }
   },
   "portfolio_exposure": {
