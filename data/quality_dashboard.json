@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T10:37:39",
-  "data_timestamp": "2026-08-23T10:37:19",
+  "generated_at": "2026-08-23T10:42:45",
+  "data_timestamp": "2026-08-23T10:42:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 0.855,
-    "advance_ratio": 0.9149,
-    "dispersion": 0.977,
+    "average_change_pct": 0.93,
+    "advance_ratio": 0.8723,
+    "dispersion": 1.152,
     "dynamic_min_score": 77,
-    "advancing": 43,
-    "declining": 3,
+    "advancing": 41,
+    "declining": 5,
     "unchanged": 1
   },
   "screening": {
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 16,
+    "dominant_rejection_count": 18,
     "categories": {
-      "الاتجاه الفني غير مناسب": 16,
-      "ضعف السيولة أو الحجم": 15,
-      "العائد مقابل المخاطرة غير مناسب": 6,
+      "الاتجاه الفني غير مناسب": 18,
+      "ضعف السيولة أو الحجم": 13,
       "الزخم غير مناسب": 6,
-      "أسباب فنية أخرى": 4
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "أسباب فنية أخرى": 5
     }
   },
   "leadership": {
-    "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.89,
-    "best_sector_members": 42,
+    "best_sector": "السلع طويلة الاجل",
+    "best_sector_avg_change_pct": 1.03,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "4030",
-      "name": "الشركة الوطنية السعودية للنقل البحري",
-      "change_pct": 4.58,
-      "value": 39483738.36
+      "symbol": "1322",
+      "name": "شركة المصانع الكبرى للتعدين",
+      "change_pct": 4.87,
+      "value": 18074320.0
     }
   },
   "portfolio_exposure": {
