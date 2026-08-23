@@ -1,27 +1,27 @@
 {
   "signals": [],
-  "generated_at": "2026-08-23T10:18:47",
+  "generated_at": "2026-08-23T10:23:48",
   "total": 0,
-  "total_screened": 32,
+  "total_screened": 33,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
   "sector_strength": {
     "الطاقة": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.9,
-      "advance_ratio": 0.0,
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.23,
+      "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 319360962.2
+      "total_value": 9662669.7
     },
     "غير مصنف": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.63,
-      "advance_ratio": 0.87,
-      "members": 30,
-      "total_value": 217782139.28
+      "avg_change_pct": 0.8,
+      "advance_ratio": 0.9,
+      "members": 31,
+      "total_value": 54792730.27
     },
     "السلع طويلة الاجل": {
       "bonus": 2,

@@ -1,51 +1,52 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T10:18:48",
-  "data_timestamp": "2026-08-23T10:18:34",
+  "generated_at": "2026-08-23T10:23:48",
+  "data_timestamp": "2026-08-23T10:23:36",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 32,
-    "valid_stocks": 32
+    "stocks_received": 33,
+    "valid_stocks": 33
   },
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.57,
-    "advance_ratio": 0.8438,
-    "dispersion": 0.786,
+    "average_change_pct": 0.761,
+    "advance_ratio": 0.9091,
+    "dispersion": 0.796,
     "dynamic_min_score": 80,
-    "advancing": 27,
-    "declining": 4,
-    "unchanged": 1
+    "advancing": 30,
+    "declining": 3,
+    "unchanged": 0
   },
   "screening": {
-    "screened": 32,
-    "rejected": 32,
+    "screened": 33,
+    "rejected": 33,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 21,
+    "dominant_rejection_count": 17,
     "categories": {
-      "ضعف السيولة أو الحجم": 21,
-      "الاتجاه الفني غير مناسب": 7,
-      "الزخم غير مناسب": 2,
-      "أسباب فنية أخرى": 2
+      "ضعف السيولة أو الحجم": 17,
+      "الاتجاه الفني غير مناسب": 8,
+      "الزخم غير مناسب": 3,
+      "أسباب فنية أخرى": 3,
+      "العائد مقابل المخاطرة غير مناسب": 2
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.63,
-    "best_sector_members": 30,
+    "best_sector_avg_change_pct": 0.8,
+    "best_sector_members": 31,
     "best_stock": {
       "symbol": "1322",
       "name": "أماك",
-      "change_pct": 3.35,
-      "value": 2881226.0
+      "change_pct": 3.82,
+      "value": 6247437.5
     }
   },
   "portfolio_exposure": {
