@@ -1141,7 +1141,7 @@
       }
     },
     "1301": {
-      "cached_at": "2026-07-07T10:06:55",
+      "cached_at": "2026-08-24T14:42:44",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1153,10 +1153,11 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 770546967.0,
               "gross_profit": 49246681.0,
-              "operating_income": 3224774.0,
+              "operating_income": 7522850.0,
               "net_income": 5182654.0
             },
             {
@@ -1164,10 +1165,11 @@
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 707286079.0,
-              "gross_profit": null,
-              "operating_income": 3670355.0,
+              "gross_profit": 65798952.0,
+              "operating_income": 19706463.0,
               "net_income": 16232927.0
             },
             {
@@ -1175,10 +1177,11 @@
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_revenue": 792781846.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 67323230.0,
+              "operating_income": 25168835.0,
               "net_income": 20419420.0
             },
             {
@@ -1186,10 +1189,11 @@
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "total_revenue": 1026362591.0,
-              "gross_profit": null,
-              "operating_income": null,
+              "gross_profit": 107309063.0,
+              "operating_income": 67632149.0,
               "net_income": 56675330.0
             }
           ],
@@ -1199,6 +1203,7 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 512894263.0,
               "total_liabilities": 157215726.0,
@@ -1210,6 +1215,7 @@
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 440325677.0,
               "total_liabilities": 72776397.0,
@@ -1221,6 +1227,7 @@
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "total_assets": 455593537.0,
               "total_liabilities": 83634225.0,
@@ -1232,7 +1239,8 @@
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "total_assets": 574640673.0,
               "total_liabilities": 125098880.0,
               "stockholders_equity": 449541793.0,
@@ -1245,6 +1253,7 @@
               "statement_period": "annual",
               "fiscal_year": 2025,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 29880938.0,
               "investing_cash_flow": -11115373.0,
@@ -1256,6 +1265,7 @@
               "statement_period": "annual",
               "fiscal_year": 2024,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 79018781.0,
               "investing_cash_flow": -39113520.0,
@@ -1267,6 +1277,7 @@
               "statement_period": "annual",
               "fiscal_year": 2023,
               "quarters_reported": 4,
+              "quarters_covered": 4,
               "is_full_year": true,
               "operating_cash_flow": 2649766.0,
               "investing_cash_flow": null,
@@ -1278,18 +1289,23 @@
               "statement_period": "annual",
               "fiscal_year": 2022,
               "quarters_reported": 2,
-              "is_full_year": false,
+              "quarters_covered": 2,
+              "is_full_year": true,
               "operating_cash_flow": 81106810.0,
               "investing_cash_flow": null,
               "financing_cash_flow": null,
               "free_cash_flow": null
             }
-          ]
+          ],
+          "reporting": {
+            "reporting_cadence": "quarterly",
+            "quarterly_income_convention": "mixed"
+          }
         },
         "dividends": {
           "symbol": "1301",
-          "current_price": 17.24,
-          "trailing_12m_yield": 2.9,
+          "current_price": 18.88,
+          "trailing_12m_yield": 2.65,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 1,
           "upcoming": [],
@@ -1305,7 +1321,7 @@
             },
             {
               "value": 0.75,
-              "value_percent": null,
+              "value_percent": 0.075,
               "period": null,
               "fiscal_year": null,
               "announcement_date": "2024-10-31",
@@ -1314,7 +1330,7 @@
             },
             {
               "value": 1.0,
-              "value_percent": null,
+              "value_percent": 0.1,
               "period": null,
               "fiscal_year": null,
               "announcement_date": "2023-11-05",
@@ -1323,43 +1339,43 @@
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "H1",
+              "fiscal_year": "2022",
               "announcement_date": "2022-08-01",
               "eligibility_date": "2022-08-07",
               "distribution_date": "2022-08-18"
             },
             {
               "value": 0.45,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.045,
+              "period": "H2",
+              "fiscal_year": "2021",
               "announcement_date": "2022-02-01",
               "eligibility_date": "2022-02-10",
               "distribution_date": "2022-02-21"
             },
             {
               "value": 0.75,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.075,
+              "period": "H1",
+              "fiscal_year": "2021",
               "announcement_date": "2021-07-29",
               "eligibility_date": "2021-08-02",
               "distribution_date": "2021-08-17"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "H2",
+              "fiscal_year": "2020",
               "announcement_date": "2021-02-17",
               "eligibility_date": "2021-02-21",
               "distribution_date": "2021-03-03"
             },
             {
               "value": 1.0,
-              "value_percent": null,
+              "value_percent": 0.1,
               "period": null,
               "fiscal_year": null,
               "announcement_date": "2020-09-16",
@@ -1368,18 +1384,18 @@
             },
             {
               "value": 0.25,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.025,
+              "period": "H1",
+              "fiscal_year": "2019",
               "announcement_date": "2019-07-18",
               "eligibility_date": "2019-07-22",
               "distribution_date": "2019-08-05"
             },
             {
               "value": 0.5,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.05,
+              "period": "ANNUAL",
+              "fiscal_year": "2017",
               "announcement_date": "2018-04-02",
               "eligibility_date": "2018-05-14",
               "distribution_date": "2018-05-29"
