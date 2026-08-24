@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T11:22:39",
-  "data_timestamp": "2026-08-24T11:22:19",
+  "generated_at": "2026-08-24T11:27:49",
+  "data_timestamp": "2026-08-24T11:27:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.272,
-    "advance_ratio": 0.6383,
-    "dispersion": 0.903,
+    "average_change_pct": 0.228,
+    "advance_ratio": 0.6596,
+    "dispersion": 0.91,
     "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 11,
-    "unchanged": 6
+    "advancing": 31,
+    "declining": 12,
+    "unchanged": 4
   },
   "screening": {
     "screened": 47,
@@ -32,9 +32,9 @@
     "dominant_rejection_count": 17,
     "categories": {
       "الاتجاه الفني غير مناسب": 17,
-      "ضعف السيولة أو الحجم": 16,
+      "ضعف السيولة أو الحجم": 15,
       "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 5,
+      "الزخم غير مناسب": 6,
       "أسباب فنية أخرى": 3
     }
   },
@@ -45,8 +45,8 @@
     "best_stock": {
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 2.12,
-      "value": 2159124.66
+      "change_pct": 2.06,
+      "value": 2176043.6
     }
   },
   "portfolio_exposure": {
