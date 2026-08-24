@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T10:37:41",
-  "data_timestamp": "2026-08-24T10:37:16",
+  "generated_at": "2026-08-24T10:42:40",
+  "data_timestamp": "2026-08-24T10:42:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.243,
-    "advance_ratio": 0.6596,
-    "dispersion": 0.754,
+    "average_change_pct": 0.283,
+    "advance_ratio": 0.7234,
+    "dispersion": 0.817,
     "dynamic_min_score": 80,
-    "advancing": 31,
+    "advancing": 34,
     "declining": 11,
-    "unchanged": 5
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -29,14 +29,13 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 21,
     "categories": {
-      "ضعف السيولة أو الحجم": 22,
-      "الاتجاه الفني غير مناسب": 13,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 21,
+      "الاتجاه الفني غير مناسب": 14,
+      "العائد مقابل المخاطرة غير مناسب": 5,
       "الزخم غير مناسب": 4,
-      "أسباب فنية أخرى": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "أسباب فنية أخرى": 3
     }
   },
   "leadership": {
@@ -44,10 +43,10 @@
     "best_sector_avg_change_pct": 0.8,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 1.76,
-      "value": 2917993.36
+      "symbol": "1301",
+      "name": "شركة إتحاد مصانع الأسلاك",
+      "change_pct": 2.39,
+      "value": 1595933.2
     }
   },
   "portfolio_exposure": {
