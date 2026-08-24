@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T12:57:46",
-  "data_timestamp": "2026-08-24T12:57:21",
+  "generated_at": "2026-08-24T13:03:01",
+  "data_timestamp": "2026-08-24T13:02:40",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.418,
-    "advance_ratio": 0.6383,
-    "dispersion": 1.012,
+    "average_change_pct": 0.403,
+    "advance_ratio": 0.6596,
+    "dispersion": 1.051,
     "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 12,
-    "unchanged": 5
+    "advancing": 31,
+    "declining": 14,
+    "unchanged": 2
   },
   "screening": {
     "screened": 47,
@@ -39,14 +39,14 @@
     }
   },
   "leadership": {
-    "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.42,
-    "best_sector_members": 2,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.4,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2082",
-      "name": "شركة أكوا باور",
-      "change_pct": 2.39,
-      "value": 66551528.8
+      "symbol": "1810",
+      "name": "مجموعة سيرا القابضة",
+      "change_pct": 2.4,
+      "value": 23905955.28
     }
   },
   "portfolio_exposure": {
