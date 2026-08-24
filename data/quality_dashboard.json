@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T12:12:46",
-  "data_timestamp": "2026-08-24T12:12:22",
+  "generated_at": "2026-08-24T12:17:48",
+  "data_timestamp": "2026-08-24T12:17:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.402,
+    "average_change_pct": 0.414,
     "advance_ratio": 0.6809,
-    "dispersion": 1.014,
+    "dispersion": 1.075,
     "dynamic_min_score": 80,
     "advancing": 32,
     "declining": 13,
@@ -29,24 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 18,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
+      "الاتجاه الفني غير مناسب": 18,
       "ضعف السيولة أو الحجم": 13,
       "الزخم غير مناسب": 6,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "أسباب فنية أخرى": 4
+      "أسباب فنية أخرى": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.35,
-    "best_sector_members": 2,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 1.4,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1301",
-      "name": "شركة إتحاد مصانع الأسلاك",
-      "change_pct": 2.17,
-      "value": 2452547.12
+      "symbol": "2082",
+      "name": "شركة أكوا باور",
+      "change_pct": 2.55,
+      "value": 54763530.8
     }
   },
   "portfolio_exposure": {
