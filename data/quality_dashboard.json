@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-23T16:31:29",
-  "data_timestamp": "2026-08-23T16:21:22",
+  "generated_at": "2026-08-24T10:03:25",
+  "data_timestamp": "2026-08-24T10:02:45",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "STRONG",
     "regime_ar": "قوي",
     "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 1.109,
-    "advance_ratio": 0.8085,
-    "dispersion": 1.847,
+    "average_change_pct": 1.064,
+    "advance_ratio": 0.7447,
+    "dispersion": 1.877,
     "dynamic_min_score": 77,
     "advancing": 35,
     "declining": 9,
@@ -29,14 +29,13 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 18,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 13,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 5,
-      "أسباب فنية أخرى": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الاتجاه الفني غير مناسب": 18,
+      "ضعف السيولة أو الحجم": 12,
+      "أسباب فنية أخرى": 7,
+      "العائد مقابل المخاطرة غير مناسب": 6,
+      "الزخم غير مناسب": 4
     }
   },
   "leadership": {

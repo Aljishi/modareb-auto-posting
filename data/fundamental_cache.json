@@ -1,7 +1,7 @@
 {
   "symbols": {
     "2200": {
-      "cached_at": "2026-08-23T10:02:47",
+      "cached_at": "2026-08-24T10:03:03",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -164,8 +164,8 @@
         },
         "dividends": {
           "symbol": "2200",
-          "current_price": 6.57,
-          "trailing_12m_yield": 2.59,
+          "current_price": 6.63,
+          "trailing_12m_yield": 2.56,
           "trailing_12m_dividends": 0.17,
           "payments_last_year": 1,
           "upcoming": [],
@@ -4089,7 +4089,7 @@
       }
     },
     "7204": {
-      "cached_at": "2026-08-23T10:02:56",
+      "cached_at": "2026-08-24T10:03:19",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -4252,7 +4252,7 @@
         },
         "dividends": {
           "symbol": "7204",
-          "current_price": 6.7,
+          "current_price": 6.6,
           "trailing_12m_yield": null,
           "trailing_12m_dividends": null,
           "payments_last_year": 0,
