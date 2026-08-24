@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T13:42:40",
-  "data_timestamp": "2026-08-24T13:42:19",
+  "generated_at": "2026-08-24T13:47:44",
+  "data_timestamp": "2026-08-24T13:47:22",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.446,
+    "average_change_pct": 0.436,
     "advance_ratio": 0.6383,
-    "dispersion": 1.092,
+    "dispersion": 1.095,
     "dynamic_min_score": 80,
     "advancing": 30,
-    "declining": 15,
-    "unchanged": 2
+    "declining": 14,
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -45,8 +45,8 @@
     "best_stock": {
       "symbol": "2082",
       "name": "شركة أكوا باور",
-      "change_pct": 2.65,
-      "value": 77139726.4
+      "change_pct": 2.6,
+      "value": 77327437.5
     }
   },
   "portfolio_exposure": {
