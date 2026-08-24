@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-24T13:52:38",
+  "generated_at": "2026-08-24T13:57:44",
   "total": 0,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -8,12 +8,12 @@
   "historical_source": "GET /historical/{symbol}/ interval=1d",
   "sector_strength": {
     "البنوك": {
-      "bonus": 7,
-      "grade": "قوي جداً",
-      "avg_change_pct": 1.22,
+      "bonus": 5,
+      "grade": "قوي",
+      "avg_change_pct": 1.19,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 721858583.3
+      "total_value": 746934411.43
     },
     "المواد الأساسية": {
       "bonus": 7,
@@ -21,7 +21,7 @@
       "avg_change_pct": 1.5,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 65841338.7
+      "total_value": 66671721.3
     },
     "الطاقة": {
       "bonus": 2,
@@ -29,15 +29,15 @@
       "avg_change_pct": 0.45,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 157485386.76
+      "total_value": 162314042.28
     },
     "غير مصنف": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.37,
-      "advance_ratio": 0.6,
+      "avg_change_pct": 0.38,
+      "advance_ratio": 0.62,
       "members": 42,
-      "total_value": 938130240.87
+      "total_value": 972841168.21
     },
     "السلع طويلة الاجل": {
       "bonus": 5,
@@ -45,7 +45,7 @@
       "avg_change_pct": 0.75,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 965985.02
+      "total_value": 966006.58
     }
   },
   "filters": {
