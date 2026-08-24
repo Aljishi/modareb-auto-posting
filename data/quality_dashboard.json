@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T13:11:11",
-  "data_timestamp": "2026-08-24T13:10:52",
+  "generated_at": "2026-08-24T13:17:41",
+  "data_timestamp": "2026-08-24T13:17:19",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.367,
-    "advance_ratio": 0.5957,
-    "dispersion": 1.04,
+    "average_change_pct": 0.381,
+    "advance_ratio": 0.617,
+    "dispersion": 1.075,
     "dynamic_min_score": 80,
-    "advancing": 28,
-    "declining": 16,
-    "unchanged": 3
+    "advancing": 29,
+    "declining": 17,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -33,21 +33,20 @@
     "categories": {
       "الاتجاه الفني غير مناسب": 19,
       "ضعف السيولة أو الحجم": 11,
-      "أسباب فنية أخرى": 6,
+      "أسباب فنية أخرى": 7,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الزخم غير مناسب": 5
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.79,
+    "best_sector_avg_change_pct": 1.6,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1810",
-      "name": "مجموعة سيرا القابضة",
-      "change_pct": 2.26,
-      "value": 25591634.6
+      "symbol": "2082",
+      "name": "شركة أكوا باور",
+      "change_pct": 2.6,
+      "value": 72587848.5
     }
   },
   "portfolio_exposure": {
