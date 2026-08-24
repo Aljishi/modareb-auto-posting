@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T11:57:37",
-  "data_timestamp": "2026-08-24T11:57:17",
+  "generated_at": "2026-08-24T12:03:03",
+  "data_timestamp": "2026-08-24T12:02:41",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.365,
-    "advance_ratio": 0.6809,
-    "dispersion": 0.96,
+    "average_change_pct": 0.36,
+    "advance_ratio": 0.6596,
+    "dispersion": 0.978,
     "dynamic_min_score": 80,
-    "advancing": 32,
-    "declining": 14,
+    "advancing": 31,
+    "declining": 15,
     "unchanged": 1
   },
   "screening": {
@@ -46,7 +46,7 @@
       "symbol": "1301",
       "name": "شركة إتحاد مصانع الأسلاك",
       "change_pct": 2.06,
-      "value": 2366412.4
+      "value": 2420725.6
     }
   },
   "portfolio_exposure": {
