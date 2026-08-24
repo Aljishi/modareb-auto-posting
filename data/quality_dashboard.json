@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T13:57:44",
-  "data_timestamp": "2026-08-24T13:57:23",
+  "generated_at": "2026-08-24T14:03:02",
+  "data_timestamp": "2026-08-24T14:02:40",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.446,
-    "advance_ratio": 0.6596,
-    "dispersion": 1.106,
+    "average_change_pct": 0.464,
+    "advance_ratio": 0.6809,
+    "dispersion": 1.112,
     "dynamic_min_score": 80,
-    "advancing": 31,
+    "advancing": 32,
     "declining": 12,
-    "unchanged": 4
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -32,21 +32,21 @@
     "dominant_rejection_count": 19,
     "categories": {
       "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 9,
+      "ضعف السيولة أو الحجم": 10,
       "أسباب فنية أخرى": 8,
-      "الزخم غير مناسب": 6,
-      "العائد مقابل المخاطرة غير مناسب": 5
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "الزخم غير مناسب": 5
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.5,
+    "best_sector_avg_change_pct": 1.4,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2082",
-      "name": "شركة أكوا باور",
-      "change_pct": 2.7,
-      "value": 79426297.6
+      "symbol": "2382",
+      "name": "شركة أديس القابضة",
+      "change_pct": 2.74,
+      "value": 33788995.04
     }
   },
   "portfolio_exposure": {
