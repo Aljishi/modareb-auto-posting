@@ -1,41 +1,41 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T10:12:45",
-  "data_timestamp": "2026-08-24T10:12:21",
+  "generated_at": "2026-08-24T10:19:45",
+  "data_timestamp": "2026-08-24T10:19:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
-    "data_quality_score": 100.0,
-    "stocks_received": 47,
-    "valid_stocks": 47
+    "data_quality_score": 97.7,
+    "stocks_received": 43,
+    "valid_stocks": 42
   },
   "market": {
-    "regime": "STRONG",
-    "regime_ar": "قوي",
-    "posture": "شهية مخاطرة مرتفعة",
-    "average_change_pct": 1.064,
-    "advance_ratio": 0.7447,
-    "dispersion": 1.877,
-    "dynamic_min_score": 77,
-    "advancing": 35,
-    "declining": 9,
-    "unchanged": 3
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.192,
+    "advance_ratio": 0.4186,
+    "dispersion": 0.912,
+    "dynamic_min_score": 80,
+    "advancing": 18,
+    "declining": 13,
+    "unchanged": 12
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 42,
+    "rejected": 42,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 27,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
-      "ضعف السيولة أو الحجم": 12,
-      "أسباب فنية أخرى": 7,
-      "العائد مقابل المخاطرة غير مناسب": 6,
-      "الزخم غير مناسب": 4
+      "ضعف السيولة أو الحجم": 27,
+      "الاتجاه الفني غير مناسب": 7,
+      "العائد مقابل المخاطرة غير مناسب": 3,
+      "الزخم غير مناسب": 3,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
@@ -43,10 +43,10 @@
     "best_sector_avg_change_pct": 1.93,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "4030",
-      "name": "الشركة الوطنية السعودية للنقل البحري",
-      "change_pct": 9.45,
-      "value": 425497810.4
+      "symbol": "1322",
+      "name": "أماك",
+      "change_pct": 3.93,
+      "value": 38326031.7
     }
   },
   "portfolio_exposure": {
