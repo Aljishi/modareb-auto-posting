@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-24T14:27:49",
-  "data_timestamp": "2026-08-24T14:27:21",
+  "generated_at": "2026-08-24T14:33:00",
+  "data_timestamp": "2026-08-24T14:32:32",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.367,
-    "advance_ratio": 0.6383,
-    "dispersion": 1.111,
+    "average_change_pct": 0.357,
+    "advance_ratio": 0.6809,
+    "dispersion": 1.118,
     "dynamic_min_score": 80,
-    "advancing": 30,
-    "declining": 14,
-    "unchanged": 3
+    "advancing": 32,
+    "declining": 15,
+    "unchanged": 0
   },
   "screening": {
     "screened": 47,
@@ -32,21 +32,21 @@
     "dominant_rejection_count": 19,
     "categories": {
       "الاتجاه الفني غير مناسب": 19,
-      "ضعف السيولة أو الحجم": 10,
-      "أسباب فنية أخرى": 8,
+      "ضعف السيولة أو الحجم": 9,
+      "أسباب فنية أخرى": 9,
       "العائد مقابل المخاطرة غير مناسب": 5,
       "الزخم غير مناسب": 5
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.5,
+    "best_sector_avg_change_pct": 1.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
-      "change_pct": 2.26,
-      "value": 40228848.8
+      "change_pct": 2.21,
+      "value": 40294836.09
     }
   },
   "portfolio_exposure": {
