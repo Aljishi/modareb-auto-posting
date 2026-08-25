@@ -1,7 +1,7 @@
 {
   "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-25T13:27:41",
+  "generated_at": "2026-08-25T13:32:55",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
@@ -27,10 +27,8 @@
   "rejected": [
     {
       "symbol": "1303",
-      "rased_score": 80.0,
+      "rased_score": 84.0,
       "reasons": [
-        "RASED SCORE 80.0 أقل من 82.0",
-        "Volume 1.13x أقل من 1.15x",
         "فجوة الدخول 4.42% أعلى من 3.00%"
       ]
     }
