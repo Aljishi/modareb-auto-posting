@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-25T14:32:56",
+  "generated_at": "2026-08-25T14:37:45",
   "total": 2,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -70,7 +70,7 @@
   "status": "NO_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-25T14:32:56",
+  "quality_gate_at": "2026-08-25T14:37:45",
   "quality_gate_input_count": 2,
   "quality_gate_approved_count": 0,
   "quality_gate_rejected_count": 2,
