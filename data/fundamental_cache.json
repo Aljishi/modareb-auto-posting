@@ -1417,7 +1417,7 @@
       }
     },
     "1303": {
-      "cached_at": "2026-08-13T10:02:49",
+      "cached_at": "2026-08-25T12:32:40",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -1580,8 +1580,8 @@
         },
         "dividends": {
           "symbol": "1303",
-          "current_price": 15.57,
-          "trailing_12m_yield": 3.21,
+          "current_price": 15.54,
+          "trailing_12m_yield": 3.22,
           "trailing_12m_dividends": 0.5,
           "payments_last_year": 3,
           "upcoming": [],
@@ -1624,54 +1624,54 @@
             },
             {
               "value": 0.125,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.25,
+              "period": "H2",
+              "fiscal_year": "2024",
               "announcement_date": "2025-03-09",
               "eligibility_date": "2025-03-20",
               "distribution_date": "2025-04-13"
             },
             {
               "value": 0.1,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.2,
+              "period": "H1",
+              "fiscal_year": "2024",
               "announcement_date": "2024-07-30",
               "eligibility_date": "2024-08-08",
               "distribution_date": "2024-08-28"
             },
             {
               "value": 0.075,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.15,
+              "period": "H2",
+              "fiscal_year": "2023",
               "announcement_date": "2024-03-12",
               "eligibility_date": "2024-03-31",
               "distribution_date": "2024-04-24"
             },
             {
               "value": 1.5,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.15,
+              "period": "H1",
+              "fiscal_year": "2023",
               "announcement_date": "2023-08-29",
               "eligibility_date": "2023-09-07",
               "distribution_date": "2023-09-21"
             },
             {
               "value": 1.0,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.1,
+              "period": "ANNUAL",
+              "fiscal_year": "2021",
               "announcement_date": "2022-03-17",
               "eligibility_date": "2022-04-20",
               "distribution_date": "2022-05-17"
             },
             {
               "value": 0.5,
-              "value_percent": null,
-              "period": null,
-              "fiscal_year": null,
+              "value_percent": 0.05,
+              "period": "ANNUAL",
+              "fiscal_year": "2020",
               "announcement_date": "2021-03-17",
               "eligibility_date": "2021-04-26",
               "distribution_date": "2021-05-09"
