@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-25T14:56:51",
-  "data_timestamp": "2026-08-25T14:56:27",
+  "generated_at": "2026-08-25T16:49:08",
+  "data_timestamp": "2026-08-25T16:36:34",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,9 +19,9 @@
     "advance_ratio": 0.5319,
     "dispersion": 1.497,
     "dynamic_min_score": 80,
-    "advancing": 25,
+    "advancing": 24,
     "declining": 18,
-    "unchanged": 4
+    "unchanged": 5
   },
   "screening": {
     "screened": 47,
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.14,
+    "best_sector_avg_change_pct": 1.33,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "2200",
-      "name": "الشركة العربية للأنابيب",
-      "change_pct": 4.92,
-      "value": 54510485.64
+      "symbol": "4260",
+      "name": "الشركة المتحدة الدولية للمواصلات",
+      "change_pct": 4.76,
+      "value": 61214759.04
     }
   },
   "portfolio_exposure": {
