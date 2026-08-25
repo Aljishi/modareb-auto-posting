@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-25T11:07:44",
-  "data_timestamp": "2026-08-25T11:07:22",
+  "generated_at": "2026-08-25T11:12:41",
+  "data_timestamp": "2026-08-25T11:12:19",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.217,
-    "advance_ratio": 0.4681,
-    "dispersion": 1.039,
-    "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 22,
-    "unchanged": 3
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.261,
+    "advance_ratio": 0.4894,
+    "dispersion": 1.106,
+    "dynamic_min_score": 80,
+    "advancing": 23,
+    "declining": 20,
+    "unchanged": 4
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 13,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 16,
     "categories": {
+      "ضعف السيولة أو الحجم": 16,
       "الاتجاه الفني غير مناسب": 13,
-      "العائد مقابل المخاطرة غير مناسب": 11,
-      "ضعف السيولة أو الحجم": 10,
+      "العائد مقابل المخاطرة غير مناسب": 7,
       "الزخم غير مناسب": 5,
-      "أسباب فنية أخرى": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "أسباب فنية أخرى": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.28,
+    "best_sector_avg_change_pct": 0.33,
     "best_sector_members": 42,
     "best_stock": {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
-      "change_pct": 4.33,
-      "value": 24890013.7
+      "change_pct": 5.12,
+      "value": 27109327.02
     }
   },
   "portfolio_exposure": {
