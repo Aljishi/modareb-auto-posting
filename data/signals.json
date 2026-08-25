@@ -1,7 +1,7 @@
 {
   "signals": [],
-  "generated_at": "2026-08-25T14:02:55",
-  "total": 1,
+  "generated_at": "2026-08-25T14:08:06",
+  "total": 2,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
@@ -10,18 +10,18 @@
     "البنوك": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.05,
+      "avg_change_pct": 1.2,
       "advance_ratio": 1.0,
       "members": 2,
-      "total_value": 688552667.8
+      "total_value": 701646095.92
     },
     "المواد الأساسية": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.69,
+      "avg_change_pct": -0.79,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 47781529.4
+      "total_value": 48232535.25
     },
     "الطاقة": {
       "bonus": 0,
@@ -29,23 +29,23 @@
       "avg_change_pct": -0.9,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 181383798.66
+      "total_value": 184671952.56
     },
     "غير مصنف": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 0.74,
-      "advance_ratio": 0.62,
+      "avg_change_pct": 0.77,
+      "advance_ratio": 0.64,
       "members": 42,
-      "total_value": 984301167.67
+      "total_value": 1006779332.94
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.09,
+      "avg_change_pct": -0.74,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1845170.25
+      "total_value": 2732640.9
     }
   },
   "filters": {
@@ -70,16 +70,24 @@
   "status": "NO_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-25T14:02:55",
-  "quality_gate_input_count": 1,
+  "quality_gate_at": "2026-08-25T14:08:06",
+  "quality_gate_input_count": 2,
   "quality_gate_approved_count": 0,
-  "quality_gate_rejected_count": 1,
+  "quality_gate_rejected_count": 2,
   "quality_gate_rejected": [
     {
       "symbol": "1303",
       "rased_score": 84.0,
       "reasons": [
-        "فجوة الدخول 4.90% أعلى من 3.00%"
+        "فجوة الدخول 4.70% أعلى من 3.00%"
+      ]
+    },
+    {
+      "symbol": "1301",
+      "rased_score": 81.0,
+      "reasons": [
+        "RASED SCORE 81.0 أقل من 82.0",
+        "TP2 5.84% أقل من 6.00%"
       ]
     }
   ],
