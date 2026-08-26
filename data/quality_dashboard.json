@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T10:47:44",
-  "data_timestamp": "2026-08-26T10:47:22",
+  "generated_at": "2026-08-26T10:52:51",
+  "data_timestamp": "2026-08-26T10:52:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,39 +15,38 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.105,
-    "advance_ratio": 0.4681,
-    "dispersion": 1.668,
+    "average_change_pct": 0.039,
+    "advance_ratio": 0.4468,
+    "dispersion": 1.563,
     "dynamic_min_score": 81,
-    "advancing": 22,
-    "declining": 22,
-    "unchanged": 3
+    "advancing": 21,
+    "declining": 24,
+    "unchanged": 2
   },
   "screening": {
     "screened": 45,
-    "rejected": 45,
+    "rejected": 44,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 12,
+    "dominant_rejection": "العائد مقابل المخاطرة غير مناسب",
+    "dominant_rejection_count": 11,
     "categories": {
-      "ضعف السيولة أو الحجم": 12,
-      "العائد مقابل المخاطرة غير مناسب": 10,
-      "الاتجاه الفني غير مناسب": 10,
-      "أسباب فنية أخرى": 7,
-      "الزخم غير مناسب": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "العائد مقابل المخاطرة غير مناسب": 11,
+      "الاتجاه الفني غير مناسب": 11,
+      "ضعف السيولة أو الحجم": 10,
+      "الزخم غير مناسب": 7,
+      "أسباب فنية أخرى": 5
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.14,
+    "best_sector_avg_change_pct": 0.06,
     "best_sector_members": 42,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 9.94,
-      "value": 18938321.71
+      "change_pct": 9.35,
+      "value": 23029530.15
     }
   },
   "portfolio_exposure": {
