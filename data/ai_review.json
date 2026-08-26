@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-26T12:52:54",
+  "reviewed_at": "2026-08-26T12:57:50",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -15,7 +15,7 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum with a high score of 99",
-        "Low risk with a risk score of 3",
+        "Low risk level with a risk score of 3",
         "Clear setup with healthy RSI and strong volume confirmation"
       ]
     }
