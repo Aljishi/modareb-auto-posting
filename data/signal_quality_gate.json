@@ -1,7 +1,7 @@
 {
-  "status": "PASS",
+  "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-26T14:47:42",
+  "generated_at": "2026-08-26T14:52:51",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
@@ -21,16 +21,16 @@
     "max_signals": 3
   },
   "input_count": 1,
-  "approved_count": 1,
-  "rejected_count": 0,
-  "approved": [
+  "approved_count": 0,
+  "rejected_count": 1,
+  "approved": [],
+  "rejected": [
     {
       "symbol": "7204",
       "rased_score": 84.5,
-      "quality_score": 95.92,
-      "rr": 2.0,
-      "risk": "متوسط"
+      "reasons": [
+        "فجوة الدخول 3.13% أعلى من 3.00%"
+      ]
     }
-  ],
-  "rejected": []
+  ]
 }
