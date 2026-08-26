@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-26T13:52:54",
+  "reviewed_at": "2026-08-26T13:58:14",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -14,9 +14,9 @@
       "rased_score": 83.9,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum with a score of 99",
-        "Healthy RSI at 62.62",
-        "High volume ratio of 2.56",
+        "Strong momentum with a high score of 99",
+        "Healthy RSI at 62.26",
+        "Strong volume confirmation with a ratio of 2.6",
         "Clear upward trend with realistic targets"
       ]
     }
