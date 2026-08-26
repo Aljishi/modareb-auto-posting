@@ -1,23 +1,23 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-11T12:26:20",
+  "reviewed_at": "2026-08-26T10:04:25",
   "approved": 1,
   "total": 1,
   "signals": [
     {
-      "stock_symbol": "8311",
+      "stock_symbol": "2200",
       "decision": "APPROVE",
-      "confidence": 92,
+      "confidence": 96,
       "risk_level": "LOW",
-      "expected_holding_days": 2,
-      "rased_score": 79.0,
+      "expected_holding_days": 3,
+      "rased_score": 82.1,
       "tier": "Standard",
       "reasons": [
-        "Strong momentum setup",
-        "High confidence score",
-        "Low risk level",
-        "Clear technical indicators"
+        "Strong momentum with a score of 96",
+        "Healthy RSI at 63.3",
+        "High volume ratio of 3.14",
+        "Clear upward trend with realistic targets"
       ]
     }
   ]
