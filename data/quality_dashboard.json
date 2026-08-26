@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T10:17:52",
-  "data_timestamp": "2026-08-26T10:17:25",
+  "generated_at": "2026-08-26T10:22:53",
+  "data_timestamp": "2026-08-26T10:22:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -14,39 +14,39 @@
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
-    "posture": "",
-    "average_change_pct": 0.659,
-    "advance_ratio": 0.5106,
-    "dispersion": 1.523,
-    "dynamic_min_score": null,
-    "advancing": 24,
-    "declining": 18,
+    "posture": "انتقائي",
+    "average_change_pct": 0.055,
+    "advance_ratio": 0.3617,
+    "dispersion": 0.793,
+    "dynamic_min_score": 80,
+    "advancing": 17,
+    "declining": 25,
     "unchanged": 5
   },
   "screening": {
     "screened": 47,
-    "rejected": 45,
-    "generated": 1,
+    "rejected": 47,
+    "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 15,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 24,
     "categories": {
-      "الاتجاه الفني غير مناسب": 15,
-      "الزخم غير مناسب": 9,
-      "العائد مقابل المخاطرة غير مناسب": 8,
-      "أسباب فنية أخرى": 8,
-      "ضعف السيولة أو الحجم": 5
+      "ضعف السيولة أو الحجم": 24,
+      "الاتجاه الفني غير مناسب": 8,
+      "العائد مقابل المخاطرة غير مناسب": 7,
+      "الزخم غير مناسب": 6,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
-    "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 1.33,
-    "best_sector_members": 2,
+    "best_sector": "غير مصنف",
+    "best_sector_avg_change_pct": 0.07,
+    "best_sector_members": 42,
     "best_stock": {
-      "symbol": "4260",
-      "name": "الشركة المتحدة الدولية للمواصلات",
-      "change_pct": 4.76,
-      "value": 61214759.04
+      "symbol": "8311",
+      "name": "شركة عناية السعودية للتأمين التعاوني",
+      "change_pct": 3.94,
+      "value": 3196934.4
     }
   },
   "portfolio_exposure": {
