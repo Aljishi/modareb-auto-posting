@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-26T13:12:55",
+  "generated_at": "2026-08-26T13:17:56",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
