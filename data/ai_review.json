@@ -1,7 +1,7 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-26T11:52:53",
+  "reviewed_at": "2026-08-26T11:57:47",
   "approved": 1,
   "total": 1,
   "signals": [
@@ -15,9 +15,9 @@
       "tier": "Standard",
       "reasons": [
         "Strong momentum with a high score of 99",
-        "RSI is healthy at 62.96",
-        "Volume ratio indicates strong liquidity",
-        "Targets are realistic within the expected holding period"
+        "Healthy RSI at 62.96",
+        "Good volume confirmation with a ratio of 2.21",
+        "Clear setup with realistic targets within 7 days"
       ]
     }
   ]
