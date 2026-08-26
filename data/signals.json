@@ -110,12 +110,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.3 — سيولة قوية جداً 3.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.7% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381007-2200",
+      "signal_id": "Signal #2026-2381012-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T10:07:41",
+      "generated_at": "2026-08-26T10:12:44",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "quality_gate_passed": true,
       "quality_gate_version": "rased_quality_gate_v10",
@@ -130,15 +130,14 @@
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "Strong momentum with a score of 96",
+          "Strong momentum with a high score of 96",
           "Low risk with a risk score of 3",
-          "Healthy RSI at 63.3",
-          "Strong volume confirmation with a ratio of 3.14",
-          "Realistic target within expected holding days"
+          "Clear setup with healthy volume confirmation",
+          "Targets achievable within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي ومخاطر منخفضة.",
-        "telegram_note": "إشارة شراء قوية على 2200 مع أهداف منطقية وزخم صحي."
+        "arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -146,15 +145,14 @@
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "Strong momentum with a score of 96",
+        "Strong momentum with a high score of 96",
         "Low risk with a risk score of 3",
-        "Healthy RSI at 63.3",
-        "Strong volume confirmation with a ratio of 3.14",
-        "Realistic target within expected holding days"
+        "Clear setup with healthy volume confirmation",
+        "Targets achievable within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي ومخاطر منخفضة.",
-      "ai_telegram_note": "إشارة شراء قوية على 2200 مع أهداف منطقية وزخم صحي.",
-      "ai_reviewed_at": "2026-08-26T10:08:06",
+      "ai_arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-26T10:13:03",
       "raw_ai_confidence": 96.0,
       "historical_confidence": 33.3,
       "calibrated_confidence": 91.3,
@@ -175,11 +173,11 @@
         "historical_weight": 0.075,
         "calibrated_confidence": 91.3,
         "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T10:08:07"
+        "calibrated_at": "2026-08-26T10:13:04"
       }
     }
   ],
-  "generated_at": "2026-08-26T10:08:02",
+  "generated_at": "2026-08-26T10:12:59",
   "total": 2,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -249,7 +247,7 @@
   "status": "HAS_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-26T10:08:02",
+  "quality_gate_at": "2026-08-26T10:12:59",
   "quality_gate_input_count": 2,
   "quality_gate_approved_count": 1,
   "quality_gate_rejected_count": 1,
@@ -266,8 +264,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-26T10:08:06",
+  "ai_reviewed_at": "2026-08-26T10:13:03",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-26T10:08:07",
+  "confidence_calibrated_at": "2026-08-26T10:13:04",
   "confidence_closed_history_sample": 4
 }
