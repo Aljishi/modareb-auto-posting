@@ -1,7 +1,7 @@
 {
   "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-26T10:56:42",
+  "generated_at": "2026-08-26T11:03:28",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
@@ -30,7 +30,7 @@
       "rased_score": 82.5,
       "reasons": [
         "TP2 5.79% أقل من 6.00%",
-        "فجوة الدخول 3.91% أعلى من 3.00%"
+        "فجوة الدخول 3.29% أعلى من 3.00%"
       ]
     }
   ]
