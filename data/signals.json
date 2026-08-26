@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.3 — سيولة قوية 2.6x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.3% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381402-7204",
+      "signal_id": "Signal #2026-2381405-7204",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T14:02:44",
+      "generated_at": "2026-08-26T14:05:20",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "quality_gate_passed": true,
       "quality_gate_version": "rased_quality_gate_v10",
@@ -133,13 +133,13 @@
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum with a high score of 99",
-          "Healthy RSI at 62.26",
-          "Strong volume confirmation with a ratio of 2.62",
-          "Clear upward trend with realistic targets"
+          "RSI is healthy at 62.26",
+          "Volume ratio indicates strong buying interest",
+          "Targets are realistic within the expected holding period"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على سهم 7204 مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 7204، استعد لتحقيق أهداف سريعة!"
+        "arabic_summary": "إشارة شراء قوية مع زخم صحي وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 7204 مع زخم إيجابي وأهداف منطقية."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 99,
@@ -148,13 +148,13 @@
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum with a high score of 99",
-        "Healthy RSI at 62.26",
-        "Strong volume confirmation with a ratio of 2.62",
-        "Clear upward trend with realistic targets"
+        "RSI is healthy at 62.26",
+        "Volume ratio indicates strong buying interest",
+        "Targets are realistic within the expected holding period"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على سهم 7204 مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 7204، استعد لتحقيق أهداف سريعة!",
-      "ai_reviewed_at": "2026-08-26T14:02:57",
+      "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 7204 مع زخم إيجابي وأهداف منطقية.",
+      "ai_reviewed_at": "2026-08-26T14:05:33",
       "raw_ai_confidence": 99.0,
       "historical_confidence": 33.3,
       "calibrated_confidence": 94.1,
@@ -175,11 +175,11 @@
         "historical_weight": 0.075,
         "calibrated_confidence": 94.1,
         "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T14:02:57"
+        "calibrated_at": "2026-08-26T14:05:33"
       }
     }
   ],
-  "generated_at": "2026-08-26T14:02:51",
+  "generated_at": "2026-08-26T14:05:29",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -249,7 +249,7 @@
   "status": "HAS_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-26T14:02:51",
+  "quality_gate_at": "2026-08-26T14:05:29",
   "quality_gate_input_count": 1,
   "quality_gate_approved_count": 1,
   "quality_gate_rejected_count": 0,
@@ -257,8 +257,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-26T14:02:57",
+  "ai_reviewed_at": "2026-08-26T14:05:33",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-26T14:02:57",
+  "confidence_calibrated_at": "2026-08-26T14:05:33",
   "confidence_closed_history_sample": 4
 }
