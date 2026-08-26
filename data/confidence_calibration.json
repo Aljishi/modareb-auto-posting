@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_confidence_calibration_v1",
-  "generated_at": "2026-08-26T10:17:52",
+  "generated_at": "2026-08-26T11:37:46",
   "configuration": {
     "minimum_group_sample": 8,
     "full_weight_sample": 30,
@@ -69,11 +69,11 @@
   },
   "signals": [
     {
-      "symbol": "2200",
-      "rased_score": 82.1,
-      "raw_ai_confidence": 96.0,
+      "symbol": "7204",
+      "rased_score": 83.9,
+      "raw_ai_confidence": 99.0,
       "historical_confidence": 33.3,
-      "calibrated_confidence": 91.3,
+      "calibrated_confidence": 94.1,
       "source": "tier",
       "sample_size": 4,
       "label": "معايرة أولية — عينة 4"
