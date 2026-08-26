@@ -112,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.3 — سيولة قوية 2.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.7% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381142-7204",
+      "signal_id": "Signal #2026-2381147-7204",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T11:42:35",
+      "generated_at": "2026-08-26T11:47:31",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "quality_gate_passed": true,
       "quality_gate_version": "rased_quality_gate_v10",
@@ -134,8 +134,8 @@
         "main_reasons": [
           "Strong momentum with a score of 99",
           "Healthy RSI at 63.3",
-          "Good volume confirmation with a ratio of 2.15",
-          "Clear setup with realistic targets within 7 days"
+          "Good volume ratio of 2.15",
+          "Clear upward trend with realistic targets"
         ],
         "rejection_reason": "",
         "arabic_summary": "إشارة شراء قوية على سهم 7204 مع زخم صحي وأهداف منطقية.",
@@ -149,12 +149,12 @@
       "ai_reasons": [
         "Strong momentum with a score of 99",
         "Healthy RSI at 63.3",
-        "Good volume confirmation with a ratio of 2.15",
-        "Clear setup with realistic targets within 7 days"
+        "Good volume ratio of 2.15",
+        "Clear upward trend with realistic targets"
       ],
       "ai_arabic_summary": "إشارة شراء قوية على سهم 7204 مع زخم صحي وأهداف منطقية.",
       "ai_telegram_note": "إشارة شراء قوية على 7204 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-26T11:42:52",
+      "ai_reviewed_at": "2026-08-26T11:47:46",
       "raw_ai_confidence": 99.0,
       "historical_confidence": 33.3,
       "calibrated_confidence": 94.1,
@@ -175,11 +175,11 @@
         "historical_weight": 0.075,
         "calibrated_confidence": 94.1,
         "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T11:42:53"
+        "calibrated_at": "2026-08-26T11:47:46"
       }
     }
   ],
-  "generated_at": "2026-08-26T11:42:49",
+  "generated_at": "2026-08-26T11:47:42",
   "total": 1,
   "total_screened": 45,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -249,7 +249,7 @@
   "status": "HAS_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-26T11:42:49",
+  "quality_gate_at": "2026-08-26T11:47:42",
   "quality_gate_input_count": 1,
   "quality_gate_approved_count": 1,
   "quality_gate_rejected_count": 0,
@@ -257,8 +257,8 @@
   "ai_reviewed": true,
   "ai_available": true,
   "ai_model": "gpt-4o-mini",
-  "ai_reviewed_at": "2026-08-26T11:42:52",
+  "ai_reviewed_at": "2026-08-26T11:47:46",
   "confidence_calibration_applied": true,
-  "confidence_calibrated_at": "2026-08-26T11:42:53",
+  "confidence_calibrated_at": "2026-08-26T11:47:46",
   "confidence_closed_history_sample": 4
 }
