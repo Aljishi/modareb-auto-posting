@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T14:17:49",
-  "data_timestamp": "2026-08-26T14:17:23",
+  "generated_at": "2026-08-26T14:27:46",
+  "data_timestamp": "2026-08-26T14:27:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,27 +15,27 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": 0.199,
-    "advance_ratio": 0.5957,
-    "dispersion": 1.921,
+    "average_change_pct": 0.198,
+    "advance_ratio": 0.5532,
+    "dispersion": 1.902,
     "dynamic_min_score": null,
-    "advancing": 28,
-    "declining": 17,
-    "unchanged": 2
+    "advancing": 26,
+    "declining": 18,
+    "unchanged": 3
   },
   "screening": {
-    "screened": 47,
-    "rejected": 46,
+    "screened": 45,
+    "rejected": 44,
     "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 15,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 15,
-      "ضعف السيولة أو الحجم": 11,
-      "أسباب فنية أخرى": 7,
-      "الزخم غير مناسب": 7,
-      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الاتجاه الفني غير مناسب": 14,
+      "العائد مقابل المخاطرة غير مناسب": 10,
+      "أسباب فنية أخرى": 9,
+      "ضعف السيولة أو الحجم": 5,
+      "الزخم غير مناسب": 4,
       "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
@@ -53,7 +53,7 @@
   "portfolio_exposure": {
     "active_open_positions": 1,
     "approved_after_gate": 0,
-    "rejected_by_gate": 1
+    "rejected_by_gate": 0
   },
   "confidence_calibration": {
     "status": "PASS",
