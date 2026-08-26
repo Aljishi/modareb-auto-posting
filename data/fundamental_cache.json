@@ -625,7 +625,7 @@
       }
     },
     "4005": {
-      "cached_at": "2026-08-20T10:02:57",
+      "cached_at": "2026-08-26T12:03:01",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -788,8 +788,8 @@
         },
         "dividends": {
           "symbol": "4005",
-          "current_price": 126.0,
-          "trailing_12m_yield": 2.38,
+          "current_price": 125.0,
+          "trailing_12m_yield": 2.4,
           "trailing_12m_dividends": 3.0,
           "payments_last_year": 1,
           "upcoming": [],
