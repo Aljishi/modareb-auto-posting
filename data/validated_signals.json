@@ -1,5 +1,7 @@
 {
-  "signals": [
+  "signals": [],
+  "validated_signals": [],
+  "rejected": [
     {
       "stock_symbol": "2200",
       "symbol": "2200",
@@ -110,12 +112,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.3 — سيولة قوية جداً 3.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.7% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381003-2200",
+      "signal_id": "Signal #2026-2381007-2200",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T10:03:46",
+      "generated_at": "2026-08-26T10:07:41",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "quality_gate_passed": true,
       "quality_gate_version": "rased_quality_gate_v10",
@@ -131,13 +133,14 @@
         "expected_holding_days": 3,
         "main_reasons": [
           "Strong momentum with a score of 96",
+          "Low risk with a risk score of 3",
           "Healthy RSI at 63.3",
-          "High volume ratio of 3.14",
-          "Clear upward trend with realistic targets"
+          "Strong volume confirmation with a ratio of 3.14",
+          "Realistic target within expected holding days"
         ],
         "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي."
+        "arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي ومخاطر منخفضة.",
+        "telegram_note": "إشارة شراء قوية على 2200 مع أهداف منطقية وزخم صحي."
       },
       "ai_decision": "APPROVE",
       "ai_confidence": 96,
@@ -146,13 +149,14 @@
       "ai_expected_holding_days": 3,
       "ai_reasons": [
         "Strong momentum with a score of 96",
+        "Low risk with a risk score of 3",
         "Healthy RSI at 63.3",
-        "High volume ratio of 3.14",
-        "Clear upward trend with realistic targets"
+        "Strong volume confirmation with a ratio of 3.14",
+        "Realistic target within expected holding days"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-26T10:04:25",
+      "ai_arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي ومخاطر منخفضة.",
+      "ai_telegram_note": "إشارة شراء قوية على 2200 مع أهداف منطقية وزخم صحي.",
+      "ai_reviewed_at": "2026-08-26T10:08:06",
       "raw_ai_confidence": 96.0,
       "historical_confidence": 33.3,
       "calibrated_confidence": 91.3,
@@ -173,238 +177,42 @@
         "historical_weight": 0.075,
         "calibrated_confidence": 91.3,
         "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T10:04:25"
+        "calibrated_at": "2026-08-26T10:08:07"
       },
       "market_regime": "NORMAL",
       "market_regime_ar": "طبيعي",
       "dynamic_min_rased_score": 80.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-26T10:04:25",
+      "post_checked_at": "2026-08-26T10:08:07",
       "post_approved": true,
       "post_rejected_reasons": [],
       "post_approval_source": "openai_and_dynamic_python",
-      "portfolio_exposure_approved": true,
-      "portfolio_exposure_reasons": [],
-      "portfolio_exposure_decision": {
-        "checked_at": "2026-08-26T10:04:25",
-        "symbol": "2200",
-        "name": "الشركة العربية للأنابيب",
-        "sector": "غير مصنف",
-        "existing_open_positions": 0,
-        "existing_sector_positions": 0,
-        "max_open_positions": 4,
-        "max_positions_per_sector": 1
-      }
-    }
-  ],
-  "validated_signals": [
-    {
-      "stock_symbol": "2200",
-      "symbol": "2200",
-      "stock_name": "الشركة العربية للأنابيب",
-      "name": "الشركة العربية للأنابيب",
-      "sector": "غير مصنف",
-      "sector_name": "غير مصنف",
-      "current_price": 5.32,
-      "entry_point": 5.43,
-      "entry": 5.43,
-      "target1": 5.69,
-      "target2": 5.79,
-      "stop_loss": 5.25,
-      "target1_percent": 4.79,
-      "target2_percent": 6.63,
-      "stop_loss_percent": 3.31,
-      "tp1_pct": 4.79,
-      "tp2_pct": 6.63,
-      "sl_pct": -3.31,
-      "rr": 2.0,
-      "rr_ratio": 2.0,
-      "score": 96,
-      "technical_score": 94,
-      "sector_strength_bonus": 2,
-      "sector_strength_grade": "محايد إيجابي",
-      "sector_strength_raw": {
-        "available": true,
-        "bonus": 2,
-        "grade": "محايد إيجابي",
-        "avg_change_pct": 0.74,
-        "advance_ratio": 0.55,
-        "members": 42,
-        "total_value": 1369204023.95
-      },
-      "backtest_bonus": 0,
-      "backtest_grade": "عينة صغيرة",
-      "backtest_win_rate": 0,
-      "backtest_trades": 1,
-      "backtest_raw": {
-        "available": false,
-        "bonus": 0,
-        "grade": "عينة صغيرة",
-        "win_rate": 0,
-        "trades": 1
-      },
-      "self_learning_bonus": 0,
-      "self_learning_available": false,
-      "self_learning_known_outcomes": 0,
-      "self_learning_notes": [],
-      "fundamental_bonus": 0,
-      "fundamental_grade": "محايد",
-      "fundamental_reading": "أساسيات غير متوفرة | لا توجد قوائم مالية كافية | لا يوجد محفز توزيعات واضح",
-      "fundamental_raw": {
-        "quality": {
-          "bonus": 0,
-          "grade": "غير متوفر",
-          "details": "أساسيات غير متوفرة",
-          "raw": {}
-        },
-        "growth": {
-          "bonus": 0,
-          "grade": "غير متوفر",
-          "details": "لا توجد قوائم مالية كافية",
-          "raw": {}
-        },
-        "dividend": {
-          "bonus": 0,
-          "grade": "محايد",
-          "details": "لا يوجد محفز توزيعات واضح",
-          "raw": {
-            "recent": false,
-            "yield": 0.0,
-            "amount": 0.0
-          }
-        }
-      },
-      "growth_bonus": 0,
-      "dividend_bonus": 0,
-      "rased_score": 82.1,
-      "tier": "Standard",
-      "tier_emoji": "✅",
-      "risk_level": "منخفض",
-      "risk_level_ar": "منخفض",
-      "risk_emoji": "🟢",
-      "confidence": "91.3%",
-      "rsi": 63.27,
-      "volume_ratio": 3.14,
-      "atr14": 0.1436,
-      "atr_pct": 2.7,
-      "support": 4.83,
-      "resistance": 5.41,
-      "trend": "صاعد",
-      "trend_values": {
-        "sma10": 5.096,
-        "sma20": 5.048
-      },
-      "setup_type": "دخول مشروط فوق المقاومة",
-      "breakout": false,
-      "entry_gap_pct": 2.07,
-      "value": 56938060.76,
-      "expected_holding_period": "1-7 أيام",
-      "holding_period": "1 - 7 أيام",
-      "max_holding_days": 7,
-      "expected_days_to_target1": 2,
-      "expected_days_to_target2": 3,
-      "seven_day_filter_passed": true,
-      "max_reasonable_7d_pct": 14.85,
-      "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 63.3 — سيولة قوية جداً 3.1x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +4.7% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
-      "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
-      "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381003-2200",
-      "data_source": "sahmk_api_historical_starter_plus",
-      "provider": "sahmk",
-      "historical_bars": 71,
-      "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T10:03:46",
-      "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
-      "quality_gate_passed": true,
-      "quality_gate_version": "rased_quality_gate_v10",
-      "quality_score": 90.28,
-      "chase_warning": false,
-      "ai_available": true,
-      "ai_review": {
-        "decision": "APPROVE",
-        "confidence": 96,
-        "risk_level": "LOW",
-        "risk_score": 3,
-        "rased_score_adjustment": 0,
-        "expected_holding_days": 3,
-        "main_reasons": [
-          "Strong momentum with a score of 96",
-          "Healthy RSI at 63.3",
-          "High volume ratio of 3.14",
-          "Clear upward trend with realistic targets"
-        ],
-        "rejection_reason": "",
-        "arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وأهداف منطقية.",
-        "telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي."
-      },
-      "ai_decision": "APPROVE",
-      "ai_confidence": 96,
-      "ai_risk_level": "LOW",
-      "ai_risk_score": 3,
-      "ai_expected_holding_days": 3,
-      "ai_reasons": [
-        "Strong momentum with a score of 96",
-        "Healthy RSI at 63.3",
-        "High volume ratio of 3.14",
-        "Clear upward trend with realistic targets"
+      "portfolio_exposure_approved": false,
+      "portfolio_exposure_reasons": [
+        "توجد إشارة مفتوحة بالفعل على السهم 2200",
+        "التعرض لقطاع غير مصنف بلغ الحد 1"
       ],
-      "ai_arabic_summary": "إشارة شراء قوية على السهم 2200 مع زخم صحي وأهداف منطقية.",
-      "ai_telegram_note": "إشارة شراء قوية على 2200 مع أهداف قريبة وزخم إيجابي.",
-      "ai_reviewed_at": "2026-08-26T10:04:25",
-      "raw_ai_confidence": 96.0,
-      "historical_confidence": 33.3,
-      "calibrated_confidence": 91.3,
-      "confidence_calibrated": true,
-      "confidence_source": "tier",
-      "confidence_label": "معايرة أولية — عينة 4",
-      "confidence_sample_size": 4,
-      "confidence_successes": 0,
-      "confidence_failures": 4,
-      "confidence_historical_weight": 0.075,
-      "confidence_calibration": {
-        "source": "tier",
-        "sample_size": 4,
-        "successes": 0,
-        "failures": 4,
-        "raw_ai_confidence": 96.0,
-        "historical_confidence": 33.3,
-        "historical_weight": 0.075,
-        "calibrated_confidence": 91.3,
-        "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T10:04:25"
-      },
-      "market_regime": "NORMAL",
-      "market_regime_ar": "طبيعي",
-      "dynamic_min_rased_score": 80.0,
-      "borderline_approval": false,
-      "post_checked_at": "2026-08-26T10:04:25",
-      "post_approved": true,
-      "post_rejected_reasons": [],
-      "post_approval_source": "openai_and_dynamic_python",
-      "portfolio_exposure_approved": true,
-      "portfolio_exposure_reasons": [],
       "portfolio_exposure_decision": {
-        "checked_at": "2026-08-26T10:04:25",
+        "checked_at": "2026-08-26T10:08:07",
         "symbol": "2200",
         "name": "الشركة العربية للأنابيب",
         "sector": "غير مصنف",
-        "existing_open_positions": 0,
-        "existing_sector_positions": 0,
+        "existing_open_positions": 1,
+        "existing_sector_positions": 1,
         "max_open_positions": 4,
         "max_positions_per_sector": 1
       }
     }
   ],
-  "rejected": [],
-  "total": 1,
+  "total": 0,
   "total_generated": 1,
-  "total_approved": 1,
-  "total_rejected": 0,
-  "status": "HAS_VALID_SIGNALS",
+  "total_approved": 0,
+  "total_rejected": 1,
+  "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-26T10:04:21",
-  "generated_at": "2026-08-26T10:04:25",
+  "source_generated_at": "2026-08-26T10:08:02",
+  "generated_at": "2026-08-26T10:08:07",
   "market_regime": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
@@ -428,8 +236,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-26T10:02:58",
-    "generated_at": "2026-08-26T10:04:25"
+    "daily_generated_at": "2026-08-26T10:07:30",
+    "generated_at": "2026-08-26T10:08:07"
   },
   "applied_limits": {
     "dynamic_rased_score": {
@@ -465,13 +273,13 @@
     }
   },
   "portfolio_exposure_checked": true,
-  "portfolio_exposure_checked_at": "2026-08-26T10:04:25",
+  "portfolio_exposure_checked_at": "2026-08-26T10:08:07",
   "portfolio_exposure": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
     "block_duplicate_symbol": true,
-    "active_positions_before_gate": 0,
-    "approved_after_gate": 1,
-    "rejected_by_exposure_gate": 0
+    "active_positions_before_gate": 1,
+    "approved_after_gate": 0,
+    "rejected_by_exposure_gate": 1
   }
 }

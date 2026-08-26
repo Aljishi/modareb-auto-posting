@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-26T10:04:25",
-  "status": "PASS",
+  "generated_at": "2026-08-26T10:08:07",
+  "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
   "configuration": {
     "max_open_positions": 4,
     "max_positions_per_sector": 1,
@@ -10,18 +10,35 @@
     "max_stale_open_days": 10
   },
   "input_validated_signals": 1,
-  "approved_signals": 1,
-  "rejected_signals": 0,
-  "active_open_positions": 0,
-  "current_sector_exposure": {},
-  "open_positions": [],
-  "approved": [
+  "approved_signals": 0,
+  "rejected_signals": 1,
+  "active_open_positions": 1,
+  "current_sector_exposure": {
+    "غير مصنف": 1
+  },
+  "open_positions": [
     {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
       "sector": "غير مصنف",
-      "rased_score": 82.1
+      "status": "OPEN",
+      "opened_at": "2026-08-26T10:04:36",
+      "max_holding_days": 7,
+      "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/open_signals.json",
+      "signal_id": "Signal #2026-2381003-2200"
     }
   ],
-  "rejected": []
+  "approved": [],
+  "rejected": [
+    {
+      "symbol": "2200",
+      "name": "الشركة العربية للأنابيب",
+      "sector": "غير مصنف",
+      "rased_score": 82.1,
+      "reasons": [
+        "توجد إشارة مفتوحة بالفعل على السهم 2200",
+        "التعرض لقطاع غير مصنف بلغ الحد 1"
+      ]
+    }
+  ]
 }

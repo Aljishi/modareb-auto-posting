@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T10:04:36",
-  "data_timestamp": "2026-08-26T10:02:58",
+  "generated_at": "2026-08-26T10:08:07",
+  "data_timestamp": "2026-08-26T10:07:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -27,16 +27,15 @@
     "screened": 47,
     "rejected": 45,
     "generated": 1,
-    "validated": 1,
+    "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 17,
+    "dominant_rejection_count": 15,
     "categories": {
-      "الاتجاه الفني غير مناسب": 17,
-      "ضعف السيولة أو الحجم": 9,
-      "أسباب فنية أخرى": 7,
-      "الزخم غير مناسب": 6,
-      "العائد مقابل المخاطرة غير مناسب": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "الاتجاه الفني غير مناسب": 15,
+      "الزخم غير مناسب": 9,
+      "العائد مقابل المخاطرة غير مناسب": 8,
+      "أسباب فنية أخرى": 8,
+      "ضعف السيولة أو الحجم": 5
     }
   },
   "leadership": {
@@ -51,22 +50,14 @@
     }
   },
   "portfolio_exposure": {
-    "active_open_positions": 0,
-    "approved_after_gate": 1,
-    "rejected_by_gate": 0
+    "active_open_positions": 1,
+    "approved_after_gate": 0,
+    "rejected_by_gate": 1
   },
   "confidence_calibration": {
     "status": "PASS",
     "closed_history_sample": 4,
     "signals_calibrated": 1
   },
-  "validated_signals": [
-    {
-      "symbol": "2200",
-      "name": "الشركة العربية للأنابيب",
-      "sector": "غير مصنف",
-      "rased_score": 82.1,
-      "confidence": 91.3
-    }
-  ]
+  "validated_signals": []
 }
