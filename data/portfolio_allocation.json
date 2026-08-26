@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-26T10:04:36",
-  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/validated_signals.json",
+  "generated_at": "2026-08-26T14:22:35",
+  "source": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/signals.json",
   "capital_sar": 500000.0,
   "max_position_pct": 35.0,
   "min_cash_pct": 10.0,
   "positions": [
     {
-      "symbol": "2200",
-      "name": "الشركة العربية للأنابيب",
+      "symbol": "7204",
+      "name": "شركة العرض المتقن للخدمات التجارية",
       "sector": "غير مصنف",
       "tier": "Standard",
-      "rased_score": 82.1,
-      "entry": 5.43,
-      "target1": 5.69,
-      "target2": 5.79,
-      "stop_loss": 5.25,
+      "rased_score": 83.9,
+      "entry": 6.91,
+      "target1": 7.21,
+      "target2": 7.33,
+      "stop_loss": 6.7,
       "weight_pct": 35.0,
       "amount_sar": 175000.0,
-      "position_risk_pct": 3.31,
-      "portfolio_risk_pct": 1.16
+      "position_risk_pct": 3.04,
+      "portfolio_risk_pct": 1.06
     }
   ],
   "cash": {
@@ -28,6 +28,6 @@
   "sector_exposure": {
     "غير مصنف": 35.0
   },
-  "total_portfolio_risk_pct": 1.16,
+  "total_portfolio_risk_pct": 1.06,
   "note": "توزيع آلي مبني على جودة الإشارة وليس توصية شخصية. التزم بوقف الخسارة."
 }
