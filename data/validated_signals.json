@@ -114,12 +114,12 @@
       "technical_reading": "اتجاه صاعد مؤكد — زخم صحي RSI 62.6 — سيولة قوية 2.4x — قريب من اختراق مقاومة مهمة — زخم يومي صحي +2.4% — قيمة تداول مناسبة — الهدف الثاني منطقي زمنياً",
       "signal_reason": "اجتازت فلاتر راصد الفنية مع تقييم القطاع، النمو المالي، التوزيعات، الباك تست، والتعلم الذاتي عند توفر البيانات.",
       "key_insight": "الإشارة مرشحة لمضاربة قصيرة المدى خلال 1-7 أيام بشرط الالتزام بوقف الخسارة.",
-      "signal_id": "Signal #2026-2381242-7204",
+      "signal_id": "Signal #2026-2381247-7204",
       "data_source": "sahmk_api_historical_starter_plus",
       "provider": "sahmk",
       "historical_bars": 71,
       "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
-      "generated_at": "2026-08-26T12:42:44",
+      "generated_at": "2026-08-26T12:47:40",
       "disclaimer": "لا يوجد ضمان لتحقيق الأهداف خلال 7 أيام. هذه قراءة فنية آلية فقط.",
       "quality_gate_passed": true,
       "quality_gate_version": "rased_quality_gate_v10",
@@ -127,32 +127,36 @@
       "chase_warning": false,
       "ai_available": true,
       "ai_review": {
-        "decision": "REJECT",
+        "decision": "APPROVE",
         "confidence": 99,
         "risk_level": "LOW",
         "risk_score": 3,
         "rased_score_adjustment": 0,
         "expected_holding_days": 3,
         "main_reasons": [
-          "TP2 looks unrealistic within 7 days.",
-          "Setup is not clear."
+          "Strong momentum with a high score of 99",
+          "Healthy RSI at 62.62",
+          "Strong volume confirmation with a ratio of 2.37",
+          "Clear upward trend with realistic targets within 7 days"
         ],
-        "rejection_reason": "TP2 looks unrealistic within 7 days.",
-        "arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام.",
-        "telegram_note": "الإشارة غير واضحة، لذا تم رفضها."
+        "rejection_reason": "",
+        "arabic_summary": "إشارة شراء قوية مع زخم صحي وهدف منطقي.",
+        "telegram_note": "إشارة شراء قوية على 7204 مع أهداف واضحة وزخم إيجابي."
       },
-      "ai_decision": "REJECT",
+      "ai_decision": "APPROVE",
       "ai_confidence": 99,
       "ai_risk_level": "LOW",
       "ai_risk_score": 3,
       "ai_expected_holding_days": 3,
       "ai_reasons": [
-        "TP2 looks unrealistic within 7 days.",
-        "Setup is not clear."
+        "Strong momentum with a high score of 99",
+        "Healthy RSI at 62.62",
+        "Strong volume confirmation with a ratio of 2.37",
+        "Clear upward trend with realistic targets within 7 days"
       ],
-      "ai_arabic_summary": "تم رفض الإشارة بسبب عدم واقعية الهدف الثاني خلال 7 أيام.",
-      "ai_telegram_note": "الإشارة غير واضحة، لذا تم رفضها.",
-      "ai_reviewed_at": "2026-08-26T12:42:58",
+      "ai_arabic_summary": "إشارة شراء قوية مع زخم صحي وهدف منطقي.",
+      "ai_telegram_note": "إشارة شراء قوية على 7204 مع أهداف واضحة وزخم إيجابي.",
+      "ai_reviewed_at": "2026-08-26T12:47:55",
       "raw_ai_confidence": 99.0,
       "historical_confidence": 33.3,
       "calibrated_confidence": 94.1,
@@ -173,17 +177,30 @@
         "historical_weight": 0.075,
         "calibrated_confidence": 94.1,
         "label": "معايرة أولية — عينة 4",
-        "calibrated_at": "2026-08-26T12:42:58"
+        "calibrated_at": "2026-08-26T12:47:56"
       },
       "market_regime": "NORMAL",
       "market_regime_ar": "طبيعي",
       "dynamic_min_rased_score": 80.0,
       "borderline_approval": false,
-      "post_checked_at": "2026-08-26T12:42:58",
-      "post_approved": false,
-      "post_rejected_reasons": [
-        "مراجعة OpenAI رفضت الإشارة: TP2 looks unrealistic within 7 days."
-      ]
+      "post_checked_at": "2026-08-26T12:47:56",
+      "post_approved": true,
+      "post_rejected_reasons": [],
+      "post_approval_source": "openai_and_dynamic_python",
+      "portfolio_exposure_approved": false,
+      "portfolio_exposure_reasons": [
+        "التعرض لقطاع غير مصنف بلغ الحد 1"
+      ],
+      "portfolio_exposure_decision": {
+        "checked_at": "2026-08-26T12:47:56",
+        "symbol": "7204",
+        "name": "شركة العرض المتقن للخدمات التجارية",
+        "sector": "غير مصنف",
+        "existing_open_positions": 1,
+        "existing_sector_positions": 1,
+        "max_open_positions": 4,
+        "max_positions_per_sector": 1
+      }
     }
   ],
   "total": 0,
@@ -193,8 +210,8 @@
   "status": "NO_VALID_SIGNALS",
   "source": "should_post.py",
   "engine": "rased_dynamic_score_gate_v1",
-  "source_generated_at": "2026-08-26T12:42:54",
-  "generated_at": "2026-08-26T12:42:58",
+  "source_generated_at": "2026-08-26T12:47:51",
+  "generated_at": "2026-08-26T12:47:56",
   "market_regime": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
@@ -218,8 +235,8 @@
       "weak_max_advance_ratio": 0.35,
       "high_dispersion_threshold": 3.0
     },
-    "daily_generated_at": "2026-08-26T12:42:27",
-    "generated_at": "2026-08-26T12:42:58"
+    "daily_generated_at": "2026-08-26T12:47:29",
+    "generated_at": "2026-08-26T12:47:56"
   },
   "applied_limits": {
     "dynamic_rased_score": {
@@ -253,5 +270,15 @@
       "MIN_TP2_PCT_PLATINUM": 10.0,
       "MAX_HOLD_DAYS": 7
     }
+  },
+  "portfolio_exposure_checked": true,
+  "portfolio_exposure_checked_at": "2026-08-26T12:47:56",
+  "portfolio_exposure": {
+    "max_open_positions": 4,
+    "max_positions_per_sector": 1,
+    "block_duplicate_symbol": true,
+    "active_positions_before_gate": 1,
+    "approved_after_gate": 0,
+    "rejected_by_exposure_gate": 1
   }
 }
