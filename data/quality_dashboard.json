@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T12:37:43",
-  "data_timestamp": "2026-08-26T12:37:18",
+  "generated_at": "2026-08-26T12:42:58",
+  "data_timestamp": "2026-08-26T12:42:27",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,9 +15,9 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": 0.171,
+    "average_change_pct": 0.177,
     "advance_ratio": 0.5106,
-    "dispersion": 1.8,
+    "dispersion": 1.825,
     "dynamic_min_score": null,
     "advancing": 24,
     "declining": 20,
@@ -29,10 +29,10 @@
     "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 13,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 13,
-      "العائد مقابل المخاطرة غير مناسب": 12,
+      "الاتجاه الفني غير مناسب": 14,
+      "العائد مقابل المخاطرة غير مناسب": 11,
       "ضعف السيولة أو الحجم": 7,
       "أسباب فنية أخرى": 6,
       "الزخم غير مناسب": 5,
@@ -41,19 +41,19 @@
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.61,
+    "best_sector_avg_change_pct": 0.5,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 9.94,
-      "value": 27573167.34
+      "value": 27629732.22
     }
   },
   "portfolio_exposure": {
     "active_open_positions": 1,
     "approved_after_gate": 0,
-    "rejected_by_gate": 1
+    "rejected_by_gate": 0
   },
   "confidence_calibration": {
     "status": "PASS",
