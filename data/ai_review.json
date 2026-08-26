@@ -1,21 +1,23 @@
 {
   "model": "gpt-4o-mini",
   "available": true,
-  "reviewed_at": "2026-08-26T14:27:46",
-  "approved": 0,
+  "reviewed_at": "2026-08-26T14:33:01",
+  "approved": 1,
   "total": 1,
   "signals": [
     {
       "stock_symbol": "7204",
-      "decision": "REJECT",
+      "decision": "APPROVE",
       "confidence": 99,
       "risk_level": "LOW",
       "expected_holding_days": 3,
       "rased_score": 83.9,
       "tier": "Standard",
       "reasons": [
-        "TP2 looks unrealistic within 7 days.",
-        "Setup is not clear."
+        "Strong momentum with a high score of 99",
+        "RSI is healthy at 62.62",
+        "Volume ratio indicates strong buying interest",
+        "Targets are realistic within the expected holding period"
       ]
     }
   ]

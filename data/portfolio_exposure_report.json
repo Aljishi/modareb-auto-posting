@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T14:27:46",
+  "generated_at": "2026-08-26T14:33:01",
   "status": "NO_CAPACITY_OR_SECTOR_CONFLICT",
   "configuration": {
     "max_open_positions": 4,
@@ -9,9 +9,9 @@
     "default_max_holding_days": 7,
     "max_stale_open_days": 10
   },
-  "input_validated_signals": 0,
+  "input_validated_signals": 1,
   "approved_signals": 0,
-  "rejected_signals": 0,
+  "rejected_signals": 1,
   "active_open_positions": 1,
   "current_sector_exposure": {
     "غير مصنف": 1
@@ -29,5 +29,15 @@
     }
   ],
   "approved": [],
-  "rejected": []
+  "rejected": [
+    {
+      "symbol": "7204",
+      "name": "شركة العرض المتقن للخدمات التجارية",
+      "sector": "غير مصنف",
+      "rased_score": 83.9,
+      "reasons": [
+        "التعرض لقطاع غير مصنف بلغ الحد 1"
+      ]
+    }
+  ]
 }

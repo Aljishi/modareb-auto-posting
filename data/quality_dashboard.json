@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T14:27:46",
-  "data_timestamp": "2026-08-26T14:27:23",
+  "generated_at": "2026-08-26T14:33:01",
+  "data_timestamp": "2026-08-26T14:32:32",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": 0.198,
-    "advance_ratio": 0.5532,
-    "dispersion": 1.902,
+    "average_change_pct": 0.158,
+    "advance_ratio": 0.5745,
+    "dispersion": 1.946,
     "dynamic_min_score": null,
-    "advancing": 26,
-    "declining": 18,
-    "unchanged": 3
+    "advancing": 27,
+    "declining": 19,
+    "unchanged": 1
   },
   "screening": {
     "screened": 45,
@@ -29,14 +29,14 @@
     "generated": 1,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 14,
+    "dominant_rejection_count": 15,
     "categories": {
-      "الاتجاه الفني غير مناسب": 14,
-      "العائد مقابل المخاطرة غير مناسب": 10,
+      "الاتجاه الفني غير مناسب": 15,
       "أسباب فنية أخرى": 9,
+      "العائد مقابل المخاطرة غير مناسب": 7,
       "ضعف السيولة أو الحجم": 5,
-      "الزخم غير مناسب": 4,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "بعيد عن الاختراق أو قريب من مقاومة": 4,
+      "الزخم غير مناسب": 4
     }
   },
   "leadership": {
@@ -47,13 +47,13 @@
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 9.94,
-      "value": 28569799.42
+      "value": 28571385.56
     }
   },
   "portfolio_exposure": {
     "active_open_positions": 1,
     "approved_after_gate": 0,
-    "rejected_by_gate": 0
+    "rejected_by_gate": 1
   },
   "confidence_calibration": {
     "status": "PASS",
