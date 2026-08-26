@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "engine": "rased_confidence_calibration_v1",
-  "generated_at": "2026-08-26T13:06:19",
+  "generated_at": "2026-08-26T13:12:58",
   "configuration": {
     "minimum_group_sample": 8,
     "full_weight_sample": 30,

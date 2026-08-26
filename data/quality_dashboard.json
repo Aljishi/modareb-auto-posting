@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-26T13:06:19",
-  "data_timestamp": "2026-08-26T13:05:56",
+  "generated_at": "2026-08-26T13:12:59",
+  "data_timestamp": "2026-08-26T13:12:25",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "",
-    "average_change_pct": 0.193,
-    "advance_ratio": 0.5532,
-    "dispersion": 1.817,
+    "average_change_pct": 0.183,
+    "advance_ratio": 0.5319,
+    "dispersion": 1.84,
     "dynamic_min_score": null,
-    "advancing": 26,
-    "declining": 18,
+    "advancing": 25,
+    "declining": 19,
     "unchanged": 3
   },
   "screening": {
@@ -47,7 +47,7 @@
       "symbol": "8311",
       "name": "شركة عناية السعودية للتأمين التعاوني",
       "change_pct": 9.94,
-      "value": 28218804.51
+      "value": 28244406.15
     }
   },
   "portfolio_exposure": {
