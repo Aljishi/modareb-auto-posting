@@ -4,16 +4,16 @@
   "grade": "انتقائي",
   "dynamic_min_rased_score": 80.0,
   "sample_size": 47,
-  "average_change_pct": 0.216,
+  "average_change_pct": 0.201,
   "median_change_pct": 0.19,
-  "advance_ratio": 0.5532,
-  "decline_ratio": 0.383,
-  "unchanged_ratio": 0.0638,
-  "advancing_stocks": 26,
-  "declining_stocks": 18,
-  "unchanged_stocks": 3,
-  "dispersion": 1.748,
-  "reason": "متوسط تغير السوق 0.216% ونسبة الأسهم الصاعدة 55.3%",
+  "advance_ratio": 0.5957,
+  "decline_ratio": 0.3617,
+  "unchanged_ratio": 0.0426,
+  "advancing_stocks": 28,
+  "declining_stocks": 17,
+  "unchanged_stocks": 2,
+  "dispersion": 1.795,
+  "reason": "متوسط تغير السوق 0.201% ونسبة الأسهم الصاعدة 59.6%",
   "rules": {
     "strong_min_average_change": 0.8,
     "strong_min_advance_ratio": 0.65,
@@ -21,6 +21,6 @@
     "weak_max_advance_ratio": 0.35,
     "high_dispersion_threshold": 3.0
   },
-  "daily_generated_at": "2026-08-26T12:17:17",
-  "generated_at": "2026-08-26T12:17:39"
+  "daily_generated_at": "2026-08-26T12:21:53",
+  "generated_at": "2026-08-26T12:22:19"
 }
