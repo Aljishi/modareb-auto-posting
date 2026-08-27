@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-26T14:22:36",
+  "generated_at": "2026-08-27T23:52:38",
   "database": "/home/runner/work/modareb-auto-posting/modareb-auto-posting/data/rased_research.db",
   "counts": {
-    "signals": 1,
+    "signals": 0,
     "validated_signals": 0,
     "golden_signals": 0,
     "performance": 0,
     "sectors": 4,
-    "portfolio": 1
+    "portfolio": 0
   }
 }
