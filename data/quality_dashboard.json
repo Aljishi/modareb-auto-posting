@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-27T13:37:44",
-  "data_timestamp": "2026-08-27T13:37:21",
+  "generated_at": "2026-08-27T13:42:45",
+  "data_timestamp": "2026-08-27T13:42:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.328,
+    "average_change_pct": 0.329,
     "advance_ratio": 0.5957,
-    "dispersion": 0.796,
+    "dispersion": 0.872,
     "dynamic_min_score": 80,
     "advancing": 28,
-    "declining": 16,
-    "unchanged": 3
+    "declining": 15,
+    "unchanged": 4
   },
   "screening": {
     "screened": 47,
@@ -32,9 +32,9 @@
     "dominant_rejection_count": 14,
     "categories": {
       "الاتجاه الفني غير مناسب": 14,
-      "ضعف السيولة أو الحجم": 10,
+      "أسباب فنية أخرى": 9,
       "الزخم غير مناسب": 9,
-      "أسباب فنية أخرى": 8,
+      "ضعف السيولة أو الحجم": 9,
       "العائد مقابل المخاطرة غير مناسب": 6
     }
   },
@@ -43,10 +43,10 @@
     "best_sector_avg_change_pct": 0.61,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "6010",
-      "name": "الشركة الوطنية للتنمية الزراعية",
-      "change_pct": 2.12,
-      "value": 10106030.4
+      "symbol": "8311",
+      "name": "شركة عناية السعودية للتأمين التعاوني",
+      "change_pct": 2.69,
+      "value": 78854724.49
     }
   },
   "portfolio_exposure": {
