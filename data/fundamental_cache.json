@@ -1,7 +1,7 @@
 {
   "symbols": {
     "2200": {
-      "cached_at": "2026-08-26T10:03:46",
+      "cached_at": "2026-08-27T13:32:48",
       "data": {
         "fundamentals": null,
         "financials": {
@@ -164,8 +164,8 @@
         },
         "dividends": {
           "symbol": "2200",
-          "current_price": 5.28,
-          "trailing_12m_yield": 3.22,
+          "current_price": 5.27,
+          "trailing_12m_yield": 3.23,
           "trailing_12m_dividends": 0.17,
           "payments_last_year": 1,
           "upcoming": [],

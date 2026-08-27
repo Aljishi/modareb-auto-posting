@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-27T13:27:48",
-  "data_timestamp": "2026-08-27T13:27:20",
+  "generated_at": "2026-08-27T13:33:05",
+  "data_timestamp": "2026-08-27T13:32:35",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.322,
-    "advance_ratio": 0.5745,
-    "dispersion": 0.831,
+    "average_change_pct": 0.328,
+    "advance_ratio": 0.5957,
+    "dispersion": 0.796,
     "dynamic_min_score": 80,
-    "advancing": 27,
-    "declining": 15,
-    "unchanged": 5
+    "advancing": 28,
+    "declining": 16,
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 13,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 13,
-      "ضعف السيولة أو الحجم": 11,
+      "الاتجاه الفني غير مناسب": 14,
+      "ضعف السيولة أو الحجم": 10,
       "الزخم غير مناسب": 9,
-      "العائد مقابل المخاطرة غير مناسب": 7,
-      "أسباب فنية أخرى": 7
+      "أسباب فنية أخرى": 8,
+      "العائد مقابل المخاطرة غير مناسب": 6
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.69,
+    "best_sector_avg_change_pct": 0.61,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 2.33,
-      "value": 75082469.85
+      "symbol": "6010",
+      "name": "الشركة الوطنية للتنمية الزراعية",
+      "change_pct": 2.12,
+      "value": 10106030.4
     }
   },
   "portfolio_exposure": {
