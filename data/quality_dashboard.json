@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-27T11:17:50",
-  "data_timestamp": "2026-08-27T11:17:27",
+  "generated_at": "2026-08-27T11:22:41",
+  "data_timestamp": "2026-08-27T11:22:20",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,35 +12,36 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.249,
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.268,
     "advance_ratio": 0.4681,
-    "dispersion": 1.001,
-    "dynamic_min_score": 81,
+    "dispersion": 1.007,
+    "dynamic_min_score": 80,
     "advancing": 22,
     "declining": 19,
     "unchanged": 6
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 13,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 13,
-      "العائد مقابل المخاطرة غير مناسب": 12,
-      "ضعف السيولة أو الحجم": 9,
-      "أسباب فنية أخرى": 7,
-      "الزخم غير مناسب": 4
+      "الاتجاه الفني غير مناسب": 14,
+      "ضعف السيولة أو الحجم": 12,
+      "الزخم غير مناسب": 8,
+      "العائد مقابل المخاطرة غير مناسب": 7,
+      "أسباب فنية أخرى": 5,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.54,
+    "best_sector_avg_change_pct": 0.69,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "8311",
