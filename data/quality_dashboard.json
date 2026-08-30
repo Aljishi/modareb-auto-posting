@@ -1,52 +1,53 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T10:23:51",
-  "data_timestamp": "2026-08-30T10:23:36",
+  "generated_at": "2026-08-30T10:27:36",
+  "data_timestamp": "2026-08-30T10:27:15",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 38,
-    "valid_stocks": 38
+    "stocks_received": 47,
+    "valid_stocks": 47
   },
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.08,
-    "advance_ratio": 0.6316,
-    "dispersion": 1.039,
+    "average_change_pct": 0.204,
+    "advance_ratio": 0.6383,
+    "dispersion": 1.09,
     "dynamic_min_score": 80,
-    "advancing": 24,
-    "declining": 8,
-    "unchanged": 6
+    "advancing": 30,
+    "declining": 12,
+    "unchanged": 5
   },
   "screening": {
-    "screened": 38,
-    "rejected": 38,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 22,
+    "dominant_rejection_count": 20,
     "categories": {
-      "ضعف السيولة أو الحجم": 22,
-      "الاتجاه الفني غير مناسب": 7,
-      "أسباب فنية أخرى": 4,
-      "العائد مقابل المخاطرة غير مناسب": 4,
-      "الزخم غير مناسب": 1
+      "ضعف السيولة أو الحجم": 20,
+      "العائد مقابل المخاطرة غير مناسب": 9,
+      "الاتجاه الفني غير مناسب": 8,
+      "أسباب فنية أخرى": 5,
+      "الزخم غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.2,
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "7204",
-      "name": "توبي",
-      "change_pct": 3.38,
-      "value": 2151073.04
+      "name": "شركة العرض المتقن للخدمات التجارية",
+      "change_pct": 2.94,
+      "value": 3306918.43
     }
   },
   "portfolio_exposure": {
