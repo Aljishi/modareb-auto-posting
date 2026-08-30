@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-08-30T12:17:45",
+  "generated_at": "2026-08-30T12:22:38",
   "total": 2,
   "total_screened": 45,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -10,18 +10,18 @@
     "البنوك": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.78,
+      "avg_change_pct": -0.72,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 178726450.8
+      "total_value": 187987599.76
     },
     "المواد الأساسية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.3,
+      "avg_change_pct": 0.2,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 12619383.0
+      "total_value": 12834583.8
     },
     "الطاقة": {
       "bonus": 0,
@@ -29,23 +29,23 @@
       "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 46825200.9
+      "total_value": 48321827.1
     },
     "غير مصنف": {
       "bonus": 0,
       "grade": "محايد",
       "avg_change_pct": -0.17,
-      "advance_ratio": 0.5,
+      "advance_ratio": 0.48,
       "members": 42,
-      "total_value": 453777111.93
+      "total_value": 474666845.39
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.28,
+      "avg_change_pct": -0.47,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 902725.95
+      "total_value": 998762.91
     }
   },
   "filters": {
@@ -70,7 +70,7 @@
   "status": "NO_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-30T12:17:45",
+  "quality_gate_at": "2026-08-30T12:22:38",
   "quality_gate_input_count": 2,
   "quality_gate_approved_count": 0,
   "quality_gate_rejected_count": 2,
@@ -88,7 +88,7 @@
       "rased_score": 81.0,
       "reasons": [
         "RASED SCORE 81.0 أقل من 82.0",
-        "TP2 5.96% أقل من 6.00%",
+        "TP2 5.97% أقل من 6.00%",
         "إشارة مطاردة تحتاج R:R >= 2.40"
       ]
     }

@@ -1,7 +1,7 @@
 {
   "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-30T12:17:45",
+  "generated_at": "2026-08-30T12:22:38",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
@@ -38,7 +38,7 @@
       "rased_score": 81.0,
       "reasons": [
         "RASED SCORE 81.0 أقل من 82.0",
-        "TP2 5.96% أقل من 6.00%",
+        "TP2 5.97% أقل من 6.00%",
         "إشارة مطاردة تحتاج R:R >= 2.40"
       ]
     }
