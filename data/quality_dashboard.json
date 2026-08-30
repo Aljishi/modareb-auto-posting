@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T13:27:34",
-  "data_timestamp": "2026-08-30T13:27:14",
+  "generated_at": "2026-08-30T13:32:56",
+  "data_timestamp": "2026-08-30T13:32:37",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.364,
-    "advance_ratio": 0.383,
-    "dispersion": 1.318,
-    "dynamic_min_score": 80,
-    "advancing": 18,
-    "declining": 28,
-    "unchanged": 1
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.351,
+    "advance_ratio": 0.3404,
+    "dispersion": 1.417,
+    "dynamic_min_score": 83,
+    "advancing": 16,
+    "declining": 29,
+    "unchanged": 2
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 13,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
-      "العائد مقابل المخاطرة غير مناسب": 8,
-      "أسباب فنية أخرى": 8,
-      "الزخم غير مناسب": 7,
-      "ضعف السيولة أو الحجم": 6
+      "الاتجاه الفني غير مناسب": 13,
+      "العائد مقابل المخاطرة غير مناسب": 11,
+      "أسباب فنية أخرى": 10,
+      "الزخم غير مناسب": 3,
+      "ضعف السيولة أو الحجم": 3
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.2,
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 4.17,
-      "value": 27666512.64
+      "change_pct": 5.18,
+      "value": 31628507.4
     }
   },
   "portfolio_exposure": {
