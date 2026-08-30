@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T11:22:38",
-  "data_timestamp": "2026-08-30T11:22:17",
+  "generated_at": "2026-08-30T11:27:43",
+  "data_timestamp": "2026-08-30T11:27:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.006,
+    "average_change_pct": -0.024,
     "advance_ratio": 0.5106,
-    "dispersion": 1.208,
+    "dispersion": 1.236,
     "dynamic_min_score": 81,
     "advancing": 24,
-    "declining": 19,
-    "unchanged": 4
+    "declining": 21,
+    "unchanged": 2
   },
   "screening": {
     "screened": 45,
@@ -33,9 +33,10 @@
     "categories": {
       "الاتجاه الفني غير مناسب": 13,
       "العائد مقابل المخاطرة غير مناسب": 12,
-      "أسباب فنية أخرى": 9,
+      "أسباب فنية أخرى": 8,
       "ضعف السيولة أو الحجم": 6,
-      "الزخم غير مناسب": 5
+      "الزخم غير مناسب": 5,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
@@ -45,8 +46,8 @@
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 4.28,
-      "value": 16324451.48
+      "change_pct": 3.73,
+      "value": 18637241.28
     }
   },
   "portfolio_exposure": {
