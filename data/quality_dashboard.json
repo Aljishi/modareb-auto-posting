@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T14:57:48",
-  "data_timestamp": "2026-08-30T14:57:23",
+  "generated_at": "2026-08-30T20:12:25",
+  "data_timestamp": "2026-08-30T20:00:13",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,8 +19,8 @@
     "advance_ratio": 0.2979,
     "dispersion": 1.461,
     "dynamic_min_score": 83,
-    "advancing": 14,
-    "declining": 32,
+    "advancing": 16,
+    "declining": 30,
     "unchanged": 1
   },
   "screening": {
@@ -41,13 +41,13 @@
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.3,
+    "best_sector_avg_change_pct": 0.4,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 5.18,
-      "value": 39979737.0
+      "change_pct": 5.84,
+      "value": 44542595.64
     }
   },
   "portfolio_exposure": {
