@@ -1,52 +1,51 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T10:12:47",
-  "data_timestamp": "2026-08-30T10:12:23",
+  "generated_at": "2026-08-30T10:18:53",
+  "data_timestamp": "2026-08-30T10:18:40",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 47,
-    "valid_stocks": 47
+    "stocks_received": 32,
+    "valid_stocks": 32
   },
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.468,
-    "advance_ratio": 0.5745,
-    "dispersion": 1.29,
+    "average_change_pct": 0.261,
+    "advance_ratio": 0.625,
+    "dispersion": 0.627,
     "dynamic_min_score": 80,
-    "advancing": 27,
-    "declining": 17,
-    "unchanged": 3
+    "advancing": 20,
+    "declining": 5,
+    "unchanged": 7
   },
   "screening": {
-    "screened": 47,
-    "rejected": 46,
+    "screened": 32,
+    "rejected": 31,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 14,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 22,
     "categories": {
-      "الاتجاه الفني غير مناسب": 14,
-      "الزخم غير مناسب": 9,
-      "أسباب فنية أخرى": 8,
-      "ضعف السيولة أو الحجم": 8,
-      "العائد مقابل المخاطرة غير مناسب": 7
+      "ضعف السيولة أو الحجم": 22,
+      "الاتجاه الفني غير مناسب": 5,
+      "العائد مقابل المخاطرة غير مناسب": 2,
+      "أسباب فنية أخرى": 2
     }
   },
   "leadership": {
     "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.59,
-    "best_sector_members": 42,
+    "best_sector_avg_change_pct": 0.32,
+    "best_sector_members": 28,
     "best_stock": {
-      "symbol": "8311",
-      "name": "شركة عناية السعودية للتأمين التعاوني",
-      "change_pct": 5.55,
-      "value": 90567490.59
+      "symbol": "7204",
+      "name": "توبي",
+      "change_pct": 2.41,
+      "value": 8663326.5
     }
   },
   "portfolio_exposure": {

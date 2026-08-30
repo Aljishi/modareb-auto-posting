@@ -1,8 +1,8 @@
 {
   "signals": [],
-  "generated_at": "2026-08-30T10:12:47",
+  "generated_at": "2026-08-30T10:18:53",
   "total": 1,
-  "total_screened": 47,
+  "total_screened": 32,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
@@ -10,10 +10,10 @@
     "البنوك": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.51,
+      "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
-      "members": 2,
-      "total_value": 577627565.6
+      "members": 1,
+      "total_value": 110163538.4
     },
     "المواد الأساسية": {
       "bonus": 0,
@@ -21,7 +21,7 @@
       "avg_change_pct": -0.5,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 83198264.4
+      "total_value": 83584402.7
     },
     "الطاقة": {
       "bonus": 0,
@@ -29,23 +29,23 @@
       "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 213985156.5
+      "total_value": 214746818.4
     },
     "غير مصنف": {
-      "bonus": 5,
-      "grade": "قوي",
-      "avg_change_pct": 0.59,
-      "advance_ratio": 0.64,
-      "members": 42,
-      "total_value": 972840595.58
+      "bonus": 2,
+      "grade": "محايد إيجابي",
+      "avg_change_pct": 0.32,
+      "advance_ratio": 0.71,
+      "members": 28,
+      "total_value": 107653155.41
     },
     "السلع طويلة الاجل": {
-      "bonus": -5,
-      "grade": "ضعيف",
-      "avg_change_pct": -1.29,
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1744097.4
+      "total_value": 5567.37
     }
   },
   "filters": {
@@ -70,16 +70,16 @@
   "status": "NO_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-08-30T10:12:47",
+  "quality_gate_at": "2026-08-30T10:18:53",
   "quality_gate_input_count": 1,
   "quality_gate_approved_count": 0,
   "quality_gate_rejected_count": 1,
   "quality_gate_rejected": [
     {
       "symbol": "7204",
-      "rased_score": 81.5,
+      "rased_score": 80.0,
       "reasons": [
-        "RASED SCORE 81.5 أقل من 82.0"
+        "RASED SCORE 80.0 أقل من 82.0"
       ]
     }
   ],
