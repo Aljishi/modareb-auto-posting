@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T13:07:52",
-  "data_timestamp": "2026-08-30T13:07:29",
+  "generated_at": "2026-08-30T13:12:41",
+  "data_timestamp": "2026-08-30T13:12:21",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": -0.349,
-    "advance_ratio": 0.4255,
-    "dispersion": 1.318,
+    "average_change_pct": -0.321,
+    "advance_ratio": 0.383,
+    "dispersion": 1.324,
     "dynamic_min_score": 80,
-    "advancing": 20,
-    "declining": 27,
-    "unchanged": 0
+    "advancing": 18,
+    "declining": 28,
+    "unchanged": 1
   },
   "screening": {
     "screened": 47,
@@ -33,20 +33,21 @@
     "categories": {
       "الاتجاه الفني غير مناسب": 16,
       "العائد مقابل المخاطرة غير مناسب": 10,
-      "أسباب فنية أخرى": 8,
+      "أسباب فنية أخرى": 7,
       "الزخم غير مناسب": 7,
-      "ضعف السيولة أو الحجم": 6
+      "ضعف السيولة أو الحجم": 6,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.3,
+    "best_sector_avg_change_pct": 0.2,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 3.62,
-      "value": 25563062.84
+      "change_pct": 4.06,
+      "value": 26455638.0
     }
   },
   "portfolio_exposure": {
