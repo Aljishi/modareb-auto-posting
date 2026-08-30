@@ -1,51 +1,51 @@
 {
   "signals": [],
-  "generated_at": "2026-08-30T12:47:46",
-  "total": 0,
+  "generated_at": "2026-08-30T12:52:44",
+  "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
   "sector_strength": {
     "البنوك": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.97,
+      "bonus": -5,
+      "grade": "ضعيف",
+      "avg_change_pct": -1.12,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 203561031.76
+      "total_value": 227651789.49
     },
     "المواد الأساسية": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.3,
+      "avg_change_pct": 0.2,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 13341475.5
+      "total_value": 13997215.8
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.15,
+      "avg_change_pct": -0.08,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 54586344.46
+      "total_value": 61542592.96
     },
     "غير مصنف": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.24,
-      "advance_ratio": 0.48,
+      "avg_change_pct": -0.28,
+      "advance_ratio": 0.43,
       "members": 42,
-      "total_value": 507743383.05
+      "total_value": 524528363.71
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.37,
+      "avg_change_pct": -0.28,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1047076.05
+      "total_value": 1144555.5
     }
   },
   "filters": {
@@ -68,5 +68,21 @@
   },
   "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
   "status": "NO_SIGNALS",
-  "message": "لا توجد إشارات تحقق شروط راصد اليوم"
+  "quality_gate_applied": true,
+  "quality_gate_version": "rased_quality_gate_v10",
+  "quality_gate_at": "2026-08-30T12:52:44",
+  "quality_gate_input_count": 1,
+  "quality_gate_approved_count": 0,
+  "quality_gate_rejected_count": 1,
+  "quality_gate_rejected": [
+    {
+      "symbol": "7204",
+      "rased_score": 82.0,
+      "reasons": [
+        "إشارة مطاردة تحتاج R:R >= 2.40",
+        "إشارة مطاردة تحتاج Volume >= 2.00x"
+      ]
+    }
+  ],
+  "message": "لا توجد إشارات اجتازت بوابة الجودة V10"
 }
