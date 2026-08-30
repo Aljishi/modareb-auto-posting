@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T10:27:36",
-  "data_timestamp": "2026-08-30T10:27:15",
+  "generated_at": "2026-08-30T10:32:46",
+  "data_timestamp": "2026-08-30T10:32:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.204,
-    "advance_ratio": 0.6383,
-    "dispersion": 1.09,
+    "average_change_pct": 0.19,
+    "advance_ratio": 0.6809,
+    "dispersion": 1.154,
     "dynamic_min_score": 80,
-    "advancing": 30,
+    "advancing": 32,
     "declining": 12,
-    "unchanged": 5
+    "unchanged": 3
   },
   "screening": {
     "screened": 47,
@@ -29,25 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 20,
+    "dominant_rejection_count": 15,
     "categories": {
-      "ضعف السيولة أو الحجم": 20,
-      "العائد مقابل المخاطرة غير مناسب": 9,
-      "الاتجاه الفني غير مناسب": 8,
-      "أسباب فنية أخرى": 5,
-      "الزخم غير مناسب": 4,
+      "ضعف السيولة أو الحجم": 15,
+      "الاتجاه الفني غير مناسب": 10,
+      "العائد مقابل المخاطرة غير مناسب": 8,
+      "أسباب فنية أخرى": 7,
+      "الزخم غير مناسب": 6,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.3,
+    "best_sector": "السلع طويلة الاجل",
+    "best_sector_avg_change_pct": 0.56,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "7204",
-      "name": "شركة العرض المتقن للخدمات التجارية",
-      "change_pct": 2.94,
-      "value": 3306918.43
+      "symbol": "1302",
+      "name": "شركة بوان",
+      "change_pct": 3.84,
+      "value": 6332793.48
     }
   },
   "portfolio_exposure": {
