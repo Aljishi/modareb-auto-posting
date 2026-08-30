@@ -4,16 +4,16 @@
   "regime": "WEAK",
   "regime_ar": "ضعيف",
   "posture": "حماية رأس المال",
-  "reason": "متوسط السوق -0.45% ونسبة الصعود 29.8%",
+  "reason": "متوسط السوق -0.47% ونسبة الصعود 29.8%",
   "sample_size": 47,
   "minimum_sample": 15,
-  "average_change_pct": -0.449,
+  "average_change_pct": -0.466,
   "median_change_pct": -0.39,
   "index_change_pct": -0.67,
   "advance_ratio": 0.2979,
   "decline_ratio": 0.6596,
   "unchanged_ratio": 0.0426,
-  "dispersion": 1.42,
+  "dispersion": 1.436,
   "extreme_move_ratio": 0.0213,
   "advancing_stocks": 14,
   "declining_stocks": 31,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 4.0,
     "MAX_CANDIDATES": 40
   },
-  "daily_generated_at": "2026-08-30T14:12:24",
-  "generated_at": "2026-08-30T14:12:24"
+  "daily_generated_at": "2026-08-30T14:17:26",
+  "generated_at": "2026-08-30T14:17:26"
 }
