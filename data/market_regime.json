@@ -9,7 +9,7 @@
   "minimum_sample": 15,
   "average_change_pct": 0.009,
   "median_change_pct": 0.0,
-  "index_change_pct": -0.09,
+  "index_change_pct": -0.14,
   "advance_ratio": 0.4894,
   "decline_ratio": 0.3404,
   "unchanged_ratio": 0.1702,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 3.5,
     "MAX_CANDIDATES": 45
   },
-  "daily_generated_at": "2026-08-30T10:52:22",
-  "generated_at": "2026-08-30T10:52:22"
+  "daily_generated_at": "2026-08-30T10:57:23",
+  "generated_at": "2026-08-30T10:57:23"
 }
