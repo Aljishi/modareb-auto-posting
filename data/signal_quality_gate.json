@@ -1,7 +1,7 @@
 {
   "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-08-30T11:57:40",
+  "generated_at": "2026-08-30T12:02:55",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
@@ -20,9 +20,9 @@
     "chase_min_volume_ratio": 2.0,
     "max_signals": 3
   },
-  "input_count": 1,
+  "input_count": 2,
   "approved_count": 0,
-  "rejected_count": 1,
+  "rejected_count": 2,
   "approved": [],
   "rejected": [
     {
@@ -31,6 +31,15 @@
       "reasons": [
         "إشارة مطاردة تحتاج R:R >= 2.40",
         "إشارة مطاردة تحتاج Volume >= 2.00x"
+      ]
+    },
+    {
+      "symbol": "1302",
+      "rased_score": 81.0,
+      "reasons": [
+        "RASED SCORE 81.0 أقل من 82.0",
+        "TP2 5.96% أقل من 6.00%",
+        "إشارة مطاردة تحتاج R:R >= 2.40"
       ]
     }
   ]
