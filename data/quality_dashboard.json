@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T11:37:44",
-  "data_timestamp": "2026-08-30T11:37:22",
+  "generated_at": "2026-08-30T11:42:47",
+  "data_timestamp": "2026-08-30T11:42:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,39 +15,39 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": -0.064,
+    "average_change_pct": -0.082,
     "advance_ratio": 0.4894,
-    "dispersion": 1.252,
+    "dispersion": 1.301,
     "dynamic_min_score": 81,
     "advancing": 23,
-    "declining": 23,
-    "unchanged": 1
+    "declining": 21,
+    "unchanged": 3
   },
   "screening": {
     "screened": 45,
-    "rejected": 45,
+    "rejected": 44,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "العائد مقابل المخاطرة غير مناسب",
+    "dominant_rejection": "الاتجاه الفني غير مناسب",
     "dominant_rejection_count": 13,
     "categories": {
-      "العائد مقابل المخاطرة غير مناسب": 13,
-      "الاتجاه الفني غير مناسب": 12,
+      "الاتجاه الفني غير مناسب": 13,
+      "العائد مقابل المخاطرة غير مناسب": 12,
       "أسباب فنية أخرى": 8,
-      "ضعف السيولة أو الحجم": 6,
-      "الزخم غير مناسب": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 5,
+      "الزخم غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 2
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.3,
+    "best_sector_avg_change_pct": 0.2,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 3.62,
-      "value": 19170146.52
+      "change_pct": 3.39,
+      "value": 19980857.68
     }
   },
   "portfolio_exposure": {
