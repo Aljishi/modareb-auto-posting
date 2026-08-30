@@ -1,51 +1,52 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T10:18:53",
-  "data_timestamp": "2026-08-30T10:18:40",
+  "generated_at": "2026-08-30T10:23:51",
+  "data_timestamp": "2026-08-30T10:23:36",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
     "data_quality_status": "PASS",
     "data_quality_score": 100.0,
-    "stocks_received": 32,
-    "valid_stocks": 32
+    "stocks_received": 38,
+    "valid_stocks": 38
   },
   "market": {
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.261,
-    "advance_ratio": 0.625,
-    "dispersion": 0.627,
+    "average_change_pct": 0.08,
+    "advance_ratio": 0.6316,
+    "dispersion": 1.039,
     "dynamic_min_score": 80,
-    "advancing": 20,
-    "declining": 5,
-    "unchanged": 7
+    "advancing": 24,
+    "declining": 8,
+    "unchanged": 6
   },
   "screening": {
-    "screened": 32,
-    "rejected": 31,
+    "screened": 38,
+    "rejected": 38,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
     "dominant_rejection_count": 22,
     "categories": {
       "ضعف السيولة أو الحجم": 22,
-      "الاتجاه الفني غير مناسب": 5,
-      "العائد مقابل المخاطرة غير مناسب": 2,
-      "أسباب فنية أخرى": 2
+      "الاتجاه الفني غير مناسب": 7,
+      "أسباب فنية أخرى": 4,
+      "العائد مقابل المخاطرة غير مناسب": 4,
+      "الزخم غير مناسب": 1
     }
   },
   "leadership": {
-    "best_sector": "غير مصنف",
-    "best_sector_avg_change_pct": 0.32,
-    "best_sector_members": 28,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 0.2,
+    "best_sector_members": 1,
     "best_stock": {
       "symbol": "7204",
       "name": "توبي",
-      "change_pct": 2.41,
-      "value": 8663326.5
+      "change_pct": 3.38,
+      "value": 2151073.04
     }
   },
   "portfolio_exposure": {
