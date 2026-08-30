@@ -7,17 +7,17 @@
   "reason": "متوسط قريب من الصفر -0.19% واتساع متوازن 44.7%",
   "sample_size": 47,
   "minimum_sample": 15,
-  "average_change_pct": -0.191,
-  "median_change_pct": -0.18,
-  "index_change_pct": -0.47,
+  "average_change_pct": -0.188,
+  "median_change_pct": 0.0,
+  "index_change_pct": -0.5,
   "advance_ratio": 0.4468,
-  "decline_ratio": 0.5319,
-  "unchanged_ratio": 0.0213,
-  "dispersion": 1.274,
+  "decline_ratio": 0.4681,
+  "unchanged_ratio": 0.0851,
+  "dispersion": 1.297,
   "extreme_move_ratio": 0.0,
   "advancing_stocks": 21,
-  "declining_stocks": 25,
-  "unchanged_stocks": 1,
+  "declining_stocks": 22,
+  "unchanged_stocks": 4,
   "filter_profile": {
     "MIN_SIGNAL_SCORE": 81,
     "MIN_RR": 1.9,
@@ -29,6 +29,6 @@
     "MIN_TP1_PCT_NORMAL": 3.5,
     "MAX_CANDIDATES": 45
   },
-  "daily_generated_at": "2026-08-30T12:22:20",
-  "generated_at": "2026-08-30T12:22:20"
+  "daily_generated_at": "2026-08-30T12:27:20",
+  "generated_at": "2026-08-30T12:27:20"
 }
