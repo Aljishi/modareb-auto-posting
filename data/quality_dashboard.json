@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-30T14:47:37",
-  "data_timestamp": "2026-08-30T14:47:22",
+  "generated_at": "2026-08-30T14:52:45",
+  "data_timestamp": "2026-08-30T14:52:24",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.509,
-    "advance_ratio": 0.2766,
-    "dispersion": 1.351,
+    "average_change_pct": -0.502,
+    "advance_ratio": 0.2979,
+    "dispersion": 1.413,
     "dynamic_min_score": 83,
-    "advancing": 13,
+    "advancing": 14,
     "declining": 32,
-    "unchanged": 2
+    "unchanged": 1
   },
   "screening": {
     "screened": 40,
@@ -29,25 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 13,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 13,
+      "الاتجاه الفني غير مناسب": 14,
       "العائد مقابل المخاطرة غير مناسب": 10,
       "أسباب فنية أخرى": 10,
       "الزخم غير مناسب": 3,
       "ضعف السيولة أو الحجم": 2,
-      "بعيد عن الاختراق أو قريب من مقاومة": 2
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 0.1,
+    "best_sector_avg_change_pct": 0.3,
     "best_sector_members": 1,
     "best_stock": {
       "symbol": "1302",
       "name": "شركة بوان",
-      "change_pct": 4.4,
-      "value": 39328464.0
+      "change_pct": 4.62,
+      "value": 39669842.4
     }
   },
   "portfolio_exposure": {
