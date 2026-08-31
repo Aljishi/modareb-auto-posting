@@ -1,8 +1,8 @@
 {
   "signals": [],
-  "generated_at": "2026-08-31T13:13:01",
+  "generated_at": "2026-08-31T13:18:03",
   "total": 0,
-  "total_screened": 47,
+  "total_screened": 40,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
@@ -34,10 +34,10 @@
     "غير مصنف": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.21,
-      "advance_ratio": 0.38,
+      "avg_change_pct": -0.22,
+      "advance_ratio": 0.33,
       "members": 42,
-      "total_value": 709622279.33
+      "total_value": 717606256.54
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
@@ -45,18 +45,18 @@
       "avg_change_pct": -0.75,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 917354.15
+      "total_value": 917406.9
     }
   },
   "filters": {
-    "MIN_SIGNAL_SCORE": 80,
+    "MIN_SIGNAL_SCORE": 83,
     "MIN_RR": 2.0,
     "MIN_VOLUME_RATIO": 1.0,
-    "MIN_VALUE_SAR": 300000.0,
-    "MIN_RSI": 38.0,
-    "MAX_RSI": 72.0,
+    "MIN_VALUE_SAR": 500000.0,
+    "MIN_RSI": 45.0,
+    "MAX_RSI": 68.0,
     "MAX_HOLD_DAYS": 7,
-    "MIN_TP1_PCT_NORMAL": 3.25,
+    "MIN_TP1_PCT_NORMAL": 4.0,
     "MIN_TP1_PCT_GOLDEN": 6.0,
     "MIN_TP1_PCT_PLATINUM": 8.0,
     "MIN_TP2_PCT_PLATINUM": 10.0,

@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T13:13:01",
-  "data_timestamp": "2026-08-31T13:12:36",
+  "generated_at": "2026-08-31T13:18:03",
+  "data_timestamp": "2026-08-31T13:17:37",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,30 +12,31 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.206,
-    "advance_ratio": 0.4043,
-    "dispersion": 1.169,
-    "dynamic_min_score": 80,
-    "advancing": 19,
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.207,
+    "advance_ratio": 0.3404,
+    "dispersion": 1.177,
+    "dynamic_min_score": 83,
+    "advancing": 16,
     "declining": 27,
-    "unchanged": 1
+    "unchanged": 4
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 14,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
-      "أسباب فنية أخرى": 10,
-      "العائد مقابل المخاطرة غير مناسب": 8,
-      "ضعف السيولة أو الحجم": 7,
-      "الزخم غير مناسب": 4
+      "الاتجاه الفني غير مناسب": 14,
+      "أسباب فنية أخرى": 11,
+      "العائد مقابل المخاطرة غير مناسب": 9,
+      "الزخم غير مناسب": 3,
+      "ضعف السيولة أو الحجم": 2,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {

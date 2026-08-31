@@ -1,6 +1,6 @@
 {
   "engine_version": "rased_sector_rotation_v2_0",
-  "generated_at": "2026-08-31T13:13:01",
+  "generated_at": "2026-08-31T13:18:03",
   "stocks_used": 47,
   "sectors_count": 4,
   "top_sectors": [
@@ -87,7 +87,7 @@
       "avg_change_pct": -0.75,
       "median_change_pct": -0.75,
       "liquidity_weighted_change_pct": -0.75,
-      "total_value": 917354.15,
+      "total_value": 917406.9,
       "liquidity_share_pct": 0.23,
       "signal_count": 0,
       "avg_signal_score": 0.0,
@@ -185,7 +185,7 @@
       "avg_change_pct": -0.75,
       "median_change_pct": -0.75,
       "liquidity_weighted_change_pct": -0.75,
-      "total_value": 917354.15,
+      "total_value": 917406.9,
       "liquidity_share_pct": 0.23,
       "signal_count": 0,
       "avg_signal_score": 0.0,
