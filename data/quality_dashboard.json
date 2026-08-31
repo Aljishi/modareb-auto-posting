@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T13:37:48",
-  "data_timestamp": "2026-08-31T13:37:22",
+  "generated_at": "2026-08-31T13:42:40",
+  "data_timestamp": "2026-08-31T13:42:20",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,42 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": -0.165,
-    "advance_ratio": 0.4043,
-    "dispersion": 1.139,
-    "dynamic_min_score": 80,
-    "advancing": 19,
-    "declining": 26,
-    "unchanged": 2
+    "regime": "WEAK",
+    "regime_ar": "ضعيف",
+    "posture": "حماية رأس المال",
+    "average_change_pct": -0.256,
+    "advance_ratio": 0.2979,
+    "dispersion": 1.154,
+    "dynamic_min_score": 83,
+    "advancing": 14,
+    "declining": 28,
+    "unchanged": 5
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 40,
+    "rejected": 40,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 13,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
-      "أسباب فنية أخرى": 9,
-      "العائد مقابل المخاطرة غير مناسب": 7,
-      "ضعف السيولة أو الحجم": 6,
+      "الاتجاه الفني غير مناسب": 13,
+      "أسباب فنية أخرى": 12,
+      "العائد مقابل المخاطرة غير مناسب": 9,
       "الزخم غير مناسب": 5,
-      "بعيد عن الاختراق أو قريب من مقاومة": 1
+      "ضعف السيولة أو الحجم": 1
     }
   },
   "leadership": {
-    "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.32,
-    "best_sector_members": 2,
+    "best_sector": "الطاقة",
+    "best_sector_avg_change_pct": 0.23,
+    "best_sector_members": 1,
     "best_stock": {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
-      "change_pct": 3.63,
-      "value": 43616366.0
+      "change_pct": 3.44,
+      "value": 44663575.04
     }
   },
   "portfolio_exposure": {
