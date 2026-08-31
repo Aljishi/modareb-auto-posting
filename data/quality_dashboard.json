@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T14:48:37",
-  "data_timestamp": "2026-08-31T14:47:34",
+  "generated_at": "2026-08-31T14:52:51",
+  "data_timestamp": "2026-08-31T14:52:28",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.579,
-    "advance_ratio": 0.2766,
-    "dispersion": 1.22,
+    "average_change_pct": -0.606,
+    "advance_ratio": 0.234,
+    "dispersion": 1.179,
     "dynamic_min_score": 83,
-    "advancing": 13,
-    "declining": 33,
+    "advancing": 11,
+    "declining": 35,
     "unchanged": 1
   },
   "screening": {
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 17,
+    "dominant_rejection_count": 16,
     "categories": {
-      "الاتجاه الفني غير مناسب": 17,
+      "الاتجاه الفني غير مناسب": 16,
       "أسباب فنية أخرى": 10,
-      "العائد مقابل المخاطرة غير مناسب": 7,
+      "العائد مقابل المخاطرة غير مناسب": 8,
       "الزخم غير مناسب": 5,
       "ضعف السيولة أو الحجم": 1
     }
   },
   "leadership": {
     "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.31,
+    "best_sector_avg_change_pct": 0.23,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "2200",
-      "name": "الشركة العربية للأنابيب",
-      "change_pct": 2.49,
-      "value": 48835024.32
+      "symbol": "1810",
+      "name": "مجموعة سيرا القابضة",
+      "change_pct": 2.21,
+      "value": 46020793.58
     }
   },
   "portfolio_exposure": {
