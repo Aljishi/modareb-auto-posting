@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T11:24:53",
-  "data_timestamp": "2026-08-31T11:23:23",
+  "generated_at": "2026-08-31T11:28:06",
+  "data_timestamp": "2026-08-31T11:27:34",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,42 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "NORMAL",
-    "regime_ar": "طبيعي",
-    "posture": "انتقائي",
-    "average_change_pct": 0.014,
-    "advance_ratio": 0.4043,
-    "dispersion": 1.296,
-    "dynamic_min_score": 80,
-    "advancing": 19,
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": 0.074,
+    "advance_ratio": 0.4255,
+    "dispersion": 1.335,
+    "dynamic_min_score": 81,
+    "advancing": 20,
     "declining": 26,
-    "unchanged": 2
+    "unchanged": 1
   },
   "screening": {
-    "screened": 47,
-    "rejected": 47,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 17,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
-      "ضعف السيولة أو الحجم": 9,
-      "العائد مقابل المخاطرة غير مناسب": 8,
-      "أسباب فنية أخرى": 7,
-      "الزخم غير مناسب": 5
+      "الاتجاه الفني غير مناسب": 17,
+      "العائد مقابل المخاطرة غير مناسب": 10,
+      "أسباب فنية أخرى": 8,
+      "ضعف السيولة أو الحجم": 5,
+      "الزخم غير مناسب": 4,
+      "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
-    "best_sector": "الطاقة",
-    "best_sector_avg_change_pct": 0.38,
-    "best_sector_members": 1,
+    "best_sector": "البنوك",
+    "best_sector_avg_change_pct": 0.4,
+    "best_sector_members": 2,
     "best_stock": {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 4.09,
-      "value": 80298845.44
+      "change_pct": 4.45,
+      "value": 84694130.4
     }
   },
   "portfolio_exposure": {
