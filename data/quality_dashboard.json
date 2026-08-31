@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T13:18:03",
-  "data_timestamp": "2026-08-31T13:17:37",
+  "generated_at": "2026-08-31T13:23:02",
+  "data_timestamp": "2026-08-31T13:22:31",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,12 +15,12 @@
     "regime": "WEAK",
     "regime_ar": "ضعيف",
     "posture": "حماية رأس المال",
-    "average_change_pct": -0.207,
-    "advance_ratio": 0.3404,
-    "dispersion": 1.177,
+    "average_change_pct": -0.198,
+    "advance_ratio": 0.3191,
+    "dispersion": 1.134,
     "dynamic_min_score": 83,
-    "advancing": 16,
-    "declining": 27,
+    "advancing": 15,
+    "declining": 28,
     "unchanged": 4
   },
   "screening": {
@@ -29,25 +29,25 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 14,
+    "dominant_rejection_count": 13,
     "categories": {
-      "الاتجاه الفني غير مناسب": 14,
+      "الاتجاه الفني غير مناسب": 13,
       "أسباب فنية أخرى": 11,
       "العائد مقابل المخاطرة غير مناسب": 9,
-      "الزخم غير مناسب": 3,
+      "الزخم غير مناسب": 4,
       "ضعف السيولة أو الحجم": 2,
       "بعيد عن الاختراق أو قريب من مقاومة": 1
     }
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.39,
+    "best_sector_avg_change_pct": 0.33,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
-      "change_pct": 4.02,
-      "value": 40870448.0
+      "change_pct": 3.63,
+      "value": 41446799.62
     }
   },
   "portfolio_exposure": {
