@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T11:37:41",
-  "data_timestamp": "2026-08-31T11:37:17",
+  "generated_at": "2026-08-31T11:42:45",
+  "data_timestamp": "2026-08-31T11:42:23",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "SIDEWAYS",
     "regime_ar": "عرضي",
     "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.072,
+    "average_change_pct": 0.073,
     "advance_ratio": 0.4468,
-    "dispersion": 1.268,
+    "dispersion": 1.285,
     "dynamic_min_score": 81,
     "advancing": 21,
-    "declining": 24,
-    "unchanged": 2
+    "declining": 23,
+    "unchanged": 3
   },
   "screening": {
     "screened": 45,
@@ -29,24 +29,24 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 19,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
+      "الاتجاه الفني غير مناسب": 19,
       "العائد مقابل المخاطرة غير مناسب": 10,
-      "أسباب فنية أخرى": 8,
+      "أسباب فنية أخرى": 7,
       "ضعف السيولة أو الحجم": 5,
       "الزخم غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.4,
+    "best_sector_avg_change_pct": 0.46,
     "best_sector_members": 2,
     "best_stock": {
-      "symbol": "2380",
-      "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 3.85,
-      "value": 93638833.92
+      "symbol": "2200",
+      "name": "الشركة العربية للأنابيب",
+      "change_pct": 3.82,
+      "value": 26420121.12
     }
   },
   "portfolio_exposure": {
