@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T14:57:56",
-  "data_timestamp": "2026-08-31T14:57:29",
+  "generated_at": "2026-08-31T22:23:39",
+  "data_timestamp": "2026-08-31T22:16:31",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -19,9 +19,9 @@
     "advance_ratio": 0.234,
     "dispersion": 1.179,
     "dynamic_min_score": 83,
-    "advancing": 11,
-    "declining": 35,
-    "unchanged": 1
+    "advancing": 13,
+    "declining": 34,
+    "unchanged": 0
   },
   "screening": {
     "screened": 40,
@@ -39,14 +39,14 @@
     }
   },
   "leadership": {
-    "best_sector": "الطاقة",
+    "best_sector": "البنوك",
     "best_sector_avg_change_pct": 0.23,
-    "best_sector_members": 1,
+    "best_sector_members": 2,
     "best_stock": {
       "symbol": "1810",
       "name": "مجموعة سيرا القابضة",
-      "change_pct": 2.21,
-      "value": 46020793.58
+      "change_pct": 2.49,
+      "value": 55676282.7
     }
   },
   "portfolio_exposure": {
