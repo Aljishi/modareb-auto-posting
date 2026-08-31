@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-08-31T11:42:45",
-  "data_timestamp": "2026-08-31T11:42:23",
+  "generated_at": "2026-08-31T11:48:03",
+  "data_timestamp": "2026-08-31T11:47:30",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "SIDEWAYS",
-    "regime_ar": "عرضي",
-    "posture": "اختراقات مؤكدة فقط",
-    "average_change_pct": 0.073,
-    "advance_ratio": 0.4468,
-    "dispersion": 1.285,
-    "dynamic_min_score": 81,
-    "advancing": 21,
-    "declining": 23,
-    "unchanged": 3
+    "regime": "NORMAL",
+    "regime_ar": "طبيعي",
+    "posture": "انتقائي",
+    "average_change_pct": 0.069,
+    "advance_ratio": 0.4043,
+    "dispersion": 1.32,
+    "dynamic_min_score": 80,
+    "advancing": 19,
+    "declining": 26,
+    "unchanged": 2
   },
   "screening": {
-    "screened": 45,
-    "rejected": 45,
+    "screened": 47,
+    "rejected": 47,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 19,
+    "dominant_rejection_count": 20,
     "categories": {
-      "الاتجاه الفني غير مناسب": 19,
-      "العائد مقابل المخاطرة غير مناسب": 10,
-      "أسباب فنية أخرى": 7,
-      "ضعف السيولة أو الحجم": 5,
-      "الزخم غير مناسب": 4
+      "الاتجاه الفني غير مناسب": 20,
+      "العائد مقابل المخاطرة غير مناسب": 8,
+      "ضعف السيولة أو الحجم": 8,
+      "أسباب فنية أخرى": 6,
+      "الزخم غير مناسب": 5
     }
   },
   "leadership": {
     "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.46,
+    "best_sector_avg_change_pct": 0.53,
     "best_sector_members": 2,
     "best_stock": {
       "symbol": "2200",
       "name": "الشركة العربية للأنابيب",
-      "change_pct": 3.82,
-      "value": 26420121.12
+      "change_pct": 4.02,
+      "value": 27450245.44
     }
   },
   "portfolio_exposure": {
