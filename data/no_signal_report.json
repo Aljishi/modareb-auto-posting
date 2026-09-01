@@ -1,115 +1,111 @@
 {
-  "generated_at": "2026-09-01T12:37:40",
-  "total_rejected": 46,
+  "generated_at": "2026-09-01T12:43:09",
+  "total_rejected": 47,
   "total_generated": 0,
   "total_validated": 0,
   "categories": {
-    "الاتجاه الفني غير مناسب": 19,
-    "أسباب فنية أخرى": 9,
-    "العائد مقابل المخاطرة غير مناسب": 7,
-    "ضعف السيولة أو الحجم": 7,
-    "الزخم غير مناسب": 4
+    "بيانات تاريخية غير كافية": 47
   },
   "sample_rejections": [
     {
       "symbol": "1120",
-      "reason": "TP1% 2.45% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40628 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2380",
-      "reason": "فجوة الدخول 5.25% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40628 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2222",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40627 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1180",
-      "reason": "TP1% 2.56% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40626 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2082",
-      "reason": "فجوة الدخول 5.19% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40626 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2010",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40626 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1211",
-      "reason": "فجوة الدخول 6.91% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40625 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "7203",
-      "reason": "فجوة الدخول 5.5% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40625 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "4002",
-      "reason": "Volume 0.51x أقل من 1.0x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40624 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1810",
-      "reason": "Volume 0.69x أقل من 1.0x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40624 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1303",
-      "reason": "Volume 0.51x أقل من 1.0x",
-      "category": "ضعف السيولة أو الحجم"
-    },
-    {
-      "symbol": "4003",
-      "reason": "TP1% 2.92% أقل من الحد الأدنى للإشارة العادية 3.25%",
-      "category": "العائد مقابل المخاطرة غير مناسب"
-    },
-    {
-      "symbol": "8010",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40624 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "4030",
-      "reason": "فجوة الدخول 6.19% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40623 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "8010",
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40623 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "4003",
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40623 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2083",
-      "reason": "RSI 72.7 خارج النطاق 38.0-72.0",
-      "category": "الزخم غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40622 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
+    },
+    {
+      "symbol": "7204",
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40622 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2084",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40621 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2200",
-      "reason": "Volume 0.52x أقل من 1.0x",
-      "category": "ضعف السيولة أو الحجم"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40621 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "1322",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40621 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     },
     {
       "symbol": "2382",
-      "reason": "الترند غير مناسب",
-      "category": "الاتجاه الفني غير مناسب"
-    },
-    {
-      "symbol": "4261",
-      "reason": "فجوة الدخول 6.5% أكبر من 5.0%",
-      "category": "أسباب فنية أخرى"
+      "reason": "historical failed: SAHMK 429: {\"detail\":\"Daily rate limit exceeded (100 requests/day). Resets at midnight. Upgrade: https://www.sahmk.sa/developers/pricing Expected available in 40620 seconds.\",\"upgrade\":{\"required_plan\":\"starter\",\"current_plan\":\"free\",\"current_requests_per_day\":",
+      "category": "بيانات تاريخية غير كافية"
     }
   ],
   "status": "NO_VALID_SIGNAL"

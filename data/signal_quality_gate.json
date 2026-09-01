@@ -1,36 +1,9 @@
 {
-  "status": "NO_VALID_SIGNAL",
+  "status": "NO_SIGNALS",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-09-01T12:37:40",
-  "configuration": {
-    "min_rased_score": 82.0,
-    "min_technical_score": 80.0,
-    "min_rr": 2.0,
-    "min_volume_ratio": 1.15,
-    "max_rsi": 70.0,
-    "max_atr_pct": 8.0,
-    "min_tp1_pct": 4.0,
-    "min_tp2_pct": 6.0,
-    "backtest_zero_reject_min_trades": 3,
-    "backtest_hard_min_trades": 4,
-    "backtest_min_win_rate": 35.0,
-    "chase_rsi": 68.0,
-    "chase_daily_change_pct": 5.5,
-    "chase_min_rr": 2.4,
-    "chase_min_volume_ratio": 2.0,
-    "max_signals": 3
-  },
-  "input_count": 1,
+  "generated_at": "2026-09-01T12:43:09",
+  "input_count": 0,
   "approved_count": 0,
-  "rejected_count": 1,
-  "approved": [],
-  "rejected": [
-    {
-      "symbol": "7204",
-      "rased_score": 80.0,
-      "reasons": [
-        "RASED SCORE 80.0 أقل من 82.0"
-      ]
-    }
-  ]
+  "rejected_count": 0,
+  "message": "لا توجد إشارات لفحص الجودة"
 }
