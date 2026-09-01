@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-09-01T10:34:03",
-  "data_timestamp": "2026-09-01T10:32:33",
+  "generated_at": "2026-09-01T10:38:57",
+  "data_timestamp": "2026-09-01T10:37:37",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,13 +15,13 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.294,
+    "average_change_pct": 0.272,
     "advance_ratio": 0.5106,
-    "dispersion": 1.063,
+    "dispersion": 1.08,
     "dynamic_min_score": 80,
     "advancing": 24,
-    "declining": 19,
-    "unchanged": 4
+    "declining": 18,
+    "unchanged": 5
   },
   "screening": {
     "screened": 47,
@@ -29,13 +29,14 @@
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "ضعف السيولة أو الحجم",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 17,
     "categories": {
-      "ضعف السيولة أو الحجم": 18,
-      "الاتجاه الفني غير مناسب": 14,
-      "أسباب فنية أخرى": 6,
+      "ضعف السيولة أو الحجم": 17,
+      "الاتجاه الفني غير مناسب": 15,
       "العائد مقابل المخاطرة غير مناسب": 5,
-      "الزخم غير مناسب": 4
+      "أسباب فنية أخرى": 5,
+      "الزخم غير مناسب": 4,
+      "بيانات تاريخية غير كافية": 1
     }
   },
   "leadership": {
@@ -45,8 +46,8 @@
     "best_stock": {
       "symbol": "2380",
       "name": "شركة رابغ للتكرير والبتروكيماويات",
-      "change_pct": 5.39,
-      "value": 40927586.42
+      "change_pct": 5.63,
+      "value": 51884533.8
     }
   },
   "portfolio_exposure": {
