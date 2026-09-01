@@ -1,7 +1,7 @@
 {
   "signals": [],
-  "generated_at": "2026-09-01T11:57:42",
-  "total": 0,
+  "generated_at": "2026-09-01T12:03:03",
+  "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
@@ -10,42 +10,42 @@
     "البنوك": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.57,
+      "avg_change_pct": -0.62,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 186041427.9
+      "total_value": 191806081.86
     },
     "المواد الأساسية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.05,
+      "avg_change_pct": 1.13,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 28131276.96
+      "total_value": 29139450.0
     },
     "الطاقة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.46,
+      "avg_change_pct": 0.31,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 56951186.6
+      "total_value": 61161091.14
     },
     "غير مصنف": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.43,
-      "advance_ratio": 0.62,
+      "avg_change_pct": 0.41,
+      "advance_ratio": 0.67,
       "members": 42,
-      "total_value": 390034580.06
+      "total_value": 420216940.57
     },
     "السلع طويلة الاجل": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.38,
+      "avg_change_pct": 0.19,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 523976.04
+      "total_value": 556428.1
     }
   },
   "filters": {
@@ -68,5 +68,23 @@
   },
   "note": "لا يوجد ضمان لتحقيق الأهداف. النظام يفلتر فقط الإشارات الأقرب فنياً لمدة 1-7 أيام.",
   "status": "NO_SIGNALS",
-  "message": "لا توجد إشارات تحقق شروط راصد اليوم"
+  "quality_gate_applied": true,
+  "quality_gate_version": "rased_quality_gate_v10",
+  "quality_gate_at": "2026-09-01T12:03:03",
+  "quality_gate_input_count": 1,
+  "quality_gate_approved_count": 0,
+  "quality_gate_rejected_count": 1,
+  "quality_gate_rejected": [
+    {
+      "symbol": "7204",
+      "rased_score": 80.0,
+      "reasons": [
+        "RASED SCORE 80.0 أقل من 82.0",
+        "زخم مرتفع دون اختراق مؤكد — احتمال مطاردة",
+        "إشارة مطاردة تحتاج R:R >= 2.40",
+        "إشارة مطاردة تحتاج Volume >= 2.00x"
+      ]
+    }
+  ],
+  "message": "لا توجد إشارات اجتازت بوابة الجودة V10"
 }

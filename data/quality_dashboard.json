@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-09-01T11:57:42",
-  "data_timestamp": "2026-09-01T11:57:20",
+  "generated_at": "2026-09-01T12:03:04",
+  "data_timestamp": "2026-09-01T12:02:37",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -15,38 +15,38 @@
     "regime": "NORMAL",
     "regime_ar": "طبيعي",
     "posture": "انتقائي",
-    "average_change_pct": 0.403,
-    "advance_ratio": 0.617,
-    "dispersion": 1.009,
+    "average_change_pct": 0.379,
+    "advance_ratio": 0.6596,
+    "dispersion": 1.05,
     "dynamic_min_score": 80,
-    "advancing": 29,
-    "declining": 14,
-    "unchanged": 4
+    "advancing": 31,
+    "declining": 16,
+    "unchanged": 0
   },
   "screening": {
     "screened": 47,
-    "rejected": 47,
+    "rejected": 46,
     "generated": 0,
     "validated": 0,
     "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 18,
+    "dominant_rejection_count": 17,
     "categories": {
-      "الاتجاه الفني غير مناسب": 18,
+      "الاتجاه الفني غير مناسب": 17,
       "أسباب فنية أخرى": 9,
-      "ضعف السيولة أو الحجم": 9,
-      "العائد مقابل المخاطرة غير مناسب": 7,
+      "العائد مقابل المخاطرة غير مناسب": 8,
+      "ضعف السيولة أو الحجم": 8,
       "الزخم غير مناسب": 4
     }
   },
   "leadership": {
     "best_sector": "المواد الأساسية",
-    "best_sector_avg_change_pct": 1.05,
+    "best_sector_avg_change_pct": 1.13,
     "best_sector_members": 1,
     "best_stock": {
-      "symbol": "7204",
-      "name": "شركة العرض المتقن للخدمات التجارية",
-      "change_pct": 3.09,
-      "value": 9215794.0
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
+      "change_pct": 3.85,
+      "value": 114718629.84
     }
   },
   "portfolio_exposure": {
