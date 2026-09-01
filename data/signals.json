@@ -1,62 +1,62 @@
 {
   "signals": [],
-  "generated_at": "2026-09-01T10:17:53",
+  "generated_at": "2026-09-01T10:22:47",
   "total": 0,
-  "total_screened": 40,
+  "total_screened": 45,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
   "provider": "sahmk",
   "historical_source": "GET /historical/{symbol}/ interval=1d",
   "sector_strength": {
     "البنوك": {
+      "bonus": 0,
+      "grade": "محايد",
+      "avg_change_pct": -0.1,
+      "advance_ratio": 0.5,
+      "members": 2,
+      "total_value": 20132231.26
+    },
+    "المواد الأساسية": {
+      "bonus": 5,
+      "grade": "قوي",
+      "avg_change_pct": 0.97,
+      "advance_ratio": 1.0,
+      "members": 1,
+      "total_value": 6156134.4
+    },
+    "الطاقة": {
       "bonus": 2,
       "grade": "محايد إيجابي",
       "avg_change_pct": 0.23,
-      "advance_ratio": 0.5,
-      "members": 2,
-      "total_value": 997660871.4
-    },
-    "المواد الأساسية": {
-      "bonus": -5,
-      "grade": "ضعيف",
-      "avg_change_pct": -1.71,
-      "advance_ratio": 0.0,
+      "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 148363111.68
-    },
-    "الطاقة": {
-      "bonus": 0,
-      "grade": "محايد",
-      "avg_change_pct": -0.31,
-      "advance_ratio": 0.0,
-      "members": 1,
-      "total_value": 413836630.82
+      "total_value": 3908962.48
     },
     "غير مصنف": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.57,
-      "advance_ratio": 0.29,
+      "avg_change_pct": -0.03,
+      "advance_ratio": 0.43,
       "members": 42,
-      "total_value": 2201741205.38
+      "total_value": 43239109.28
     },
     "السلع طويلة الاجل": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.94,
+      "avg_change_pct": -0.19,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 1295263.71
+      "total_value": 113634.12
     }
   },
   "filters": {
-    "MIN_SIGNAL_SCORE": 83,
+    "MIN_SIGNAL_SCORE": 81,
     "MIN_RR": 2.0,
     "MIN_VOLUME_RATIO": 1.0,
-    "MIN_VALUE_SAR": 500000.0,
-    "MIN_RSI": 45.0,
-    "MAX_RSI": 68.0,
+    "MIN_VALUE_SAR": 400000.0,
+    "MIN_RSI": 42.0,
+    "MAX_RSI": 70.0,
     "MAX_HOLD_DAYS": 7,
-    "MIN_TP1_PCT_NORMAL": 4.0,
+    "MIN_TP1_PCT_NORMAL": 3.5,
     "MIN_TP1_PCT_GOLDEN": 6.0,
     "MIN_TP1_PCT_PLATINUM": 8.0,
     "MIN_TP2_PCT_PLATINUM": 10.0,

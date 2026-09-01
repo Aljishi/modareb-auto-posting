@@ -1,8 +1,8 @@
 {
   "status": "PASS",
   "engine": "rased_quality_dashboard_v1",
-  "generated_at": "2026-09-01T10:17:54",
-  "data_timestamp": "2026-09-01T10:17:35",
+  "generated_at": "2026-09-01T10:22:48",
+  "data_timestamp": "2026-09-01T10:22:26",
   "provider": "sahmk",
   "system_health": {
     "fetch_status": "PASS",
@@ -12,41 +12,41 @@
     "valid_stocks": 47
   },
   "market": {
-    "regime": "WEAK",
-    "regime_ar": "ضعيف",
-    "posture": "حماية رأس المال",
-    "average_change_pct": -0.56,
-    "advance_ratio": 0.2766,
-    "dispersion": 1.172,
-    "dynamic_min_score": 83,
-    "advancing": 13,
-    "declining": 34,
-    "unchanged": 0
+    "regime": "SIDEWAYS",
+    "regime_ar": "عرضي",
+    "posture": "اختراقات مؤكدة فقط",
+    "average_change_pct": -0.014,
+    "advance_ratio": 0.4468,
+    "dispersion": 0.825,
+    "dynamic_min_score": 81,
+    "advancing": 21,
+    "declining": 25,
+    "unchanged": 1
   },
   "screening": {
-    "screened": 40,
-    "rejected": 40,
+    "screened": 45,
+    "rejected": 45,
     "generated": 0,
     "validated": 0,
-    "dominant_rejection": "الاتجاه الفني غير مناسب",
-    "dominant_rejection_count": 17,
+    "dominant_rejection": "ضعف السيولة أو الحجم",
+    "dominant_rejection_count": 26,
     "categories": {
-      "الاتجاه الفني غير مناسب": 17,
-      "العائد مقابل المخاطرة غير مناسب": 10,
-      "أسباب فنية أخرى": 8,
-      "الزخم غير مناسب": 3,
-      "ضعف السيولة أو الحجم": 2
+      "ضعف السيولة أو الحجم": 26,
+      "أسباب فنية أخرى": 6,
+      "الاتجاه الفني غير مناسب": 6,
+      "العائد مقابل المخاطرة غير مناسب": 5,
+      "الزخم غير مناسب": 2
     }
   },
   "leadership": {
-    "best_sector": "البنوك",
-    "best_sector_avg_change_pct": 0.23,
-    "best_sector_members": 2,
+    "best_sector": "المواد الأساسية",
+    "best_sector_avg_change_pct": 0.97,
+    "best_sector_members": 1,
     "best_stock": {
-      "symbol": "1810",
-      "name": "مجموعة سيرا القابضة",
-      "change_pct": 2.49,
-      "value": 55676282.7
+      "symbol": "2380",
+      "name": "شركة رابغ للتكرير والبتروكيماويات",
+      "change_pct": 3.26,
+      "value": 17060451.2
     }
   },
   "portfolio_exposure": {
