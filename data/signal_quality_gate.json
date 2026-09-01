@@ -1,7 +1,7 @@
 {
   "status": "NO_VALID_SIGNAL",
   "engine": "rased_quality_gate_v10",
-  "generated_at": "2026-09-01T12:32:52",
+  "generated_at": "2026-09-01T12:37:40",
   "configuration": {
     "min_rased_score": 82.0,
     "min_technical_score": 80.0,
