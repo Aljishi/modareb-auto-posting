@@ -1,6 +1,6 @@
 {
   "engine_version": "rased_sector_rotation_v2_0",
-  "generated_at": "2026-09-01T10:47:52",
+  "generated_at": "2026-09-01T10:53:01",
   "stocks_used": 47,
   "sectors_count": 4,
   "top_sectors": [
@@ -12,20 +12,20 @@
       "unchanged": 0,
       "advancing_ratio": 1.0,
       "advance_ratio": 1.0,
-      "avg_change_pct": 0.77,
-      "median_change_pct": 0.77,
-      "liquidity_weighted_change_pct": 0.77,
-      "total_value": 27909574.42,
-      "liquidity_share_pct": 23.42,
+      "avg_change_pct": 0.69,
+      "median_change_pct": 0.69,
+      "liquidity_weighted_change_pct": 0.69,
+      "total_value": 32084015.36,
+      "liquidity_share_pct": 23.77,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 59.2,
+        "momentum": 58.3,
         "breadth": 100.0,
-        "relative_liquidity": 35.9,
+        "relative_liquidity": 36.1,
         "signals": 40.0
       },
-      "rotation_score": 64.4,
+      "rotation_score": 64.1,
       "grade": "محايد إيجابي"
     },
     {
@@ -39,17 +39,17 @@
       "avg_change_pct": 1.34,
       "median_change_pct": 1.34,
       "liquidity_weighted_change_pct": 1.34,
-      "total_value": 13266129.3,
-      "liquidity_share_pct": 11.13,
+      "total_value": 13850846.4,
+      "liquidity_share_pct": 10.26,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 66.1,
         "breadth": 100.0,
-        "relative_liquidity": 17.0,
+        "relative_liquidity": 15.6,
         "signals": 40.0
       },
-      "rotation_score": 62.9,
+      "rotation_score": 62.5,
       "grade": "محايد إيجابي"
     },
     {
@@ -60,20 +60,20 @@
       "unchanged": 0,
       "advancing_ratio": 0.5,
       "advance_ratio": 0.5,
-      "avg_change_pct": -0.04,
-      "median_change_pct": -0.04,
-      "liquidity_weighted_change_pct": 0.46,
-      "total_value": 77819082.93,
-      "liquidity_share_pct": 65.31,
+      "avg_change_pct": -0.03,
+      "median_change_pct": -0.03,
+      "liquidity_weighted_change_pct": 0.39,
+      "total_value": 88873711.71,
+      "liquidity_share_pct": 65.84,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 55.5,
+        "momentum": 54.7,
         "breadth": 50.0,
         "relative_liquidity": 100.0,
         "signals": 40.0
       },
-      "rotation_score": 62.1,
+      "rotation_score": 61.8,
       "grade": "محايد إيجابي"
     },
     {
@@ -84,21 +84,21 @@
       "unchanged": 0,
       "advancing_ratio": 1.0,
       "advance_ratio": 1.0,
-      "avg_change_pct": 0.09,
-      "median_change_pct": 0.09,
-      "liquidity_weighted_change_pct": 0.09,
-      "total_value": 151596.82,
-      "liquidity_share_pct": 0.13,
+      "avg_change_pct": 0.47,
+      "median_change_pct": 0.47,
+      "liquidity_weighted_change_pct": 0.47,
+      "total_value": 167968.08,
+      "liquidity_share_pct": 0.12,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 51.1,
+        "momentum": 55.6,
         "breadth": 100.0,
         "relative_liquidity": 0.2,
         "signals": 40.0
       },
-      "rotation_score": 53.5,
-      "grade": "محايد"
+      "rotation_score": 55.2,
+      "grade": "محايد إيجابي"
     }
   ],
   "all_sectors": [
@@ -110,20 +110,20 @@
       "unchanged": 0,
       "advancing_ratio": 1.0,
       "advance_ratio": 1.0,
-      "avg_change_pct": 0.77,
-      "median_change_pct": 0.77,
-      "liquidity_weighted_change_pct": 0.77,
-      "total_value": 27909574.42,
-      "liquidity_share_pct": 23.42,
+      "avg_change_pct": 0.69,
+      "median_change_pct": 0.69,
+      "liquidity_weighted_change_pct": 0.69,
+      "total_value": 32084015.36,
+      "liquidity_share_pct": 23.77,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 59.2,
+        "momentum": 58.3,
         "breadth": 100.0,
-        "relative_liquidity": 35.9,
+        "relative_liquidity": 36.1,
         "signals": 40.0
       },
-      "rotation_score": 64.4,
+      "rotation_score": 64.1,
       "grade": "محايد إيجابي"
     },
     {
@@ -137,17 +137,17 @@
       "avg_change_pct": 1.34,
       "median_change_pct": 1.34,
       "liquidity_weighted_change_pct": 1.34,
-      "total_value": 13266129.3,
-      "liquidity_share_pct": 11.13,
+      "total_value": 13850846.4,
+      "liquidity_share_pct": 10.26,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
         "momentum": 66.1,
         "breadth": 100.0,
-        "relative_liquidity": 17.0,
+        "relative_liquidity": 15.6,
         "signals": 40.0
       },
-      "rotation_score": 62.9,
+      "rotation_score": 62.5,
       "grade": "محايد إيجابي"
     },
     {
@@ -158,20 +158,20 @@
       "unchanged": 0,
       "advancing_ratio": 0.5,
       "advance_ratio": 0.5,
-      "avg_change_pct": -0.04,
-      "median_change_pct": -0.04,
-      "liquidity_weighted_change_pct": 0.46,
-      "total_value": 77819082.93,
-      "liquidity_share_pct": 65.31,
+      "avg_change_pct": -0.03,
+      "median_change_pct": -0.03,
+      "liquidity_weighted_change_pct": 0.39,
+      "total_value": 88873711.71,
+      "liquidity_share_pct": 65.84,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 55.5,
+        "momentum": 54.7,
         "breadth": 50.0,
         "relative_liquidity": 100.0,
         "signals": 40.0
       },
-      "rotation_score": 62.1,
+      "rotation_score": 61.8,
       "grade": "محايد إيجابي"
     },
     {
@@ -182,21 +182,21 @@
       "unchanged": 0,
       "advancing_ratio": 1.0,
       "advance_ratio": 1.0,
-      "avg_change_pct": 0.09,
-      "median_change_pct": 0.09,
-      "liquidity_weighted_change_pct": 0.09,
-      "total_value": 151596.82,
-      "liquidity_share_pct": 0.13,
+      "avg_change_pct": 0.47,
+      "median_change_pct": 0.47,
+      "liquidity_weighted_change_pct": 0.47,
+      "total_value": 167968.08,
+      "liquidity_share_pct": 0.12,
       "signal_count": 0,
       "avg_signal_score": 0.0,
       "components": {
-        "momentum": 51.1,
+        "momentum": 55.6,
         "breadth": 100.0,
         "relative_liquidity": 0.2,
         "signals": 40.0
       },
-      "rotation_score": 53.5,
-      "grade": "محايد"
+      "rotation_score": 55.2,
+      "grade": "محايد إيجابي"
     }
   ],
   "methodology": {
