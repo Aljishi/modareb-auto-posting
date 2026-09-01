@@ -1,6 +1,6 @@
 {
   "signals": [],
-  "generated_at": "2026-09-01T12:27:32",
+  "generated_at": "2026-09-01T12:32:52",
   "total": 1,
   "total_screened": 47,
   "engine_version": "rased_sahmk_starter_plus_v9_1_consistency_fix",
@@ -13,31 +13,31 @@
       "avg_change_pct": -0.55,
       "advance_ratio": 0.0,
       "members": 2,
-      "total_value": 207804054.74
+      "total_value": 212775009.8
     },
     "المواد الأساسية": {
       "bonus": 5,
       "grade": "قوي",
-      "avg_change_pct": 1.13,
+      "avg_change_pct": 1.05,
       "advance_ratio": 1.0,
       "members": 1,
-      "total_value": 30171850.0
+      "total_value": 30819474.68
     },
     "الطاقة": {
       "bonus": 0,
       "grade": "محايد",
-      "avg_change_pct": -0.08,
+      "avg_change_pct": 0.0,
       "advance_ratio": 0.0,
       "members": 1,
-      "total_value": 87160723.44
+      "total_value": 89824598.28
     },
     "غير مصنف": {
       "bonus": 2,
       "grade": "محايد إيجابي",
-      "avg_change_pct": 0.46,
-      "advance_ratio": 0.6,
+      "avg_change_pct": 0.42,
+      "advance_ratio": 0.64,
       "members": 42,
-      "total_value": 469746170.68
+      "total_value": 492683087.03
     },
     "السلع طويلة الاجل": {
       "bonus": 2,
@@ -70,7 +70,7 @@
   "status": "NO_SIGNALS",
   "quality_gate_applied": true,
   "quality_gate_version": "rased_quality_gate_v10",
-  "quality_gate_at": "2026-09-01T12:27:32",
+  "quality_gate_at": "2026-09-01T12:32:52",
   "quality_gate_input_count": 1,
   "quality_gate_approved_count": 0,
   "quality_gate_rejected_count": 1,
@@ -79,10 +79,7 @@
       "symbol": "7204",
       "rased_score": 80.0,
       "reasons": [
-        "RASED SCORE 80.0 أقل من 82.0",
-        "زخم مرتفع دون اختراق مؤكد — احتمال مطاردة",
-        "إشارة مطاردة تحتاج R:R >= 2.40",
-        "إشارة مطاردة تحتاج Volume >= 2.00x"
+        "RASED SCORE 80.0 أقل من 82.0"
       ]
     }
   ],
